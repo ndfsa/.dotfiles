@@ -8,6 +8,7 @@ HISTSIZE=5000
 SAVEHIST=5000
 HISTFILE=~/.cache/zsh/history
 HISTCONTROL=ignoreboth
+setopt hist_ignore_dups
 
 # Autocompletion
 autoload -Uz compinit && compinit
