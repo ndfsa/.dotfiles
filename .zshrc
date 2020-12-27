@@ -33,3 +33,7 @@ alias grep='grep --color=auto'
 # Useful keybinds
 bindkey '^[[1;5C' emacs-forward-word
 bindkey '^[[1;5D' emacs-backward-word
+
+# Word style
+autoload -U select-word-style
+select-word-style bash
