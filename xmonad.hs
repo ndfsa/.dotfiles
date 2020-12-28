@@ -271,7 +271,7 @@ myLogHook xmproc = dynamicLogWithPP xmobarPP
 
 myStartupHook = do
 	spawn "feh --recursive --bg-fill --randomize ~/Pictures/Wallpapers/ &"
-	spawn "picom --config ~/.config/picom/picom.conf &"
+	spawn "picom --experimental-backends --config ~/.config/picom/picom.conf &"
 	 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
