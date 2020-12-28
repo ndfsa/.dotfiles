@@ -15,6 +15,7 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*:default' list-colors \ 
        ${(s.:.)LS_COLORS}
+zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}'	# tab completition is case insensitive
 zmodload zsh/complist
 setopt menu_complete
 
@@ -37,6 +38,6 @@ bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
 
-# Word style
+# Word styles
 autoload -U select-word-style
 select-word-style bash
