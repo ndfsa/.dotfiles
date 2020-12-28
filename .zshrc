@@ -37,6 +37,8 @@ bindkey '^[[1;5D' emacs-backward-word
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
+bindkey '^H' backward-kill-word
+bindkey '5~' kill-word
 
 # Word styles
 autoload -U select-word-style
