@@ -38,7 +38,7 @@ myClickJustFocuses = False
 
 -- Width of the window border in pixels.
 --
-myBorderWidth   = 1
+myBorderWidth   = 5
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -60,8 +60,8 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor  = "#303030"
-myFocusedBorderColor = "#dddddd"
+myNormalBorderColor  = "#202020"
+myFocusedBorderColor = "#eeeeee"
 
 -- Shutdown all components
 shutdownScript = "killall xmobar; killall picom;"
@@ -81,10 +81,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run -fn 'JetBrains Mono-13'")
+    , ((modm,               xK_p     ), spawn "dmenu_run -sf '#eeeeee' -sb '#966fd6' -nb '#202020' -nf '#808080' -fn 'JetBrains Mono-13'")
 
     -- launch gmrun
-    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
+    -- , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
@@ -202,7 +202,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts $ spacingRaw False (Border 10 0 10 0) True (Border 0 10 0 10) True (tiled ||| Mirror tiled ||| Grid ||| OneBig (3/4) (3/4) ||| Full)
+myLayout = avoidStruts $ spacingRaw False (Border 10 0 10 0) True (Border 0 10 0 10) True (tiled ||| Mirror tiled ||| Grid ||| OneBig (3/4) (3/4)) ||| Full
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -234,6 +234,7 @@ myLayout = avoidStruts $ spacingRaw False (Border 10 0 10 0) True (Border 0 10 0
 myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
+    , className =? "Nemo"	    --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore ]
 
