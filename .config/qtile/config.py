@@ -74,7 +74,6 @@ layout_theme = {
 }
 
 layouts = [
-    layout.Max(),
     # layout.Stack(num_stacks=2),
     # Try more layouts by unleashing below layouts.
     # layout.Bsp(),
@@ -82,6 +81,7 @@ layouts = [
     # layout.Matrix(),
     layout.MonadTall(**layout_theme),
     layout.MonadWide(**layout_theme),
+    layout.Max(),
     # layout.RatioTile(),
     # layout.Tile(),
     # layout.TreeTab(),
@@ -100,24 +100,20 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.CurrentLayout(),
                 widget.GroupBox(),
-                widget.Prompt(),
+                widget.Sep(),
                 widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        'launch': ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
+                widget.Spacer(),
+                widget.Prompt(),
                 widget.CPU(),
                 widget.Memory(),
                 widget.Systray(),
+                widget.PulseVolume(padding=20),
                 widget.Clock(format='%Y-%m-%d %a %H:%M'),
                 widget.QuickExit(),
-                widget.Wallpaper(label="W", directory="~/Pictures/Wallpapers"),
+                widget.Wallpaper(label="W", directory="~/Pictures/Wallpapers/"),
             ],
-            24,
+            30, opacity=0.6,
         ),
     ),
 ]
