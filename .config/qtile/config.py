@@ -72,9 +72,8 @@ for i in groups:
     ])
 
 layout_theme = {
-    "margin": 20,
-    "border_focus": "#bbbbbb",
-    "border_normal": "#202020"
+    "margin": 15,
+    "border_width": 5
 }
 
 layouts = [
