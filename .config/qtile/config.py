@@ -48,6 +48,10 @@ keys = [
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown qtile"),
     Key([mod], "r", lazy.spawncmd(),
         desc="Spawn a command using a prompt widget"),
+    # Sound
+    Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 sset Master 1- unmute")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 sset Master 1+ unmute"))
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -100,18 +104,20 @@ screens = [
     Screen(
         top=bar.Bar(
             [
+                widget.Sep(padding=10, linewidth=0),
                 widget.GroupBox(),
-                widget.Sep(),
+                widget.Sep(padding=10),
+                widget.CurrentLayout(),
+                widget.Sep(padding=10),
                 widget.WindowName(),
                 widget.Spacer(),
                 widget.Prompt(),
                 widget.CPU(),
                 widget.Memory(),
                 widget.Systray(),
-                widget.PulseVolume(padding=20),
+                widget.Volume(padding=20),
                 widget.Clock(format='%Y-%m-%d %a %H:%M'),
                 widget.QuickExit(),
-                widget.Wallpaper(label="W", directory="~/Pictures/Wallpapers/"),
             ],
             30, opacity=0.6,
         ),
@@ -152,6 +158,11 @@ floating_layout = layout.Floating(float_rules=[
 ])
 auto_fullscreen = True
 focus_on_window_activation = "smart"
+
+@hook.subscribe.startup_complete
+def startup():
+    home = os.path.expanduser("~")
+    subprocess.run(["feh", "--bg-fill", "--randomize", home + "/Pictures/Wallpapers/"])
 
 @hook.subscribe.startup_once
 def start_once():
