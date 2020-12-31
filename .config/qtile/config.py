@@ -9,7 +9,7 @@ from libqtile.config import Click, Drag, Group, Key, Screen
 from libqtile.lazy import lazy
 
 mod = "mod4"
-terminal = "kitty"
+terminal = "alacritty"
 
 keys = [
     # Switch between windows in current stack pane
@@ -93,7 +93,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='JetBrains Mono',
+    font='Ubuntu Mono',
     fontsize=15,
     padding=3,
 )
@@ -104,13 +104,12 @@ screens = [
         top=bar.Bar(
             [
                 widget.Sep(padding=10, linewidth=0),
-                widget.GroupBox(),
+                widget.GroupBox(disable_drag=True, spacing=5),
                 widget.Sep(padding=10),
-                widget.CurrentLayout(),
+                widget.CurrentLayout(fmt='{:^9}'),
                 widget.Sep(padding=10),
                 widget.WindowName(),
                 widget.Spacer(),
-                widget.Prompt(),
                 widget.CPU(),
                 widget.Memory(),
                 widget.Systray(),
