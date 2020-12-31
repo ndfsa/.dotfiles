@@ -10,6 +10,10 @@ from libqtile.lazy import lazy
 
 mod = "mod4"
 terminal = "alacritty"
+home = os.path.expanduser("~")
+
+class Commands:
+    change_wallpaper = "feh --bg-fill --randomize " + home + "/Pictures/Wallpapers/"
 
 keys = [
     # Switch between windows in current stack pane
@@ -48,10 +52,15 @@ keys = [
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown qtile"),
     Key([mod], "r", lazy.spawncmd(),
         desc="Spawn a command using a prompt widget"),
+    
     # Sound
     Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 sset Master 1- unmute")),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 sset Master 1+ unmute"))
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q -c 0 set Master 2%- -M unmute")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q -c 0 set Master 2%+ -M unmute")),
+    
+    # Convinience keybinds
+    Key([mod, "shift"], "w", lazy.spawn(Commands.change_wallpaper), desc="Change wallpaper"),
+    Key([mod,], "r", lazy.spawn("rofi -show run"), desc="Show rofi"),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -81,9 +90,9 @@ layouts = [
     # Try more layouts by unleashing below layouts.
     # layout.Bsp(),
     # layout.Columns(),
-    # layout.Matrix(),
     layout.MonadTall(**layout_theme),
     layout.MonadWide(**layout_theme),
+    layout.Matrix(columns=3, **layout_theme),
     layout.Max(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -159,13 +168,11 @@ focus_on_window_activation = "smart"
 
 @hook.subscribe.startup_complete
 def startup():
-    home = os.path.expanduser("~")
-    subprocess.run(["feh", "--bg-fill", "--randomize", home + "/Pictures/Wallpapers/"])
+    subprocess.run(Commands.change_wallpaper.split())
 
 @hook.subscribe.startup_once
 def start_once():
-    home = os.path.expanduser("~")
-    subprocess.call([home + "/.config/qtile/autostart.sh"])
+    subprocess.run(home + "/.config/qtile/autostart.sh")
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the

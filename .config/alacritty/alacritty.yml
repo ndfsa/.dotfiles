@@ -236,7 +236,7 @@ colors:
     #  foreground: '#1d1f21'
   # Normal colors
   normal:
-    black:      '#5c6370'
+    black:      '#000000'
     red:        '#e06c75'
     green:      '#98c379'
     yellow:     '#e5c07b'
