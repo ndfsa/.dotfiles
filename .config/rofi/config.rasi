@@ -1,4 +1,4 @@
 configuration {
- modi: "run,window";
- theme: "onedark";
+    modi: "run,window,drun";
+    theme: "onedark";
  }

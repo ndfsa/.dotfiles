@@ -44,10 +44,9 @@ window:
   # by DPI and the specified value is always added at both opposing sides.
   padding:
     x: 10
-    y: 10
-
+    #y: 6
   # Spread additional padding evenly around the terminal content.
-  #dynamic_padding: false
+  dynamic_padding: true
 
   # Window decorations
   #
@@ -177,8 +176,8 @@ font:
 colors:
   # Default colors
   primary:
-    background: '#282c34'
-    foreground: '#abb2bf'
+    foreground: '0xabb2bf'
+    background: '0x282c34'
     # Bright and dim foreground colors
     #
     # The dimmed foreground color is calculated automatically if it is not
@@ -186,7 +185,7 @@ colors:
     # `draw_bold_text_with_bright_colors` is `false`, the normal foreground
     # color will be used.
     #dim_foreground: '#828482'
-    bright_foreground: '#e6efff'
+    #bright_foreground: '#e6efff'
 
   # Cursor colors
   #
@@ -236,24 +235,25 @@ colors:
     #  foreground: '#1d1f21'
   # Normal colors
   normal:
-    black:      '#000000'
-    red:        '#e06c75'
-    green:      '#98c379'
-    yellow:     '#e5c07b'
-    blue:       '#61afef'
-    magenta:    '#c678dd'
-    cyan:       '#56b6c2'
-    white:      '#828997'
+    black:   '0x5c6370'
+    red:     '0xe06c75'
+    green:   '0x98c379'
+    yellow:  '0xe5c07b'
+    blue:    '0x61afef'
+    magenta: '0xc678dd'
+    cyan:    '0x56b6c2'
+    white:   '0xabb2bf'
+
   # Bright colors
-  #bright:
-    #black:   '#5c6370'
-    #red:     '#e06c75'
-    #green:   '#98c379'
-    #yellow:  '#d19a66'
-    #blue:    '#61afef'
-    #magenta: '#c678dd'
-    #cyan:    '#56b6c2'
-    #white:   '#e6efff'
+  bright:
+    black:   '0x4b5263'
+    red:     '0xbe5046'
+    green:   '0x98c379'
+    yellow:  '0xd19a66'
+    blue:    '0x61afef'
+    magenta: '0xc678dd'
+    cyan:    '0x56b6c2'
+    white:   '0x3e4452'
 
   # Dim colors
   #
@@ -324,7 +324,7 @@ colors:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.97
+#background_opacity: 0.97
 
 selection:
   # This string contains all characters that are used as separators for

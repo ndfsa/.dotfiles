@@ -12,7 +12,8 @@ terminal = "alacritty"
 home = os.path.expanduser("~")
 
 class Commands:
-    change_wallpaper = "feh --bg-fill --randomize " + home + "/Pictures/Wallpapers/"
+    change_wallpaper = ("feh --bg-fill --randomize "
+            + home + "/Pictures/Wallpapers/")
 
 keys = [
     # Switch between windows in current stack pane
@@ -56,13 +57,17 @@ keys = [
         desc="Spawn a command using a prompt widget"),
     
     # Sound
-    Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q -c 0 set Master 2%- -M unmute")),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q -c 0 set Master 2%+ -M unmute")),
+    Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle"),
+        desc="Mute master channel"),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q -c 0 set Master 2dB- -M unmute"),
+        desc="Lower master channel volume"),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q -c 0 set Master 2dB+ -M unmute"),
+        desc="Lower master channel volume"),
     
     # Convinience keybinds
-    Key([mod, "shift"], "w", lazy.spawn(Commands.change_wallpaper), desc="Change wallpaper"),
-    Key([mod,], "r", lazy.spawn("rofi -show run"), desc="Show rofi"),
+    Key([mod, "shift"], "p", lazy.spawn(Commands.change_wallpaper), desc="Change wallpaper"),
+    Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Show rofi runner"),
+    Key([mod], "w", lazy.spawn("rofi -show window"), desc="Show rofi window switcher"),
 ]
 
 groups = [Group(x) for x in "sys www dev msc".split()]
@@ -70,7 +75,7 @@ groups = [Group(x) for x in "sys www dev msc".split()]
 for i, g in enumerate(groups):
     keys.extend([
         # mod1 + letter of group = switch to group
-        Key([mod], str(i + 1), lazy.group[g.name].toscreen(),
+        Key([mod], str(i + 1), lazy.group[g.name].toscreen(toggle=False),
             desc="Switch to group {}".format(g.name)),
 
         # mod1 + shift + letter of group = switch to & move focused window to group
@@ -84,7 +89,7 @@ for i, g in enumerate(groups):
 
 layout_theme = {
     "margin": 15,
-    "border_width": 0,
+    "border_width": 6,
     "border_focus": "#dddddd",
     "border_normal": "#202020"
 }
@@ -115,21 +120,19 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.Sep(
-                        padding=15,
-                        linewidth=0
-                        ),
                 widget.Image(
                         filename="~/.config/qtile/icons/logo.png",
-                        margin=6,
-                        mouse_callbacks={'Button1': lambda clbk: clbk.cmd_spawn("rofi -show run")}
+                        margin_x=15,
+                        margin_y=6,
+                        mouse_callbacks={'Button1': lambda clbk: clbk.cmd_spawn("rofi -show drun")}
                         ),
                 widget.GroupBox(
                         disable_drag=True,
                         spacing=5,
                         highlight_method="line",
                         this_current_screen_border="#a86cc1",
-                        borderwidth=5
+                        borderwidth=5,
+                        use_mouse_wheel=False
                         ),
                 widget.Sep(
                         padding=10
@@ -152,9 +155,18 @@ screens = [
                         format='%Y-%m-%d %a %H:%M'
                         ),
                 widget.QuickExit(),
-            ],
-            35, opacity=0.6,
+            ], 35, opacity=0.6,
         ),
+    ),
+    Screen(top=bar.Bar([
+            widget.Image(
+                        filename="~/.config/qtile/icons/logo.png",
+                        margin_x=15,
+                        margin_y=6,
+                        mouse_callbacks={'Button1': lambda clbk: clbk.cmd_spawn("rofi -show run")}
+                        ),
+            ], 35, opacity=0.6
+        )
     ),
 ]
 

@@ -9,12 +9,12 @@ HISTFILE=~/.cache/zsh/history
 HISTCONTROL=ignoreboth
 setopt hist_ignore_dups     # ignore dups in history
 # Enable history search with up and down command
-autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
+#autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+#zle -N up-line-or-beginning-search
+#zle -N down-line-or-beginning-search
 
-[[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
-[[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
+#[[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
+#[[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
 
 
 ### Autocompletion
@@ -39,37 +39,17 @@ precmd_functions+=( precmd_vcs_info )
 zstyle ':vcs_info:*' stagedstr ' %F{green}●%f' 
 zstyle ':vcs_info:*' unstagedstr ' %F{yellow}●%f'
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' formats ' %F{magenta}( %b%f%c%u %F{magenta})%f '
-
-
-### Enable color support of ls and also add handy aliases
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-
-
-### Useful keybinds
-bindkey '^[[1;5C' emacs-forward-word
-bindkey '^[[1;5D' emacs-backward-word
-bindkey  "^[[H"   beginning-of-line
-bindkey  "^[[F"   end-of-line
-bindkey  "^[[3~"  delete-char
-bindkey '^H' backward-kill-word
-bindkey '5~' kill-word
-
-
-### Word styles
-autoload -U select-word-style
-select-word-style bash
+zstyle ':vcs_info:git:*' formats ' %F{magenta}( %b%f%c%u %F{magenta})%f'
 
 
 ### Fancy prompt
 case ${TERM} in
     xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
-        PROMPT='%B%F{blue}[%f%F{yellow}%~%f%F{blue}]%f%b${vcs_info_msg_0_}%F{green}->%f '
+        PROMPT='%F{yellow}%~%f${vcs_info_msg_0_}%F{green} >%f '
         RPROMPT='[%F{yellow}%?%f]'
         ;;
     *)
-        PROMPT='%F{green}%n@%m%f:%~%(!.#.$)'
+        PROMPT='%F{green}%n@%m%f:%~%(!.#.$) '
         ;;
 esac
 
@@ -84,3 +64,33 @@ precmd(){
     esac
 }
 preexec(){ precmd "$1" }
+
+
+### Enable color support of ls and also add handy aliases
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias vi='/bin/vim'
+alias vim='/bin/nvim'
+
+### Useful keybinds
+bindkey '^[[1;5C' emacs-forward-word
+bindkey '^[[1;5D' emacs-backward-word
+bindkey  "^[[H"   beginning-of-line
+bindkey  "^[[F"   end-of-line
+bindkey  "^[[3~"  delete-char
+bindkey '^H' backward-kill-word
+bindkey '5~' kill-word
+
+
+### History search
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search # Up
+bindkey "^[[B" down-line-or-beginning-search # Down
+
+### Word styles
+autoload -U select-word-style
+select-word-style bash
+
