@@ -1,5 +1,6 @@
 # colors
 autoload -U colors && colors
+export EDITOR=VIM;
 
 ### Enable history and history cache, move to cache file in home
 HISTSIZE=5000
@@ -62,8 +63,15 @@ select-word-style bash
 
 
 ### Fancy prompt
-PROMPT='%B%F{blue}[%f%F{yellow}%~%f%F{blue}]%f%b${vcs_info_msg_0_}%F{green}->%f '
-RPROMPT='[%F{yellow}%?%f]'
+case ${TERM} in
+    xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
+        PROMPT='%B%F{blue}[%f%F{yellow}%~%f%F{blue}]%f%b${vcs_info_msg_0_}%F{green}->%f '
+        RPROMPT='[%F{yellow}%?%f]'
+        ;;
+    *)
+        PROMPT='%F{green}%n@%m%f:%~%(!.#.$)'
+        ;;
+esac
 
 ### Handle window name
 precmd(){

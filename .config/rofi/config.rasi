@@ -1,5 +1,4 @@
 configuration {
- modi: "run";
+ modi: "run,window";
  theme: "onedark";
- font: "Ubuntu Mono 30";
  }
