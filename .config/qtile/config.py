@@ -28,12 +28,13 @@ keys = [
     Key([mod, "control"], "j", lazy.layout.shuffle_up(),
         desc="Move window up in current stack "),
     # Disable floating window
-    Key([mod,], "t", lazy.window.toggle_floating(),
+    Key([mod], "t", lazy.window.toggle_floating(),
         desc="Move window up in current stack "),
     # Switch window focus to other pane(s) of stack
-    Key([mod], "Tab", lazy.layout.next(),
+    Key(["mod1"], "Tab", lazy.layout.next(),
         desc="Switch window focus to other pane(s) of stack"),
-
+    Key([mod], "Tab", lazy.next_screen(),
+        desc="Switch to next window"),
     # Swap panes of split stack
     Key([mod, "shift"], "space", lazy.layout.rotate(),
         desc="Swap panes of split stack"),
@@ -53,8 +54,6 @@ keys = [
 
     Key([mod, "shift"], "r", lazy.restart(), desc="Restart qtile"),
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown qtile"),
-    Key([mod], "r", lazy.spawncmd(),
-        desc="Spawn a command using a prompt widget"),
     
     # Sound
     Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle"),
@@ -77,7 +76,7 @@ for i, g in enumerate(groups):
         # mod1 + letter of group = switch to group
         Key([mod], str(i + 1), lazy.group[g.name].toscreen(toggle=False),
             desc="Switch to group {}".format(g.name)),
-
+        Key([mod, "control"], str(i + 1), lazy.group.focus_by_name(g.name)),
         # mod1 + shift + letter of group = switch to & move focused window to group
         Key([mod, "shift"], str(i + 1), lazy.window.togroup(g.name, switch_group=True),
             desc="Switch to & move focused window to group {}".format(g.name)),
@@ -163,7 +162,15 @@ screens = [
                         filename="~/.config/qtile/icons/logo.png",
                         margin_x=15,
                         margin_y=6,
-                        mouse_callbacks={'Button1': lambda clbk: clbk.cmd_spawn("rofi -show run")}
+                        mouse_callbacks={'Button1': lambda clbk: clbk.cmd_spawn("rofi -show drun")}
+                        ),
+            widget.GroupBox(
+                        disable_drag=True,
+                        spacing=5,
+                        highlight_method="line",
+                        this_current_screen_border="#a86cc1",
+                        borderwidth=5,
+                        use_mouse_wheel=False
                         ),
             ], 35, opacity=0.6
         )
@@ -182,7 +189,7 @@ mouse = [
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: List
 main = None  # WARNING: this is deprecated and will be removed soon
-follow_mouse_focus = True
+follow_mouse_focus = False
 bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(float_rules=[
