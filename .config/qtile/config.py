@@ -17,11 +17,25 @@ class Commands:
 
 keys = [
     # Switch between windows in current stack pane
-    Key([mod], "k", lazy.layout.down(),
+    Key([mod], "j", lazy.layout.down(),
         desc="Move focus down in stack pane"),
-    Key([mod], "j", lazy.layout.up(),
+    Key([mod], "k", lazy.layout.up(),
         desc="Move focus up in stack pane"),
+    Key([mod], "h", lazy.layout.left(),
+        desc="Move focus left in stack pane"),
+    Key([mod], "l", lazy.layout.right(),
+        desc="Move focus right in stack pane"),
+    Key([mod, "shift"], "j", lazy.layout.grow_down(),
+        desc="Grow down in stack pane"),
+    Key([mod, "shift"], "k", lazy.layout.grow_up(),
+        desc="Grow up in stack pane"),
+    Key([mod, "shift"], "h", lazy.layout.grow_left(),
+        desc="Grow left in stack pane"),
+    Key([mod, "shift"], "l", lazy.layout.grow_right(),
+        desc="Grow right in stack pane"),
 
+    Key([mod], "n", lazy.layout.normalize(),
+        desc="Normalize sizes on windows"),
     # Move windows up or down in current stack
     Key([mod, "control"], "k", lazy.layout.shuffle_down(),
         desc="Move window down in current stack "),
@@ -40,12 +54,7 @@ keys = [
         desc="Swap panes of split stack"),
     Key([mod, "shift"], "f", lazy.layout.flip(),
         desc="Shift flip monad layouts"),
-    # Toggle between split and unsplit sides of stack.
-    # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Max layout, but still with
-    # multiple stack panes
-    #Key([mod, "shift"], "Return", lazy.layout.toggle_split(),
-    #    desc="Toggle between split and unsplit sides of stack"),
+
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
 
     # Toggle between different layouts as defined below
@@ -87,8 +96,8 @@ for i, g in enumerate(groups):
     ])
 
 layout_theme = {
-    "margin": 15,
-    "border_width": 6,
+    "margin": 6,
+    "border_width": 0,
     "border_focus": "#dddddd",
     "border_normal": "#202020"
 }
@@ -96,7 +105,7 @@ layout_theme = {
 layouts = [
     # layout.Stack(num_stacks=2),
     # Try more layouts by unleashing below layouts.
-    # layout.Bsp(**layout_theme),
+    layout.Bsp(**layout_theme),
     # layout.Columns(),
     layout.MonadTall(**layout_theme),
     layout.MonadWide(**layout_theme),

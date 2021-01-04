@@ -69,8 +69,6 @@ preexec(){ precmd "$1" }
 ### Enable color support of ls and also add handy aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-alias vi='/bin/vim'
-alias vim='/bin/nvim'
 
 ### Useful keybinds
 bindkey '^[[1;5C' emacs-forward-word
