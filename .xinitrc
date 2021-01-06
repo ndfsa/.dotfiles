@@ -51,3 +51,4 @@ fi
 
 vmware-user &
 exec qtile
+#exec xmonad

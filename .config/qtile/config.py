@@ -17,30 +17,18 @@ class Commands:
 
 keys = [
     # Switch between windows in current stack pane
-    Key([mod], "j", lazy.layout.down(),
-        desc="Move focus down in stack pane"),
-    Key([mod], "k", lazy.layout.up(),
-        desc="Move focus up in stack pane"),
-    Key([mod], "h", lazy.layout.left(),
-        desc="Move focus left in stack pane"),
-    Key([mod], "l", lazy.layout.right(),
-        desc="Move focus right in stack pane"),
-    Key([mod, "shift"], "j", lazy.layout.grow_down(),
-        desc="Grow down in stack pane"),
-    Key([mod, "shift"], "k", lazy.layout.grow_up(),
-        desc="Grow up in stack pane"),
-    Key([mod, "shift"], "h", lazy.layout.grow_left(),
-        desc="Grow left in stack pane"),
-    Key([mod, "shift"], "l", lazy.layout.grow_right(),
-        desc="Grow right in stack pane"),
+    Key([mod], "j", lazy.layout.down()),
+    Key([mod], "k", lazy.layout.up()),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
+    Key([mod, "shift"], "h", lazy.layout.swap_left()),
+    Key([mod, "shift"], "l", lazy.layout.swap_right()),
+    Key([mod], "i", lazy.layout.grow()),
+    Key([mod], "m", lazy.layout.shrink()),
+    Key([mod], "n", lazy.layout.normalize()),
+    Key([mod], "o", lazy.layout.maximize()),
+    Key([mod, "shift"], "space", lazy.layout.flip()),
 
-    Key([mod], "n", lazy.layout.normalize(),
-        desc="Normalize sizes on windows"),
-    # Move windows up or down in current stack
-    Key([mod, "control"], "k", lazy.layout.shuffle_down(),
-        desc="Move window down in current stack "),
-    Key([mod, "control"], "j", lazy.layout.shuffle_up(),
-        desc="Move window up in current stack "),
     # Disable floating window
     Key([mod], "t", lazy.window.toggle_floating(),
         desc="Move window up in current stack "),
@@ -49,11 +37,6 @@ keys = [
         desc="Switch window focus to other pane(s) of stack"),
     Key([mod], "Tab", lazy.next_screen(),
         desc="Switch to next window"),
-    # Swap panes of split stack
-    Key([mod, "shift"], "space", lazy.layout.rotate(),
-        desc="Swap panes of split stack"),
-    Key([mod, "shift"], "f", lazy.layout.flip(),
-        desc="Shift flip monad layouts"),
 
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
 
@@ -78,7 +61,7 @@ keys = [
     Key([mod], "w", lazy.spawn("rofi -show window"), desc="Show rofi window switcher"),
 ]
 
-groups = [Group(x) for x in "sys www dev msc".split()]
+groups = [Group(x) for x in "sys www dev msc idl".split()]
 
 for i, g in enumerate(groups):
     keys.extend([
@@ -95,6 +78,19 @@ for i, g in enumerate(groups):
         #     desc="move focused window to group {}".format(i.name)),
     ])
 
+class Colors():
+    foreground = "#abb2bf"
+    background = "#282c34"
+    black = "#5c6370"
+    red = "#e06c75"
+    green = "#98c379"
+    yellow = "#e5c07b"
+    blue = "#61afef"
+    magenta = "#c678dd"
+    purple = "#a86cc1"
+    cyan = "#56b6c2"
+    white = "#abb2bf"
+
 layout_theme = {
     "margin": 6,
     "border_width": 0,
@@ -105,7 +101,7 @@ layout_theme = {
 layouts = [
     # layout.Stack(num_stacks=2),
     # Try more layouts by unleashing below layouts.
-    layout.Bsp(**layout_theme),
+    #layout.Bsp(**layout_theme),
     # layout.Columns(),
     layout.MonadTall(**layout_theme),
     layout.MonadWide(**layout_theme),
@@ -123,7 +119,6 @@ widget_defaults = dict(
     padding=3
 )
 extension_defaults = widget_defaults.copy()
-
 screens = [
     Screen(
         top=bar.Bar(
@@ -138,7 +133,7 @@ screens = [
                         disable_drag=True,
                         spacing=5,
                         highlight_method="line",
-                        this_current_screen_border="#a86cc1",
+                        this_current_screen_border=Colors.purple,
                         borderwidth=5,
                         use_mouse_wheel=False
                         ),
@@ -153,17 +148,51 @@ screens = [
                         ),
                 widget.WindowName(),
                 widget.Spacer(),
-                widget.CPU(),
-                widget.Memory(),
-                widget.Systray(),
+                widget.Sep(
+                        padding=10
+                        ),
+                widget.Net(
+                        interface="ens33",
+                        format="{down} ↓↑ {up}",
+                        padding=15,
+                        ),
+                widget.Sep(
+                        padding=10
+                        ),
+                widget.CPU(
+                        padding=15,
+                        ),
+                widget.Sep(
+                        padding=10
+                        ),
+                widget.Memory(
+                        padding=15,
+                        ),
+                widget.Sep(
+                        padding=10
+                        ),
+                #widget.Systray(),
+                #widget.Sep(
+                #        padding=10
+                #        ),
                 widget.Volume(
-                        padding=20
+                        padding=20,
+                        ),
+                widget.Sep(
+                        padding=10
                         ),
                 widget.Clock(
-                        format='%Y-%m-%d %a %H:%M'
+                        format='%Y-%m-%d %a %H:%M',
+                        padding=15,
                         ),
-                widget.QuickExit(),
-            ], 35, opacity=0.6,
+                widget.Sep(
+                        padding=10
+                        ),
+                widget.QuickExit(
+                        default_text='⏻',
+                        padding=15,
+                        ),
+            ], 35, opacity=0.8,
         ),
     ),
     Screen(top=bar.Bar([
@@ -177,11 +206,11 @@ screens = [
                         disable_drag=True,
                         spacing=5,
                         highlight_method="line",
-                        this_current_screen_border="#a86cc1",
+                        this_current_screen_border=Colors.purple,
                         borderwidth=5,
                         use_mouse_wheel=False
                         ),
-            ], 35, opacity=0.6
+            ], 35, opacity=0.8
         )
     ),
 ]

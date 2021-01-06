@@ -2,8 +2,9 @@ Config {
 
    -- appearance
      font =         "xft:JetBrains Mono:size=13:regular:antialias=true"
-   , bgColor =      "#301934"
-   , fgColor =      "#808080"
+   , bgColor =      "#000000"
+   , alpha =        153
+   , fgColor =      "#ffffff"
    , position =     Top
    , border =       BottomB
    , borderColor =  "#bbbbbb"

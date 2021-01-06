@@ -26,7 +26,7 @@ import XMonad.Layout.Spacing
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "kitty"
+myTerminal      = "alacritty"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -38,7 +38,7 @@ myClickJustFocuses = False
 
 -- Width of the window border in pixels.
 --
-myBorderWidth   = 5
+myBorderWidth   = 0
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -63,14 +63,10 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 myNormalBorderColor  = "#202020"
 myFocusedBorderColor = "#eeeeee"
 
--- Shutdown all components
-shutdownScript = "killall xmobar; killall picom;"
-
 -- Restart script
-restartScript = "xmonad --recompile; xmonad --restart;"
+restartScript = "xmonad --recompile; xmonad --restart; ~/.xmonad/autostart.sh"
 
 shutdown = do
-	spawn shutdownScript
 	io (exitWith ExitSuccess)
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -81,10 +77,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run -sf '#eeeeee' -sb '#966fd6' -nb '#202020' -nf '#808080' -fn 'JetBrains Mono-13'")
-
-    -- launch gmrun
-    -- , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
+    , ((modm,               xK_p     ), spawn "rofi -show drun")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
@@ -147,7 +140,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_q     ), shutdown)
 
     -- Restart xmonad
-    , ((modm              , xK_q     ), spawn (shutdownScript ++ restartScript))
+    , ((modm              , xK_q     ), spawn restartScript)
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     , ((modm .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
@@ -235,8 +228,7 @@ myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
     , className =? "Nemo"	    --> doFloat
-    , resource  =? "desktop_window" --> doIgnore
-    , resource  =? "kdesktop"       --> doIgnore ]
+    , resource  =? "desktop_window" --> doIgnore ]
 
 ------------------------------------------------------------------------
 -- Event handling
