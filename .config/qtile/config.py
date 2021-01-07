@@ -46,6 +46,8 @@ keys = [
 
     Key([mod, "shift"], "r", lazy.restart(), desc="Restart qtile"),
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown qtile"),
+    # This keybind might be troublesome, change if required
+    Key([mod, "shift"], "w", lazy.spawn("light-locker-command -l"), desc="Lock qtile"),
     
     # Sound
     Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle"),
@@ -189,7 +191,8 @@ screens = [
                         padding=10
                         ),
                 widget.QuickExit(
-                        default_text='⏻',
+                        default_text='[ ⏻ ]',
+                        countdown_format='[ {} ]',
                         padding=15,
                         ),
             ], 35, opacity=0.8,

@@ -3,8 +3,8 @@ autoload -U colors && colors
 export EDITOR=VIM;
 
 ### Enable history and history cache, move to cache file in home
-HISTSIZE=5000
-SAVEHIST=5000
+HISTSIZE=10000
+SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
 HISTCONTROL=ignoreboth
 setopt hist_ignore_dups     # ignore dups in history
@@ -36,16 +36,16 @@ autoload -Uz compinit && compinit
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
-zstyle ':vcs_info:*' stagedstr ' %F{green}●%f' 
-zstyle ':vcs_info:*' unstagedstr ' %F{yellow}●%f'
+zstyle ':vcs_info:*' stagedstr '%F{green}*%f' 
+zstyle ':vcs_info:*' unstagedstr '%F{yellow}*%f'
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' formats ' %F{magenta}( %b%f%c%u %F{magenta})%f'
+zstyle ':vcs_info:git:*' formats ' %F{magenta}(%b%f%c%u%F{magenta})%f'
 
 
 ### Fancy prompt
 case ${TERM} in
     xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
-        PROMPT='%F{yellow}%~%f${vcs_info_msg_0_}%F{green} >%f '
+        PROMPT='%F{blue}%n%f@%m %F{yellow}%~%f${vcs_info_msg_0_}%F{green}>%f '
         RPROMPT='[%F{yellow}%?%f]'
         ;;
     *)
@@ -60,8 +60,6 @@ esac
 function title {
     emulate -L zsh
     setopt prompt_subst
-
-    [[ "$EMACS" == *term* ]] && return
 
     # if $2 is unset use $1 as default
     # if it is set and empty, leave it as is

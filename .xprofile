@@ -1,0 +1,2 @@
+vmware-user &
+light-locker --lock-after-screensaver=0 &
