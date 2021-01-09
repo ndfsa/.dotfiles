@@ -1,0 +1,18 @@
+/*
+ * Change the colorscheme for every menu simply by editing this file...
+ *
+ * Available Color Schemes
+ *
+ * bluish    berry    nordic    nightly    gotham    mask    faded    cocoa
+ *
+ */
+
+* {
+    background:                     #282c34FF;
+    background-alt:                 #5c6370ff;
+    foreground:                     #abb2bfff;
+    border:               			#61afefff;
+    border-alt:               		#e5c07bff;
+    selected:               		#56b6c21a;
+    urgent:                         #be5046FF;
+}

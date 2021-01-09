@@ -104,6 +104,7 @@ function! s:check_back_space() abort
 endfunction
 
 " use <cr> to confirm th autocomplete target 
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :

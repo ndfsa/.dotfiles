@@ -6,14 +6,11 @@ import subprocess
 from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Screen
 from libqtile.lazy import lazy
+from wallpaper import CustomWallpaper
 
 mod = "mod4"
 terminal = "alacritty"
 home = os.path.expanduser("~")
-
-class Commands:
-    change_wallpaper = ("feh --bg-fill --randomize "
-            + home + "/Pictures/Wallpapers/")
 
 keys = [
     # Switch between windows in current stack pane
@@ -46,6 +43,7 @@ keys = [
 
     Key([mod, "shift"], "r", lazy.restart(), desc="Restart qtile"),
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown qtile"),
+    Key([mod, "shift"], "p", lazy.spawn(home + "/.config/rofi/powermenu/powermenu.sh"), desc="Powermenu"),
     # This keybind might be troublesome, change if required
     Key([mod, "shift"], "w", lazy.spawn("light-locker-command -l"), desc="Lock qtile"),
     
@@ -58,7 +56,6 @@ keys = [
         desc="Lower master channel volume"),
     
     # Convinience keybinds
-    Key([mod, "shift"], "p", lazy.spawn(Commands.change_wallpaper), desc="Change wallpaper"),
     Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Show rofi runner"),
     Key([mod], "w", lazy.spawn("rofi -show window"), desc="Show rofi window switcher"),
 ]
@@ -105,9 +102,9 @@ layouts = [
     # Try more layouts by unleashing below layouts.
     #layout.Bsp(**layout_theme),
     # layout.Columns(),
+    layout.Max(),
     layout.MonadTall(**layout_theme),
     layout.MonadWide(**layout_theme),
-    layout.Max(),
     # layout.RatioTile(),
     # layout.Tile(),
     # layout.TreeTab(),
@@ -117,8 +114,8 @@ layouts = [
 
 widget_defaults = dict(
     font='Ubuntu Mono',
-    fontsize=15,
-    padding=3
+    margin_y=6,
+    fontsize=15
 )
 extension_defaults = widget_defaults.copy()
 screens = [
@@ -128,7 +125,7 @@ screens = [
                 widget.Image(
                         filename="~/.config/qtile/icons/logo.png",
                         margin_x=15,
-                        margin_y=6,
+#                        margin_y=6,
                         mouse_callbacks={'Button1': lambda clbk: clbk.cmd_spawn("rofi -show drun")}
                         ),
                 widget.GroupBox(
@@ -190,10 +187,13 @@ screens = [
                 widget.Sep(
                         padding=10
                         ),
-                widget.QuickExit(
-                        default_text='[ ⏻ ]',
-                        countdown_format='[ {} ]',
-                        padding=15,
+                CustomWallpaper(
+                        home=home,
+                        padding=15
+                        ),
+                widget.Sep(
+                        padding=5,
+                        linewidth = 0,
                         ),
             ], 35, opacity=0.8,
         ),
@@ -202,7 +202,6 @@ screens = [
             widget.Image(
                         filename="~/.config/qtile/icons/logo.png",
                         margin_x=15,
-                        margin_y=6,
                         mouse_callbacks={'Button1': lambda clbk: clbk.cmd_spawn("rofi -show drun")}
                         ),
             widget.GroupBox(
@@ -252,10 +251,6 @@ floating_layout = layout.Floating(float_rules=[
 ])
 auto_fullscreen = True
 focus_on_window_activation = "smart"
-
-@hook.subscribe.startup_complete
-def startup():
-    subprocess.run(Commands.change_wallpaper.split())
 
 @hook.subscribe.startup_once
 def start_once():

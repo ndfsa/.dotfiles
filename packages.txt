@@ -9,7 +9,6 @@ clang
 efibootmgr
 fakeroot
 feh
-firefox
 flex
 fzf
 gcc
@@ -20,8 +19,6 @@ htop
 kitty
 light-locker
 lightdm
-lightdm-webkit-theme-litarvan
-lightdm-webkit2-greeter
 linux
 linux-firmware
 linux-headers

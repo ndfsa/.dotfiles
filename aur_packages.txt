@@ -1,0 +1,2 @@
+https://aur.archlinux.org/brave-bin.git
+

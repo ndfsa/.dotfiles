@@ -2,19 +2,16 @@
 autoload -U colors && colors
 export EDITOR=VIM;
 
+
+### set extended globs, may conflict with valid filenames, remember to look out
+setopt extended_glob
+
 ### Enable history and history cache, move to cache file in home
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
 HISTCONTROL=ignoreboth
 setopt hist_ignore_dups     # ignore dups in history
-# Enable history search with up and down command
-#autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
-#zle -N up-line-or-beginning-search
-#zle -N down-line-or-beginning-search
-
-#[[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
-#[[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
 
 
 ### Autocompletion
@@ -52,6 +49,8 @@ case ${TERM} in
         PROMPT='%F{green}%n@%m%f:%~%(!.#.$) '
         ;;
 esac
+
+
 ##########################
 ### Handle window name ###
 ##########################
@@ -148,6 +147,7 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias vim='nvim'
 
+
 ### Useful keybinds
 bindkey '^[[1;5C' emacs-forward-word
 bindkey '^[[1;5D' emacs-backward-word
@@ -165,6 +165,7 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
+
 
 ### Word styles
 autoload -U select-word-style
