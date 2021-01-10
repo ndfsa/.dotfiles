@@ -10,6 +10,7 @@ set incsearch
 set number relativenumber
 set colorcolumn=80
 set encoding=UTF-8
+set laststatus=2
 
 set hidden
 set updatetime=300
@@ -18,6 +19,7 @@ set cursorline
 let NERDTreeShowHidden=1
 let NERDTreeWinPos="right"
 let NERDTreeNaturalSort=1
+let NERDTreeStatusline=-1
 
 " Load vim plug
 call plug#begin('~/.vim/plugged')
@@ -33,34 +35,44 @@ Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
-"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-if has('termguicolors')
-    set termguicolors
-endif
+" status line
 let g:lightline = {
       \ 'colorscheme': 'onedark',
-      \ 'active': {
-      \   'right': [ [ 'lineinfo' ],
-      \              [ 'percent' ],
-      \              [ 'fileformat', 'fileencoding', 'filetype',
-      \                         'charvaluehex' ] ],
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'cocstatus', 'readonly',
-      \                         'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead',
-      \   'cocstatus': 'coc#status'
-      \ },
-      \ 'component': {
-      \   'charvaluehex': '0x%B'
-      \ },
+      \     'active': {
+      \       'right': [ [ 'lineinfo' ],
+      \                  [ 'percent' ],
+      \                  [ 'fileformat', 'fileencoding', 'filetype',
+      \                             'charvaluehex' ] ],
+      \       'left': [ [ 'mode', 'paste' ],
+      \                 [ 'gitbranch', 'cocstatus', 'readonly',
+      \                             'filename', 'modified' ] ]
+      \     },
+      \     'component_function': {
+      \       'gitbranch': 'FugitiveHead',
+      \       'cocstatus': 'coc#status'
+      \     },
+      \     'component': {
+      \       'charvaluehex': '0x%B'
+      \     },
       \ }
 " hide another instert type
 set noshowmode
 
-" set some basic color settings and tabs
+" set some basic color settings and background override
+if (has("autocmd") && !has("gui_running"))
+  augroup colorset
+    autocmd!
+    let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
+    autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
+  augroup END
+endif
 colorscheme onedark
+
+
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+if has('termguicolors')
+    set termguicolors
+endif
 
 " Layout config for fzf
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
@@ -70,6 +82,8 @@ let $FZF_DEFAULT_OPTS = '--reverse'
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 &&
     \ exists('b:NERDTree') && b:NERDTree.isTabTree() |
     \ quit | endif
+" disable lightline when entering nerdtree
+
 
 " Useful keymaps
 let mapleader = " "
@@ -84,9 +98,6 @@ nnoremap <silent><leader>l :wincmd l<CR>
 nnoremap <silent><leader>sh :split<CR>
 nnoremap <silent><leader>sv :vsplit<CR>
 
-" remap ctrl backspace to erase word
-nmap <silent><BS> daw
-
 " fuzzy finder
 nnoremap <silent><C-p> :Rg<CR>
 nnoremap <silent><leader>gf :GFiles<CR>
@@ -99,8 +110,8 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
 " use <cr> to confirm th autocomplete target 

@@ -7,7 +7,7 @@
 
 ### I just removed things I did not need
 
-theme="dock_rounded"
+theme="card_rounded"
 dir="$HOME/.config/rofi/powermenu"
 
 uptime=$(uptime -p | sed -e 's/up //g')

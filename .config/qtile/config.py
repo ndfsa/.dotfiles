@@ -22,7 +22,7 @@ keys = [
     Key([mod, "shift"], "l", lazy.layout.swap_right()),
     Key([mod], "i", lazy.layout.grow()),
     Key([mod], "m", lazy.layout.shrink()),
-    Key([mod], "n", lazy.layout.normalize()),
+    Key([mod], "n", lazy.layout.reset()),
     Key([mod], "o", lazy.layout.maximize()),
     Key([mod, "shift"], "space", lazy.layout.flip()),
 
@@ -36,6 +36,7 @@ keys = [
         desc="Switch to next window"),
 
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+    Key([mod, "shift"], "Return", lazy.layout.swap_main(), desc="Launch terminal"),
 
     # Toggle between different layouts as defined below
     Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
@@ -58,9 +59,12 @@ keys = [
     # Convinience keybinds
     Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Show rofi runner"),
     Key([mod], "w", lazy.spawn("rofi -show window"), desc="Show rofi window switcher"),
+
+    # Hide Top bar
+    Key([mod], "b", lazy.hide_show_bar() , desc="Show rofi runner"),
 ]
 
-groups = [Group(x) for x in "sys www dev msc idl".split()]
+groups = [Group(x) for x in "sys www dev fmg msc idl".split()]
 
 for i, g in enumerate(groups):
     keys.extend([
@@ -92,8 +96,8 @@ class Colors():
 
 layout_theme = {
     "margin": 6,
-    "border_width": 0,
-    "border_focus": "#dddddd",
+    "border_width": 4,
+    "border_focus": "#a86cc1",
     "border_normal": "#202020"
 }
 
@@ -105,6 +109,7 @@ layouts = [
     layout.Max(),
     layout.MonadTall(**layout_theme),
     layout.MonadWide(**layout_theme),
+    layout.Floating(**layout_theme),
     # layout.RatioTile(),
     # layout.Tile(),
     # layout.TreeTab(),
