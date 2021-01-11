@@ -7,7 +7,7 @@
 
 ### I just removed things I did not need
 
-theme="card_rounded"
+theme="card_squared"
 dir="$HOME/.config/rofi/powermenu"
 
 uptime=$(uptime -p | sed -e 's/up //g')

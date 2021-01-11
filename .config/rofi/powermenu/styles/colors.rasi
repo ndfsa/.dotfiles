@@ -8,11 +8,11 @@
  */
 
 * {
-    background:                     #282c34ff;
-    background-alt:                 #282c34ff;
-    foreground:                     #abb2bfff;
-    border:               			#98c379ff;
-    border-alt:               		#e5c07bff;
-    selected:               		#61afef1a;
-    urgent:                         #e06c75ff;
+    background:                     #28282855;
+    background-alt:                 #282828ff;
+    foreground:                     #ebdbb2ff;
+    border:               			#d79921ff;
+    border-alt:               		#98971aff;
+    selected:               		#b162861a;
+    urgent:                         #cc241dff;
 }

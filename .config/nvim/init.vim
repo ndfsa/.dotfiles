@@ -4,40 +4,50 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
+
 set nowrap
-set smartcase
 set incsearch
+set nohlsearch
+
 set number relativenumber
 set colorcolumn=80
-set encoding=UTF-8
-set laststatus=2
-
-set hidden
-set updatetime=300
+set signcolumn=yes
 set cursorline
 
-let NERDTreeShowHidden=1
-let NERDTreeWinPos="right"
-let NERDTreeNaturalSort=1
-let NERDTreeStatusline=-1
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+set hidden
+
+set encoding=UTF-8
+set laststatus=2
+set updatetime=300
+set scrolloff=8
 
 " Load vim plug
 call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'joshdick/onedark.vim'
+Plug 'gruvbox-community/gruvbox'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
+Plug 'mbbill/undotree'
 
 call plug#end()
 
+let NERDTreeShowHidden=1
+let NERDTreeWinPos="right"
+let NERDTreeNaturalSort=1
+let NERDTreeStatusline=-1
+
 " status line
 let g:lightline = {
-      \ 'colorscheme': 'onedark',
+      \ 'colorscheme': 'gruvbox',
       \     'active': {
       \       'right': [ [ 'lineinfo' ],
       \                  [ 'percent' ],
@@ -59,15 +69,8 @@ let g:lightline = {
 set noshowmode
 
 " set some basic color settings and background override
-if (has("autocmd") && !has("gui_running"))
-  augroup colorset
-    autocmd!
-    let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
-    autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
-  augroup END
-endif
-colorscheme onedark
-
+colorscheme gruvbox
+highlight Normal guibg=none
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 if has('termguicolors')
@@ -176,3 +179,5 @@ command! -nargs=0 Format :call CocAction('format')
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
+nnoremap <silent><leader><F5> :UndotreeToggle<CR>
+nnoremap <silent><leader>rn :set relativenumber!<CR>

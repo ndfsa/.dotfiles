@@ -1,4 +1,4 @@
 configuration {
     modi: "run,window,drun";
-    theme: "onedark";
+    theme: "gruv-box";
  }

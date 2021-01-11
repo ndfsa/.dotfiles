@@ -82,23 +82,22 @@ for i, g in enumerate(groups):
     ])
 
 class Colors():
-    foreground = "#abb2bf"
-    background = "#282c34"
-    black = "#5c6370"
-    red = "#e06c75"
-    green = "#98c379"
-    yellow = "#e5c07b"
-    blue = "#61afef"
-    magenta = "#c678dd"
-    purple = "#a86cc1"
-    cyan = "#56b6c2"
-    white = "#abb2bf"
+    background = '#282828'
+    foreground = '#ebdbb2'
+    black =   '#282828'
+    red =     '#cc241d'
+    green =   '#98971a'
+    yellow =  '#d79921'
+    blue =    '#458588'
+    magenta = '#b16286'
+    cyan =    '#689d6a'
+    white =   '#a89984'
 
 layout_theme = {
     "margin": 6,
     "border_width": 4,
-    "border_focus": "#a86cc1",
-    "border_normal": "#202020"
+    "border_focus": Colors.red,
+    "border_normal": Colors.black
 }
 
 layouts = [
@@ -119,6 +118,7 @@ layouts = [
 
 widget_defaults = dict(
     font='Ubuntu Mono',
+    foreground=Colors.foreground,
     margin_y=6,
     fontsize=15
 )
@@ -137,9 +137,10 @@ screens = [
                         disable_drag=True,
                         spacing=5,
                         highlight_method="line",
-                        this_current_screen_border=Colors.purple,
+                        this_current_screen_border=Colors.red,
                         borderwidth=5,
-                        use_mouse_wheel=False
+                        use_mouse_wheel=False,
+                        active=Colors.white
                         ),
                 widget.Sep(
                         padding=10
@@ -157,20 +158,21 @@ screens = [
                         ),
                 widget.Net(
                         interface="ens33",
-                        format="{down} ↓↑ {up}",
-                        padding=15,
+                        format="{down:^8} ↓↑ {up:^8}",
                         ),
                 widget.Sep(
                         padding=10
                         ),
                 widget.CPU(
                         padding=15,
+                        format="CPU {freq_current}GHz {load_percent:^5}%"
                         ),
                 widget.Sep(
                         padding=10
                         ),
                 widget.Memory(
                         padding=15,
+                        format="{MemUsed:^4}M/{MemTotal:^4}M"
                         ),
                 widget.Sep(
                         padding=10
@@ -200,7 +202,7 @@ screens = [
                         padding=5,
                         linewidth = 0,
                         ),
-            ], 35, opacity=0.8,
+            ], 35, opacity=0.95, background=Colors.background
         ),
     ),
     Screen(top=bar.Bar([
@@ -213,11 +215,11 @@ screens = [
                         disable_drag=True,
                         spacing=5,
                         highlight_method="line",
-                        this_current_screen_border=Colors.purple,
+                        this_current_screen_border=Colors.red,
                         borderwidth=5,
                         use_mouse_wheel=False
                         ),
-            ], 35, opacity=0.8
+            ], 35, opacity=0.95, background=Colors.background
         )
     ),
 ]
