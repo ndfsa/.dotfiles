@@ -36,14 +36,14 @@ precmd_functions+=( precmd_vcs_info )
 zstyle ':vcs_info:*' stagedstr '%F{green}*%f' 
 zstyle ':vcs_info:*' unstagedstr '%F{yellow}*%f'
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' formats ' %F{magenta}(%b%f%c%u%F{magenta})%f'
+zstyle ':vcs_info:git:*' formats ' שׂ %F{magenta}(%b%f%c%u%F{magenta})%f'
 
 
 ### Fancy prompt
 case ${TERM} in
     xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
-        PROMPT='%F{blue}%n%f@%m %F{yellow}%~%f${vcs_info_msg_0_}%F{green}>%f '
-        RPROMPT='[%F{yellow}%?%f]'
+        PROMPT='%F{blue}%n%f@%m %F{yellow}%~%f%F{green}>%f '
+        RPROMPT='[%F{yellow}%?%f]${vcs_info_msg_0_}'
         ;;
     *)
         PROMPT='%F{green}%n@%m%f:%~%(!.#.$) '

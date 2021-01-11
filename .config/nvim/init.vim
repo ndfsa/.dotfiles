@@ -44,6 +44,9 @@ let NERDTreeShowHidden=1
 let NERDTreeWinPos="right"
 let NERDTreeNaturalSort=1
 let NERDTreeStatusline=-1
+let NERDTreeWinSize=35 
+let g:undotree_ShortIndicators=1
+let g:undotree_SplitWidth=35
 
 " status line
 let g:lightline = {
