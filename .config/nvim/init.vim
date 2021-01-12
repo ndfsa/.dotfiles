@@ -88,28 +88,61 @@ let $FZF_DEFAULT_OPTS = '--reverse'
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 &&
     \ exists('b:NERDTree') && b:NERDTree.isTabTree() |
     \ quit | endif
-" disable lightline when entering nerdtree
-
 
 " Useful keymaps
 let mapleader = " "
 
 " switch buffers
-nnoremap <silent><leader>h :wincmd h<CR>
-nnoremap <silent><leader>j :wincmd j<CR>
-nnoremap <silent><leader>k :wincmd k<CR>
-nnoremap <silent><leader>l :wincmd l<CR>
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+
+nnoremap <leader>H <C-w>H
+nnoremap <leader>J <C-w>J
+nnoremap <leader>K <C-w>K
+nnoremap <leader>L <C-w>L
 
 " split windows
-nnoremap <silent><leader>sh :split<CR>
-nnoremap <silent><leader>sv :vsplit<CR>
+nnoremap <leader>sh :split<CR>
+nnoremap <leader>sv :vsplit<CR>
+
+" resize windows
+nnoremap <leader>= :vertical resize +5<CR>
+nnoremap <leader>- :vertical resize -5<CR>
+nnoremap <leader>f :resize 100<CR>
+
+" move lines
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 " fuzzy finder
-nnoremap <silent><C-p> :Rg<CR>
-nnoremap <silent><leader>gf :GFiles<CR>
+nnoremap <C-p> :Rg<CR>
+
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --hidden --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+" RG search for hidden files
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+nnoremap <leader><C-p> :RG<CR>
+
+" show buffers in popup window
+nnoremap <leader>b :Buffers<CR>
 
 " nerdtree replacing netrw
 nnoremap <silent><C-t> :NERDTreeToggle<CR>
+
+" undotree
+nnoremap <silent><leader><F5> :UndotreeToggle<CR>
+
+" toggle relativenumber
+nnoremap <silent><leader>rn :set relativenumber!<CR>
+
+""" ------------- Other Keybinds -------------
 
 " Coc keybinds
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -182,5 +215,3 @@ command! -nargs=0 Format :call CocAction('format')
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-nnoremap <silent><leader><F5> :UndotreeToggle<CR>
-nnoremap <silent><leader>rn :set relativenumber!<CR>

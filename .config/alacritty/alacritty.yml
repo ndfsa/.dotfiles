@@ -74,7 +74,7 @@ window:
   #title: Alacritty
 
   # Allow terminal applications to change Alacritty's window title.
-  #dynamic_title: true
+  dynamic_title: true
 
   # Window class (Linux/BSD only):
   #class:
@@ -293,7 +293,7 @@ selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
 
   # When set to `true`, selected text will be copied to the primary clipboard.
-  save_to_clipboard: false
+  save_to_clipboard: true
 
 #cursor:
   # Cursor style

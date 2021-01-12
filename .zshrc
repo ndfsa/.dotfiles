@@ -1,7 +1,7 @@
 # colors
 autoload -U colors && colors
-export EDITOR=VIM;
-
+export EDITOR=nvim
+export PAGER=less
 
 ### set extended globs, may conflict with valid filenames, remember to look out
 setopt extended_glob
