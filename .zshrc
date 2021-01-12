@@ -1,10 +1,17 @@
+# profiling for performance
+#zmodload zsh/zprof
+
 # colors
 autoload -U colors && colors
 export EDITOR=nvim
 export PAGER=less
+export BROWSER=firefox
+WORDCHARS='~!#$%^&*(){}[]<>?.+;-'
+
 
 ### set extended globs, may conflict with valid filenames, remember to look out
 setopt extended_glob
+
 
 ### Enable history and history cache, move to cache file in home
 HISTSIZE=10000
@@ -17,7 +24,6 @@ setopt hist_ignore_dups     # ignore dups in history
 ### Autocompletion
 autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
-zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}'	# tab completition is case insensitive
 zstyle ':completion:*:default' list-colors \ 
        ${(s.:.)LS_COLORS}
 zmodload zsh/complist
@@ -31,126 +37,78 @@ setopt prompt_subst         # subject prompt to parameter expansion, command sub
 ### Git tab completition and VCS info in prompt
 autoload -Uz compinit && compinit
 autoload -Uz vcs_info
-precmd_vcs_info() { vcs_info }
+
+precmd_vcs_info() {
+    # only perform if the directory in question is a git repository
+    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]]
+    then
+        vcs_info
+    else
+        vcs_info_msg_0_=""
+    fi
+}
 precmd_functions+=( precmd_vcs_info )
-zstyle ':vcs_info:*' stagedstr '%F{green}*%f' 
-zstyle ':vcs_info:*' unstagedstr '%F{yellow}*%f'
+zstyle ':vcs_info:*' enable git   
+zstyle ':vcs_info:*' stagedstr ' %F{green}%f' 
+zstyle ':vcs_info:*' unstagedstr ' %F{yellow}%f'
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' formats ' שׂ %F{magenta}(%b%f%c%u%F{magenta})%f'
+zstyle ':vcs_info:git:*' formats 'שׂ %F{magenta}(%b%f%c%u%m%F{magenta})%f '
+
++vi-git-untracked() {
+  if git status --porcelain | grep -m 1 '^??' &>/dev/null
+  then
+    hook_com[misc]=' %F{red}%f'
+  fi
+}
 
 
 ### Fancy prompt
 case ${TERM} in
     xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
-        PROMPT='%F{blue}%n%f@%m %F{yellow}%~%f%F{green}>%f '
-        RPROMPT='[%F{yellow}%?%f]${vcs_info_msg_0_}'
+        PS1='%F{blue}%n%f@%m %F{yellow}%~%f%F{green}>%f '
+        RPS1='${vcs_info_msg_0_}[%F{yellow}%?%f]'
         ;;
     *)
-        PROMPT='%F{green}%n@%m%f:%~%(!.#.$) '
+        PS1='%F{green}%n@%m%f:%~%(!.#.$) '
         ;;
 esac
 
 
-##########################
-### Handle window name ###
-##########################
-# NOTE: I took this implementation from https://github.com/ohmyzsh/ohmyzsh
-#       and trimmed down the things I did not need.
-function title {
-    emulate -L zsh
-    setopt prompt_subst
-
-    # if $2 is unset use $1 as default
-    # if it is set and empty, leave it as is
-    : ${2=$1}
-
-    case "$TERM" in
-        cygwin|xterm*|putty*|rxvt*|konsole*|ansi|mlterm*|alacritty|st*)
-            print -Pn "\e]2;${2:q}\a" # set window name
-            print -Pn "\e]1;${1:q}\a" # set tab name
-            ;;
-        screen*|tmux*)
-            print -Pn "\ek${1:q}\e\\" # set screen hardstatus
-            ;;
-        *)
-            # Try to use terminfo to set the title
-            # If the feature is available set title
-            if [[ -n "$terminfo[fsl]" ]] && [[ -n "$terminfo[tsl]" ]]; then
-                echoti tsl
-                print -Pn "$1"
-                echoti fsl
-            fi
-            ;;
-    esac
-}
-tab_title="%15<..<%~%<<" #15 char left truncated PWD
-win_title="%n@%m:%~"
-function precmd(){
-    title $tab_title $win_title
-}
-function preexec(){ 
-    emulate -L zsh
-    setopt extended_glob
-
-    # split command into array of arguments
-    local -a cmdargs
-    cmdargs=("${(z)2}")
-    # if running fg, extract the command from the job description
-    if [[ "${cmdargs[1]}" = fg ]]; then
-        # get the job id from the first argument passed to the fg command
-        local job_id jobspec="${cmdargs[2]#%}"
-        # logic based on jobs arguments:
-        # http://zsh.sourceforge.net/Doc/Release/Jobs-_0026-Signals.html#Jobs
-        # https://www.zsh.org/mla/users/2007/msg00704.html
-        case "$jobspec" in
-            <->) # %number argument:
-                # use the same <number> passed as an argument
-                job_id=${jobspec}
-                ;;
-            ""|%|+) # empty, %% or %+ argument:
-                # use the current job, which appears with a + in $jobstates:
-                # suspended:+:5071=suspended (tty output)
-                job_id=${(k)jobstates[(r)*:+:*]}
-                ;;
-            -) # %- argument:
-                # use the previous job, which appears with a - in $jobstates:
-                # suspended:-:6493=suspended (signal)
-                job_id=${(k)jobstates[(r)*:-:*]}
-                ;;
-            [?]*) # %?string argument:
-                # use $jobtexts to match for a job whose command *contains* <string>
-                job_id=${(k)jobtexts[(r)*${(Q)jobspec}*]}
-                ;;
-            *) # %string argument:
-                # use $jobtexts to match for a job whose command *starts with* <string>
-                job_id=${(k)jobtexts[(r)${(Q)jobspec}*]}
-                ;;
-        esac
-
-        # override preexec function arguments with job command
-        if [[ -n "${jobtexts[$job_id]}" ]]; then
-            1="${jobtexts[$job_id]}"
-            2="${jobtexts[$job_id]}"
-        fi
-    fi
-
-    # cmd name only, or if this is sudo or ssh, the next cmd
-    local CMD=${1[(wr)^(*=*|sudo|ssh|mosh|rake|-*)]:gs/%/%%}
-    local LINE="${2:gs/%/%%}"
-
-    title '$CMD' '%100>...>$LINE%<<'
-}
+###################
+##  WINDOW TITLE  #
+###################
+case $TERM in
+  termite|*xterm*|rxvt|rxvt-unicode|rxvt-256color|rxvt-unicode-256color|(dt|k|E)term)
+    precmd () {
+      vcs_info
+      print -Pn "\e]0;[%n@%M][%~]%#\a"
+    } 
+    preexec () { print -Pn "\e]0;[%n@%M][%~]%# ($1)\a" }
+    ;;
+  screen|screen-256color)
+    precmd () { 
+      vcs_info
+      print -Pn "\e]83;title \"$1\"\a" 
+      print -Pn "\e]0;$TERM - (%L) [%n@%M]%# [%~]\a" 
+    }
+    preexec () { 
+      print -Pn "\e]83;title \"$1\"\a" 
+      print -Pn "\e]0;$TERM - (%L) [%n@%M]%# [%~] ($1)\a" 
+    }
+    ;; 
+esac
 
 
 ### Enable color support of ls and also add handy aliases
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
+alias ls='ls --color=auto --human-readable'
+alias grep='grep --color=auto --human-readable'
 alias vim='nvim'
 
 
 ### Useful keybinds
-bindkey '^[[1;5C' emacs-forward-word
-bindkey '^[[1;5D' emacs-backward-word
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
@@ -167,7 +125,9 @@ bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 
 
-### Word styles
-autoload -U select-word-style
-select-word-style bash
+# auto sugestions
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+
+# profiling
+#zprof

@@ -117,10 +117,10 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='Ubuntu Mono',
+    font='DroidSansMono',
     foreground=Colors.foreground,
     margin_y=6,
-    fontsize=15
+    fontsize=13
 )
 extension_defaults = widget_defaults.copy()
 screens = [
@@ -137,6 +137,7 @@ screens = [
                         disable_drag=True,
                         spacing=5,
                         highlight_method="line",
+                        highlight_color=Colors.background,
                         this_current_screen_border=Colors.red,
                         borderwidth=5,
                         use_mouse_wheel=False,
@@ -151,21 +152,22 @@ screens = [
                 widget.Sep(
                         padding=10
                         ),
-                widget.WindowName(),
+                #widget.WindowName(),
+                widget.TaskList(),
                 widget.Spacer(),
                 widget.Sep(
                         padding=10
                         ),
                 widget.Net(
                         interface="ens33",
-                        format="{down:^8} ↓↑ {up:^8}",
+                        format="{down:>10} ↓↑ {up:<10}",
                         ),
                 widget.Sep(
                         padding=10
                         ),
                 widget.CPU(
                         padding=15,
-                        format="CPU {freq_current}GHz {load_percent:^5}%"
+                        format="CPU {freq_current}GHz {load_percent:>6}%"
                         ),
                 widget.Sep(
                         padding=10
