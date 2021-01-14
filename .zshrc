@@ -111,15 +111,6 @@ alias vim='nvim'
 
 
 ### Useful keybinds
-#bindkey '^[[1;5C' forward-word
-#bindkey '^[[1;5D' backward-word
-#bindkey  "^[[H"   beginning-of-line
-#bindkey  "^[[F"   end-of-line
-#bindkey  "^[[3~"  delete-char
-#bindkey '^H' backward-kill-word
-#bindkey '5~' kill-word
-# create a zkbd compatible hash;
-# to add other keys to this hash, see: man 5 terminfo
 autoload -Uz zkbd
 if [[ -f ~/.zkbd/$TERM-${DISPLAY:-$VENDOR-$OSTYPE} ]]; then
     source ~/.zkbd/$TERM-${DISPLAY:-$VENDOR-$OSTYPE}
