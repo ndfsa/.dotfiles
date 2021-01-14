@@ -141,7 +141,7 @@ nnoremap <silent><C-t> :NERDTreeToggle<CR>
 nnoremap <silent><leader><F5> :UndotreeToggle<CR>
 
 " toggle relativenumber
-nnoremap <silent><leader>rn :set relativenumber!<CR>
+nnoremap <silent><leader>n :set relativenumber!<CR>
 
 """ ------------- Other Keybinds -------------
 

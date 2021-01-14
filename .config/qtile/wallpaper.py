@@ -23,7 +23,7 @@ class CustomWallpaper(widget.TextBox):
         MIXD = 'MIXD'
 
     def __init__(self, home="", **config):
-        self.current_state = self.State.MIXD
+        self.current_state = self.State.SAFE
         super().__init__(text="[ " + self.current_state + " ]", width=bar.CALCULATED, **config)
         super().add_defaults(CustomWallpaper.defaults)
         self.home = home

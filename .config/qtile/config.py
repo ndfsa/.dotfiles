@@ -4,7 +4,7 @@ import os
 import subprocess
 
 from libqtile import bar, layout, widget, hook
-from libqtile.config import Click, Drag, Group, Key, Screen
+from libqtile.config import Click, Drag, Group, Key, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
 from wallpaper import CustomWallpaper
 
@@ -14,8 +14,10 @@ home = os.path.expanduser("~")
 
 keys = [
     # Switch between windows in current stack pane
-    Key([mod], "j", lazy.layout.down()),
-    Key([mod], "k", lazy.layout.up()),
+    Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
+    Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
+    Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
+    Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
     Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
     Key([mod, "shift"], "h", lazy.layout.swap_left()),
@@ -64,23 +66,6 @@ keys = [
     Key([mod], "b", lazy.hide_show_bar() , desc="Show rofi runner"),
 ]
 
-groups = [Group(x) for x in "sys www dev fmg msc idl".split()]
-
-for i, g in enumerate(groups):
-    keys.extend([
-        # mod1 + letter of group = switch to group
-        Key([mod], str(i + 1), lazy.group[g.name].toscreen(toggle=False),
-            desc="Switch to group {}".format(g.name)),
-        Key([mod, "control"], str(i + 1), lazy.group.focus_by_name(g.name)),
-        # mod1 + shift + letter of group = switch to & move focused window to group
-        Key([mod, "shift"], str(i + 1), lazy.window.togroup(g.name, switch_group=True),
-            desc="Switch to & move focused window to group {}".format(g.name)),
-        # Or, use below if you prefer not to switch to that group.
-        # # mod1 + shift + letter of group = move focused window to group
-        # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-        #     desc="move focused window to group {}".format(i.name)),
-    ])
-
 class Colors():
     background = '#282828'
     foreground = '#ebdbb2'
@@ -100,10 +85,41 @@ layout_theme = {
     "border_normal": Colors.black
 }
 
+groups = [Group(x) for x in "sys www dev fmg msc idl".split()]
+
+for i, g in enumerate(groups):
+    keys.extend([
+        # mod1 + letter of group = switch to group
+        Key([mod], str(i + 1), lazy.group[g.name].toscreen(toggle=False),
+            desc="Switch to group {}".format(g.name)),
+        Key([mod, "control"], str(i + 1), lazy.group.focus_by_name(g.name)),
+        # mod1 + shift + letter of group = switch to & move focused window to group
+        Key([mod, "shift"], str(i + 1), lazy.window.togroup(g.name, switch_group=True),
+            desc="Switch to & move focused window to group {}".format(g.name)),
+        # Or, use below if you prefer not to switch to that group.
+        # # mod1 + shift + letter of group = move focused window to group
+        # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
+        #     desc="move focused window to group {}".format(i.name)),
+    ])
+
+groups.extend([
+    ScratchPad("scratchpad", [
+        DropDown("term", "alacritty",
+            height=0.5,
+            width=0.5,
+            x=0.25,
+            y=0.25,
+            ),
+        ]),
+    ])
+keys.extend([
+    Key([mod], 'F9', lazy.group['scratchpad'].dropdown_toggle('term')),
+    ])
+
 layouts = [
     # layout.Stack(num_stacks=2),
     # Try more layouts by unleashing below layouts.
-    #layout.Bsp(**layout_theme),
+    # layout.Bsp(**layout_theme),
     # layout.Columns(),
     layout.Max(),
     layout.MonadTall(**layout_theme),
@@ -155,13 +171,13 @@ screens = [
                 #widget.WindowName(),
                 widget.TaskList(),
                 widget.Spacer(),
-                widget.Sep(
-                        padding=10
-                        ),
-                widget.Net(
-                        interface="ens33",
-                        format="{down:>10} ↓↑ {up:<10}",
-                        ),
+                #widget.Sep(
+                #        padding=10
+                #        ),
+                #widget.Net(
+                #        interface="ens33",
+                #        format="{down:>10} ↓↑ {up:<10}",
+                #        ),
                 widget.Sep(
                         padding=10
                         ),
@@ -207,23 +223,23 @@ screens = [
             ], 35, opacity=0.95, background=Colors.background
         ),
     ),
-    Screen(top=bar.Bar([
-            widget.Image(
-                        filename="~/.config/qtile/icons/logo.png",
-                        margin_x=15,
-                        mouse_callbacks={'Button1': lambda clbk: clbk.cmd_spawn("rofi -show drun")}
-                        ),
-            widget.GroupBox(
-                        disable_drag=True,
-                        spacing=5,
-                        highlight_method="line",
-                        this_current_screen_border=Colors.red,
-                        borderwidth=5,
-                        use_mouse_wheel=False
-                        ),
-            ], 35, opacity=0.95, background=Colors.background
-        )
-    ),
+#    Screen(top=bar.Bar([
+#            widget.Image(
+#                        filename="~/.config/qtile/icons/logo.png",
+#                        margin_x=15,
+#                        mouse_callbacks={'Button1': lambda clbk: clbk.cmd_spawn("rofi -show drun")}
+#                        ),
+#            widget.GroupBox(
+#                        disable_drag=True,
+#                        spacing=5,
+#                        highlight_method="line",
+#                        this_current_screen_border=Colors.red,
+#                        borderwidth=5,
+#                        use_mouse_wheel=False
+#                        ),
+#            ], 35, opacity=0.95, background=Colors.background
+#        )
+#    ),
 ]
 
 # Drag floating layouts.
@@ -232,7 +248,7 @@ mouse = [
          start=lazy.window.get_position()),
     Drag([mod], "Button3", lazy.window.set_size_floating(),
          start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front())
+    #Click([mod], "Button2", lazy.window.bring_to_front())
 ]
 
 dgroups_key_binder = None
@@ -257,7 +273,7 @@ floating_layout = layout.Floating(float_rules=[
     {'wname': 'branchdialog'},  # gitk
     {'wname': 'pinentry'},  # GPG key password entry
     {'wmclass': 'ssh-askpass'},  # ssh-askpass
-])
+], border_focus=Colors.blue, border_width=6)
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 
