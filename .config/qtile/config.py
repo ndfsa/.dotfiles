@@ -110,10 +110,17 @@ groups.extend([
             x=0.25,
             y=0.25,
             ),
+        DropDown("notes", "alacritty -e " + home + "/.scripts/notes.sh",
+            height=0.5,
+            width=0.5,
+            x=0.25,
+            y=0.25,
+            ),
         ]),
     ])
 keys.extend([
     Key([mod], 'F9', lazy.group['scratchpad'].dropdown_toggle('term')),
+    Key([mod], 'F10', lazy.group['scratchpad'].dropdown_toggle('notes')),
     ])
 
 layouts = [

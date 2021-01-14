@@ -26,6 +26,8 @@ set laststatus=2
 set updatetime=300
 set scrolloff=8
 
+set laststatus=2
+
 " Load vim plug
 call plug#begin('~/.vim/plugged')
 
