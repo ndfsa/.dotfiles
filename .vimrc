@@ -1,68 +1,100 @@
 syntax on
+set title
+
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
+
 set nowrap
-set smartcase
 set incsearch
+set nohlsearch
+
 set number relativenumber
 set colorcolumn=80
-set encoding=UTF-8
-set wildmenu
-set wildmode=longest,list,full
-
-set hidden
-set updatetime=300
+set signcolumn=number
 set cursorline
+
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+set hidden
+
+set encoding=UTF-8
+set laststatus=2
+set updatetime=300
+set scrolloff=8
+
 set laststatus=2
 
-let NERDTreeShowHidden=1
-let NERDTreeWinPos="right"
-let NERDTreeNaturalSort=1
+set wildmenu
+set wildmode=longest,list,full
 
 " Load vim plug
 call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'joshdick/onedark.vim'
+Plug 'gruvbox-community/gruvbox'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
+Plug 'mbbill/undotree'
+"Plug 'puremourning/vimspector'
 
 call plug#end()
+
+let g:coc_global_extensions = [
+    \ 'coc-clangd',
+    \ 'coc-sh',
+    \ 'coc-pyright',
+    \ 'coc-rls',
+    \ 'coc-prettier',
+    \ 'coc-html',
+    \ ]
+
+let NERDTreeShowHidden=1
+let NERDTreeWinPos="right"
+let NERDTreeNaturalSort=1
+let NERDTreeStatusline=-1
+let NERDTreeWinSize=35 
+let g:undotree_ShortIndicators=1
+let g:undotree_SplitWidth=35
+
+" status line
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
+      \     'active': {
+      \       'right': [ [ 'lineinfo' ],
+      \                  [ 'percent' ],
+      \                  [ 'fileformat', 'fileencoding', 'filetype',
+      \                             'charvaluehex' ] ],
+      \       'left': [ [ 'mode', 'paste' ],
+      \                 [ 'gitbranch', 'cocstatus', 'readonly',
+      \                             'filename', 'modified' ] ]
+      \     },
+      \     'component_function': {
+      \       'gitbranch': 'FugitiveHead',
+      \       'cocstatus': 'coc#status'
+      \     },
+      \     'component': {
+      \       'charvaluehex': '0x%B'
+      \     },
+      \ }
+" hide another instert type
+set noshowmode
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 if has('termguicolors')
     set termguicolors
 endif
-let g:lightline = {
-      \ 'colorscheme': 'onedark',
-      \ 'active': {
-      \   'right': [ [ 'lineinfo' ],
-      \              [ 'percent' ],
-      \              [ 'fileformat', 'fileencoding', 'filetype',
-      \                         'charvaluehex' ] ],
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'cocstatus', 'readonly',
-      \                         'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead',
-      \   'cocstatus': 'coc#status'
-      \ },
-      \ 'component': {
-      \   'charvaluehex': '0x%B'
-      \ },
-      \ }
-" hide another instert type
-set noshowmode
 
-" set some basic color settings and tabs
-colorscheme onedark
+" set some basic color settings and background override
+colorscheme gruvbox
+highlight Normal guibg=NONE 
 
 " Layout config for fzf
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
@@ -77,21 +109,56 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 &&
 let mapleader = " "
 
 " switch buffers
-nnoremap <silent><leader>h :wincmd h<CR>
-nnoremap <silent><leader>j :wincmd j<CR>
-nnoremap <silent><leader>k :wincmd k<CR>
-nnoremap <silent><leader>l :wincmd l<CR>
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+
+nnoremap <leader>H <C-w>H
+nnoremap <leader>J <C-w>J
+nnoremap <leader>K <C-w>K
+nnoremap <leader>L <C-w>L
 
 " split windows
-nnoremap <silent><leader>sh :split<CR>
-nnoremap <silent><leader>sv :vsplit<CR>
+nnoremap <leader>sh :split<CR>
+nnoremap <leader>sv :vsplit<CR>
+
+" resize windows
+nnoremap <leader>= :vertical resize +5<CR>
+nnoremap <leader>- :vertical resize -5<CR>
+nnoremap <leader>f :resize 100<CR>
+
+" move lines
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 " fuzzy finder
-nnoremap <silent><C-p> :Rg<CR>
-nnoremap <silent><leader>gf :GFiles<CR>
+nnoremap <C-p> :Rg<CR>
+
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --hidden --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+" RG search for hidden files
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+nnoremap <leader><C-p> :RG<CR>
+
+" show buffers in popup window
+nnoremap <leader>b :Buffers<CR>
 
 " nerdtree replacing netrw
 nnoremap <silent><C-t> :NERDTreeToggle<CR>
+
+" undotree
+nnoremap <silent><leader><F5> :UndotreeToggle<CR>
+
+" toggle relativenumber
+nnoremap <silent><leader>n :set relativenumber!<CR>
+
+""" ------------- Other Keybinds -------------
 
 " Coc keybinds
 inoremap <silent><expr> <c-space> coc#refresh()

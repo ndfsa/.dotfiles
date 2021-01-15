@@ -40,9 +40,18 @@ Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mbbill/undotree'
+"Plug 'puremourning/vimspector'
 
 call plug#end()
 
+let g:coc_global_extensions = [
+    \ 'coc-clangd',
+    \ 'coc-sh',
+    \ 'coc-pyright',
+    \ 'coc-rls',
+    \ 'coc-prettier',
+    \ 'coc-html',
+    \ ]
 let NERDTreeShowHidden=1
 let NERDTreeWinPos="right"
 let NERDTreeNaturalSort=1
