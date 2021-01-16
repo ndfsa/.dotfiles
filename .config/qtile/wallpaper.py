@@ -33,12 +33,13 @@ class CustomWallpaper(widget.TextBox):
                 }
 
     def cmd_change_wallpaper(self, qtile=None):
-        if self.current_state is self.State.MIXD:
-            call(["feh","--bg-fill", "--randomize", "--recursive", self.home + "/Pictures/Wallpapers/"])
-        elif self.current_state is self.State.NSFW:
-            call(["feh","--bg-fill", "--randomize", "--recursive", self.home + "/Pictures/Wallpapers/nsfw"])
+        postfix = ""
+        if self.current_state is self.State.NSFW:
+            postfix = "nsfw/" 
         elif self.current_state is self.State.SAFE:
-            call(["feh","--bg-fill", "--randomize", "--recursive", self.home + "/Pictures/Wallpapers/safe"])
+            postfix = "safe/" 
+        call(["feh","--bg-fill", "--randomize", "--recursive",
+                self.home + "/Pictures/Wallpapers/" + postfix])
 
     def _swap_current_state(self, qtile=None):
         if self.current_state is self.State.MIXD:

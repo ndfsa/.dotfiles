@@ -31,6 +31,7 @@ borg create                         \
     --compression lz4               \
     --exclude-caches                \
     --exclude '/home/*/.cache/*'    \
+    --exclude '/home/*/Documents/projects/*'    \
     --exclude '/home/*/dotfiles/*'  \
     --exclude '/home/*/.mozilla/*'  \
     --exclude '/home/*/.npm/*'      \

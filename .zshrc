@@ -106,7 +106,7 @@ zle -N down-line-or-beginning-search
 
 ### Enable color support of ls and also add handy aliases
 alias ls='ls --color=auto --human-readable'
-alias grep='grep --color=auto --human-readable'
+alias grep='grep --color=auto'
 alias vim='nvim'
 
 
@@ -134,10 +134,10 @@ bindkey -e
 [[ -n "${key[PageDown]}"          ]] && bindkey -- "${key[PageDown]}"               end-of-buffer-or-history
 [[ -n "${key[S-Tab]}"             ]] && bindkey -- "${key[S-Tab]}"                  reverse-menu-complete
 
-[[ -n "${key[Left]}"              ]] && bindkey -- "${key[C-Left]}"                 backward-word 
-[[ -n "${key[Right]}"             ]] && bindkey -- "${key[C-Right]}"                forward-word 
-[[ -n "${key[Backspace]}"         ]] && bindkey -- "${key[C-Backspace]}"            backward-kill-word
-[[ -n "${key[Delete]}"            ]] && bindkey -- "${key[C-Delete]}"               kill-word
+[[ -n "${key[C-Left]}"              ]] && bindkey -- "${key[C-Left]}"                 backward-word 
+[[ -n "${key[C-Right]}"             ]] && bindkey -- "${key[C-Right]}"                forward-word 
+[[ -n "${key[C-Backspace]}"         ]] && bindkey -- "${key[C-Backspace]}"            backward-kill-word
+[[ -n "${key[C-Delete]}"            ]] && bindkey -- "${key[C-Delete]}"               kill-word
 
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

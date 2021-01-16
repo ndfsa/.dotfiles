@@ -4,7 +4,7 @@ import os
 import subprocess
 
 from libqtile import bar, layout, widget, hook
-from libqtile.config import Click, Drag, Group, Key, Screen, ScratchPad, DropDown
+from libqtile.config import Drag, Group, Key, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
 from wallpaper import CustomWallpaper
 
@@ -129,9 +129,24 @@ layouts = [
     # layout.Bsp(**layout_theme),
     # layout.Columns(),
     layout.Max(),
-    layout.MonadTall(**layout_theme),
-    layout.MonadWide(**layout_theme),
-    layout.Floating(**layout_theme),
+    layout.MonadTall(
+        margin=6,
+        border_width=4,
+        border_focus=Colors.red,
+        border_normal=Colors.black
+        ),
+    layout.MonadWide(
+        margin=6,
+        border_width=4,
+        border_focus=Colors.red,
+        border_normal=Colors.black
+        ),
+    layout.Floating(
+        margin=6,
+        border_width=4,
+        border_focus=Colors.blue,
+        border_normal=Colors.black
+        ),
     # layout.RatioTile(),
     # layout.Tile(),
     # layout.TreeTab(),
@@ -140,20 +155,23 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='DroidSansMono',
+    font='UbuntuMono Nerd Font Mono',
     foreground=Colors.foreground,
     margin_y=6,
-    fontsize=13
+    fontsize=16
 )
 extension_defaults = widget_defaults.copy()
 screens = [
     Screen(
         top=bar.Bar(
             [
+                widget.Sep(
+                        padding=10,
+                        linewidth=0
+                        ),
                 widget.Image(
                         filename="~/.config/qtile/icons/logo.png",
                         margin_x=15,
-#                        margin_y=6,
                         mouse_callbacks={'Button1': lambda clbk: clbk.cmd_spawn("rofi -show drun")}
                         ),
                 widget.GroupBox(
@@ -176,7 +194,14 @@ screens = [
                         padding=10
                         ),
                 #widget.WindowName(),
-                widget.TaskList(),
+                widget.TaskList(
+                    max_title_width=400,
+                    border=Colors.blue,
+                    highlight_method="block",
+                    icon_size=20,
+                    padding_y=5,
+                    title_width_method="uniform"
+                    ),
                 widget.Spacer(),
                 #widget.Sep(
                 #        padding=10
@@ -190,14 +215,14 @@ screens = [
                         ),
                 widget.CPU(
                         padding=15,
-                        format="CPU {freq_current}GHz {load_percent:>6}%"
+                        format="﬙ MEM {freq_current}GHz {load_percent:>6}%"
                         ),
                 widget.Sep(
                         padding=10
                         ),
                 widget.Memory(
                         padding=15,
-                        format="{MemUsed:^4}M/{MemTotal:^4}M"
+                        format=" CPU {MemUsed:^4}M/{MemTotal:^4}M"
                         ),
                 widget.Sep(
                         padding=10
@@ -207,13 +232,13 @@ screens = [
                 #        padding=10
                 #        ),
                 widget.Volume(
-                        padding=20,
+                        padding=15,
                         ),
                 widget.Sep(
                         padding=10
                         ),
                 widget.Clock(
-                        format='%Y-%m-%d %a %H:%M',
+                        format=' %Y-%m-%d %a %H:%M',
                         padding=15,
                         ),
                 widget.Sep(
@@ -224,7 +249,7 @@ screens = [
                         padding=15
                         ),
                 widget.Sep(
-                        padding=5,
+                        padding=15,
                         linewidth = 0,
                         ),
             ], 35, opacity=0.95, background=Colors.background
@@ -280,7 +305,12 @@ floating_layout = layout.Floating(float_rules=[
     {'wname': 'branchdialog'},  # gitk
     {'wname': 'pinentry'},  # GPG key password entry
     {'wmclass': 'ssh-askpass'},  # ssh-askpass
-], border_focus=Colors.blue, border_width=6)
+    ],
+    margin=6,
+    border_width=4,
+    border_focus=Colors.blue,
+    border_normal=Colors.black
+    )
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 

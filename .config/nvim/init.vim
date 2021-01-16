@@ -27,6 +27,7 @@ set updatetime=300
 set scrolloff=8
 
 set laststatus=2
+set guicursor=
 
 " Load vim plug
 call plug#begin('~/.vim/plugged')
@@ -40,6 +41,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mbbill/undotree'
+Plug 'mattn/emmet-vim'
 "Plug 'puremourning/vimspector'
 
 call plug#end()
@@ -51,6 +53,7 @@ let g:coc_global_extensions = [
     \ 'coc-rls',
     \ 'coc-prettier',
     \ 'coc-html',
+    \ 'coc-tsserver',
     \ ]
 let NERDTreeShowHidden=1
 let NERDTreeWinPos="right"
@@ -59,6 +62,9 @@ let NERDTreeStatusline=-1
 let NERDTreeWinSize=35 
 let g:undotree_ShortIndicators=1
 let g:undotree_SplitWidth=35
+let g:user_emmet_mode='n'
+let g:user_emmet_install_global = 0
+autocmd FileType html,css,javascript EmmetInstall
 
 " status line
 let g:lightline = {
@@ -127,6 +133,9 @@ nnoremap <leader>f :resize 100<CR>
 " move lines
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+
+" format code
+nnoremap <leader>ff :Format<CR>
 
 " fuzzy finder
 nnoremap <C-p> :Rg<CR>
