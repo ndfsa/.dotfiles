@@ -215,14 +215,14 @@ screens = [
                         ),
                 widget.CPU(
                         padding=15,
-                        format="﬙ MEM {freq_current}GHz {load_percent:>6}%"
+                        format="﬙ CPU {freq_current}GHz {load_percent:>6}%"
                         ),
                 widget.Sep(
                         padding=10
                         ),
                 widget.Memory(
                         padding=15,
-                        format=" CPU {MemUsed:^4}M/{MemTotal:^4}M"
+                        format=" MEM {MemUsed:^4}M/{MemTotal:^4}M"
                         ),
                 widget.Sep(
                         padding=10
