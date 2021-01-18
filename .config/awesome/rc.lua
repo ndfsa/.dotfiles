@@ -63,7 +63,7 @@ modkey = "Mod4"
 awful.layout.layouts = {
     awful.layout.suit.tile.right,
     awful.layout.suit.tile.bottom,
-    awful.layout.suit.max,
+    -- awful.layout.suit.max,
     awful.layout.suit.floating,
 }
 -- }}}
@@ -150,7 +150,7 @@ local function set_wallpaper(s)
         if type(wallpaper) == "function" then
             wallpaper = wallpaper(s)
         end
-        gears.wallpaper.maximized(wallpaper, s, true)
+        gears.wallpaper.maximized(wallpaper, s, false)
     end
 end
 
@@ -320,7 +320,10 @@ globalkeys = gears.table.join(
 
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+              {description = "show the menubar", group = "launcher"}),
+    -- Powermenu
+    awful.key({ modkey,  "Shift"  },     "p",     function () awful.spawn.with_shell("~/.config/rofi/powermenu/powermenu.sh") end,
+              {description = "run prompt", group = "launcher"})
 )
 
 clientkeys = gears.table.join(
@@ -502,10 +505,8 @@ local function setTitlebar(client, s)
 end
 
 screen.connect_signal("arrange", function (s)
-    local max = s.selected_tag.layout.name == "max"
-    -- iterate over clients
     for _, c in pairs(s.clients) do
-        if max and not c.floating or c.maximized then
+        if c.maximized then
             c.border_width = 0
         else
             c.border_width = beautiful.border_width
@@ -525,7 +526,7 @@ client.connect_signal("manage", function (c)
         -- Prevent clients from being unreachable after screen count changes.
         awful.placement.no_offscreen(c)
     end
-    setTitlebar(c, c.floating or c.first_tag.layout == awful.layout.suit.floating)
+    setTitlebar(c, not c.maximized and (c.floating or c.first_tag.layout == awful.layout.suit.floating))
 end)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
@@ -569,9 +570,6 @@ end)
 
 -- Show titlebars on tags with the floating layout
 tag.connect_signal("property::layout", function(t)
-    -- New to Lua ? 
-    -- pairs iterates on the table and return a key value pair
-    -- I don't need the key here, so I put _ to ignore it
     for _, c in pairs(t:clients()) do
         if t.layout == awful.layout.suit.floating then
             setTitlebar(c, true)
@@ -584,6 +582,10 @@ end)
 --Toggle titlebar on floating status change
 client.connect_signal("property::floating", function(c)
     setTitlebar(c, c.floating)
+end)
+
+client.connect_signal("property::maximized", function(c)
+    setTitlebar(c, not c.maximized and c.floating)
 end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)

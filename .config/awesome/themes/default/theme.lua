@@ -97,8 +97,20 @@ theme.titlebar_maximized_button_focus_inactive  = themes_path.."default/titlebar
 theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
 
+function scandir(directory)
+    local i, t, popen = 0, {}, io.popen
+    local pfile = popen("find "..directory.." -type f")
+    for filename in pfile:lines() do
+        i = i + 1
+        t[i] = filename
+    end
+    pfile:close()
+    return t
+end
+
 theme.wallpaper = function(s)
-   return "/home/ndfsa/Pictures/Wallpapers/nsfw/djz6i1prnm561.jpg" 
+    local t = scandir("~/Pictures")
+    return t[math.random(#t)]
 end
 
 -- You can use your own layout icons like this:
