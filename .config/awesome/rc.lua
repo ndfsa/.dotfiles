@@ -63,7 +63,6 @@ modkey = "Mod4"
 awful.layout.layouts = {
     awful.layout.suit.tile.right,
     awful.layout.suit.tile.bottom,
-    -- awful.layout.suit.max,
     awful.layout.suit.floating,
 }
 -- }}}
@@ -83,12 +82,12 @@ myawesomemenu = {
    { "quit", function() awesome.quit() end },
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.icon },
                                     { "open terminal", terminal }
                                   }
                         })
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+mylauncher = awful.widget.launcher({ image = beautiful.icon,
                                      menu = mymainmenu })
 
 -- Menubar configuration
@@ -100,7 +99,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+mytextclock = wibox.widget{format = "%a %Y/%b/%d %H:%M", widget = wibox.widget.textclock}
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -133,7 +132,7 @@ local tasklist_buttons = gears.table.join(
                                               end
                                           end),
                      awful.button({ }, 3, function()
-                                              awful.menu.client_list({ theme = { width = 250 } })
+                                              awful.menu.client_list({ theme = { width = 350 } })
                                           end),
                      awful.button({ }, 4, function ()
                                               awful.client.focus.byidx(1)
@@ -142,20 +141,20 @@ local tasklist_buttons = gears.table.join(
                                               awful.client.focus.byidx(-1)
                                           end))
 
-local function set_wallpaper(s)
+local function set_wallpaper(s, change_wallpaper)
     -- Wallpaper
     if beautiful.wallpaper then
         local wallpaper = beautiful.wallpaper
         -- If wallpaper is a function, call it with the screen
         if type(wallpaper) == "function" then
-            wallpaper = wallpaper(s)
+            wallpaper = wallpaper(s, change_wallpaper)
         end
         gears.wallpaper.maximized(wallpaper, s, false)
     end
 end
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", set_wallpaper)
+screen.connect_signal("property::geometry", function(s) set_wallpaper(s, false) end)
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
@@ -164,11 +163,12 @@ awful.screen.connect_for_each_screen(function(s)
     -- Each screen has its own tag table.
     awful.tag({ "sys", "www", "dev", "fmg", "msc", "idl" }, s, awful.layout.layouts[1])
 
-    -- Create a promptbox for each screen
-    s.mypromptbox = awful.widget.prompt()
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
-    s.mylayoutbox = awful.widget.layoutbox(s)
+    s.mylayoutbox = wibox.container.margin()
+    s.mylayoutbox:set_margins(9)
+    s.mylayoutbox:set_widget(awful.widget.layoutbox(s))
+    
     s.mylayoutbox:buttons(gears.table.join(
                            awful.button({ }, 1, function () awful.layout.inc( 1) end),
                            awful.button({ }, 3, function () awful.layout.inc(-1) end),
@@ -185,28 +185,94 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist = awful.widget.tasklist {
         screen  = s,
         filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons
+        buttons = tasklist_buttons,
+        style = {
+            shape_border_width = 10,
+            shape_border_color = '#00000000',
+            shape  = gears.shape.rounded_bar,
+        },
+        layout   = {
+            spacing = 10,
+            spacing_widget = {
+                {
+                    forced_width = 5,
+                    shape        = gears.shape.circle,
+                    widget       = wibox.widget.separator
+                },
+                valign = 'center',
+                halign = 'center',
+                widget = wibox.container.place,
+            },
+            layout  = wibox.layout.flex.horizontal
+        },
+        widget_template = {
+            {
+                {
+                    {
+                        {
+                            id     = 'icon_role',
+                            widget = wibox.widget.imagebox,
+                        },
+                        margins = 6,
+                        widget  = wibox.container.margin,
+                    },
+                    {
+                        id     = 'text_role',
+                        widget = wibox.widget.textbox,
+                    },
+                    layout = wibox.layout.fixed.horizontal,
+                },
+                left  = 10,
+                right = 10,
+                widget = wibox.container.margin
+            },
+            id     = 'background_role',
+            widget = wibox.container.background,
+        },
     }
-
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
-
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = 35 })
+    
+    -- Separator widget
+    s.myseparator = wibox.widget{
+        orientation = 'vertical',
+        forced_width = 30,
+        widget = wibox.widget.separator
+    }
+    s.myinvisibleseparator = wibox.widget{
+        orientation = 'vertical',
+        forced_width = 30,
+        thickness = 0,
+        widget = wibox.widget.separator
+    }
+    s.myhalfinvisibleseparator = wibox.widget{
+        orientation = 'vertical',
+        forced_width = 15,
+        thickness = 0,
+        widget = wibox.widget.separator
+    }
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
+            s.myhalfinvisibleseparator,
             mylauncher,
+            s.myseparator,
             s.mytaglist,
-            s.mypromptbox,
         },
-        s.mytasklist, -- Middle widget
+        {
+            layout = wibox.layout.align.horizontal,
+            s.myseparator,
+            s.mytasklist, -- Middle widget
+            s.myseparator,
+        },
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
-            wibox.widget.systray(),
             mytextclock,
+            s.myseparator,
             s.mylayoutbox,
+            s.myhalfinvisibleseparator,
         },
     }
 end)
@@ -240,6 +306,23 @@ globalkeys = gears.table.join(
             awful.tag.incgap(-10, awful.screen.focused().selected_tag)
         end,
               {description = "decrease gaps", group = "tag"}),
+
+    awful.key({ modkey,           }, "[", 
+        function()
+            set_wallpaper(awful.screen.focused(), true)
+        end,
+              {description = "change wallpaper", group = "screen"}),
+     -- Show/Hide Wibox
+    awful.key({ modkey }, "b", 
+        function ()
+            for s in screen do
+                s.mywibox.visible = not s.mywibox.visible
+                if s.mybottomwibox then
+                    s.mybottomwibox.visible = not s.mybottomwibox.visible
+                end
+            end
+        end,
+        {description = "toggle wibox", group = "awesome"}),
 
 -- Direction movement
     awful.key({ modkey,           }, "j",
@@ -504,13 +587,17 @@ local function setTitlebar(client, s)
     end
 end
 
+local function setBorder(client, s)
+    if s then
+        client.border_width = beautiful.border_width
+    else
+        client.border_width = 0
+    end
+end
+
 screen.connect_signal("arrange", function (s)
     for _, c in pairs(s.clients) do
-        if c.maximized then
-            c.border_width = 0
-        else
-            c.border_width = beautiful.border_width
-        end
+        setBorder(c, not c.maximized)
     end
 end)
 
@@ -527,6 +614,7 @@ client.connect_signal("manage", function (c)
         awful.placement.no_offscreen(c)
     end
     setTitlebar(c, not c.maximized and (c.floating or c.first_tag.layout == awful.layout.suit.floating))
+    setBorder(c, not c.maximized)
 end)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
@@ -558,9 +646,6 @@ client.connect_signal("request::titlebars", function(c)
             layout  = wibox.layout.flex.horizontal
         },
         { -- Right
-            awful.titlebar.widget.maximizedbutton(c),
-            awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.ontopbutton    (c),
             awful.titlebar.widget.closebutton    (c),
             layout = wibox.layout.fixed.horizontal()
         },
@@ -581,11 +666,13 @@ end)
 
 --Toggle titlebar on floating status change
 client.connect_signal("property::floating", function(c)
-    setTitlebar(c, c.floating)
+    setTitlebar(c, not c.maximized and c.floating)
+    setBorder(c, not c.maximized)
 end)
 
 client.connect_signal("property::maximized", function(c)
     setTitlebar(c, not c.maximized and c.floating)
+    setBorder(c, not c.maximized)
 end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
