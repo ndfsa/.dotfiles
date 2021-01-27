@@ -105,7 +105,7 @@ zle -N down-line-or-beginning-search
 
 
 ### Enable color support of ls and also add handy aliases
-alias ls='ls --color=auto --human-readable'
+alias ls='ls -l --color=auto --human-readable'
 alias grep='grep --color=auto'
 alias vim='nvim'
 

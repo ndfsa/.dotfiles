@@ -8,7 +8,7 @@ then
 fi
 
 # Setting this, so the repo does not need to be given on the commandline:
-export BORG_REPO=/backup
+export BORG_REPO=/bak
 
 # See the section "Passphrase notes" for more infos.
 #export BORG_PASSPHRASE=''
