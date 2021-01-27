@@ -312,6 +312,16 @@ globalkeys = gears.table.join(
             set_wallpaper(awful.screen.focused(), true)
         end,
               {description = "change wallpaper", group = "screen"}),
+--    awful.key({ modkey,           }, "]", 
+--        function()
+--            awful.spawn.easy_async("/home/ndfsa/.config/awesome/color_picker /home/ndfsa/Pictures/Wallpapers/safe/YyhH3Vb1qiT2C6zk6fpaRL2_93Y3OjAHdf_cd6e15FE.png",
+--                function(stdout, stderr, reason, exit_code)
+--                    if stdout == "RED\n" then
+--                        naughty.notify { text = stdout }
+--                    end
+--                end)
+--        end,
+--            {description = "change wallpaper", group = "screen"}),
      -- Show/Hide Wibox
     awful.key({ modkey }, "b", 
         function ()

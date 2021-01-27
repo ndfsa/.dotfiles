@@ -5,10 +5,12 @@
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
+local awful = require("awful")
 
 local gfs = require("gears.filesystem")
 local themes_path = "~/.config/awesome/themes/"
 
+local naughty = require("naughty")
 local theme = {}
 math.randomseed(os.time())
 
@@ -28,22 +30,34 @@ function scandir(directory)
 end
 
 local successColors = false
-function setAccentColors(w)
-    local red =    "#cc241d"
-    local green =  "#98971a"
-    local yellow = "#d79921"
-    local blue =   "#458588"
-    local magenta ="#b16286"
-    local cyan =   "#689d6a"
-end
+--function setAccentColors(stdout, stderr, reason, exit_code)
+--
+--    naughty.notify { text = stdout }
+--    local red =    "#cc241d"
+--    local green =  "#98971a"
+--    local yellow = "#d79921"
+--    local blue =   "#458588"
+--    local magenta ="#b16286"
+--    local cyan =   "#689d6a"
+--    --if stdout == "RED" then
+--        theme.fg_normal     = "#ebdbb2"
+--        theme.bg_focus      = red
+--        theme.fg_focus      = "#282828"
+--        successColors = true
+--    --end
+--end
 
 local wp_cache = ""
 theme.wallpaper = function(s, change_wallpaper)
     local t = scandir("~/Pictures/Wallpapers")
     if wp_cache == "" or change_wallpaper then
         wp_cache = t[math.random(#t)]
+        --wp_cache = t[15]
     end
-    setAccentColors(wp_cache)
+--    awful.spawn.easy_async("~/.config/awesome/color_picker "..wp_cache,
+--    function(stdout, stderr, reason, exit_code)
+--        naughty.notify { text = stdout }
+--    end)
     return wp_cache
 end
     
