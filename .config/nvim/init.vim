@@ -48,6 +48,7 @@ call plug#end()
 
 let g:coc_global_extensions = [
     \ 'coc-clangd',
+    \ 'coc-rls',
     \ 'coc-sh',
     \ 'coc-pyright',
     \ 'coc-rls',
@@ -109,6 +110,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 &&
 
 " Useful keymaps
 let mapleader = " "
+noremap <leader>ss :update<CR>
 
 " switch buffers
 nnoremap <leader>h :wincmd h<CR>

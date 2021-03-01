@@ -3,7 +3,7 @@ Xft.antialias: true
 
 URxvt.depth: 32
 ! hard contrast: *background: #1d2021
-URxvt.background: [95]#282828
+URxvt.background: [90]#282828
 ! soft contrast: URxvt.background: [100]#32302f
 URxvt.foreground: [100]#ebdbb2
 ! Black + DarkGrey

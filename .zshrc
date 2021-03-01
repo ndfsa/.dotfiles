@@ -80,7 +80,7 @@ esac
 ##  WINDOW TITLE  #
 ###################
 case $TERM in
-    *xterm*|alacritty|kitty)
+    *xterm*|alacritty|kitty|rxvt*)
         precmd () { print -Pn "\e]0;%n@%M %~\a" } 
         preexec () { print -Pn "\e]0;%n@%M %~ ($1)\a" }
         ;;

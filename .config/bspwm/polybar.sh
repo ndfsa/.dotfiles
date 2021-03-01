@@ -2,7 +2,7 @@
 
 if $(pgrep -u $UID -x polybar >/dev/null); then
     killall -q polybar
-    bspc config top_padding 0
-else
-    "$HOME/.config/polybar/grayblocks/launch.sh"
+    while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 fi
+
+"$HOME/.config/polybar/grayblocks/launch.sh"

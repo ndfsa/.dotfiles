@@ -8,7 +8,7 @@ super + Return
 
 # program launcher
 super + r
-    ~/.config/polybar/grayblocks/scripts/launcher.sh &
+    rofi -show drun
 
 super + shift + p
     ~/.config/polybar/grayblocks/scripts/powermenu.sh &
@@ -92,8 +92,8 @@ super + {_,shift + }{1-9,0}
 #
 
 # preselect the direction
-#super + ctrl + {h,j,k,l}
-#	bspc node -p {west,south,north,east}
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
 
 # preselect the ratio
 #super + ctrl + {1-9}
@@ -127,3 +127,20 @@ super + {Left,Down,Up,Right}
 super + bracketleft 
     feh --bg-fill --randomize --recursive "$HOME/Pictures/Wallpapers"
 
+# change gaps
+super + {shift + g, g}
+    G_SIZE=$((`bspc config -d focused window_gap` {-,+} 10 )); bspc config -d focused window_gap $(( $G_SIZE > 0 ? $G_SIZE : 0 ))
+
+super + ctrl + g
+    bspc config window_gap 10
+
+# volume
+XF86Audio{Raise,Lower}Volume
+    amixer -q -c 0 set Master {2dB+,2dB-} -M unmute
+
+XF86AudioMute
+    amixer -q set Master toggle
+
+# flip layout
+super + shift + f
+    bspc desktop -R 90 
