@@ -49,9 +49,9 @@ precmd_vcs_info() {
     fi
 }
 precmd_functions+=( precmd_vcs_info )
-zstyle ':vcs_info:*' enable git   
-zstyle ':vcs_info:*' stagedstr ' %F{green}%f' 
-zstyle ':vcs_info:*' unstagedstr ' %F{yellow}%f'
+zstyle ':vcs_info:git:*' enable git   
+zstyle ':vcs_info:git:*' stagedstr ' %F{green}%f' 
+zstyle ':vcs_info:git:*' unstagedstr ' %F{yellow}%f'
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' formats 'שׂ %F{magenta}(%b%f%c%u%m%F{magenta})%f '
@@ -105,7 +105,7 @@ zle -N down-line-or-beginning-search
 
 
 ### Enable color support of ls and also add handy aliases
-alias ls='ls -l --color=auto --human-readable'
+alias ls='exa -al'
 alias grep='grep --color=auto'
 alias vim='nvim'
 

@@ -11,7 +11,7 @@ super + r
     rofi -show drun
 
 super + shift + p
-    ~/.config/polybar/grayblocks/scripts/powermenu.sh &
+    ~/.config/rofi/powermenu/powermenu.sh &
 
 # make sxhkd reload its configuration files:
 super + Escape
