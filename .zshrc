@@ -6,6 +6,7 @@ autoload -U colors && colors
 export EDITOR=nvim
 export PAGER=less
 export BROWSER=firefox
+export BAT_THEME='gruvbox-dark'
 WORDCHARS='~!#$%^&*(){}[]<>?.+;-'
 
 
@@ -105,9 +106,10 @@ zle -N down-line-or-beginning-search
 
 
 ### Enable color support of ls and also add handy aliases
-alias ls='exa -al'
 alias grep='grep --color=auto'
 alias vim='nvim'
+alias ls='exa -al'
+alias cat='bat'
 
 
 ### Useful keybinds
