@@ -48,7 +48,7 @@ call plug#end()
 
 let g:coc_global_extensions = [
     \ 'coc-clangd',
-    \ 'coc-rls',
+    \ 'coc-rust-analyzer',
     \ 'coc-sh',
     \ 'coc-pyright',
     \ 'coc-rls',
