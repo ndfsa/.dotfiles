@@ -10,9 +10,6 @@ source ~/.config/zsh/history.zsh
 ### Autocompletion
 source ~/.config/zsh/completion.zsh
 
-### Prompt
-source ~/.config/zsh/prompt.zsh
-
 ### Window title
 source ~/.config/zsh/title.zsh
 
@@ -25,7 +22,10 @@ source ~/.config/zsh/functions.zsh
 ### Keybinds
 source ~/.config/zsh/keybinds.zsh
 
+### Programs
 eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
+
 ### Syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
