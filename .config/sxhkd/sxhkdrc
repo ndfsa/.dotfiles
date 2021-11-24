@@ -113,3 +113,6 @@ super + {b,B}
 # Equalize
 super + equal
 	bspc node @/ -B
+
+super + shift + s
+	flameshot gui
