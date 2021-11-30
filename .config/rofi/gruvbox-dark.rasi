@@ -11,10 +11,6 @@
    Modified: Mon Feb 12 2018 04:08:43 PST -0800
    ========================================================================== */
 
-configuration {
-    font:           "FiraCode 14";
-}
-
 * {
     /* Theme settings */
     highlight: bold italic;

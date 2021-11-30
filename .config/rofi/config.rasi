@@ -1,8 +1,9 @@
 configuration {
     modi: "run,window,drun";
-    theme: "gruvbox-dark";
+    font:           "FiraCode 14";
 	timeout {
 		delay:  15;
 		action: "kb-cancel";
 	}
 }
+@theme "gruvbox-dark"
