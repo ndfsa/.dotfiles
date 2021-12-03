@@ -72,7 +72,6 @@ set foldtext=FoldText()
 
 " useful keymaps
 let mapleader = ' '
-nnoremap Y y$
 
 " center search
 nnoremap n nzzzv

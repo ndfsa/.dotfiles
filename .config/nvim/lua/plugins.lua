@@ -13,27 +13,25 @@ return require('packer').startup(function()
 	use 'nvim-lua/popup.nvim'
 	use 'nvim-lua/plenary.nvim'
 	use 'nacro90/numb.nvim'
-	use 'b3nj5m1n/kommentary'
 	use 'tpope/vim-fugitive'
 	use 'plasticboy/vim-markdown'
 	use 'ThePrimeagen/vim-be-good'
 	use 'L3MON4D3/LuaSnip'
+	use {
+		'numToStr/Comment.nvim',
+		config = function() require('Comment-config') end
+	}
 	use {
 		'kristijanhusak/orgmode.nvim',
 		config = function() require('orgmode-config') end
 	}
 	use {
 		'akinsho/org-bullets.nvim',
-		config = function() require("org-bullets").setup() end
+		config = function() require('org-bullets').setup() end
 	}
 	use {
 		'lukas-reineke/indent-blankline.nvim',
 		config = function() require('indent-blankline-config') end
-	}
-	use {
-		'junegunn/goyo.vim',
-		opt = true,
-		ft = {'org'}
 	}
 	use {
 		'lewis6991/gitsigns.nvim',
@@ -63,12 +61,12 @@ return require('packer').startup(function()
 		config = function() require('treesitter-config') end
 	}
 	use {
-		"hrsh7th/nvim-cmp",
+		'hrsh7th/nvim-cmp',
 		requires = {
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-path",
-			"saadparwaiz1/cmp_luasnip",
+			'hrsh7th/cmp-buffer',
+			'hrsh7th/cmp-nvim-lsp',
+			'hrsh7th/cmp-path',
+			'saadparwaiz1/cmp_luasnip',
 		},
 		config = function() require('cmp-config') end
 	}
@@ -84,7 +82,7 @@ return require('packer').startup(function()
 	use {
 		'windwp/nvim-autopairs',
 		config = function() require('autopairs-config') end,
-		after = "nvim-cmp"
+		after = 'nvim-cmp'
 	}
 	use {
 		'lewis6991/spellsitter.nvim',
