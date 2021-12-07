@@ -13,10 +13,10 @@ return require('packer').startup(function()
 	use 'nvim-lua/popup.nvim'
 	use 'nvim-lua/plenary.nvim'
 	use 'nacro90/numb.nvim'
-	use 'tpope/vim-fugitive'
 	use 'plasticboy/vim-markdown'
 	use 'ThePrimeagen/vim-be-good'
 	use 'L3MON4D3/LuaSnip'
+	use 'f-person/git-blame.nvim'
 	use {
 		'numToStr/Comment.nvim',
 		config = function() require('Comment-config') end
@@ -93,5 +93,14 @@ return require('packer').startup(function()
 	use {
 		'folke/which-key.nvim',
 		config = function() require('which-key-config') end
+	}
+	use {
+		'sindrets/diffview.nvim',
+		requires = 'plenary.nvim'
+	}
+	use {
+		'TimUntersberger/neogit',
+		requires = 'plenary.nvim',
+		config = function() require('neogit-config') end
 	}
 end)

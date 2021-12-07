@@ -36,6 +36,8 @@ set pumheight=15
 let g:loaded_netrw = 1
 let g:loaded_netrwPlugin = 1
 
+let g:gitblame_enabled = 0
+
 lua require('plugins')
 
 let g:user_emmet_mode = 'n'
@@ -122,16 +124,9 @@ nnoremap <silent><leader>oq :Telescope quickfix<CR>
 
 " git
 nnoremap <silent><leader>gb :Telescope git_branches<CR>
-nnoremap <silent><leader>gs :Git<CR>
-nnoremap <silent><leader>gc :Git log<CR>
-nnoremap <silent><leader>gp :Git pull<CR>
-nnoremap <silent><leader>gw :Git whatchanged<CR>
+nnoremap <silent><leader>gs :Neogit<CR>
+nnoremap <silent><leader>gw :GitBlameToggle<CR>
 
-" cmp
-
-" function
-" goyo
-nnoremap <silent><F2> :Goyo 101<CR>
 " vim maximizer
 nnoremap <silent><F3> :MaximizerToggle<CR>
 vnoremap <silent><F3> :MaximizerToggle<CR>gv
