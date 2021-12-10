@@ -46,7 +46,7 @@ local filesize = {
 }
 local diag = {
 	'diagnostics',
-	sources = {'nvim_lsp'},
+	sources = {'nvim_diagnostic'},
 	symbols = {error = ' ', warn = ' ', info = ' '},
 	color_error = colors.red,
 	color_warn = colors.yellow,

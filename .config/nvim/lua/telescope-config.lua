@@ -1,9 +1,9 @@
 require('telescope').setup{
 	defaults = {
-		sorting_strategy = "ascending",
 		layout_strategy = "bottom_pane",
 		layout_config = {
 			height = 20,
+			prompt_position = "bottom"
 		},
 		preview_title = "",
 		border = false,
@@ -32,3 +32,4 @@ require('telescope').setup{
 		}
 	}
 }
+require('telescope').load_extension('fzf')

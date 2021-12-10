@@ -70,14 +70,15 @@ return require('packer').startup(function()
 		},
 		config = function() require('cmp-config') end
 	}
+	use 'nvim-telescope/telescope-project.nvim'
+	use {
+		'nvim-telescope/telescope-fzf-native.nvim',
+		run = 'make'
+	}
 	use {
 		'nvim-telescope/telescope.nvim',
 		requires = {'plenary.nvim', 'popup.nvim'},
 		config = function() require('telescope-config') end
-	}
-	use {
-		'nvim-telescope/telescope-project.nvim',
-		requires = 'telescope.nvim'
 	}
 	use {
 		'windwp/nvim-autopairs',
