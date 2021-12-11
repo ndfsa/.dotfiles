@@ -79,6 +79,9 @@ let mapleader = ' '
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
+vnoremap > >gv
+vnoremap < <gv
+
 " undo break points
 inoremap , ,<C-g>u
 inoremap . .<C-g>u
@@ -117,10 +120,9 @@ nnoremap <silent><leader>fg :Telescope live_grep<CR>
 nnoremap <silent><leader>fz :Telescope current_buffer_fuzzy_find<CR>
 
 " open
-nnoremap <silent><leader>op <cmd>lua require('telescope').extensions.project.project{}<CR>
-nnoremap <silent><leader>oe :edit .<CR>
-nnoremap <silent><leader>om :Telescope marks<CR>
-nnoremap <silent><leader>oq :Telescope quickfix<CR>
+nnoremap <silent><leader>up <cmd>lua require('telescope').extensions.project.project{}<CR>
+nnoremap <silent><leader>ue :lua require('lir.float').toggle()<CR>
+nnoremap <silent><leader>um :Telescope marks<CR>
 
 " git
 nnoremap <silent><leader>gb :Telescope git_branches<CR>

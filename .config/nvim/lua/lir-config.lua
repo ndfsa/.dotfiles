@@ -6,21 +6,21 @@ require'lir'.setup {
 	show_hidden_files = true,
 	devicons_enable = true,
 	mappings = {
-		['<cr>']		= actions.edit,
-		['l']		= actions.edit,
-		['<C-x>']		= actions.split,
-		['<C-v>']		= actions.vsplit,
-		['<C-t>']		= actions.tabedit,
-		['<bs>']		= actions.up,
-		['h']		= actions.up,
-		['q']			= actions.quit,
-		['K']			= actions.mkdir,
-		['a']			= actions.newfile,
-		['r']			= actions.rename,
-		['<C-]>']		= actions.cd,
-		['Y']			= actions.yank_path,
-		['H']			= actions.toggle_show_hidden,
-		['D']			= actions.delete,
+		['<cr>'] = actions.edit,
+		['l'] = actions.edit,
+		['<C-x>'] = actions.split,
+		['<C-v>'] = actions.vsplit,
+		['<C-t>'] = actions.tabedit,
+		['<bs>'] = actions.up,
+		['h'] = actions.up,
+		['q'] = actions.quit,
+		['K'] = actions.mkdir,
+		['a'] = actions.newfile,
+		['r'] = actions.rename,
+		['@'] = actions.cd,
+		['Y'] = actions.yank_path,
+		['.'] = actions.toggle_show_hidden,
+		['D'] = actions.delete,
 		['J'] = function()
 			mark_actions.toggle_mark()
 			vim.cmd('normal! j')
@@ -31,6 +31,10 @@ require'lir'.setup {
 	},
 	float = {
 		winblend = 0,
+		curdir_window = {
+			enable = true,
+			highlight_dirname = true
+		}
 	},
 	hide_cursor = true,
 }

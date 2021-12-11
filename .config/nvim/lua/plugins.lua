@@ -66,30 +66,28 @@ return require('packer').startup(function()
 			'hrsh7th/cmp-buffer',
 			'hrsh7th/cmp-nvim-lsp',
 			'hrsh7th/cmp-path',
+			'hrsh7th/cmp-cmdline',
 			'saadparwaiz1/cmp_luasnip',
 		},
 		config = function() require('cmp-config') end
 	}
-	use 'nvim-telescope/telescope-project.nvim'
-	use {
-		'nvim-telescope/telescope-fzf-native.nvim',
-		run = 'make'
-	}
 	use {
 		'nvim-telescope/telescope.nvim',
-		requires = {'plenary.nvim', 'popup.nvim'},
+		requires = {
+			'plenary.nvim',
+			'popup.nvim',
+			'nvim-telescope/telescope-project.nvim',
+			{
+				'nvim-telescope/telescope-fzf-native.nvim',
+				run = 'make'
+			}
+		},
 		config = function() require('telescope-config') end
 	}
 	use {
 		'windwp/nvim-autopairs',
 		config = function() require('autopairs-config') end,
 		after = 'nvim-cmp'
-	}
-	use {
-		'lewis6991/spellsitter.nvim',
-		ft = {'markdown', 'tex', 'text', 'org'},
-		opt = true,
-		config = function() require('spellsitter-config') end
 	}
 	use {
 		'folke/which-key.nvim',

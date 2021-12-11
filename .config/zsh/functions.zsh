@@ -5,7 +5,7 @@ sudo-command-line() {
 		LBUFFER="${LBUFFER#sudo }"
 	elif [[ $BUFFER == sudoedit\ * ]]; then
 		LBUFFER="vim ${LBUFFER#sudoedit }"
-	elif [[ $BUFFER == vim\ * ]]; then
+	elif [[ $BUFFER == nvim\ * ]]; then
 		LBUFFER="sudoedit ${LBUFFER#vim }"
 	else
 		LBUFFER="sudo $LBUFFER"
