@@ -7,7 +7,12 @@ require('telescope').setup{
 		},
 		preview_title = "",
 		border = false,
-		file_ignore_patterns = {'.git', 'node_modules'}
+		file_ignore_patterns = {'.git/', 'node_modules'}
+	},
+	extensions = {
+		fzf = {
+			fuzzy = true
+		}
 	},
 	pickers = {
 		find_files = {

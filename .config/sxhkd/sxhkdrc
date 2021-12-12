@@ -37,6 +37,9 @@ super + @space
 super + {t,s,f,F}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
+super + M
+	bspc desktop -l next
+
 # set the node flags
 super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}

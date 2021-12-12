@@ -9,8 +9,6 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 [ -f $sysmodmap ] &&  xmodmap $sysmodmap
 [ -f "$userresources" ] && xrdb -merge "$userresources"
 [ -f "$usermodmap" ] && xmodmap "$usermodmap"
-[ -f /etc/xprofile ] && . /etc/xprofile
-[ -f ~/.xprofile ] && . ~/.xprofile
 
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 	for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
@@ -18,5 +16,9 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 	done
 	unset f
 fi
+
+killall -q picom
+while pgrep -u $(id -ru) -x picom >/dev/null; do sleep 0.5; done
+picom --experimental-backends --config "$HOME/.config/picom/picom.conf" &
 
 exec bspwm
