@@ -24,9 +24,11 @@ require('nvim-treesitter.configs').setup({
 		"org",
 		"python",
 		"regex",
+		"svelte",
 		"toml",
 		"tsx",
-		"typescript"
+		"typescript",
+		"zig"
 	},
 	highlight = {
 		enable = true,
