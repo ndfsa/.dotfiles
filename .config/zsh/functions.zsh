@@ -1,12 +1,12 @@
 ## Add sudo to the start of the command
 sudo-command-line() {
 	[[ -z $BUFFER ]] && zle up-history
-	if [[ $BUFFER == sudo\ * ]]; then
+	if [[ $BUFFER == sudoedit\ * ]]; then
+		LBUFFER="nvim ${LBUFFER#sudoedit }"
+	elif [[ $BUFFER == sudo\ * ]]; then
 		LBUFFER="${LBUFFER#sudo }"
-	elif [[ $BUFFER == sudoedit\ * ]]; then
-		LBUFFER="vim ${LBUFFER#sudoedit }"
 	elif [[ $BUFFER == nvim\ * ]]; then
-		LBUFFER="sudoedit ${LBUFFER#vim }"
+		LBUFFER="sudoedit ${LBUFFER#nvim }"
 	else
 		LBUFFER="sudo $LBUFFER"
 	fi

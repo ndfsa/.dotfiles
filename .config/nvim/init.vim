@@ -87,13 +87,8 @@ inoremap , ,<C-g>u
 inoremap . .<C-g>u
 inoremap ! !<C-g>u
 inoremap ? ?<C-g>u
-
-" jumplist when jump > 10
-nnoremap <expr> k (v:count > 10 ? "m'" . v:count : "") . 'k'
-nnoremap <expr> j (v:count > 10 ? "m'" . v:count : "") . 'j'
-
-" insert time
-nnoremap <silent><leader>gt :put =strftime('%c')<CR>
+inoremap - -<C-g>u
+inoremap _ _<C-g>u
 
 " buffer operations
 nnoremap <silent><leader>bp :bprevious<CR>
@@ -112,6 +107,7 @@ nnoremap <leader>sw :set wrap!<CR>
 nnoremap <leader>ss :set spell!<CR>
 nnoremap <leader>sc :ColorizerToggle<CR>
 nnoremap <leader>sl :IndentBlanklineToggle<CR>
+nnoremap <leader>sb :Gitsigns toggle_current_line_blame<CR>
 
 " file
 nnoremap <silent><leader>fs :update<CR>
@@ -127,7 +123,7 @@ nnoremap <silent><leader>um :Telescope marks<CR>
 " git
 nnoremap <silent><leader>gb :Telescope git_branches<CR>
 nnoremap <silent><leader>gs :Neogit<CR>
-nnoremap <silent><leader>gw :GitBlameToggle<CR>
+nnoremap <silent><leader>gw <cmd>lua require"gitsigns".blame_line{full=true}<CR>
 
 " vim maximizer
 nnoremap <silent><F3> :MaximizerToggle<CR>

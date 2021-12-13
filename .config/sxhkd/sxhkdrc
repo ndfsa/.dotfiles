@@ -101,7 +101,7 @@ super + bracketleft
 
 # volume
 XF86Audio{RaiseVolume,LowerVolume,Mute}
-	"$HOME/bin/volume.sh" {up, down, mute}
+	pamixer {-i 2,-d 2,-t}
 
 XF86MonBrightness{Up,Down}
     xbacklight -{inc,dec} 5

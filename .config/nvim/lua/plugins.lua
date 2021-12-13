@@ -5,8 +5,8 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 vim.cmd([[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]])
 return require('packer').startup(function()
-	use 'sainnhe/gruvbox-material'
 	use 'wbthomason/packer.nvim'
+	use 'sainnhe/gruvbox-material'
 	use 'szw/vim-maximizer'
 	use 'norcalli/nvim-colorizer.lua'
 	use 'kyazdani42/nvim-web-devicons'
@@ -16,7 +16,6 @@ return require('packer').startup(function()
 	use 'plasticboy/vim-markdown'
 	use 'ThePrimeagen/vim-be-good'
 	use 'L3MON4D3/LuaSnip'
-	use 'f-person/git-blame.nvim'
 	use {
 		'numToStr/Comment.nvim',
 		config = function() require('Comment-config') end
@@ -32,11 +31,6 @@ return require('packer').startup(function()
 	use {
 		'lukas-reineke/indent-blankline.nvim',
 		config = function() require('indent-blankline-config') end
-	}
-	use {
-		'lewis6991/gitsigns.nvim',
-		requires = { 'plenary.nvim' },
-		config = function() require('gitsigns').setup() end
 	}
 	use {
 		'tamago324/lir.nvim',
@@ -101,5 +95,10 @@ return require('packer').startup(function()
 		'TimUntersberger/neogit',
 		requires = 'plenary.nvim',
 		config = function() require('neogit-config') end
+	}
+	use {
+		'lewis6991/gitsigns.nvim',
+		requires = { 'nvim-lua/plenary.nvim' },
+		config = function() require('gitsigns-config') end
 	}
 end)
