@@ -16,6 +16,7 @@ return require('packer').startup(function()
 	use 'plasticboy/vim-markdown'
 	use 'ThePrimeagen/vim-be-good'
 	use 'L3MON4D3/LuaSnip'
+	use 'rafamadriz/friendly-snippets'
 	use {
 		'numToStr/Comment.nvim',
 		config = function() require('Comment-config') end

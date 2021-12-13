@@ -10,7 +10,21 @@ cmp.setup {
 		['<C-y>'] = cmp.mapping.confirm({
 			behavior = cmp.ConfirmBehavior.Insert,
 			select = true,
-		})
+		}),
+		['<Tab>'] = function(fallback)
+			if require("luasnip").expand_or_jumpable() then
+				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
+			else
+				fallback()
+			end
+		end,
+		['<S-Tab>'] = function(fallback)
+			if require("luasnip").jumpable(-1) then
+				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
+			else
+				fallback()
+			end
+		end,
 	},
 	snippet = {
 		expand = function(args)
