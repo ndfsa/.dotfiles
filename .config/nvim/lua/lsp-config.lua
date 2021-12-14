@@ -47,15 +47,16 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 	}
 }
 local servers = {
-	"pyright",
-	"rust_analyzer",
-	"tsserver",
-	"vimls",
 	"clangd",
 	"cmake",
 	"hls",
+	"jdtls",
+	"pyright",
+	"rust_analyzer",
 	"svelte",
-	"jdtls"
+	"tsserver",
+	"vimls",
+	"zls"
 }
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup {

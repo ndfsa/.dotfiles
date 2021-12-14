@@ -18,6 +18,7 @@ require('nvim-treesitter.configs').setup({
 		"haskell",
 		"html",
 		"java",
+		"javascript",
 		"json",
 		"latex",
 		"lua",
