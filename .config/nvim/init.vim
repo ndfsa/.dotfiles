@@ -25,7 +25,8 @@ set completeopt=menu,menuone,noselect
 set shortmess+=c
 set updatetime=500
 set guifont=FiraCode:h14
-set foldmethod=indent
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 set nofoldenable
 set fileformats=unix,dos,mac
 set noshowmode

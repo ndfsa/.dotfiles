@@ -24,6 +24,7 @@ require('nvim-treesitter.configs').setup({
 		"org",
 		"python",
 		"regex",
+		"rust",
 		"svelte",
 		"toml",
 		"tsx",
