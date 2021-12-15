@@ -51,6 +51,7 @@ local servers = {
 	"cmake",
 	"hls",
 	"jdtls",
+	"jsonls",
 	"pyright",
 	"rust_analyzer",
 	"svelte",
