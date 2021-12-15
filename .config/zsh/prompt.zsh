@@ -28,13 +28,6 @@ precmd_vcs_info() {
 
 precmd_functions+=( precmd_vcs_info )
 case ${TERM} in
-    xterm*|rxvt*|gnome*|alacritty|st*|konsole*)
-		icon_branch=שׂ
-		icon_tag=
-		icon_commit=
-		icon_dot=
-		PS1=' %F{5}%~%f${vcs_wrapper} %F{4}>%f '
-		;;
     linux*|screen*)
 		icon_branch='[b]'
 		icon_tag='[t]'

@@ -24,7 +24,12 @@ source ~/.config/zsh/keybinds.zsh
 
 ### Programs
 eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"
+
+if [ $TERM != "linux" ]; then
+	eval "$(starship init zsh)"
+else
+	source ~/.config/zsh/prompt.zsh
+fi
 
 ### Syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
