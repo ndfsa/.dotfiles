@@ -12,14 +12,11 @@ return require('packer').startup(function()
 	use 'kyazdani42/nvim-web-devicons'
 	use 'nvim-lua/popup.nvim'
 	use 'nvim-lua/plenary.nvim'
-	use 'nacro90/numb.nvim'
-	use 'plasticboy/vim-markdown'
-	use 'ThePrimeagen/vim-be-good'
 	use 'L3MON4D3/LuaSnip'
 	use 'rafamadriz/friendly-snippets'
 	use {
 		'numToStr/Comment.nvim',
-		config = function() require('Comment-config') end
+		config = function() require('Comment').setup() end
 	}
 	use {
 		'kristijanhusak/orgmode.nvim',
@@ -36,11 +33,6 @@ return require('packer').startup(function()
 	use {
 		'tamago324/lir.nvim',
 		config = function() require('lir-config') end
-	}
-	use {
-		'mattn/emmet-vim',
-		ft = {'html', 'css', 'javascript'},
-		opt = true
 	}
 	use {
 		'hoob3rt/lualine.nvim',
