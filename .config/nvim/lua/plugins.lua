@@ -102,4 +102,8 @@ return require('packer').startup(function()
 		requires = { 'nvim-lua/plenary.nvim' },
 		config = function() require('gitsigns-config') end
 	}
+	use {
+		'sQVe/sort.nvim',
+		config = function() require('sort').setup() end
+	}
 end)
