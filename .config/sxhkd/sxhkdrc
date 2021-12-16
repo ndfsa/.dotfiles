@@ -101,10 +101,10 @@ super + bracketleft
 
 # volume
 XF86Audio{RaiseVolume,LowerVolume,Mute}
-	pamixer {-i 2,-d 2,-t}
+	volume.sh {-i 2,-d 2,-t}
 
 XF86MonBrightness{Up,Down}
-    xbacklight -{inc,dec} 5
+    brightness.sh -{inc,dec} 5
 
 # Rotate nodes
 super + w
