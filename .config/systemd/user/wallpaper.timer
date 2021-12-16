@@ -2,7 +2,8 @@
 Description=Changes Wallpaper every hour
 
 [Timer]
-OnCalendar=*-*-* *:00:00
+OnBootSec=15m
+OnUnitActiveSec=1h
 
 [Install]
 WantedBy=timers.target
