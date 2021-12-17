@@ -1,12 +1,14 @@
-local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-	vim.fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
-	vim.api.nvim_command 'packadd packer.nvim'
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
-vim.cmd([[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]])
 return require('packer').startup(function()
 	use 'wbthomason/packer.nvim'
-	use 'sainnhe/gruvbox-material'
+	use {
+		'ellisonleao/gruvbox.nvim',
+		requires = {'rktjmp/lush.nvim'}
+	}
 	use 'szw/vim-maximizer'
 	use 'norcalli/nvim-colorizer.lua'
 	use 'kyazdani42/nvim-web-devicons'
@@ -14,6 +16,11 @@ return require('packer').startup(function()
 	use 'nvim-lua/plenary.nvim'
 	use 'L3MON4D3/LuaSnip'
 	use 'rafamadriz/friendly-snippets'
+	use 'nathom/filetype.nvim'
+	use {
+		'monkoose/matchparen.nvim',
+		config = function() require('matchparen').setup() end
+	}
 	use {
 		'numToStr/Comment.nvim',
 		config = function() require('Comment').setup() end
@@ -42,6 +49,7 @@ return require('packer').startup(function()
 		'neovim/nvim-lspconfig',
 		config = function () require('lsp-config') end
 	}
+	use 'nvim-treesitter/playground'
 	use {
 		'nvim-treesitter/nvim-treesitter',
 		run = 'TSUpdate',
@@ -77,10 +85,6 @@ return require('packer').startup(function()
 		after = 'nvim-cmp'
 	}
 	use {
-		'folke/which-key.nvim',
-		config = function() require('which-key-config') end
-	}
-	use {
 		'sindrets/diffview.nvim',
 		requires = 'plenary.nvim'
 	}
@@ -98,4 +102,7 @@ return require('packer').startup(function()
 		'sQVe/sort.nvim',
 		config = function() require('sort').setup() end
 	}
+	if packer_bootstrap then
+		require('packer').sync()
+	end
 end)

@@ -37,25 +37,11 @@ set pumheight=15
 let g:loaded_netrw = 1
 let g:loaded_netrwPlugin = 1
 
-let g:gitblame_enabled = 0
-
 lua require('plugins')
 
-let g:user_emmet_mode = 'n'
-let g:user_emmet_install_global = 0
-
 set termguicolors
-let g:gruvbox_material_transparent_background = 1
-let g:gruvbox_material_enable_italic = 1
-let g:gruvbox_material_disable_italic_comment = 1
-let g:gruvbox_material_palette = 'original'
-let g:gruvbox_material_enable_bold = 1
-let g:gruvbox_material_better_performance = 1
-augroup colorscheme_custom
-	autocmd!
-	autocmd ColorScheme * highlight WhichKeyFloat guibg=none
-augroup END
-colorscheme gruvbox-material
+colorscheme gruvbox
+hi! Normal ctermbg=none guibg=none
 
 " Remove all trailing spaces
 augroup convinient

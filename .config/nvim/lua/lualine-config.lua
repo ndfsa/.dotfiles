@@ -30,13 +30,13 @@ local filesize = {
 		local function format_file_size(file)
 			local size = vim.fn.getfsize(file)
 			if size <= 0 then return '' end
-			local sufixes = {'b', 'k', 'm', 'g'}
+			local sufixes = {'B', 'KiB', 'MiB', 'GiB', 'TiB'}
 			local i = 1
 			while size > 1024 do
 				size = size / 1024
 				i = i + 1
 			end
-			return string.format('%.1f%s', size, sufixes[i])
+			return string.format('%.2f%s', size, sufixes[i])
 		end
 		local file = vim.fn.expand('%:p')
 		if string.len(file) == 0 then return '' end
@@ -54,14 +54,15 @@ local diag = {
 }
 local encoding = {
 	'o:encoding',
-	upper = true
+	fmt = string.upper
 }
 local fileformat = {
 	'fileformat',
-	upper = true
+	icons_enabled = false,
+	fmt = string.upper
 }
 local decals = {
-	function() return '▊' end,
+	function() return '█' end,
 	left_padding=0,
 	right_padding=0,
 	color = "LualineMode",
@@ -102,7 +103,7 @@ local mode = {
 		vim.api.nvim_command(
 			'hi! LualineMode guifg=' .. mode_color[vim.fn.mode()][1] ..
 			' guibg=' .. mode_color[vim.fn.mode()][2])
-		return ''
+		return ''
 	end,
 	color = "LualineMode",
 	left_padding = 2,
@@ -122,12 +123,7 @@ local lsp_name = {
 		end
 		return msg
 	end,
-	icon = ' LSP:',
 	color = {fg = colors.white, gui = 'bold'}
-}
-local branch = {
-	'branch',
-	right_padding = 3
 }
 local separator = {
 	function() return '%=' end
@@ -135,10 +131,9 @@ local separator = {
 require('lualine').setup({
 	options = {
 		theme = 'gruvbox',
-		section_separators = '  ',
-		component_separators = '  ',
-		disabled_filetypes = {'packer', 'undotree', 'diff', 'NvimTree', 'qf'},
-		icons_enabled = false
+		section_separators = ' ',
+		component_separators = ' ',
+		disabled_filetypes = {'packer', 'undotree', 'diff', 'qf'},
 	},
 	sections = {
 		lualine_a = {},
@@ -148,18 +143,17 @@ require('lualine').setup({
 			mode,
 			filesize,
 			bufinfo,
-			'location',
+			'branch',
 			'progress',
 			diag,
-			separator,
-			lsp_name
 		},
 		lualine_x = {
+			lsp_name,
 			encoding,
 			fileformat,
 			hexvalue,
 			'filetype',
-			branch,
+			'location',
 			decals
 		},
 		lualine_y = {},
