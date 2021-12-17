@@ -1,20 +1,25 @@
-local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-end
-return require('packer').startup(function()
+local M = {}
+
+function M.init(bootstraped)
+	local packer = nil
+
+	if packer == nil then
+		packer = require('packer')
+		packer.init()
+	end
+
+	local use = packer.use
+	packer.reset()
+
 	use 'wbthomason/packer.nvim'
 	use {
 		'ellisonleao/gruvbox.nvim',
+		config = vim.cmd[[colorscheme gruvbox]],
 		requires = {'rktjmp/lush.nvim'}
 	}
 	use 'szw/vim-maximizer'
 	use 'norcalli/nvim-colorizer.lua'
 	use 'kyazdani42/nvim-web-devicons'
-	use 'nvim-lua/popup.nvim'
-	use 'nvim-lua/plenary.nvim'
-	use 'L3MON4D3/LuaSnip'
 	use 'rafamadriz/friendly-snippets'
 	use 'nathom/filetype.nvim'
 	use {
@@ -52,25 +57,25 @@ return require('packer').startup(function()
 	use 'nvim-treesitter/playground'
 	use {
 		'nvim-treesitter/nvim-treesitter',
-		run = 'TSUpdate',
+		run = ':TSUpdate',
 		config = function() require('plugins.treesitter-config') end
 	}
 	use {
 		'hrsh7th/nvim-cmp',
 		requires = {
+			'L3MON4D3/LuaSnip',
 			'hrsh7th/cmp-buffer',
 			'hrsh7th/cmp-nvim-lsp',
 			'hrsh7th/cmp-path',
 			'hrsh7th/cmp-cmdline',
-			'saadparwaiz1/cmp_luasnip',
 		},
 		config = function() require('plugins.cmp-config') end
 	}
 	use {
 		'nvim-telescope/telescope.nvim',
 		requires = {
-			'plenary.nvim',
-			'popup.nvim',
+			'nvim-lua/plenary.nvim',
+			'nvim-lua/popup.nvim',
 			'nvim-telescope/telescope-project.nvim',
 			{
 				'nvim-telescope/telescope-fzf-native.nvim',
@@ -86,11 +91,11 @@ return require('packer').startup(function()
 	}
 	use {
 		'sindrets/diffview.nvim',
-		requires = 'plenary.nvim'
+		requires = 'nvim-lua/plenary.nvim'
 	}
 	use {
 		'TimUntersberger/neogit',
-		requires = 'plenary.nvim',
+		requires = 'nvim-lua/plenary.nvim',
 		config = function() require('plugins.neogit-config') end
 	}
 	use {
@@ -102,7 +107,20 @@ return require('packer').startup(function()
 		'sQVe/sort.nvim',
 		config = function() require('sort').setup() end
 	}
-	if packer_bootstrap then
+	if bootstraped then
 		require('packer').sync()
 	end
-end)
+end
+
+function M.bootstrap(install_path)
+	return vim.fn.system({
+		'git',
+		'clone',
+		'--depth',
+		'1',
+		'https://github.com/wbthomason/packer.nvim',
+		install_path
+	})
+end
+
+return M
