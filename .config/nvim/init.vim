@@ -80,7 +80,6 @@ inoremap _ _<C-g>u
 " buffer operations
 nnoremap <silent><leader>bp :bprevious<CR>
 nnoremap <silent><leader>bn :bnext<CR>
-nnoremap <silent><leader>bf :Telescope buffers<CR>
 nnoremap <silent><leader>bd :bd<CR>
 
 " move lines
@@ -101,6 +100,7 @@ nnoremap <silent><leader>fs :update<CR>
 nnoremap <silent><leader>ff :Telescope find_files<CR>
 nnoremap <silent><leader>fg :Telescope live_grep<CR>
 nnoremap <silent><leader>fz :Telescope current_buffer_fuzzy_find<CR>
+nnoremap <silent><leader>fb :Telescope buffers<CR>
 
 " open
 nnoremap <silent><leader>up <cmd>lua require('telescope').extensions.project.project{}<CR>

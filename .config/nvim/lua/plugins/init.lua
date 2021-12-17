@@ -27,7 +27,7 @@ return require('packer').startup(function()
 	}
 	use {
 		'kristijanhusak/orgmode.nvim',
-		config = function() require('orgmode-config') end
+		config = function() require('plugins.orgmode-config') end
 	}
 	use {
 		'akinsho/org-bullets.nvim',
@@ -35,25 +35,25 @@ return require('packer').startup(function()
 	}
 	use {
 		'lukas-reineke/indent-blankline.nvim',
-		config = function() require('indent-blankline-config') end
+		config = function() require('plugins.indent-blankline-config') end
 	}
 	use {
 		'tamago324/lir.nvim',
-		config = function() require('lir-config') end
+		config = function() require('plugins.lir-config') end
 	}
 	use {
 		'hoob3rt/lualine.nvim',
-		config = function() require('lualine-config') end
+		config = function() require('plugins.lualine-config') end
 	}
 	use {
 		'neovim/nvim-lspconfig',
-		config = function () require('lsp-config') end
+		config = function () require('plugins.lsp-config') end
 	}
 	use 'nvim-treesitter/playground'
 	use {
 		'nvim-treesitter/nvim-treesitter',
 		run = 'TSUpdate',
-		config = function() require('treesitter-config') end
+		config = function() require('plugins.treesitter-config') end
 	}
 	use {
 		'hrsh7th/nvim-cmp',
@@ -64,7 +64,7 @@ return require('packer').startup(function()
 			'hrsh7th/cmp-cmdline',
 			'saadparwaiz1/cmp_luasnip',
 		},
-		config = function() require('cmp-config') end
+		config = function() require('plugins.cmp-config') end
 	}
 	use {
 		'nvim-telescope/telescope.nvim',
@@ -77,11 +77,11 @@ return require('packer').startup(function()
 				run = 'make'
 			}
 		},
-		config = function() require('telescope-config') end
+		config = function() require('plugins.telescope-config') end
 	}
 	use {
 		'windwp/nvim-autopairs',
-		config = function() require('autopairs-config') end,
+		config = function() require('plugins.autopairs-config') end,
 		after = 'nvim-cmp'
 	}
 	use {
@@ -91,12 +91,12 @@ return require('packer').startup(function()
 	use {
 		'TimUntersberger/neogit',
 		requires = 'plenary.nvim',
-		config = function() require('neogit-config') end
+		config = function() require('plugins.neogit-config') end
 	}
 	use {
 		'lewis6991/gitsigns.nvim',
 		requires = { 'nvim-lua/plenary.nvim' },
-		config = function() require('gitsigns-config') end
+		config = function() require('plugins.gitsigns-config') end
 	}
 	use {
 		'sQVe/sort.nvim',
