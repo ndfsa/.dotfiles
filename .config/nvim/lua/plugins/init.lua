@@ -14,7 +14,6 @@ function M.init()
 	use 'wbthomason/packer.nvim'
 	use {
 		'ellisonleao/gruvbox.nvim',
-		config = pcall(vim.cmd, [[colorscheme gruvbox]]),
 		requires = {'rktjmp/lush.nvim'}
 	}
 	use 'szw/vim-maximizer'
@@ -103,10 +102,6 @@ function M.init()
 		'lewis6991/gitsigns.nvim',
 		requires = { 'nvim-lua/plenary.nvim' },
 		config = function() require('plugins.gitsigns-config') end
-	}
-	use {
-		'sQVe/sort.nvim',
-		config = function() require('sort').setup() end
 	}
 end
 

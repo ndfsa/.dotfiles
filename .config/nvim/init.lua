@@ -52,8 +52,6 @@ g.mapleader = ' '
 require('keybinds')
 
 vim.cmd[[
-hi! Normal ctermbg=none guibg=none
-highlight! link HighlightedyankRegion Visual
 augroup convinient
 	autocmd!
 	autocmd FileType * autocmd BufWritePre <buffer> %s/\s\+$//e
@@ -66,4 +64,8 @@ function! FoldText()
 	let folded_line_num = v:foldend - v:foldstart + 1
 	return '+' . repeat('-', (94 - len(folded_line_num . ''))) . '(' . folded_line_num . ' L)'
 endfunction
+
+colorscheme gruvbox
+hi! Normal ctermbg=none guibg=none
+highlight! link HighlightedyankRegion Visual
 ]]
