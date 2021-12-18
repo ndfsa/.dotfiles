@@ -40,15 +40,13 @@ opt.foldtext = "FoldText()"
 g.loaded_netrwPlugin = 1
 g.loaded_netrw = 1
 
-local fn = vim.fn
 local plugins = require('plugins')
-local bootstraped = nil
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-	bootstraped = plugins.bootstrap(install_path)
+local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+	plugins.bootstrap(install_path)
+else
+	plugins.init()
 end
-
-plugins.init(bootstraped)
 
 g.mapleader = ' '
 require('keybinds')

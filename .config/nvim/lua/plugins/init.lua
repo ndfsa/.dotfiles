@@ -1,6 +1,6 @@
 local M = {}
 
-function M.init(bootstraped)
+function M.init()
 	local packer = nil
 
 	if packer == nil then
@@ -14,7 +14,7 @@ function M.init(bootstraped)
 	use 'wbthomason/packer.nvim'
 	use {
 		'ellisonleao/gruvbox.nvim',
-		config = vim.cmd[[colorscheme gruvbox]],
+		config = pcall(vim.cmd, [[colorscheme gruvbox]]),
 		requires = {'rktjmp/lush.nvim'}
 	}
 	use 'szw/vim-maximizer'
@@ -68,6 +68,7 @@ function M.init(bootstraped)
 			'hrsh7th/cmp-nvim-lsp',
 			'hrsh7th/cmp-path',
 			'hrsh7th/cmp-cmdline',
+			'saadparwaiz1/cmp_luasnip',
 		},
 		config = function() require('plugins.cmp-config') end
 	}
@@ -107,13 +108,10 @@ function M.init(bootstraped)
 		'sQVe/sort.nvim',
 		config = function() require('sort').setup() end
 	}
-	if bootstraped then
-		require('packer').sync()
-	end
 end
 
 function M.bootstrap(install_path)
-	return vim.fn.system({
+	vim.fn.system({
 		'git',
 		'clone',
 		'--depth',
