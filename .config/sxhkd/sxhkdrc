@@ -11,7 +11,7 @@ super + e
 	alacritty -e lf
 
 super + p
-	"$HOME/bin/powermenu.sh"
+	"$HOME/bin/powermenu"
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -97,14 +97,14 @@ super + {Left,Down,Up,Right}
 
 # change wallpaper
 super + bracketleft
-    "$HOME/bin/random_wallpaper.sh"
+    "$HOME/bin/random_wallpaper"
 
 # volume
 XF86Audio{RaiseVolume,LowerVolume,Mute}
-	volume.sh {-i 2,-d 2,-t}
+	volume {-i 2,-d 2,-t}
 
 XF86MonBrightness{Up,Down}
-    brightness.sh -{inc,dec} 5
+    brightness -{inc,dec} 5
 
 # Rotate nodes
 super + w

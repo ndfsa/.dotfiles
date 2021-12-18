@@ -37,19 +37,14 @@ opt.termguicolors = true
 opt.fillchars:append({fold = ' ', eob = ' '})
 opt.foldtext = "FoldText()"
 
+g.did_load_filetypes = 1
 g.loaded_netrwPlugin = 1
 g.loaded_netrw = 1
 
-local plugins = require('plugins')
-local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-	plugins.bootstrap(install_path)
-else
-	plugins.init()
-end
+require('plugins').init()
 
 g.mapleader = ' '
-require('keybinds')
+require('keybinds').init()
 
 vim.cmd[[
 augroup convinient

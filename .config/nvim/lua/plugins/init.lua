@@ -20,7 +20,10 @@ function M.init()
 	use 'norcalli/nvim-colorizer.lua'
 	use 'kyazdani42/nvim-web-devicons'
 	use 'rafamadriz/friendly-snippets'
-	use 'nathom/filetype.nvim'
+	use {
+		'nathom/filetype.nvim',
+		config = function() require('plugins.filetype-config') end
+	}
 	use {
 		'monkoose/matchparen.nvim',
 		config = function() require('matchparen').setup() end
@@ -103,17 +106,6 @@ function M.init()
 		requires = { 'nvim-lua/plenary.nvim' },
 		config = function() require('plugins.gitsigns-config') end
 	}
-end
-
-function M.bootstrap(install_path)
-	vim.fn.system({
-		'git',
-		'clone',
-		'--depth',
-		'1',
-		'https://github.com/wbthomason/packer.nvim',
-		install_path
-	})
 end
 
 return M

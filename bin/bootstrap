@@ -1,0 +1,54 @@
+#!/bin/dash
+
+file_list=".Xresources
+.config/emacs/init.el
+.config/gtk-3.0/settings.ini
+.config/starship.toml
+.config/systemd/user/wallpaper.service
+.config/systemd/user/wallpaper.timer
+.xinitrc
+.xserverrc
+.zlogin
+.zshenv
+.zshrc"
+dir_list=".config/alacritty
+.config/bspwm
+.config/dunst
+.config/flameshot
+.config/lf
+.config/nvim
+.config/picom
+.config/polybar
+.config/rofi
+.config/rustfmt
+.config/sxhkd
+.config/sxiv
+.config/zathura
+.config/zsh
+bin"
+
+for file in $file_list; do
+	filename=$(basename $file)
+	parent=$(echo "$file" | sed "s/$filename//")
+
+	[ "$filename" != "$file" ] \
+		&& [ ! -d $parent ] \
+		&& echo "mkdir --parent $HOME/$parent"
+
+	echo "ln -sv $HOME/dotfiles/$file $HOME/$parent"
+done
+
+unset parent
+
+for dir in $dir_list; do
+	dirname=$(basename $dir)
+	parent=$(echo "$dir" | sed "s/$dirname//")
+
+	[ "$dirname" != "$dir" ] \
+		&& [ ! -d $parent ] \
+		&& echo "mkdir --parent $HOME/$parent"
+
+	echo "ln -sv $HOME/dotfiles/$dir $HOME/$parent"
+done
+
+# ln -sv $HOME/dotfiles $HOME/
