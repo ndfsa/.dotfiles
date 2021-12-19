@@ -106,6 +106,10 @@ function M.init()
 		requires = { 'nvim-lua/plenary.nvim' },
 		config = function() require('plugins.gitsigns-config') end
 	}
+	use {
+		'sQVe/sort.nvim',
+		config = function() require("sort").setup() end
+	}
 end
 
 return M

@@ -1,6 +1,6 @@
 #!/bin/dash
 
-file_list=".Xresources
+configs=".Xresources
 .config/emacs/init.el
 .config/gtk-3.0/settings.ini
 .config/starship.toml
@@ -10,8 +10,8 @@ file_list=".Xresources
 .xserverrc
 .zlogin
 .zshenv
-.zshrc"
-dir_list=".config/alacritty
+.zshrc
+.config/alacritty
 .config/bspwm
 .config/dunst
 .config/flameshot
@@ -27,15 +27,27 @@ dir_list=".config/alacritty
 .config/zsh
 bin"
 
+dir_list=""
+file_list=""
+
+# link all config files
+for i in $configs; do
+	if [ -d "$HOME/dotfiles/$i" ]; then
+		dir_list="$dir_list $i"
+	elif [ -f "$HOME/dotfiles/$i" ]; then
+		file_list="$file_list $i"
+	fi
+done
+
 for file in $file_list; do
 	filename=$(basename $file)
 	parent=$(echo "$file" | sed "s/$filename//")
 
 	[ "$filename" != "$file" ] \
-		&& [ ! -d $parent ] \
-		&& echo "mkdir --parent $HOME/$parent"
+		&& [ ! -d "$parent" ] \
+		&& mkdir --parent $HOME/$parent
 
-	echo "ln -sv $HOME/dotfiles/$file $HOME/$parent"
+	ln -sv $HOME/dotfiles/$file $HOME/$parent
 done
 
 unset parent
@@ -45,10 +57,19 @@ for dir in $dir_list; do
 	parent=$(echo "$dir" | sed "s/$dirname//")
 
 	[ "$dirname" != "$dir" ] \
-		&& [ ! -d $parent ] \
-		&& echo "mkdir --parent $HOME/$parent"
+		&& [ ! -d "$parent" ] \
+		&& mkdir --parent $HOME/$parent
 
-	echo "ln -sv $HOME/dotfiles/$dir $HOME/$parent"
+	ln -sv $HOME/dotfiles/$dir $HOME/$parent
 done
 
-# ln -sv $HOME/dotfiles $HOME/
+# install packer for neovim
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+	$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+# install things from AUR
+git clone https://aur.archlinux.org/font-symbola.git $HOME/AUR/font-symbola
+git clone https://aur.archlinux.org/jdtls.git $HOME/AUR/jdtls
+git clone https://aur.archlinux.org/lf.git $HOME/AUR/lf
+git clone https://aur.archlinux.org/neovim-git.git $HOME/AUR/neovim-git
+git clone https://aur.archlinux.org/polybar.git $HOME/AUR/polybar
