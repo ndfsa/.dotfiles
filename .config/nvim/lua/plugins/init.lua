@@ -5,7 +5,13 @@ function M.init()
 
 	if packer == nil then
 		packer = require('packer')
-		packer.init()
+		packer.init({
+			display = {
+				open_fn = function()
+					return require("packer.util").float { border = "rounded" }
+				end,
+			},
+		})
 	end
 
 	local use = packer.use

@@ -65,6 +65,6 @@ hi! Normal ctermbg=none guibg=none
 highlight! link HighlightedyankRegion Visual
 augroup packer_user_config
 	autocmd!
-	autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+	autocmd BufWritePost */plugins/init.lua source <afile> | PackerCompile
 augroup end
 ]]
