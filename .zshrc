@@ -7,8 +7,9 @@ source ~/.config/zsh/opts.zsh
 ### Enable history and history cache, move to cache file in home
 source ~/.config/zsh/history.zsh
 
-### Autocompletion
+### Completion
 source ~/.config/zsh/completion.zsh
+fpath=(/usr/share/zsh/site-functions $fpath)
 
 ### Window title
 source ~/.config/zsh/title.zsh
@@ -18,6 +19,9 @@ source ~/.config/zsh/alias.zsh
 
 ### Functions
 source ~/.config/zsh/functions.zsh
+
+### autosuggestions
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 ### Keybinds
 source ~/.config/zsh/keybinds.zsh

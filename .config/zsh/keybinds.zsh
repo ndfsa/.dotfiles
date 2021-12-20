@@ -5,13 +5,14 @@ else
     echo "WARNING: Keybindings may not be set correctly!"
     echo "Execute \`zkbd\` to create bindings."
 fi
-bindkey -e
+bindkey -v
 
 ## History search
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
+zle -C alias-expension complete-word _generic
 
 # setup key accordingly
 [[ -n "${key[Home]}"        ]] && bindkey -- "${key[Home]}"           beginning-of-line
@@ -28,3 +29,10 @@ zle -N down-line-or-beginning-search
 bindkey "^[s" sudo-command-line
 bindkey "^N" menu-complete
 bindkey "^P" reverse-menu-complete
+bindkey '^a' alias-expension
+zmodload zsh/complist
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey '^ ' autosuggest-accept
