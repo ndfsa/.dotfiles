@@ -30,8 +30,7 @@ require('nvim-treesitter.configs').setup({
 		"svelte",
 		"toml",
 		"tsx",
-		"typescript",
-		"zig"
+		"typescript"
 	},
 	highlight = {
 		enable = true,

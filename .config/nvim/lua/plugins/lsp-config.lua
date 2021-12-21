@@ -56,8 +56,6 @@ local servers = {
 	"rust_analyzer",
 	"svelte",
 	"tsserver",
-	"vimls",
-	"zls"
 }
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup {
