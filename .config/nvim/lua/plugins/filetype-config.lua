@@ -6,6 +6,7 @@ require("filetype").setup({
         },
         shebang = {
             dash = "sh",
+            bash = "bash",
         },
     },
 })
