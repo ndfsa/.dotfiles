@@ -19,8 +19,13 @@ fi
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-killall -q picom
-while pgrep -u $(id -ru) -x picom >/dev/null; do sleep 0.5; done
-picom --experimental-backends --config "$HOME/.config/picom/picom.conf" &
-
-exec bspwm
+case $WM in
+	bspwm)
+		exec bspwm
+		;;
+	xfce4)
+		exec startxfce4
+		;;
+	*) echo "ERROR: Invalid selection"
+		;;
+esac
