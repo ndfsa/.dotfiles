@@ -19,13 +19,4 @@ fi
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-case $WM in
-	bspwm)
-		exec bspwm
-		;;
-	xfce4)
-		exec startxfce4
-		;;
-	*) echo "ERROR: Invalid selection"
-		;;
-esac
+exec bspwm
