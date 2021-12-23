@@ -20,9 +20,6 @@ source ~/.config/zsh/alias.zsh
 ### Functions
 source ~/.config/zsh/functions.zsh
 
-### autosuggestions
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 ### Keybinds
 source ~/.config/zsh/keybinds.zsh
 

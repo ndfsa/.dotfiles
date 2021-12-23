@@ -19,4 +19,6 @@ fi
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# export DESKTOP_SESSION=plasma
+# exec startplasma-x11
 exec bspwm

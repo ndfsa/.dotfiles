@@ -97,7 +97,10 @@ super + {Left,Down,Up,Right}
 
 # change wallpaper
 super + bracketleft
-    "$HOME/bin/random_wallpaper"
+    set_wallpaper
+
+super + shift + bracketleft
+    random_wallpaper
 
 # volume
 XF86Audio{RaiseVolume,LowerVolume,Mute}
