@@ -64,7 +64,7 @@ super + {grave,Tab}
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+	bspc {desktop -f,node -d} '^{1-9,10}' {,--follow}
 
 # preselect
 
@@ -97,9 +97,6 @@ super + {Left,Down,Up,Right}
 
 # change wallpaper
 super + bracketleft
-    set_wallpaper
-
-super + shift + bracketleft
     random_wallpaper
 
 # volume

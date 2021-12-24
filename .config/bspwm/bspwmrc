@@ -4,7 +4,7 @@ xsetroot -cursor_name left_ptr &
 
 bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 
-bspc config border_width 3
+bspc config border_width 2
 bspc config window_gap 10
 
 bspc config normal_border_color "#282828"
@@ -19,6 +19,9 @@ bspc rule -a Screenkey manage=off
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
+systemctl --user start wallpaper.timer
+systemctl --user start wallpaper.service
+
 killall -q polybar
 while pgrep -u $(id -ru) -x polybar >/dev/null; do sleep 0.5; done
 polybar main --config="$HOME/.config/polybar/config.ini" &
@@ -26,5 +29,3 @@ polybar main --config="$HOME/.config/polybar/config.ini" &
 killall -q picom
 while pgrep -u $(id -ru) -x picom >/dev/null; do sleep 0.5; done
 picom --experimental-backends --config "$HOME/.config/picom/picom.conf" &
-
-set_wallpaper
