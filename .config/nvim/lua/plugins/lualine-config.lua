@@ -1,19 +1,3 @@
-local colors = {
-	black = '#282828',
-	white = '#ebdbb2',
-	red = '#fb4934',
-	green = '#b8bb26',
-	blue = '#83a598',
-	cyan = '#8ec07c',
-	yellow = '#fabd2f',
-	orange = '#fe8019',
-	magenta	= '#b16286',
-	violet = '#d3869b',
-	gray = '#a89984',
-	darkgray = '#3c3836',
-	lightgray = '#504945',
-	inactivegray = '#7c6f64',
-}
 local hexvalue = {
 	function()
 		return "0x%02B"
@@ -23,7 +7,6 @@ local bufinfo = {
 	function ()
 		return "%n:%t%4m%5r%4w"
 	end,
-	color = {fg = colors.white, gui = 'bold' }
 }
 local filesize = {
 	function ()
@@ -48,9 +31,6 @@ local diag = {
 	'diagnostics',
 	sources = {'nvim_diagnostic'},
 	symbols = {error = ' ', warn = ' ', info = ' '},
-	color_error = colors.red,
-	color_warn = colors.yellow,
-	color_info = colors.cyan
 }
 local encoding = {
 	'o:encoding',
@@ -61,54 +41,7 @@ local fileformat = {
 	icons_enabled = false,
 	fmt = string.upper
 }
-local decals = {
-	function() return '█' end,
-	left_padding=0,
-	right_padding=0,
-	color = "LualineMode",
-}
-local mode = {
-	function()
-		local mode_color = {
-			['n']    = {colors.red, colors.darkgray},
-			['no']   = {colors.red, colors.darkgray},
-			['nov']  = {colors.red, colors.darkgray},
-			['noV']  = {colors.red, colors.darkgray},
-			['no'] = {colors.red, colors.darkgray},
-			['niI']  = {colors.red, colors.darkgray},
-			['niR']  = {colors.red, colors.darkgray},
-			['niV']  = {colors.red, colors.darkgray},
-			['v']    = {colors.orange, colors.inactivegray},
-			['V']    = {colors.orange, colors.inactivegray},
-			['']   = {colors.orange, colors.inactivegray},
-			['s']    = {colors.blue, colors.inactivegray},
-			['S']    = {colors.blue, colors.inactivegray},
-			['']   = {colors.blue, colors.inactivegray},
-			['i']    = {colors.cyan, colors.lightgray},
-			['ic']   = {colors.cyan, colors.lightgray},
-			['ix']   = {colors.cyan, colors.lightgray},
-			['r']    = {colors.violet, colors.black},
-			['R']    = {colors.violet, colors.black},
-			['Rc']   = {colors.violet, colors.black},
-			['Rv']   = {colors.violet, colors.black},
-			['Rx']   = {colors.violet, colors.black},
-			['c']    = {colors.green, colors.inactivegray},
-			['cv']   = {colors.white, colors.inactivegray},
-			['ce']   = {colors.white, colors.inactivegray},
-			['rm']   = {colors.white, colors.inactivegray},
-			['r?']   = {colors.white, colors.inactivegray},
-			['!']    = {colors.yellow, colors.darkgray},
-			['t']    = {colors.yellow, colors.darkgray},
-		}
-		vim.api.nvim_command(
-			'hi! LualineMode guifg=' .. mode_color[vim.fn.mode()][1] ..
-			' guibg=' .. mode_color[vim.fn.mode()][2])
-		return ''
-	end,
-	color = "LualineMode",
-	left_padding = 2,
-	right_padding = 2
-}
+
 local lsp_name = {
 	function()
 		local msg = ''
@@ -123,7 +56,6 @@ local lsp_name = {
 		end
 		return msg
 	end,
-	color = {fg = colors.white, gui = 'bold'}
 }
 local separator = {
 	function() return '%=' end
@@ -136,28 +68,30 @@ require('lualine').setup({
 		disabled_filetypes = {'packer', 'undotree', 'diff', 'qf'},
 	},
 	sections = {
-		lualine_a = {},
-		lualine_b = {},
-		lualine_c = {
-			decals,
-			mode,
+		lualine_a = {
+			'mode',
+		},
+		lualine_b = {
 			filesize,
+		},
+		lualine_c = {
 			bufinfo,
 			'branch',
 			'progress',
 			diag,
 		},
 		lualine_x = {
-			lsp_name,
-			encoding,
-			fileformat,
 			hexvalue,
-			'filetype',
 			'location',
-			decals
+			lsp_name,
 		},
-		lualine_y = {},
-		lualine_z = {}
+		lualine_y = {
+			'filetype',
+			fileformat,
+		},
+		lualine_z = {
+			encoding,
+		}
 	},
 	inactive_sections = {
 		lualine_a = {},

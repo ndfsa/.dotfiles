@@ -21,6 +21,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 
 systemctl --user start wallpaper.timer
 systemctl --user start wallpaper.service
+systemctl --user start dunst.service
 
 killall -q polybar
 while pgrep -u $(id -ru) -x polybar >/dev/null; do sleep 0.5; done

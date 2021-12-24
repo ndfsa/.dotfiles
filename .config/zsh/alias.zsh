@@ -10,3 +10,4 @@ alias org-pull='rclone sync dropbox:/org ~/Documents/org -P'
 alias org-push='rclone sync ~/Documents/org dropbox:/org -P'
 alias wp-pull='rclone sync gdrive_crypt:Pictures ~/Pictures -P'
 alias wp-push='rclone sync ~/Pictures gdrive_crypt:Pictures -P'
+alias :q='exit' # I'm done with this

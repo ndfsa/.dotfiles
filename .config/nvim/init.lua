@@ -24,9 +24,9 @@ opt.laststatus = 2
 opt.completeopt = {'menu', 'menuone', 'noselect'}
 opt.shortmess:append({c = true})
 opt.updatetime = 500
-opt.guifont = "FiraCode:h14"
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.guifont = 'FiraCode:h14'
+opt.foldmethod = 'expr'
+opt.foldexpr = 'nvim_treesitter#foldexpr()'
 opt.foldenable = false
 opt.fileformats = {'unix', 'dos', 'mac'}
 opt.showmode = false
@@ -35,7 +35,7 @@ opt.mouse = 'a'
 opt.pumheight = 20
 opt.termguicolors = true
 opt.fillchars:append({fold = ' ', eob = ' '})
-opt.foldtext = "FoldText()"
+opt.foldtext = 'FoldText()'
 
 g.did_load_filetypes = 1
 g.loaded_netrwPlugin = 1
