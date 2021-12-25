@@ -97,7 +97,7 @@ super + {Left,Down,Up,Right}
 
 # change wallpaper
 super + bracketleft
-    random_wallpaper
+    wallpaper
 
 # volume
 XF86Audio{RaiseVolume,LowerVolume,Mute}
