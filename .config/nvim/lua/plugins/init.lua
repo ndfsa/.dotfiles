@@ -81,6 +81,10 @@ function M.init()
 		config = function() require('plugins.cmp-config') end
 	}
 	use {
+		'blackCauldron7/surround.nvim',
+		config = function () require('plugins.surround-config') end
+	}
+	use {
 		'nvim-telescope/telescope.nvim',
 		requires = {
 			'nvim-lua/plenary.nvim',
@@ -95,8 +99,7 @@ function M.init()
 	}
 	use {
 		'windwp/nvim-autopairs',
-		config = function() require('plugins.autopairs-config') end,
-		after = 'nvim-cmp'
+		config = function() require('nvim-autopairs').setup() end
 	}
 	use {
 		'sindrets/diffview.nvim',
@@ -114,7 +117,7 @@ function M.init()
 	}
 	use {
 		'sQVe/sort.nvim',
-		config = function() require("sort").setup() end
+		config = function() require('sort').setup() end
 	}
 end
 

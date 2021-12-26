@@ -1,6 +1,7 @@
 #!/bin/dash
 
 lockscreen=' Lock screen'
+logout=' Log Out'
 suspend='⏾ Suspend'
 reboot=' Reboot'
 shutdown=' Shut down'
@@ -10,8 +11,9 @@ no=' No'
 
 . $HOME/bin/func.sh
 
-case $(rofi_prompt "echo $lockscreen\n$suspend\n$reboot\n$shutdown" "Power") in
+case $(rofi_prompt "echo $lockscreen\n$logout\n$suspend\n$reboot\n$shutdown" "Power") in
 	$lockscreen) sleep 0.3; slock;;
+	$logout) confirm "$no" "$yes" "bspc quit";;
 	$shutdown) confirm "$no" "$yes" "exec systemctl poweroff";;
 	$reboot) confirm "$no" "$yes" "exec systemctl reboot";;
 	$suspend) confirm "$no" "$yes" "exec systemctl suspend";;
