@@ -14,6 +14,7 @@ require'lir'.setup {
 		['<bs>'] = actions.up,
 		['h'] = actions.up,
 		['q'] = actions.quit,
+		['<esc>'] = actions.quit,
 		['K'] = actions.mkdir,
 		['a'] = actions.newfile,
 		['r'] = actions.rename,
