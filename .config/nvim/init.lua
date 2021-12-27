@@ -36,8 +36,10 @@ opt.pumheight = 20
 opt.termguicolors = true
 opt.fillchars:append({fold = ' ', eob = ' '})
 opt.foldtext = 'FoldText()'
+opt.conceallevel = 2
 
 g.did_load_filetypes = 1
+g.loaded_matchparen = 1
 g.loaded_netrwPlugin = 1
 g.loaded_netrw = 1
 
@@ -63,8 +65,4 @@ endfunction
 colorscheme gruvbox
 hi! Normal ctermbg=none guibg=none
 highlight! link HighlightedyankRegion Visual
-augroup packer_user_config
-	autocmd!
-	autocmd BufWritePost */plugins/init.lua source <afile> | PackerCompile
-augroup end
 ]]

@@ -22,19 +22,6 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap('v', '<leader>F', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
 	buf_set_keymap('n', '<leader>e',
 		'<cmd>lua vim.diagnostic.open_float(nil, { source = \'always\'})<CR>', opts)
-
-	if client.resolved_capabilities.document_highlight then
-		vim.api.nvim_exec([[
-			hi LspReferenceRead cterm=bold ctermbg=red guifg=Black guibg=orange
-			hi LspReferenceText cterm=bold ctermbg=red guifg=Black guibg=orange
-			hi LspReferenceWrite cterm=bold ctermbg=red guifg=Black guibg=orange
-			augroup lsp_document_highlight
-				autocmd! * <buffer>
-				autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-				autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-			augroup END
-		]], false)
-	end
 end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)

@@ -1,13 +1,14 @@
-require('telescope').setup{
+local telescope = require('telescope')
+telescope.setup{
 	defaults = {
-		layout_strategy = "bottom_pane",
+		sorting_strategy = "ascending",
+
 		layout_config = {
-			height = 20,
-			prompt_position = "bottom"
+			prompt_position = "top"
 		},
-		preview_title = "",
-		border = false,
-		file_ignore_patterns = {'.git/', 'node_modules'}
+		-- preview_title = "",
+		-- border = false,
+		file_ignore_patterns = {'.git/', 'node_modules/'}
 	},
 	extensions = {
 		fzf = {
@@ -32,9 +33,11 @@ require('telescope').setup{
 				'--smart-case',
 				'--hidden',
 				'--glob',
-				'!.git'
+				'!.git/',
+				'--glob',
+				'!.zk/',
 			}
 		}
 	}
 }
-require('telescope').load_extension('fzf')
+telescope.load_extension('fzf')

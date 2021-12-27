@@ -3,16 +3,14 @@ local M = {}
 function M.init()
 	local packer = nil
 
-	if packer == nil then
-		packer = require('packer')
-		packer.init({
-			display = {
-				open_fn = function()
-					return require("packer.util").float { border = "rounded" }
-				end,
-			},
-		})
-	end
+	packer = require('packer')
+	packer.init({
+		display = {
+			open_fn = function()
+				return require("packer.util").float { border = "rounded" }
+			end,
+		},
+	})
 
 	local use = packer.use
 	packer.reset()
@@ -37,10 +35,6 @@ function M.init()
 	use {
 		'numToStr/Comment.nvim',
 		config = function() require('Comment').setup() end
-	}
-	use {
-		'kristijanhusak/orgmode.nvim',
-		config = function() require('plugins.orgmode-config') end
 	}
 	use {
 		'akinsho/org-bullets.nvim',
@@ -118,6 +112,10 @@ function M.init()
 	use {
 		'sQVe/sort.nvim',
 		config = function() require('sort').setup() end
+	}
+	use {
+		'folke/which-key.nvim',
+		config = function () require('plugins.which-key-config') end
 	}
 end
 
