@@ -27,6 +27,6 @@ killall -q polybar
 while pgrep -u $(id -ru) -x polybar > /dev/null ; do sleep 0.5 ; done
 polybar main --config="$HOME/.config/polybar/config.ini" &
 
-killall -q picom
-while pgrep -u $(id -ru) -x picom > /dev/null ; do sleep 0.5 ; done
-picom --experimental-backends --config "$HOME/.config/picom/picom.conf" &
+killall -q xcompmgr
+while pgrep -u $(id -ru) -x xcompmgr > /dev/null ; do sleep 0.5 ; done
+xcompmgr -f -c -I 0.05 -O 0.05  &> /dev/null &

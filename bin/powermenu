@@ -14,7 +14,7 @@ no=' No'
 case $(rofi_prompt "echo $lockscreen\n$logout\n$suspend\n$reboot\n$shutdown" "Power") in
 	$lockscreen) sleep 0.3; slock;;
 	$logout) confirm "$no" "$yes" "bspc quit";;
-	$shutdown) confirm "$no" "$yes" "exec systemctl poweroff";;
-	$reboot) confirm "$no" "$yes" "exec systemctl reboot";;
-	$suspend) confirm "$no" "$yes" "exec systemctl suspend";;
+	$shutdown) confirm "$no" "$yes" "systemctl poweroff";;
+	$reboot) confirm "$no" "$yes" "systemctl reboot";;
+	$suspend) confirm "$no" "$yes" "systemctl suspend";;
 esac

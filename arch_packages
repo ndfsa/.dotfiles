@@ -63,7 +63,6 @@ otf-symbola
 pacman-contrib
 pamixer
 pandoc
-picom
 pipewire
 pipewire-alsa
 pipewire-docs
@@ -107,6 +106,7 @@ usbutils
 vtk
 wget
 xclip
+xcompmgr
 xdo
 xdotool
 xorg-server
