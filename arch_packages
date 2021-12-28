@@ -24,7 +24,6 @@ expac
 fd
 feh
 filezilla
-flameshot
 fzf
 gdb
 gimp
@@ -45,6 +44,7 @@ linux-firmware
 linux-headers
 lldb
 lua-language-server
+maim
 man-db
 man-pages
 mesa
@@ -54,7 +54,6 @@ nftables
 nmap
 nodejs
 npm
-opencv
 openjdk-doc
 openjdk-src
 openssh
@@ -69,6 +68,7 @@ pipewire-alsa
 pipewire-docs
 pipewire-jack
 pipewire-pulse
+playerctl
 procs
 pulsemixer
 python-pip

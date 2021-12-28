@@ -2,7 +2,6 @@
 
 configs=".Xresources
 .config/emacs/init.el
-.config/gtk-3.0/settings.ini
 .config/starship.toml
 .config/systemd/user/wallpaper.service
 .config/systemd/user/wallpaper.timer
@@ -14,7 +13,6 @@ configs=".Xresources
 .config/alacritty
 .config/bspwm
 .config/dunst
-.config/flameshot
 .config/lf
 .config/nvim
 .config/picom
@@ -73,3 +71,4 @@ git clone https://aur.archlinux.org/jdtls.git $HOME/AUR/jdtls
 git clone https://aur.archlinux.org/lf.git $HOME/AUR/lf
 git clone https://aur.archlinux.org/neovim-git.git $HOME/AUR/neovim-git
 git clone https://aur.archlinux.org/polybar.git $HOME/AUR/polybar
+git clone https://github.com/ndfsa/slock-custom.git $HOME/AUR/slock-custom

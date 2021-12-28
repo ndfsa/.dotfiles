@@ -6,8 +6,6 @@ telescope.setup{
 		layout_config = {
 			prompt_position = "top"
 		},
-		-- preview_title = "",
-		-- border = false,
 		file_ignore_patterns = {'.git/', 'node_modules/'}
 	},
 	extensions = {

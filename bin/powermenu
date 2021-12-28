@@ -12,7 +12,7 @@ no=' No'
 . $HOME/bin/func.sh
 
 case $(rofi_prompt "echo $lockscreen\n$logout\n$suspend\n$reboot\n$shutdown" "Power") in
-	$lockscreen) sleep 0.3; slock;;
+	$lockscreen) sleep 0.3 && loginctl lock-session;;
 	$suspend) confirm "$no" "$yes" "execc systemctl suspend";;
 	$reboot) confirm "$no" "$yes" "exec systemctl reboot";;
 	$shutdown) confirm "$no" "$yes" "exec systemctl poweroff";;

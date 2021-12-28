@@ -34,7 +34,7 @@ super + @space
 # state/flags
 
 # set the window state
-super + {t,s,f,F}
+super + {t,u,f,F}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 super + M
@@ -118,4 +118,20 @@ super + equal
 	bspc node @/ -B
 
 super + shift + s
-	flameshot gui
+	maim -s | xclip -selection clipboard -t image/png && dunstify "Screenshot saved to clipboard"
+
+super + s
+	maim "$HOME/Pictures/Screenshots/$(date +%s).png" && dunstify "Screenshot saved"
+
+XF86AudioNext
+	playerctl next
+
+XF86AudioPrev
+	playerctl previous
+
+XF86AudioPlay
+	playerctl play-pause
+
+XF86AudioStop
+	playerctl stop
+
