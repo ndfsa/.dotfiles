@@ -6,3 +6,4 @@ export LS_COLORS='di=1;34:ln=36:so=1;31:pi=33:ex=1;32:bd=1;33:cd=1;33:su=30;41:s
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export PATH=$HOME/.local/bin:$HOME/bin:$PATH
 export JDTLS_HOME=/usr/share/java/jdtls
+export QT_QPA_PLATFORMTHEME=KDE

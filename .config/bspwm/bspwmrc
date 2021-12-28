@@ -16,13 +16,14 @@ bspc config gapless_monocle true
 bspc config single_monocle true
 
 bspc rule -a Screenkey manage=off
+bspc rule -a dolphin state=floating
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 [ -e $HOME/.fehbg ] && $HOME/.fehbg
 systemctl --user start wallpaper.timer
 systemctl --user start dunst.service
-xss-lock slock
+xss-lock slock &
 
 killall -q polybar
 while pgrep -u $(id -ru) -x polybar > /dev/null ; do sleep 0.5 ; done

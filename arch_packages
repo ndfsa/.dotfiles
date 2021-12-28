@@ -4,6 +4,7 @@ asciiquarium
 atool
 bandwhich
 base
+base-devel
 bat
 bc
 borg
@@ -68,6 +69,7 @@ pipewire-alsa
 pipewire-docs
 pipewire-jack
 pipewire-pulse
+plasma-meta
 playerctl
 procs
 pulsemixer
