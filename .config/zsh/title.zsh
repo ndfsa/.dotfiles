@@ -3,8 +3,5 @@ case $TERM in
         precmd () {
 			printf "\033]0;%s\007" "`pwd`"
         }
-        preexec () {
-            printf "\033]0;%s %s\007" "`pwd`" "$1"
-        }
         ;;
 esac

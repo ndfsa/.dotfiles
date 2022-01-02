@@ -13,7 +13,6 @@ configs=".Xresources
 .config/alacritty
 .config/bspwm
 .config/dunst
-.config/lf
 .config/nvim
 .config/picom
 .config/polybar
@@ -68,7 +67,6 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 # install things from AUR
 git clone https://aur.archlinux.org/font-symbola.git $HOME/AUR/font-symbola
 git clone https://aur.archlinux.org/jdtls.git $HOME/AUR/jdtls
-git clone https://aur.archlinux.org/lf.git $HOME/AUR/lf
 git clone https://aur.archlinux.org/neovim-git.git $HOME/AUR/neovim-git
 git clone https://aur.archlinux.org/polybar.git $HOME/AUR/polybar
 git clone https://github.com/ndfsa/slock-custom.git $HOME/AUR/slock-custom

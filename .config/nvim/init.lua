@@ -1,6 +1,5 @@
 local opt = vim.opt
 local g = vim.g
-opt.title = true
 opt.tabstop = 4
 opt.shiftwidth = 4
 opt.softtabstop = 4
@@ -35,7 +34,6 @@ opt.mouse = 'a'
 opt.pumheight = 20
 opt.termguicolors = true
 opt.fillchars:append({fold = ' ', eob = ' '})
-opt.foldtext = 'FoldText()'
 opt.conceallevel = 2
 
 g.did_load_filetypes = 1
@@ -55,12 +53,6 @@ augroup convinient
 	autocmd TextYankPost * silent!
 				\ lua vim.highlight.on_yank({higroup="HighlightedYankRegion", timeout=250})
 augroup END
-
-function! FoldText()
-	let line = getline(v:foldstart)
-	let folded_line_num = v:foldend - v:foldstart + 1
-	return '+' . repeat('-', (94 - len(folded_line_num . ''))) . '(' . folded_line_num . ' L)'
-endfunction
 
 colorscheme gruvbox
 hi! Normal ctermbg=none guibg=none

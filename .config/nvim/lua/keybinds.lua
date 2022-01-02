@@ -40,7 +40,6 @@ function M.init()
 
 	map('n', '<leader>op', '<cmd>lua require("telescope").extensions.project.project{}<CR>')
 	map('n', '<leader>oe', '<cmd>lua require("lir.float").toggle()<CR>')
-	map('n', '<leader>om', '<cmd>Telescope marks<CR>')
 
 	map('n', '<leader>gb', '<cmd>Telescope git_branches<CR>')
 	map('n', '<leader>gs', '<cmd>Neogit<CR>')

@@ -71,12 +71,9 @@ function M.init()
 			'hrsh7th/cmp-path',
 			'hrsh7th/cmp-cmdline',
 			'saadparwaiz1/cmp_luasnip',
+			'onsails/lspkind-nvim'
 		},
 		config = function() require('plugins.cmp-config') end
-	}
-	use {
-		'blackCauldron7/surround.nvim',
-		config = function () require('plugins.surround-config') end
 	}
 	use {
 		'nvim-telescope/telescope.nvim',
