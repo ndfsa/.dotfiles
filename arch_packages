@@ -12,6 +12,7 @@ clang
 cmake
 dash
 devtools
+dolphin
 dos2unix
 dunst
 dust
