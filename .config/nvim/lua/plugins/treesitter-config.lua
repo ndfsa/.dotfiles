@@ -8,6 +8,7 @@ require('nvim-treesitter.configs').setup({
 		"gdscript",
 		"haskell",
 		"html",
+		"http",
 		"java",
 		"javascript",
 		"json",

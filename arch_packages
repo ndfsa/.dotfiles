@@ -50,6 +50,7 @@ nftables
 nmap
 nodejs
 npm
+okular
 openjdk-doc
 openjdk-src
 openssh
@@ -101,11 +102,9 @@ ttf-symbola
 ueberzug
 usbutils
 wget
+xclip
 xorg
 xorg-apps
-xclip
-zathura
-zathura-pdf-mupdf
 zig
 zoxide
 zsh

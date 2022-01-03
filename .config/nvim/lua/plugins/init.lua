@@ -23,7 +23,6 @@ function M.init()
 	use 'szw/vim-maximizer'
 	use 'norcalli/nvim-colorizer.lua'
 	use 'kyazdani42/nvim-web-devicons'
-	use 'rafamadriz/friendly-snippets'
 	use {
 		'nathom/filetype.nvim',
 		config = function() require('plugins.filetype-config') end
@@ -113,6 +112,11 @@ function M.init()
 	use {
 		'folke/which-key.nvim',
 		config = function () require('plugins.which-key-config') end
+	}
+	use {
+		'NTBBloodbath/rest.nvim',
+		ft = {'http'},
+		config = function() require('plugins.rest-config') end
 	}
 end
 

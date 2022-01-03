@@ -4,6 +4,9 @@ function M.init()
 	local function map(mode, lhs, rhs)
 		vim.api.nvim_set_keymap(mode, lhs, rhs, key_opts)
 	end
+	map('n', 'k', 'gk')
+	map('n', 'j', 'gj')
+
 	map('n', 'n', 'nzzzv')
 	map('n', 'N', 'Nzzzv')
 
