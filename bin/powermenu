@@ -9,12 +9,16 @@ shutdown=' Shut down'
 yes=' Yes'
 no=' No'
 
-. $HOME/bin/func.sh
+confirm() {
+    if [ "$(echo "$no\n$yes" | rofi -dmenu -p "Sure?")" = "$yes" ]; then
+        eval "$1"
+	fi
+}
 
-case $(rofi_prompt "echo $lockscreen\n$logout\n$suspend\n$reboot\n$shutdown" "Power") in
+case $(echo "$lockscreen\n$logout\n$suspend\n$reboot\n$shutdown" | rofi -dmenu -p "Power") in
 	$lockscreen) sleep 0.3 && loginctl lock-session;;
-	$suspend) confirm "$no" "$yes" "execc systemctl suspend";;
-	$reboot) confirm "$no" "$yes" "exec systemctl reboot";;
-	$shutdown) confirm "$no" "$yes" "exec systemctl poweroff";;
-	$logout) confirm "$no" "$yes" "exec bspc quit";;
+	$suspend) confirm "systemctl suspend";;
+	$reboot) confirm "systemctl reboot";;
+	$shutdown) confirm "systemctl poweroff";;
+	$logout) confirm "systemctl --user stop bspwm.target && bspc quit";;
 esac

@@ -47,7 +47,7 @@ borg prune						\
     --list						\
     --prefix '{hostname}-'		\
     --show-rc					\
-    --keep-daily 14				\
+    --keep-daily 7				\
     --keep-monthly 6			\
 
 prune_exit=$?

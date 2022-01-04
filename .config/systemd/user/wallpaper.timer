@@ -1,5 +1,6 @@
 [Unit]
 Description=Changes Wallpaper every hour
+PartOf=graphical-session.target
 
 [Timer]
 OnBootSec=15m

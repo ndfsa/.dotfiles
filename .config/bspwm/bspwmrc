@@ -17,12 +17,14 @@ bspc config single_monocle true
 
 bspc rule -a Screenkey manage=off
 bspc rule -a dolphin state=floating
+bspc rule -a Sxiv state=floating
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 [ -e $HOME/.fehbg ] && $HOME/.fehbg
 systemctl --user start wallpaper.timer
 systemctl --user start dunst.service
+systemctl --user start bspwm.target
 xss-lock slock &
 
 killall -q polybar
