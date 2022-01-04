@@ -26,7 +26,8 @@ zle -C alias-expension complete-word _generic
 [[ -n "${key[Right]}"       ]] && bindkey -- "${key[Right]}"          forward-char
 [[ -n "${key[PageUp]}"      ]] && bindkey -- "${key[PageUp]}"         beginning-of-buffer-or-history
 [[ -n "${key[PageDown]}"    ]] && bindkey -- "${key[PageDown]}"       end-of-buffer-or-history
-bindkey "^[s" sudo-command-line
+bindkey "^[s" sudo-command
+bindkey "^[c" swap-command
 bindkey "^N" menu-complete
 bindkey "^P" reverse-menu-complete
 bindkey '^a' alias-expension
