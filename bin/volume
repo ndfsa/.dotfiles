@@ -1,6 +1,6 @@
 #!/bin/dash
 
-pamixer $@ > /dev/null
+pamixer --allow-boost --set-limit=150 $@ > /dev/null
 
 msgTag="system_volume"
 volume=$(pamixer --get-volume)

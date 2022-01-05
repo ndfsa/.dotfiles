@@ -73,3 +73,4 @@ git clone https://aur.archlinux.org/jdtls.git $HOME/AUR/jdtls
 git clone https://aur.archlinux.org/neovim-git.git $HOME/AUR/neovim-git
 git clone https://aur.archlinux.org/polybar.git $HOME/AUR/polybar
 git clone https://github.com/ndfsa/slock-custom.git $HOME/AUR/slock-custom
+git clone https://aur.archlinux.org/prboom-plus.git $HOME/AUR/prboom-plus
