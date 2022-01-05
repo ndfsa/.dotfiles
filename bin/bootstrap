@@ -6,6 +6,7 @@ configs=".Xresources
 .config/systemd/user/bspwm.target
 .config/systemd/user/wallpaper.service
 .config/systemd/user/wallpaper.timer
+.prboom-plus/prboom-plus.cfg
 .xinitrc
 .xserverrc
 .zlogin
@@ -14,6 +15,7 @@ configs=".Xresources
 .config/alacritty
 .config/bspwm
 .config/dunst
+.config/doom
 .config/nvim
 .config/picom
 .config/polybar
@@ -30,9 +32,9 @@ file_list=""
 
 # link all config files
 for i in $configs; do
-	if [ -d "$HOME/dotfiles/$i" ]; then
+	if [ -d "$HOME/.dotfiles/$i" ]; then
 		dir_list="$dir_list $i"
-	elif [ -f "$HOME/dotfiles/$i" ]; then
+	elif [ -f "$HOME/.dotfiles/$i" ]; then
 		file_list="$file_list $i"
 	fi
 done
@@ -45,7 +47,7 @@ for file in $file_list; do
 		&& [ ! -d "$parent" ] \
 		&& mkdir --parent $HOME/$parent
 
-	ln -sv $HOME/dotfiles/$file $HOME/$parent
+	ln -sv $HOME/.dotfiles/$file $HOME/$parent
 done
 
 unset parent
@@ -58,7 +60,7 @@ for dir in $dir_list; do
 		&& [ ! -d "$parent" ] \
 		&& mkdir --parent $HOME/$parent
 
-	ln -sv $HOME/dotfiles/$dir $HOME/$parent
+	ln -sv $HOME/.dotfiles/$dir $HOME/$parent
 done
 
 # install packer for neovim

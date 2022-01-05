@@ -42,12 +42,3 @@ require'lir'.setup {
 	end,
 	hide_cursor = true,
 }
-require'nvim-web-devicons'.setup({
-	override = {
-		lir_folder_icon = {
-			icon = "",
-			color = "#8094b4",
-			name = "LirFolderNode"
-		},
-	}
-})
