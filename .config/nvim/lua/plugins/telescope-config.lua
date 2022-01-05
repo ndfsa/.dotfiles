@@ -6,19 +6,19 @@ telescope.setup{
 		layout_config = {
 			prompt_position = "top"
 		},
-		file_ignore_patterns = {'.git/', 'node_modules/'}
+		file_ignore_patterns = {'.git/', 'node_modules/'},
 	},
 	extensions = {
 		fzf = {
 			fuzzy = true
-		}
+		},
+		file_browser = {
+			hidden = true,
+		},
 	},
 	pickers = {
 		find_files = {
-			hidden = true
-		},
-		file_browser = {
-			hidden = true
+			hidden = true,
 		},
 		live_grep = {
 			vimgrep_arguments = {
@@ -32,10 +32,11 @@ telescope.setup{
 				'--hidden',
 				'--glob',
 				'!.git/',
-				'--glob',
-				'!.zk/',
-			}
+			},
 		}
 	}
 }
 telescope.load_extension('fzf')
+telescope.load_extension('project')
+telescope.load_extension('media_files')
+telescope.load_extension('file_browser')

@@ -19,11 +19,10 @@ fi
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+export DESKTOP_SESSION=bspwm
+# export DESKTOP_SESSION=plasma
+
 case $DESKTOP_SESSION in
-	xfce4)
-		exec startxfce4
-		break
-		;;
 	plasma)
 		exec startplasma-x11
 		break

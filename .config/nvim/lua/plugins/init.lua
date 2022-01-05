@@ -79,7 +79,9 @@ function M.init()
 		requires = {
 			'nvim-lua/plenary.nvim',
 			'nvim-lua/popup.nvim',
+			'nvim-telescope/telescope-file-browser.nvim',
 			'nvim-telescope/telescope-project.nvim',
+			'nvim-telescope/telescope-media-files.nvim',
 			{
 				'nvim-telescope/telescope-fzf-native.nvim',
 				run = 'make'
@@ -108,10 +110,6 @@ function M.init()
 	use {
 		'sQVe/sort.nvim',
 		config = function() require('sort').setup() end
-	}
-	use {
-		'folke/which-key.nvim',
-		config = function () require('plugins.which-key-config') end
 	}
 	use {
 		'NTBBloodbath/rest.nvim',

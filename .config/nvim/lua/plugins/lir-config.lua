@@ -14,7 +14,6 @@ require'lir'.setup {
 		['<bs>'] = actions.up,
 		['h'] = actions.up,
 		['q'] = actions.quit,
-		['<esc>'] = actions.quit,
 		['K'] = actions.mkdir,
 		['a'] = actions.newfile,
 		['r'] = actions.rename,
@@ -29,13 +28,6 @@ require'lir'.setup {
 		['y'] = clipboard_actions.copy,
 		['d'] = clipboard_actions.cut,
 		['p'] = clipboard_actions.paste,
-	},
-	float = {
-		winblend = 0,
-		curdir_window = {
-			enable = true,
-			highlight_dirname = true
-		}
 	},
 	on_init = function()
 		vim.api.nvim_buf_set_keymap(

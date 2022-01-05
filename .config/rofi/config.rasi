@@ -1,6 +1,6 @@
 configuration {
     modi: "run,window,drun";
-    font:           "FiraCode 14";
+    font:           "JetBrains Mono 14";
 	timeout {
 		delay:  15;
 		action: "kb-cancel";
