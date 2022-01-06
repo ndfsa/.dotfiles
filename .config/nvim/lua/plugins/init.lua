@@ -112,10 +112,28 @@ function M.init()
 		config = function() require('sort').setup() end
 	}
 	use {
+		'folke/which-key.nvim',
+		config = function () require('plugins.which-key-config') end
+	}
+	use {
 		'NTBBloodbath/rest.nvim',
 		ft = {'http'},
 		config = function() require('plugins.rest-config') end
 	}
+	use {
+		'rcarriga/nvim-dap-ui',
+		requires = {
+			{
+				'mfussenegger/nvim-dap',
+				config = function() require('plugins.nvim-dap-config') end
+			}
+		},
+		config = function () require('dapui').setup() end
+	}
+	-- use {
+	-- 	'anuvyklack/pretty-fold.nvim',
+	-- 	config = function() require('pretty-fold').setup{} end
+	-- }
 end
 
 return M
