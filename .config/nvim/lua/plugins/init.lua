@@ -111,10 +111,10 @@ function M.init()
 		'sQVe/sort.nvim',
 		config = function() require('sort').setup() end
 	}
-	use {
-		'folke/which-key.nvim',
-		config = function () require('plugins.which-key-config') end
-	}
+	-- use {
+	-- 	'folke/which-key.nvim',
+	-- 	config = function () require('plugins.which-key-config') end
+	-- }
 	use {
 		'NTBBloodbath/rest.nvim',
 		ft = {'http'},

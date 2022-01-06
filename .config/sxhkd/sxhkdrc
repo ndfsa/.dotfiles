@@ -2,10 +2,6 @@
 super + Return
 	alacritty
 
-super + shift + Return
-	F=`xdotool getactivewindow getwindowname` ; [ -d "$F" ] \
-		&& alacritty --working-directory="$F" ; unset F
-
 # program launcher
 super + r
 	rofi -show drun -show-icons
