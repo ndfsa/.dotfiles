@@ -1,84 +1,84 @@
 # terminal emulator
 super + Return
-	alacritty
+    alacritty
 
 # program launcher
 super + r
-	rofi -show drun -show-icons
+    rofi -show drun -show-icons
 
 # file explorer
 super + e
-	dolphin
+    dolphin
 
 super + p
-	"$HOME/bin/powermenu"
+    "$HOME/bin/powermenu"
 
 # make sxhkd reload its configuration files:
 super + Escape
-	pkill -USR1 -x sxhkd
+    pkill -USR1 -x sxhkd
 
 # bspwm hotkeys
 
 # restart bspwm
 super + shift + r
-	bspc wm -r
+    bspc wm -r
 
 # close and kill
 super + shift + {c, alt + c}
-	bspc node -{c,k}
+    bspc node -{c,k}
 
 # swap the current node and the biggest window
 super + @space
-	bspc node -s biggest.local.window
+    bspc node -s biggest.local.window
 
 # state/flags
 
 # set the window state
 super + {t,u,f,F}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+    bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 super + M
-	bspc desktop -l next
+    bspc desktop -l next
 
 # set the node flags
 super + ctrl + {m,x,y,z}
-	bspc node -g {marked,locked,sticky,private}
+    bspc node -g {marked,locked,sticky,private}
 
 # focus/swap
 
 # focus the node in the given direction
 super + {_,shift + }{h,j,k,l}
-	bspc node -{f,s} {west,south,north,east}
+    bspc node -{f,s} {west,south,north,east}
 
 # focus the next/previous window in the current desktop
 alt + {_,shift + }Tab
-	bspc node -f {next,prev}.local.!hidden.window
+    bspc node -f {next,prev}.local.!hidden.window
 
 # focus the next/previous desktop in the current monitor
 super + {_,shift + }Tab
-	bspc desktop -f {next,prev}.local
+    bspc desktop -f {next,prev}.local
 
 # focus the last node/desktop
 super + {grave,Tab}
-	bspc {node,desktop} -f last
+    bspc {node,desktop} -f last
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}' {,--follow}
+    bspc {desktop -f,node -d} '^{1-9,10}' {,--follow}
 
 # preselect
 
 # preselect the direction
 super + ctrl + {h,j,k,l}
-	bspc node -p {west,south,north,east}
+    bspc node -p {west,south,north,east}
 
 # cancel the preselection for the focused node
 super + ctrl + space
-	bspc node -p cancel
+    bspc node -p cancel
 
 # cancel the preselection for the focused desktop
 super + ctrl + shift + space
-	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+    bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 # move/resize
 
@@ -93,7 +93,7 @@ super + alt + {h,j,k,l}
 
 # move a floating window
 super + {Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
+    bspc node -v {-20 0,0 20,0 -20,20 0}
 
 # change wallpaper
 super + bracketleft
@@ -101,7 +101,7 @@ super + bracketleft
 
 # volume
 XF86Audio{RaiseVolume,LowerVolume,Mute}
-	volume {-i 2,-d 2,-t}
+    volume {-i 2,-d 2,-t}
 
 XF86MonBrightness{Up,Down}
     brightness -{inc,dec} 5
@@ -111,27 +111,27 @@ super + w
     bspc node @/ -R 90
 
 super + b
-	{act=hide; pad=0,act=show; pad=30};polybar-msg cmd $act; bspc config top_padding $pad
+    {act=hide; pad=0,act=show; pad=30};polybar-msg cmd $act; bspc config top_padding $pad
 
 # Equalize
 super + equal
-	bspc node @/ -B
+    bspc node @/ -B
 
 super + shift + s
-	maim -s | xclip -selection clipboard -t image/png && dunstify "Screenshot saved to clipboard"
+    maim -s | xclip -selection clipboard -t image/png && dunstify "Screenshot saved to clipboard"
 
 super + s
-	maim "$HOME/Pictures/Screenshots/$(date +%s).png" && dunstify "Screenshot saved"
+    maim "$HOME/Pictures/Screenshots/$(date +%s).png" && dunstify "Screenshot saved"
 
 XF86AudioNext
-	playerctl next
+    playerctl next
 
 XF86AudioPrev
-	playerctl previous
+    playerctl previous
 
 XF86AudioPlay
-	playerctl play-pause
+    playerctl play-pause
 
 XF86AudioStop
-	playerctl stop
+    playerctl stop
 

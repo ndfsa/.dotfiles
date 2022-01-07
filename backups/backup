@@ -8,9 +8,9 @@ fi
 export BORG_REPO=/bak
 
 if [ -e "/root/.borg_secret" ]; then
-	. /root/.borg_secret
+    . /root/.borg_secret
 else
-	exit 3
+    exit 3
 fi
 RED=$(tput setaf 9)
 BLUE=$(tput setaf 4)
@@ -20,35 +20,35 @@ trap 'echo $( date ) Backup interrupted >&2; exit 2' INT TERM
 
 info "Starting backup"
 
-borg create							\
-    --filter AME					\
-    --stats							\
-	--umask 0022					\
-    --compression zstd				\
-    --exclude-caches				\
-	--exclude '/dev/*'				\
-	--exclude '/proc/*'				\
-	--exclude '/sys/*'				\
-	--exclude '/tmp/*'				\
-	--exclude '/run/*'				\
-	--exclude '/mnt/*'				\
-	--exclude '/media/*'			\
-	--exclude '/lost+found'			\
-	--exclude '/home/*'				\
-	--exclude '/bak/*'				\
+borg create                         \
+    --filter AME                    \
+    --stats                         \
+    --umask 0022                    \
+    --compression zstd              \
+    --exclude-caches                \
+    --exclude '/dev/*'              \
+    --exclude '/proc/*'             \
+    --exclude '/sys/*'              \
+    --exclude '/tmp/*'              \
+    --exclude '/run/*'              \
+    --exclude '/mnt/*'              \
+    --exclude '/media/*'            \
+    --exclude '/lost+found'         \
+    --exclude '/home/*'             \
+    --exclude '/bak/*'              \
     ::'{hostname}-{now}'            \
-    /								\
+    /                               \
 
 backup_exit=$?
 
 info "Pruning repository"
 
-borg prune						\
-    --list						\
-    --prefix '{hostname}-'		\
-    --show-rc					\
-    --keep-daily 7				\
-    --keep-monthly 6			\
+borg prune                      \
+    --list                      \
+    --prefix '{hostname}-'      \
+    --show-rc                   \
+    --keep-daily 7              \
+    --keep-monthly 6            \
 
 prune_exit=$?
 

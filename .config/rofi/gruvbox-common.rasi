@@ -8,7 +8,7 @@
 element-icon {
     background-color: inherit;
     text-color:       inherit;
-	margin: 5px;
+    margin: 5px;
 }
 
 element-text{

@@ -27,9 +27,9 @@ source ~/.config/zsh/keybinds.zsh
 eval "$(zoxide init zsh)"
 
 if [ $TERM != "linux" ]; then
-	eval "$(starship init zsh)"
+    eval "$(starship init zsh)"
 else
-	source ~/.config/zsh/prompt.zsh
+    source ~/.config/zsh/prompt.zsh
 fi
 
 ### Syntax highlighting

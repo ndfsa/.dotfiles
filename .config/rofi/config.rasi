@@ -1,9 +1,9 @@
 configuration {
     modi: "run,window,drun";
     font:           "JetBrains Mono 14";
-	timeout {
-		delay:  15;
-		action: "kb-cancel";
-	}
+    timeout {
+        delay:  15;
+        action: "kb-cancel";
+    }
 }
 @theme "gruvbox-dark"

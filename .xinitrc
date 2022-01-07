@@ -11,10 +11,10 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 [ -f "$usermodmap" ] && xmodmap "$usermodmap"
 
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
-	for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
-		[ -x "$f" ] && . "$f"
-	done
-	unset f
+    for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+        [ -x "$f" ] && . "$f"
+    done
+    unset f
 fi
 
 export _JAVA_AWT_WM_NONREPARENTING=1
@@ -23,14 +23,14 @@ export DESKTOP_SESSION=bspwm
 # export DESKTOP_SESSION=plasma
 
 case $DESKTOP_SESSION in
-	plasma)
-		exec startplasma-x11
-		break
-		;;
-	bspwm)
-		exec bspwm
-		break
-		;;
-	*) echo "ERROR: Invalid selection"
-		;;
+    plasma)
+        exec startplasma-x11
+        break
+        ;;
+    bspwm)
+        exec bspwm
+        break
+        ;;
+    *) echo "ERROR: Invalid selection"
+        ;;
 esac

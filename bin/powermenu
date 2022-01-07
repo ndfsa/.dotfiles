@@ -12,13 +12,13 @@ no=' No'
 confirm() {
     if [ "$(echo "$no\n$yes" | rofi -dmenu -p "Sure?")" = "$yes" ]; then
         eval "$1"
-	fi
+    fi
 }
 
 case $(echo "$lockscreen\n$logout\n$suspend\n$reboot\n$shutdown" | rofi -dmenu -p "Power") in
-	$lockscreen) sleep 0.3 && loginctl lock-session;;
-	$suspend) confirm "systemctl suspend";;
-	$reboot) confirm "systemctl reboot";;
-	$shutdown) confirm "systemctl poweroff";;
-	$logout) confirm "systemctl --user stop bspwm.target && bspc quit";;
+    $lockscreen) sleep 0.3 && loginctl lock-session;;
+    $suspend) confirm "systemctl suspend";;
+    $reboot) confirm "systemctl reboot";;
+    $shutdown) confirm "systemctl poweroff";;
+    $logout) confirm "systemctl --user stop bspwm.target && bspc quit";;
 esac

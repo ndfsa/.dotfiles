@@ -1,9 +1,9 @@
 require("filetype").setup({
     overrides = {
         extensions = {
-			service = "systemd",
-			target = "systemd",
-			timer = "systemd"
+            service = "systemd",
+            target = "systemd",
+            timer = "systemd"
         },
         shebang = {
             sh = "sh",

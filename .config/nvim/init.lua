@@ -4,7 +4,7 @@ opt.title = true
 opt.tabstop = 4
 opt.shiftwidth = 4
 opt.softtabstop = 4
-opt.expandtab = false
+opt.expandtab = true
 opt.autoindent = true
 opt.ignorecase = true
 opt.smartcase = true
@@ -48,10 +48,10 @@ require('keybinds').init()
 
 vim.cmd[[
 augroup convinient
-	autocmd!
-	autocmd FileType * autocmd BufWritePre <buffer> %s/\s\+$//e
-	autocmd TextYankPost * silent!
-				\ lua vim.highlight.on_yank({higroup="HighlightedYankRegion", timeout=250})
+    autocmd!
+    autocmd FileType * autocmd BufWritePre <buffer> %s/\s\+$//e
+    autocmd TextYankPost * silent!
+                \ lua vim.highlight.on_yank({higroup="HighlightedYankRegion", timeout=250})
 augroup END
 
 colorscheme gruvbox

@@ -1,9 +1,9 @@
 function _scoped_edit(){
-	M_LAST_CWD="`pwd`"
-	cd "$1"
-	nvim .
-	cd "$M_LAST_CWD"
-	unset M_LAST_CWD
+    M_LAST_CWD="`pwd`"
+    cd "$1"
+    nvim .
+    cd "$M_LAST_CWD"
+    unset M_LAST_CWD
 }
 
 alias ls='exa --icons --sort=type'

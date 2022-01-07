@@ -5,13 +5,13 @@
 
     follow = mouse
 
-	width = 600
+    width = 600
 
-	height = 300
+    height = 300
 
-	origin = top-right
+    origin = top-right
 
-	offset = 10x40
+    offset = 10x40
 
     # Turn on the progess bar
     progress_bar = true
@@ -292,7 +292,7 @@
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#282828"
     foreground = "#ebdbb2"
-	highlight = "#fabd2f"
+    highlight = "#fabd2f"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
     icon = ~/.config/dunst/low.png
@@ -300,7 +300,7 @@
 [urgency_normal]
     background = "#484848"
     foreground = "#ebdbb2"
-	highlight = "#fabd2f"
+    highlight = "#fabd2f"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
     icon = ~/.config/dunst/med.png
@@ -309,7 +309,7 @@
     background = "#cc241d"
     foreground = "#ebdbb2"
     frame_color = "#ebdbb2"
-	highlight = "#fabd2f"
+    highlight = "#fabd2f"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
     icon = ~/.config/dunst/high.png
