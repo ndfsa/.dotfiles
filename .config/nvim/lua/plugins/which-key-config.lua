@@ -59,4 +59,4 @@ wk.register({
         w = 'Line blame',
         W = 'Pop Up blame',
     }
-}, {prefix = '<leader>'})
+}, { prefix = '<leader>' })

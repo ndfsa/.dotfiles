@@ -30,9 +30,6 @@ function M.init()
     nmap('<leader>bf', '<cmd>Telescope buffers<CR>')
     nmap('<leader>bz', '<cmd>Telescope current_buffer_fuzzy_find<CR>')
 
-    vmap('<A-j>', '<cmd>m \'>+1<CR>gv=gv')
-    vmap('<A-k>', '<cmd>m \'<-2<CR>gv=gv')
-
     nmap('<leader>sn', '<cmd>set relativenumber!<CR>')
     nmap('<leader>sw', '<cmd>set wrap!<CR>')
     nmap('<leader>ss', '<cmd>set spell!<CR>')
