@@ -28,9 +28,10 @@ wk.register({
     o = {
         name = 'Open',
         e = 'Explorer',
+        f = 'File browser',
         p = 'Projects',
-        E = 'Lir Explorer',
         m = 'Media files',
+        E = 'Environment variables',
     },
     d = {
         name = 'Debug',
@@ -56,7 +57,6 @@ wk.register({
         name = 'Git',
         b = 'Branches',
         s = 'Status',
-        w = 'Line blame',
-        W = 'Pop Up blame',
+        w = 'Blame',
     }
-}, { prefix = '<leader>' })
+}, {prefix = '<leader>'})

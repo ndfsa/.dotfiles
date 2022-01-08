@@ -44,7 +44,7 @@ g.loaded_netrw = 1
 require('plugins').init()
 
 g.mapleader = ' '
-require('keybinds').init()
+require('keymap').init()
 
 vim.cmd[[
 augroup convinient

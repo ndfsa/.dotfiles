@@ -20,8 +20,8 @@ source ~/.config/zsh/alias.zsh
 ### Functions
 source ~/.config/zsh/functions.zsh
 
-### Keybinds
-source ~/.config/zsh/keybinds.zsh
+### Keymap
+source ~/.config/zsh/keymap.zsh
 
 ### Programs
 eval "$(zoxide init --no-aliases zsh)"

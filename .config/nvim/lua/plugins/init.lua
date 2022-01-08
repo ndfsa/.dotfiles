@@ -20,8 +20,6 @@ function M.init()
         'ellisonleao/gruvbox.nvim',
         requires = {'rktjmp/lush.nvim'}
     }
-    use 'szw/vim-maximizer'
-    use 'norcalli/nvim-colorizer.lua'
     use 'kyazdani42/nvim-web-devicons'
     use {
         'nathom/filetype.nvim',
@@ -36,8 +34,8 @@ function M.init()
         config = function() require('Comment').setup() end
     }
     use {
-        'akinsho/org-bullets.nvim',
-        config = function() require('org-bullets').setup() end
+        'folke/which-key.nvim',
+        config = function () require('plugins.which-key-config') end
     }
     use {
         'lukas-reineke/indent-blankline.nvim',
@@ -82,6 +80,7 @@ function M.init()
             'nvim-telescope/telescope-file-browser.nvim',
             'nvim-telescope/telescope-project.nvim',
             'nvim-telescope/telescope-media-files.nvim',
+            'LinArcX/telescope-env.nvim',
             {
                 'nvim-telescope/telescope-fzf-native.nvim',
                 run = 'make'
@@ -112,10 +111,6 @@ function M.init()
         config = function() require('sort').setup() end
     }
     use {
-        'folke/which-key.nvim',
-        config = function () require('plugins.which-key-config') end
-    }
-    use {
         'NTBBloodbath/rest.nvim',
         ft = {'http'},
         config = function() require('plugins.rest-config') end
@@ -133,6 +128,11 @@ function M.init()
     use {
         'anuvyklack/pretty-fold.nvim',
         config = function() require('pretty-fold').setup{} end
+    }
+    use 'tpope/vim-fugitive'
+    use {
+        'nvim-neorg/neorg',
+        config = function () require('plugins.neorg-config') end
     }
 end
 

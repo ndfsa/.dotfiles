@@ -62,14 +62,16 @@ local separator = {
 }
 require('lualine').setup({
     options = {
-        theme = 'gruvbox',
+        theme = 'gruvbox_dark',
         section_separators = ' ',
         component_separators = ' ',
-        disabled_filetypes = {'packer', 'undotree', 'diff', 'qf'},
     },
     sections = {
         lualine_a = {
-            'mode',
+            {
+                'mode',
+                fmt = function(str) return ' [' .. str:sub(1, 1) .. ']' end,
+            }
         },
         lualine_b = {
             filesize,
@@ -101,4 +103,5 @@ require('lualine').setup({
         lualine_y = {},
         lualine_z = {}
     },
+    extensions = {'quickfix', 'fugitive'}
 })

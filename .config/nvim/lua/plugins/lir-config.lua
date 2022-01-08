@@ -13,7 +13,6 @@ require'lir'.setup {
         ['<C-t>'] = actions.tabedit,
         ['<bs>'] = actions.up,
         ['h'] = actions.up,
-        ['q'] = actions.quit,
         ['K'] = actions.mkdir,
         ['a'] = actions.newfile,
         ['r'] = actions.rename,
