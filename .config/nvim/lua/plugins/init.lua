@@ -134,6 +134,10 @@ function M.init()
         'nvim-neorg/neorg',
         config = function () require('plugins.neorg-config') end
     }
+    use {
+        'RRethy/vim-hexokinase',
+        run = 'make hexokinase'
+    }
 end
 
 return M
