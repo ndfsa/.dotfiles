@@ -41,6 +41,7 @@ g.loaded_matchparen = 1
 g.loaded_netrwPlugin = 1
 g.loaded_netrw = 1
 g.Hexokinase_highlighters = {'backgroundfull'}
+g.Hexokinase_ftEnabled = {}
 
 require('plugins').init()
 

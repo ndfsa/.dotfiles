@@ -80,4 +80,4 @@ live_config_reload: true
 mouse:
   hide_when_typing: true
 key_bindings:
-  - { key: N, mods: Control|Alt, action: SpawnNewInstance }
+  - { key: N, mods: Control|Shift, action: SpawnNewInstance }

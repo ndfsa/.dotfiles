@@ -40,7 +40,7 @@ function M.init()
     nmap('<leader>sn', '<cmd>set relativenumber!<CR>')
     nmap('<leader>sw', '<cmd>set wrap!<CR>')
     nmap('<leader>ss', '<cmd>set spell!<CR>')
-    nmap('<leader>sc', '<cmd>ColorizerToggle<CR>')
+    nmap('<leader>sc', '<cmd>HexokinaseToggle<CR>')
     nmap('<leader>sl', '<cmd>IndentBlanklineToggle<CR>')
 
     nmap('<leader>fs', '<cmd>update<CR>')

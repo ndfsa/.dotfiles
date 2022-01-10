@@ -16,7 +16,7 @@ wk.register({
         n = 'Relative numbers',
         w = 'Wrap lines',
         s = 'Spell',
-        c = 'Colorizer',
+        c = 'Color code highlight',
         l = 'Indent guide lines',
     },
     f = {

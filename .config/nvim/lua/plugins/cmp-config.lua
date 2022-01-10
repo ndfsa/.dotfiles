@@ -2,38 +2,31 @@ local cmp = require('cmp')
 local luasnip = require('luasnip')
 local lspkind = require('lspkind')
 cmp.setup({
+    completion = {
+        autocomplete = false
+    },
     mapping = {
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
         ['<CR>'] = cmp.mapping.confirm({ select = false }),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<Tab>'] = cmp.mapping(function(fallback)
-            if luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            else
-                fallback()
-            end
-        end, { 'i', 's' }),
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
-            if luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end, {'i', 's'}),
+        ['<C-e>'] = cmp.mapping({
+            i = cmp.mapping.abort(),
+            c = cmp.mapping.close(),
+        }),
     },
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body)
         end
     },
-    sources = {
+    sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'neorg' },
+    }, {
         { name = 'path' },
-        { name = 'luasnip' },
         { name = 'buffer' },
-    },
+    }),
     formatting = {
         format = lspkind.cmp_format({
             with_text = true,
@@ -50,10 +43,10 @@ cmp.setup.cmdline('/', {
         { name = 'buffer' }
     }
 })
-
 cmp.setup.cmdline(':', {
-    sources = cmp.config.sources(
-        {{ name = 'path' }},
-        {{ name = 'cmdline' }}
-    )
+    sources = cmp.config.sources({
+        { name = 'path' }
+    }, {
+        { name = 'cmdline' }
+    })
 })
