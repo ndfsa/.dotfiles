@@ -2,9 +2,6 @@ local cmp = require('cmp')
 local luasnip = require('luasnip')
 local lspkind = require('lspkind')
 cmp.setup({
-    completion = {
-        autocomplete = false
-    },
     mapping = {
         ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
         ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
@@ -25,6 +22,7 @@ cmp.setup({
         { name = 'neorg' },
     }, {
         { name = 'path' },
+        { name = 'luasnip' },
         { name = 'buffer' },
     }),
     formatting = {
@@ -32,7 +30,10 @@ cmp.setup({
             with_text = true,
             maxwidth = 50,
             menu = ({
-                buffer = '[Buffer]',
+                buffer = '[BUFF]',
+                neorg = '[NORG]',
+                path = '[PATH]',
+                luasnip = '[SNIP]',
                 nvim_lsp = '[LSP]',
             })
         })

@@ -42,6 +42,10 @@ function M.init()
         config = function() require('plugins.indent-blankline-config') end
     }
     use {
+        'lukas-reineke/virt-column.nvim',
+        config = function() require('virt-column').setup() end
+    }
+    use {
         'tamago324/lir.nvim',
         config = function() require('plugins.lir-config') end
     }

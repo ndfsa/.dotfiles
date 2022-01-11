@@ -1,15 +1,13 @@
 local M = {}
 function M.init()
     local key_opts = {noremap = true, silent = true}
-    local function map(mode, lhs, rhs)
-        vim.api.nvim_set_keymap(mode, lhs, rhs, key_opts)
+    local function map(mode, lhs, rhs, opts)
+        vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
     end
-    local function nmap(lhs, rhs) map('n', lhs, rhs) end
-    local function imap(lhs, rhs) map('i', lhs, rhs) end
-    local function vmap(lhs, rhs) map('v', lhs, rhs) end
-
-    nmap('k', 'gk')
-    nmap('j', 'gj')
+    local function nmap(lhs, rhs) map('n', lhs, rhs, key_opts) end
+    local function imap(lhs, rhs) map('i', lhs, rhs, key_opts) end
+    local function vmap(lhs, rhs) map('v', lhs, rhs, key_opts) end
+    local function smap(lhs, rhs) map('s', lhs, rhs, key_opts) end
 
     nmap('n', 'nzzzv')
     nmap('N', 'Nzzzv')
@@ -30,6 +28,15 @@ function M.init()
     imap('<A-k>', '<Esc>:m .-2<CR>==gi')
     vmap('<A-j>', ':m \'>+1<CR>gv=gv')
     vmap('<A-k>', ':m \'<-2<CR>gv=gv')
+
+    -- thank you TJ https://github.com/tjdevries/config_manager
+    map('i', '<C-k>', [[luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '']],
+        {silent = true, expr = true})
+    imap('<C-j>', '<cmd>lua require("luasnip").jump(-1)<CR>')
+    map('i', '<C-l>', [[luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-l>']],
+        {silent = true, expr = true})
+    smap('<C-k>', '<cmd>lua require("luasnip").jump(1)<CR>')
+    smap('<C-j>', '<cmd>lua require("luasnip").jump(-1)<CR>')
 
     nmap('<leader>bn', '<cmd>bn<CR>')
     nmap('<leader>bp', '<cmd>bp<CR>')

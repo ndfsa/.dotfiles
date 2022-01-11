@@ -1,6 +1,7 @@
 local opt = vim.opt
 local g = vim.g
 opt.title = true
+opt.wrap = false
 opt.tabstop = 4
 opt.shiftwidth = 4
 opt.softtabstop = 4
@@ -13,6 +14,7 @@ opt.number = true
 opt.relativenumber = true
 opt.textwidth = 99
 opt.signcolumn = 'yes'
+opt.colorcolumn = '100'
 opt.cursorline = true
 opt.swapfile = false
 opt.undofile = true
@@ -36,10 +38,25 @@ opt.termguicolors = true
 opt.fillchars:append({fold = ' ', eob = ' '})
 opt.conceallevel = 2
 
-g.did_load_filetypes = 1
+g.loaded_gzip = 1
+g.loaded_zip = 1
+g.loaded_zipPlugin = 1
+g.loaded_tar = 1
+g.loaded_tarPlugin = 1
+g.loaded_getscript = 1
+g.loaded_getscriptPlugin = 1
+g.loaded_vimball = 1
+g.loaded_vimballPlugin = 1
+g.loaded_2html_plugin = 1
+g.loaded_matchit = 1
 g.loaded_matchparen = 1
-g.loaded_netrwPlugin = 1
+g.loaded_logiPat = 1
+g.loaded_rrhelper = 1
 g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
+g.loaded_netrwSettings = 1
+g.did_load_filetypes = 1
+
 g.Hexokinase_highlighters = {'backgroundfull'}
 g.Hexokinase_ftEnabled = {}
 
