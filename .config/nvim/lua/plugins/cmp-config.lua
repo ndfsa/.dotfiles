@@ -11,6 +11,7 @@ cmp.setup({
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
         }),
+        ['<tab>'] = cmp.config.disable,
     },
     snippet = {
         expand = function(args)

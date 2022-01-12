@@ -14,6 +14,7 @@ telescope.setup{
         },
         file_browser = {
             hidden = true,
+            cwd = "%:h:p"
         },
     },
     pickers = {

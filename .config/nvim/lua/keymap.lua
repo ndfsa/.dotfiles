@@ -33,8 +33,6 @@ function M.init()
     map('i', '<C-k>', [[luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '']],
         {silent = true, expr = true})
     imap('<C-j>', '<cmd>lua require("luasnip").jump(-1)<CR>')
-    map('i', '<C-l>', [[luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-l>']],
-        {silent = true, expr = true})
     smap('<C-k>', '<cmd>lua require("luasnip").jump(1)<CR>')
     smap('<C-j>', '<cmd>lua require("luasnip").jump(-1)<CR>')
 
@@ -59,6 +57,7 @@ function M.init()
     nmap('<leader>op', '<cmd>Telescope project<CR>')
     nmap('<leader>om', '<cmd>Telescope media_files<CR>')
     nmap('<leader>oE', '<cmd>Telescope env<CR>')
+    nmap('<leader>os', '<cmd>lua require"telescope".extensions.dict.synonyms()<CR>')
 
     nmap('<leader>db', '<cmd>lua require"dap".toggle_breakpoint()<CR>')
     nmap('<leader>dr', '<cmd>lua require"dap".run()<CR>')
