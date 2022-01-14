@@ -37,6 +37,14 @@ opt.pumheight = 20
 opt.termguicolors = true
 opt.fillchars:append({fold = ' ', eob = ' '})
 opt.conceallevel = 2
+opt.listchars = {
+    tab = '»-',
+    extends = '⟩',
+    precedes = '⟨',
+    space = '·',
+    nbsp = '␣',
+    eol = '↲'
+}
 
 g.loaded_gzip = 1
 g.loaded_zip = 1

@@ -1,7 +1,7 @@
 set sandbox none
 set selection-clipboard clipboard
 set font "JetBrains Mono 14"
-set adjust-open width
+set adjust-open best-fit
 
 set default-bg                  "#282828"
 set default-fg                  "#504945"

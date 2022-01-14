@@ -120,16 +120,6 @@ function M.init()
         config = function() require('plugins.rest-config') end
     }
     use {
-        'rcarriga/nvim-dap-ui',
-        requires = {
-            {
-                'mfussenegger/nvim-dap',
-                config = function() require('plugins.nvim-dap-config') end
-            }
-        },
-        config = function () require('dapui').setup() end
-    }
-    use {
         'anuvyklack/pretty-fold.nvim',
         config = function() require('pretty-fold').setup{} end
     }
