@@ -124,6 +124,7 @@ function M.init()
         config = function() require('pretty-fold').setup{} end
     }
     use 'tpope/vim-fugitive'
+    use 'tpope/vim-surround'
     use {
         'nvim-neorg/neorg',
         config = function () require('plugins.neorg-config') end
