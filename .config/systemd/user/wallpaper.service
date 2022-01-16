@@ -3,4 +3,4 @@ Description=Desktop wallpaper slideshow
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh %h/bin/wallpaper
+ExecStart=/bin/sh %h/bin/wallpaper.sh

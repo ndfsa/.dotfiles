@@ -11,7 +11,7 @@ super + e
     dolphin
 
 super + p
-    "$HOME/bin/powermenu"
+    powermenu.sh
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -97,14 +97,14 @@ super + {Left,Down,Up,Right}
 
 # change wallpaper
 super + bracketleft
-    wallpaper
+    wallpaper.sh
 
 # volume
 XF86Audio{RaiseVolume,LowerVolume,Mute}
-    volume {-i 2,-d 2,-t}
+    volume.sh {-i 2,-d 2,-t}
 
 XF86MonBrightness{Up,Down}
-    brightness -{inc,dec} 5
+    brightness.sh -{inc,dec} 5
 
 # Rotate nodes
 super + w

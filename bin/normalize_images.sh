@@ -4,6 +4,8 @@ OPTS=('Sharpening filter' 'Blur filter')
 
 function normalize(){
     magick "$1" \
+        -alpha off \
+        -strip \
         -colorspace RGB \
         -filter Cubic \
         -define filter:B="$2" \
