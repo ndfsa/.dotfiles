@@ -22,12 +22,8 @@ function M.init()
     }
     use 'kyazdani42/nvim-web-devicons'
     use {
-        'nathom/filetype.nvim',
-        config = function() require('plugins.filetype-config') end
-    }
-    use {
         'monkoose/matchparen.nvim',
-        config = function() require('matchparen').setup() end
+        config = function() require('matchparen').setup() end,
     }
     use {
         'numToStr/Comment.nvim',
@@ -133,6 +129,7 @@ function M.init()
         'RRethy/vim-hexokinase',
         run = 'make hexokinase'
     }
+    use 'tweekmonster/startuptime.vim'
 end
 
 return M

@@ -23,6 +23,7 @@ configs=".Xresources
 .config/rustfmt
 .config/sxhkd
 .config/sxiv
+.config/wezterm
 .config/zathura
 .config/zsh
 bin"

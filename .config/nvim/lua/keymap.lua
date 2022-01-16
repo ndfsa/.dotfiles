@@ -49,7 +49,7 @@ function M.init()
     nmap('<leader>sl', '<cmd>IndentBlanklineToggle<CR>')
     nmap('<leader>sh', '<cmd>set list!<CR>')
 
-    nmap('<leader>fs', '<cmd>update<CR>')
+    nmap('<leader>fs', '<cmd>write<CR>')
     nmap('<leader>ff', '<cmd>Telescope find_files<CR>')
     nmap('<leader>fg', '<cmd>Telescope live_grep<CR>')
 
