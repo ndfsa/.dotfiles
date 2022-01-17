@@ -78,7 +78,7 @@ require('keymap').init()
 vim.cmd[[
 augroup convinient
     autocmd!
-    autocmd FileType * autocmd BufWritePre <buffer> %s/\s\+$//e
+    autocmd FileType * autocmd BufWritePre <buffer> :exe 'norm m`' | %s/\s\+$//ge | normal ``
     autocmd TextYankPost * silent!
                 \ lua vim.highlight.on_yank({higroup="HighlightedYankRegion", timeout=250})
 augroup END

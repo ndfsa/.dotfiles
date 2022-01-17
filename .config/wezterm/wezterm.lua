@@ -33,7 +33,6 @@ return {
     enable_tab_bar = false,
     bold_brightens_ansi_colors = true,
     adjust_window_size_when_changing_font_size = false,
-
     colors = {
         foreground = "#ebdbb2",
         background = "#1e1e1e",

@@ -130,6 +130,14 @@ function M.init()
         run = 'make hexokinase'
     }
     use 'tweekmonster/startuptime.vim'
+    use {
+        'folke/todo-comments.nvim',
+        config = function() require('todo-comments').setup() end,
+        requires = { 'nvim-lua/plenary.nvim' }
+    }
 end
+
+-- Interesting plugins
+-- use 'elihunter173/dirbuf.nvim'
 
 return M

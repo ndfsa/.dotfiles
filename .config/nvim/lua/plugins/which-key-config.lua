@@ -25,6 +25,7 @@ wk.register({
         s = 'Save',
         f = 'Find',
         g = 'Grep',
+        t = 'Todo',
     },
     o = {
         name = 'Open',

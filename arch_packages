@@ -40,6 +40,7 @@ libreoffice-still
 linux-firmware
 linux-headers
 lldb
+lolcat
 lua-language-server
 maim
 man-db
@@ -57,9 +58,11 @@ openjdk-src
 openssh
 otf-ipafont
 otf-symbola
+p7zip
 pacman-contrib
 pamixer
 pandoc
+parallel
 picom
 pipewire
 pipewire-alsa
@@ -76,6 +79,7 @@ qalculate-gtk
 qt5-graphicaleffects
 qt5-quickcontrols2
 qt5-svg
+qt5ct
 rclone
 ripgrep
 rofi

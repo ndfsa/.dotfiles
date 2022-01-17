@@ -52,6 +52,7 @@ function M.init()
     nmap('<leader>fs', '<cmd>write<CR>')
     nmap('<leader>ff', '<cmd>Telescope find_files<CR>')
     nmap('<leader>fg', '<cmd>Telescope live_grep<CR>')
+    nmap('<leader>ft', '<cmd>TodoTelescope<CR>')
 
     nmap('<leader>oe', '<cmd>edit %:p:h<CR>')
     nmap('<leader>of', '<cmd>lua require"telescope".extensions.file_browser.file_browser()<CR>')
