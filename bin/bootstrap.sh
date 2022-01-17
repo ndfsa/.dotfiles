@@ -69,9 +69,11 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
     $HOME/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 # install things from AUR
-git clone https://aur.archlinux.org/font-symbola.git $HOME/AUR/font-symbola
-git clone https://aur.archlinux.org/jdtls.git $HOME/AUR/jdtls
-git clone https://aur.archlinux.org/neovim-git.git $HOME/AUR/neovim-git
-git clone https://aur.archlinux.org/polybar.git $HOME/AUR/polybar
-git clone https://github.com/ndfsa/slock-custom.git $HOME/AUR/slock-custom
-git clone https://aur.archlinux.org/prboom-plus.git $HOME/AUR/prboom-plus
+AUR_DIR=$HOME/AUR
+git clone https://aur.archlinux.org/font-symbola.git $AUR_DIR/font-symbola
+git clone https://aur.archlinux.org/jdtls.git $AUR_DIR/jdtls
+git clone https://aur.archlinux.org/neovim-git.git $AUR_DIR/neovim-git
+git clone https://aur.archlinux.org/polybar.git $AUR_DIR/polybar
+git clone https://github.com/ndfsa/slock-custom.git $AUR_DIR/slock-custom
+git clone https://aur.archlinux.org/prboom-plus.git $AUR_DIR/prboom-plus
+git clone https://aur.archlinux.org/atool-git.git $AUR_DIR/atool-git
