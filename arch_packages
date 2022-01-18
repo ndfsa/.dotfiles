@@ -35,7 +35,6 @@ htop
 hyperfine
 imagemagick
 jdk-openjdk
-jdtls
 libreoffice-still
 linux-firmware
 linux-headers
@@ -57,7 +56,6 @@ openjdk-doc
 openjdk-src
 openssh
 otf-ipafont
-otf-symbola
 p7zip
 pacman-contrib
 pamixer
@@ -103,8 +101,8 @@ ttf-hack
 ttf-hanazono
 ttf-jetbrains-mono
 ttf-nerd-fonts-symbols-mono
-ttf-symbola
 ueberzug
+unzip
 usbutils
 wezterm
 wget

@@ -10,6 +10,7 @@ function rule(intensity, weight, italic)
                 weight = weight
             },
             "Symbols Nerd Font",
+            "Symbola",
         }),
     }
 end
