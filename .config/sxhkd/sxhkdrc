@@ -1,6 +1,6 @@
 # terminal emulator
 super + Return
-    wezterm
+    alacritty
 
 # program launcher
 super + r
@@ -8,7 +8,7 @@ super + r
 
 # file explorer
 super + e
-    dolphin
+    nemo
 
 super + p
     powermenu.sh
@@ -111,7 +111,7 @@ super + w
     bspc node @/ -R 90
 
 super + b
-    {act=hide; pad=0,act=show; pad=30};polybar-msg cmd $act; bspc config top_padding $pad
+    {act=hide; pad=0,act=show; pad=30};polybar-msg cmd $act; bspc config -m \^1 top_padding $pad
 
 # Equalize
 super + equal

@@ -28,11 +28,11 @@ draw_bold_text_with_bright_colors: true
 
 colors:
   cursor:
-    text: '#282828'
+    text: '#1e1e1e'
     cursor: '#ebdbb2'
 
   primary:
-    background: '#282828'
+    background: '#1e1e1e'
     foreground: '#ebdbb2'
   normal:
     black:   '#282828'
@@ -64,7 +64,7 @@ colors:
     magenta: '#8f3f71'
     cyan:    '#427b58'
     white:   '#928374'
-background_opacity: 0.95
+background_opacity: 0.90
 
 selection:
   save_to_clipboard: true
