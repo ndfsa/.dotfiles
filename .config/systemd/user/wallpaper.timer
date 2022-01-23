@@ -3,5 +3,5 @@ Description=Changes Wallpaper every hour
 PartOf=graphical-session.target
 
 [Timer]
-OnBootSec=15m
+OnActiveSec=30m
 OnUnitActiveSec=1h
