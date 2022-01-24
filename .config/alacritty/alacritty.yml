@@ -64,7 +64,9 @@ colors:
     magenta: '#8f3f71'
     cyan:    '#427b58'
     white:   '#928374'
-background_opacity: 0.90
+
+window:
+  opacity: 0.90
 
 selection:
   save_to_clipboard: true
