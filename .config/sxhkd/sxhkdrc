@@ -117,11 +117,9 @@ super + b
 super + equal
     bspc node @/ -B
 
-super + shift + s
-    maim -s | xclip -selection clipboard -t image/png && dunstify "Screenshot saved to clipboard"
-
-super + s
-    maim "$HOME/Pictures/Screenshots/$(date +%s).png" && dunstify "Screenshot saved"
+super + {_, shift +} Print
+    maim {_,-s} "$HOME/Pictures/Screenshots/$(date +%s).png" \
+        && dunstify "Screenshot saved to clipboard"
 
 XF86AudioNext
     playerctl next
