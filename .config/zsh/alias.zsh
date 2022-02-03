@@ -21,3 +21,4 @@ alias wp-push='rclone sync $HOME/Pictures/Wallpapers gdrive_crypt:Pictures/Wallp
 alias book-pull='rclone sync gdrive_crypt:Documents/Books $HOME/Documents/Books -P'
 alias book-push='rclone sync $HOME/Documents/Books gdrive_crypt:Documents/Books -P'
 alias :q='exit' # I'm done with this
+alias nvsc='nvim --cmd "set buftype=nofile"'
