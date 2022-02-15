@@ -55,8 +55,8 @@ alt + {_,shift + }Tab
     bspc node -f {next,prev}.local.!hidden.window
 
 # focus the next/previous desktop in the current monitor
-super + {_,shift + }Tab
-    bspc desktop -f {next,prev}.local
+super + Tab
+    rofi -show window
 
 # focus the last node/desktop
 super + {grave,Tab}
