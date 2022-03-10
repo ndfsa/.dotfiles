@@ -16,21 +16,6 @@ function normalize(){
 
 for i in "$@"
 do
-    $(sxiv $i &> /dev/null) && \
-    select ds in "$OPTS[@]"
-    do
-        [ -z "$ds" ] && echo "Invalid selection" && continue
-        echo "Applying ${ds:l} to $i"
-        case $ds in
-            'Sharpening filter')
-                normalize "$i" 0.3
-                ;;
-            'Blur filter')
-                normalize "$i" 0.7
-                ;;
-        esac
-        echo "Removing $i"
-        rm "$i"
-        break
-    done
+    normalize "$i" 0.33
+    rm "$i"
 done

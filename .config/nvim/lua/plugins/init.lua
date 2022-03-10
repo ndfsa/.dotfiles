@@ -38,10 +38,6 @@ function M.init()
         config = function() require('plugins.indent-blankline-config') end
     }
     use {
-        'lukas-reineke/virt-column.nvim',
-        config = function() require('virt-column').setup() end
-    }
-    use {
         'tamago324/lir.nvim',
         config = function() require('plugins.lir-config') end
     }
@@ -122,10 +118,6 @@ function M.init()
     use 'tpope/vim-fugitive'
     use 'tpope/vim-surround'
     use {
-        'nvim-neorg/neorg',
-        config = function () require('plugins.neorg-config') end
-    }
-    use {
         'RRethy/vim-hexokinase',
         run = 'make hexokinase'
     }
@@ -139,5 +131,6 @@ end
 
 -- Interesting plugins
 -- use 'elihunter173/dirbuf.nvim'
+-- use 'Furkanzmc/zettelkasten.nvim'
 
 return M
