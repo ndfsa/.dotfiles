@@ -1,8 +1,8 @@
 local M = {}
 function M.init()
-    local key_opts = {noremap = true, silent = true}
+    local key_opts = {remap = false, silent = true}
     local function map(mode, lhs, rhs, opts)
-        vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
+        vim.keymap.set(mode, lhs, rhs, opts)
     end
     local function nmap(lhs, rhs) map('n', lhs, rhs, key_opts) end
     local function imap(lhs, rhs) map('i', lhs, rhs, key_opts) end

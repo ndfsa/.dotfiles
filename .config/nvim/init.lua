@@ -1,5 +1,7 @@
 local opt = vim.opt
 local g = vim.g
+local api = vim.api
+
 opt.title = true
 opt.wrap = false
 opt.tabstop = 4
@@ -21,7 +23,6 @@ opt.undofile = true
 opt.hidden = true
 opt.encoding = 'UTF-8'
 opt.scrolloff = 8
-opt.laststatus = 2
 opt.completeopt = {'menu', 'menuone', 'noselect'}
 opt.shortmess:append({c = true})
 opt.updatetime = 500
@@ -75,15 +76,32 @@ require('plugins').init()
 g.mapleader = ' '
 require('keymap').init()
 
-vim.cmd[[
-augroup convinient
-    autocmd!
-    autocmd FileType * autocmd BufWritePre <buffer> :exe 'norm m`' | %s/\s\+$//ge | normal ``
-    autocmd TextYankPost * silent!
-                \ lua vim.highlight.on_yank({higroup="HighlightedYankRegion", timeout=250})
-augroup END
+local AUG = "convenient"
+api.nvim_create_augroup(AUG,{
+    clear = true
+})
+api.nvim_create_autocmd("TextYankPost *", {
+    group = AUG,
+    callback = function()
+        vim.highlight.on_yank({
+            higroup = "HighlightedYankRegion",
+            timeout = 250
+        })
+    end
+})
+api.nvim_create_autocmd("FileType *", {
+    group = AUG,
+    callback = function()
+        api.nvim_create_autocmd("BufWritePre <buffer>", {
+            group = AUG,
+            command = [[:exe 'norm m`' | %s/\s\+$//ge | norm ``]]
+        })
+    end
+})
 
+vim.cmd[[
 colorscheme gruvbox
 hi! Normal ctermbg=none guibg=none
-highlight! link HighlightedyankRegion Visual
+hi! link HighlightedyankRegion Visual
+hi! WinSeparator ctermbg=none guibg=none
 ]]

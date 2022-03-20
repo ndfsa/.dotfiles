@@ -65,6 +65,7 @@ require('lualine').setup({
         theme = 'gruvbox_dark',
         section_separators = ' ',
         component_separators = ' ',
+        globalstatus = true,
     },
     sections = {
         lualine_a = {
@@ -94,14 +95,6 @@ require('lualine').setup({
         lualine_z = {
             encoding,
         }
-    },
-    inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = {separator, filesize, bufinfo, 'filetype'},
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = {}
     },
     extensions = {'quickfix', 'fugitive'}
 })
