@@ -16,10 +16,7 @@ function M.init()
     packer.reset()
 
     use 'wbthomason/packer.nvim'
-    use {
-        'ellisonleao/gruvbox.nvim',
-        requires = {'rktjmp/lush.nvim'}
-    }
+    use 'sainnhe/gruvbox-material'
     use 'kyazdani42/nvim-web-devicons'
     use {
         'monkoose/matchparen.nvim',
@@ -128,9 +125,5 @@ function M.init()
         requires = { 'nvim-lua/plenary.nvim' }
     }
 end
-
--- Interesting plugins
--- use 'elihunter173/dirbuf.nvim'
--- use 'Furkanzmc/zettelkasten.nvim'
 
 return M

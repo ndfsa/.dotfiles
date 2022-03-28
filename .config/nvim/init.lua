@@ -46,6 +46,7 @@ opt.listchars = {
     nbsp = '␣',
     eol = '↲'
 }
+opt.background = 'dark'
 
 g.loaded_gzip = 1
 g.loaded_zip = 1
@@ -70,6 +71,13 @@ g.do_filetype_lua = 1
 
 g.Hexokinase_highlighters = {'backgroundfull'}
 g.Hexokinase_ftEnabled = {}
+
+g.gruvbox_material_enable_bold = 1
+g.gruvbox_material_enable_italic = 1
+g.gruvbox_material_transparent_background = 1
+g.gruvbox_material_statusline_style = 'original'
+g.gruvbox_material_palette = 'original'
+g.gruvbox_material_better_performance = 1
 
 require('plugins').init()
 
@@ -99,9 +107,4 @@ api.nvim_create_autocmd("FileType *", {
     end
 })
 
-vim.cmd[[
-colorscheme gruvbox
-hi! Normal ctermbg=none guibg=none
-hi! link HighlightedyankRegion Visual
-hi! WinSeparator ctermbg=none guibg=none
-]]
+vim.cmd('colorscheme gruvbox-material')

@@ -24,7 +24,7 @@ super + shift + r
     bspc wm -r
 
 # close and kill
-super + shift + {c, alt + c}
+super + {q, alt + q}
     bspc node -{c,k}
 
 # swap the current node and the biggest window

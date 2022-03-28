@@ -62,7 +62,7 @@ local separator = {
 }
 require('lualine').setup({
     options = {
-        theme = 'gruvbox_dark',
+        theme = 'gruvbox-material',
         section_separators = ' ',
         component_separators = ' ',
         globalstatus = true,
