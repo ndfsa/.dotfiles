@@ -73,7 +73,6 @@ local function input_newfile()
     if lnum then
         vim.cmd(tostring(lnum))
     end
-    vim.api.nvim_echo({ { "\n", "Normal" } }, false, {})
 end
 
 lir.setup {
@@ -110,7 +109,7 @@ lir.setup {
             { noremap = true, silent = true }
         )
 
-        vim.api.nvim_echo({ { vim.fn.expand("%:p"), "Normal" } }, false, {})
+        vim.api.nvim_echo({ {" Lir: ", "Normal"}, { vim.fn.expand("%:p"), "Normal" } }, false, {})
     end,
     hide_cursor = true,
 }

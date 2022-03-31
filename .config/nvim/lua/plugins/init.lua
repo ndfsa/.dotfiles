@@ -27,10 +27,6 @@ function M.init()
         config = function() require('Comment').setup() end
     }
     use {
-        'folke/which-key.nvim',
-        config = function () require('plugins.which-key-config') end
-    }
-    use {
         'lukas-reineke/indent-blankline.nvim',
         config = function() require('plugins.indent-blankline-config') end
     }

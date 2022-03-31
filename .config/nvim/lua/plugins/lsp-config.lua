@@ -22,38 +22,6 @@ local on_attach = function(client, bufnr)
     buf_map('n', '<leader>le', '<cmd>lua vim.diagnostic.open_float()<CR>')
     buf_map('v', '<leader>lf', '<cmd>lua vim.lsp.buf.range_formatting()<CR>')
     buf_map('v', '<leader>lc', '<cmd>lua vim.lsp.buf.range_code_action()<CR>')
-
-    local wk = require('which-key')
-    wk.register({
-        g = {
-            d = 'Go definition',
-            D = 'Go declaration',
-            i = 'List implementation',
-            r = 'List references'
-        },
-        ['[d'] = 'Previous diagnostic',
-        [']d'] = 'Next diagnostic',
-        K = 'Symbol information',
-        ['<C-k>'] = 'Signature help',
-    })
-    wk.register({
-        l = {
-            name = 'LSP',
-            t = 'Type definition',
-            r = 'Rename',
-            c = 'Code Action',
-            q = 'Set loclist',
-            f = 'Format',
-            e = 'Open diagnostic float',
-        }
-    }, {prefix = '<leader>'})
-    wk.register({
-        l = {
-            name = 'LSP',
-            f = 'Range format',
-            c = 'Range code Action',
-        }
-    }, {mode = 'v', prefix = '<leader>'})
 end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)

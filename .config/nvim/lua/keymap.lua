@@ -9,6 +9,10 @@ function M.init()
     local function vmap(lhs, rhs) map('v', lhs, rhs, key_opts) end
     local function smap(lhs, rhs) map('s', lhs, rhs, key_opts) end
 
+    local telescope = require('telescope')
+    local tl_builtin = require('telescope.builtin')
+    local luasnip = require('luasnip')
+
     nmap('n', 'nzzzv')
     nmap('N', 'Nzzzv')
 
@@ -32,15 +36,15 @@ function M.init()
     -- thank you TJ https://github.com/tjdevries/config_manager
     map('i', '<C-k>', [[luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '']],
         {silent = true, expr = true})
-    imap('<C-j>', '<cmd>lua require("luasnip").jump(-1)<CR>')
-    smap('<C-k>', '<cmd>lua require("luasnip").jump(1)<CR>')
-    smap('<C-j>', '<cmd>lua require("luasnip").jump(-1)<CR>')
+    imap('<C-j>', function() luasnip.jump(-1) end)
+    smap('<C-k>', function() luasnip.jump(1) end)
+    smap('<C-j>', function() luasnip.jump(-1) end)
 
     nmap('<leader>bn', '<cmd>bn<CR>')
     nmap('<leader>bp', '<cmd>bp<CR>')
     nmap('<leader>bd', '<cmd>bd<CR>')
-    nmap('<leader>bf', '<cmd>Telescope buffers<CR>')
-    nmap('<leader>bz', '<cmd>Telescope current_buffer_fuzzy_find<CR>')
+    nmap('<leader>bf', tl_builtin.buffers)
+    nmap('<leader>bz', tl_builtin.current_buffer_fuzzy_find)
 
     nmap('<leader>sn', '<cmd>set relativenumber!<CR>')
     nmap('<leader>sw', '<cmd>set wrap!<CR>')
@@ -50,17 +54,20 @@ function M.init()
     nmap('<leader>sh', '<cmd>set list!<CR>')
 
     nmap('<leader>fs', '<cmd>write<CR>')
-    nmap('<leader>ff', '<cmd>Telescope find_files<CR>')
-    nmap('<leader>fg', '<cmd>Telescope live_grep<CR>')
+    nmap('<leader>ff', tl_builtin.find_files)
+    nmap('<leader>fg', tl_builtin.live_grep)
+    nmap('<leader>fr', tl_builtin.registers)
     nmap('<leader>ft', '<cmd>TodoTelescope<CR>')
 
     nmap('<leader>oe', '<cmd>edit %:p:h<CR>')
-    nmap('<leader>of', '<cmd>lua require"telescope".extensions.file_browser.file_browser()<CR>')
-    nmap('<leader>op', '<cmd>Telescope project<CR>')
-    nmap('<leader>om', '<cmd>Telescope media_files<CR>')
-    nmap('<leader>oE', '<cmd>Telescope env<CR>')
+    nmap('<leader>of', telescope.extensions.file_browser.file_browser)
+    nmap('<leader>op', function() telescope.extensions.project.project({}) end)
+    nmap('<leader>om', telescope.extensions.media_files.media_files)
+    nmap('<leader>oE', telescope.extensions.env.env)
 
-    nmap('<leader>gb', '<cmd>Telescope git_branches<CR>')
+    nmap('<leader>gb', tl_builtin.git_branches)
+    nmap('<leader>gh', tl_builtin.git_bcommits)
+    nmap('<leader>gc', tl_builtin.git_commits)
     nmap('<leader>gs', '<cmd>Neogit<CR>')
     nmap('<leader>gw', '<cmd>G blame<CR>')
 end
