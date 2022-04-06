@@ -15,10 +15,18 @@ confirm() {
     fi
 }
 
+logout() {
+    if [ -n "$(pgrep bspwm)" ]; then
+        bspc quit
+    elif [ -n "$(pgrep awesome)" ]; then
+        awesome-client 'awesome.quit()'
+    fi
+}
+
 case $(echo "$lockscreen\n$logout\n$suspend\n$reboot\n$shutdown" | rofi -dmenu -p "Power") in
     $lockscreen) sleep 0.3 && loginctl lock-session;;
     $suspend) confirm "systemctl suspend";;
     $reboot) confirm "systemctl reboot";;
     $shutdown) confirm "systemctl poweroff";;
-    $logout) confirm "systemctl --user stop bspwm.target && bspc quit";;
+    $logout) confirm "logout";;
 esac

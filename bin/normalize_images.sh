@@ -1,21 +1,21 @@
 #!/bin/zsh
 
-OPTS=('Sharpening filter' 'Blur filter')
-
-function normalize(){
-    magick "$1" \
+mkdir normalized
+for i in "$@"
+do
+    magick mogrify \
+        -define png:compression-level=9 \
+        -format png \
         -alpha off \
         -strip \
         -colorspace RGB \
         -filter Cubic \
-        -define filter:B="$2" \
-        -define png:compression-level=9 \
+        -define filter:B=0.33 \
         -distort Resize "2560x1440^" \
-        -colorspace sRGB "$HOME/Pictures/Converted/${1%%.*}.png"
-}
-
-for i in "$@"
-do
-    normalize "$i" 0.33
-    rm "$i"
+        -colorspace sRGB \
+        -path ./normalized \
+        "$i"
 done
+cd normalized
+img-cmp rename *
+cd ..

@@ -3,7 +3,7 @@ super + Return
     alacritty
 
 # program launcher
-super + r
+super + @space
     rofi -show drun -show-icons
 
 # file explorer
@@ -27,28 +27,18 @@ super + shift + r
 super + {q, alt + q}
     bspc node -{c,k}
 
-# swap the current node and the biggest window
-super + @space
-    bspc node -s biggest.local.window
-
 # state/flags
 
 # set the window state
 super + {t,u,f,F}
     bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
-super + M
-    bspc desktop -l next
-
-# set the node flags
-super + ctrl + {m,x,y,z}
-    bspc node -g {marked,locked,sticky,private}
-
 # focus/swap
+super + {h,j,k,l}
+    bspc node -f {west,south,north,east}
 
-# focus the node in the given direction
-super + {_,shift + }{h,j,k,l}
-    bspc node -{f,s} {west,south,north,east}
+super + shift + {h,j,k,l}
+    dir={west,south,north,east}; bspc node -s "$dir.local" --follow || bspc node -m "$dir" --follow
 
 # focus the next/previous window in the current desktop
 alt + {_,shift + }Tab
@@ -59,12 +49,15 @@ super + Tab
     rofi -show window
 
 # focus the last node/desktop
-super + {grave,Tab}
-    bspc {node,desktop} -f last
+super + grave
+    bspc node -f last
 
 # focus or send to the given desktop
-super + {_,shift + }{1-9,0}
-    bspc {desktop -f,node -d} '^{1-9,10}' {,--follow}
+super + shift + {1-9,0}
+    bspc node -d '^{1-9,10}' --follow
+
+super + {1-9,0}
+    bspc desktop -f '^{1-9,10}'
 
 # preselect
 
@@ -111,25 +104,21 @@ super + w
     bspc node @/ -R 90
 
 super + b
-    {act=hide; pad=0,act=show; pad=30};polybar-msg cmd $act; bspc config -m \^1 top_padding $pad
+    {act=hide; pad=0,act=show; pad=30};polybar-msg cmd $act; bspc config top_padding $pad
 
 # Equalize
 super + equal
     bspc node @/ -B
 
-super + {_, shift +} Print
+{Print, super + shift + s}
     maim {_,-s} "$HOME/Pictures/Screenshots/$(date +%s).png" \
-        && dunstify "Screenshot saved to clipboard"
+        && dunstify "Screenshot saved"
 
-XF86AudioNext
-    playerctl next
+XF86Audio{Next,Prev,Play,Stop}
+    playerctl {next, previous, play-pause, stop}
 
-XF86AudioPrev
-    playerctl previous
+super + r
+    playermenu.sh
 
-XF86AudioPlay
-    playerctl play-pause
-
-XF86AudioStop
-    playerctl stop
-
+super + v
+    alacritty -e pulsemixer

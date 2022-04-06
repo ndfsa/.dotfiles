@@ -18,15 +18,17 @@ swap-command() {
     if [[ $BUFFER == ls\ * ]]; then
         LBUFFER="bat ${LBUFFER#ls }"
     elif [[ $BUFFER == bat\ * ]]; then
-        LBUFFER="ls ${LBUFFER#bat }"
+        LBUFFER="nvim ${LBUFFER#bat }"
+    elif [[ $BUFFER == nvim\ * ]]; then
+        LBUFFER="cp ${LBUFFER#nvim }"
     elif [[ $BUFFER == cp\ * ]]; then
         LBUFFER="mv ${LBUFFER#cp }"
     elif [[ $BUFFER == mv\ * ]]; then
-        LBUFFER="cp ${LBUFFER#mv }"
+        LBUFFER="touch ${LBUFFER#mv }"
     elif [[ $BUFFER == touch\ * ]]; then
         LBUFFER="mkdir ${LBUFFER#touch }"
     elif [[ $BUFFER == mkdir\ * ]]; then
-        LBUFFER="touch ${LBUFFER#mkdir }"
+        LBUFFER="ls ${LBUFFER#mkdir }"
     fi
 }
 

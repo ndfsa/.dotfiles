@@ -2,9 +2,7 @@ autoload -U compinit && compinit
 
 zstyle ':completion:*' menu select=1
 zstyle ':completion:*' matcher-list \
-    'm:{a-z}={A-Z}' \
-    'r:|[._-]=* r:|=*' \
-    'l:|=* r:|=*'
+    'm:{a-z}={A-Z}'
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' file-list all

@@ -57,9 +57,6 @@ local lsp_name = {
         return msg
     end,
 }
-local separator = {
-    function() return '%=' end
-}
 require('lualine').setup({
     options = {
         theme = 'gruvbox-material',
@@ -69,10 +66,7 @@ require('lualine').setup({
     },
     sections = {
         lualine_a = {
-            {
-                'mode',
-                fmt = function(str) return ' [' .. str:sub(1, 1) .. ']' end,
-            }
+            'mode',
         },
         lualine_b = {
             filesize,

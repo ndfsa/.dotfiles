@@ -3,7 +3,7 @@
 configs=".Xresources
 .config/emacs/init.el
 .config/starship.toml
-.config/systemd/user/bspwm.target
+.config/systemd/user/wm.target
 .config/systemd/user/wallpaper.service
 .config/systemd/user/wallpaper.timer
 .prboom-plus/prboom-plus.cfg

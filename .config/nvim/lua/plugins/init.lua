@@ -1,20 +1,15 @@
-local M = {}
+local fn = vim.fn
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+local packer_bootstrap
 
-function M.init()
-    local packer = nil
-
-    packer = require('packer')
-    packer.init({
-        display = {
-            open_fn = function()
-                return require("packer.util").float { border = "rounded" }
-            end,
-        },
+if fn.empty(fn.glob(install_path)) > 0 then
+    packer_bootstrap = fn.system({
+        'git', 'clone', '--depth', '1',
+        'https://github.com/wbthomason/packer.nvim',
+        install_path
     })
-
-    local use = packer.use
-    packer.reset()
-
+end
+return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     use 'sainnhe/gruvbox-material'
     use 'kyazdani42/nvim-web-devicons'
@@ -28,30 +23,34 @@ function M.init()
     }
     use {
         'lukas-reineke/indent-blankline.nvim',
-        config = function() require('plugins.indent-blankline-config') end
+        config = function() _ = require('plugins.indent-blankline-config') end
     }
     use {
         'tamago324/lir.nvim',
-        config = function() require('plugins.lir-config') end
+        config = function() _ = require('plugins.lir-config') end
     }
     use {
-        'hoob3rt/lualine.nvim',
-        config = function() require('plugins.lualine-config') end
+        'nvim-lualine/lualine.nvim',
+        config = function() _ = require('plugins.lualine-config') end
     }
     use {
         'neovim/nvim-lspconfig',
-        config = function () require('plugins.lsp-config') end
+        config = function() _ = require('plugins.lsp-config') end
     }
     use 'nvim-treesitter/playground'
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
-        config = function() require('plugins.treesitter-config') end
+        config = function() _ = require('plugins.treesitter-config') end
+    }
+    use {
+        'L3MON4D3/LuaSnip',
+        requires = 'rafamadriz/friendly-snippets',
+        config = function() _ = require('plugins.luasnip-config') end
     }
     use {
         'hrsh7th/nvim-cmp',
         requires = {
-            'L3MON4D3/LuaSnip',
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-path',
@@ -59,7 +58,7 @@ function M.init()
             'saadparwaiz1/cmp_luasnip',
             'onsails/lspkind-nvim'
         },
-        config = function() require('plugins.cmp-config') end
+        config = function() _ = require('plugins.cmp-config') end
     }
     use {
         'nvim-telescope/telescope.nvim',
@@ -73,43 +72,30 @@ function M.init()
             {
                 'nvim-telescope/telescope-fzf-native.nvim',
                 run = 'make'
-            }
+            },
+            'nvim-telescope/telescope-dap.nvim'
         },
-        config = function() require('plugins.telescope-config') end
-    }
-    use {
-        'windwp/nvim-autopairs',
-        config = function() require('nvim-autopairs').setup() end
+        config = function() _ = require('plugins.telescope-config') end
     }
     use {
         'sindrets/diffview.nvim',
         requires = 'nvim-lua/plenary.nvim'
     }
     use {
-        'TimUntersberger/neogit',
-        requires = 'nvim-lua/plenary.nvim',
-        config = function() require('plugins.neogit-config') end
-    }
-    use {
         'lewis6991/gitsigns.nvim',
         requires = { 'nvim-lua/plenary.nvim' },
-        config = function() require('plugins.gitsigns-config') end
+        config = function() _ = require('plugins.gitsigns-config') end
     }
     use {
         'sQVe/sort.nvim',
-        config = function() require('sort').setup() end
-    }
-    use {
-        'NTBBloodbath/rest.nvim',
-        ft = {'http'},
-        config = function() require('plugins.rest-config') end
+        config = function() _ = require('sort').setup() end
     }
     use {
         'anuvyklack/pretty-fold.nvim',
-        config = function() require('pretty-fold').setup{} end
+        config = function() require('pretty-fold').setup {} end
     }
     use 'tpope/vim-fugitive'
-    use 'tpope/vim-surround'
+    use 'machakann/vim-sandwich'
     use {
         'RRethy/vim-hexokinase',
         run = 'make hexokinase'
@@ -120,6 +106,19 @@ function M.init()
         config = function() require('todo-comments').setup() end,
         requires = { 'nvim-lua/plenary.nvim' }
     }
-end
-
-return M
+    use {
+        'rcarriga/nvim-dap-ui',
+        requires = { {
+            'mfussenegger/nvim-dap',
+            config = function() _ = require('plugins.nvim-dap-config') end
+        } },
+        config = function() require('dapui').setup() end
+    }
+    use {
+        'kyazdani42/nvim-tree.lua',
+        config = function() _ = require('plugins.nvim-tree-config') end
+    }
+    if packer_bootstrap then
+        require('packer').sync()
+    end
+end)

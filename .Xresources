@@ -1,6 +1,5 @@
 Xft.dpi: 92
 Xft.antialias: true
-Xcursor.theme: breeze_cursors
 Sxiv.background: #000000
 Sxiv.foreground: #ffffff
 Sxiv.font: JetBrains\ Mono-14

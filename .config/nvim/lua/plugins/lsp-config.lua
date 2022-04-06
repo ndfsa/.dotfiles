@@ -1,5 +1,5 @@
 local nvim_lsp = require('lspconfig')
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
     local opts = { noremap=true, silent=true }
     local function buf_map(mode, lhs, rhs)
         vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
@@ -23,9 +23,10 @@ local on_attach = function(client, bufnr)
     buf_map('v', '<leader>lf', '<cmd>lua vim.lsp.buf.range_formatting()<CR>')
     buf_map('v', '<leader>lc', '<cmd>lua vim.lsp.buf.range_code_action()<CR>')
 end
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+local capabilities = require('cmp_nvim_lsp').update_capabilities(
+    vim.lsp.protocol.make_client_capabilities()
+)
+capabilities.textDocument.completion.completionItem.snippetSupport = false
 capabilities.textDocument.completion.completionItem.resolveSupport = {
     properties = {
         'documentation',
@@ -41,8 +42,8 @@ local servers = {
     "jsonls",
     "pyright",
     "rust_analyzer",
-    "svelte",
     "tsserver",
+    "zls",
 }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
@@ -53,3 +54,32 @@ for _, lsp in ipairs(servers) do
         }
     }
 end
+
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+
+nvim_lsp.sumneko_lua.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+        debounce_text_changes = 200,
+    },
+    settings = {
+        Lua = {
+            runtime = {
+                version = 'LuaJIT',
+                path = runtime_path,
+            },
+            diagnostics = {
+                globals = {'vim'},
+            },
+            workspace = {
+                library = vim.api.nvim_get_runtime_file("", true),
+            },
+            telemetry = {
+                enable = false,
+            },
+        },
+    },
+}

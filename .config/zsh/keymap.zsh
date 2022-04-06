@@ -2,7 +2,7 @@ if [[ -f ~/.zkbd/$TERM-${DISPLAY:-$VENDOR-$OSTYPE} ]]; then
     source ~/.zkbd/$TERM-${DISPLAY:-$VENDOR-$OSTYPE}
 else
     autoload -Uz zkbd
-    echo "WARNING: Keybindings may not be set correctly!"
+    echo "WARNING Keybindings may not be set correctly!"
     echo "Execute \`zkbd\` to create bindings."
 fi
 bindkey -v

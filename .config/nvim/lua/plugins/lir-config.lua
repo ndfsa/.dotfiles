@@ -78,6 +78,7 @@ end
 lir.setup {
     show_hidden_files = true,
     devicons_enable = true,
+    natural_sort = true,
     mappings = {
         ['<cr>'] = actions.edit,
         ['l'] = actions.edit,
@@ -108,8 +109,6 @@ lir.setup {
             ':<C-u>lua require"lir.mark.actions".toggle_mark("v")<CR>',
             { noremap = true, silent = true }
         )
-
-        vim.api.nvim_echo({ {" Lir: ", "Normal"}, { vim.fn.expand("%:p"), "Normal" } }, false, {})
     end,
     hide_cursor = true,
 }

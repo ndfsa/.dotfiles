@@ -10,6 +10,7 @@ window:
     y: 0
   dynamic_padding: true
   dynamic_title: true
+
 font:
   normal:
     family: JetBrains Mono
@@ -65,6 +66,9 @@ colors:
     cyan:    '#427b58'
     white:   '#928374'
 
+scrolling:
+  history: 20000
+  multiplier: 1
 window:
   opacity: 0.90
 
