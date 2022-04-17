@@ -16,6 +16,6 @@ require('rest-nvim').setup({
     yank_dry_run = true,
 })
 
-local opts = {noremap = false, silent = true}
+local opts = { noremap = false, silent = true }
 
 vim.api.nvim_buf_set_keymap(0, 'n', '<leader>rh', '<Plug>RestNvim', opts)

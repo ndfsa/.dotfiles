@@ -1,4 +1,4 @@
-require('nvim-tree').setup ({
+require('nvim-tree').setup({
     hijack_netrw = false,
     update_to_buf_dir = false,
     hijack_directories = {
@@ -6,6 +6,6 @@ require('nvim-tree').setup ({
         auto_open = false,
     },
     view = {
-        side = 'right'
-    }
+        side = 'right',
+    },
 })

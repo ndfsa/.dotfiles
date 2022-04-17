@@ -44,7 +44,7 @@ opt.listchars = {
     precedes = '⟨',
     space = '·',
     nbsp = '␣',
-    eol = '↲'
+    eol = '↲',
 }
 opt.background = 'dark'
 
@@ -79,31 +79,31 @@ g.gruvbox_material_statusline_style = 'original'
 g.gruvbox_material_palette = 'original'
 g.gruvbox_material_better_performance = 1
 
-_ = require('plugins')
+require('plugins')
 
 g.mapleader = ' '
-_ = require('keymap')
+require('keymap')
 
-local AUG = api.nvim_create_augroup("convenient", {
-    clear = true
+local AUG = api.nvim_create_augroup('convenient', {
+    clear = true,
 })
-api.nvim_create_autocmd("TextYankPost *", {
+api.nvim_create_autocmd('TextYankPost *', {
     group = AUG,
     callback = function()
         vim.highlight.on_yank({
-            higroup = "HighlightedYankRegion",
-            timeout = 250
+            higroup = 'HighlightedYankRegion',
+            timeout = 250,
         })
-    end
+    end,
 })
-api.nvim_create_autocmd("FileType *", {
+api.nvim_create_autocmd('FileType *', {
     group = AUG,
     callback = function()
-        api.nvim_create_autocmd("BufWritePre <buffer>", {
+        api.nvim_create_autocmd('BufWritePre <buffer>', {
             group = AUG,
-            command = [[%s/\s\+$//ge]]
+            command = [[%s/\s\+$//ge]],
         })
-    end
+    end,
 })
 
 vim.cmd('colorscheme gruvbox-material')

@@ -1,6 +1,6 @@
-local actions = require'lir.actions'
-local mark_actions = require 'lir.mark.actions'
-local clipboard_actions = require'lir.clipboard.actions'
+local actions = require('lir.actions')
+local mark_actions = require('lir.mark.actions')
+local clipboard_actions = require('lir.clipboard.actions')
 
 local lir = require('lir')
 local utils = lir.utils
@@ -13,7 +13,7 @@ end
 
 local no_confirm_patterns = {
     '^LICENSE$',
-    '^Makefile$'
+    '^Makefile$',
 }
 
 local need_confirm = function(filename)
@@ -42,7 +42,7 @@ local function input_newfile()
 
     if need_confirm(name) then
         if not name:match('%.') and not name:match('/') then
-            if vim.fn.confirm("Directory?", "&No\n&Yes", 1) == 2 then
+            if vim.fn.confirm('Directory?', '&No\n&Yes', 1) == 2 then
                 name = name .. '/'
             end
         end
@@ -54,7 +54,7 @@ local function input_newfile()
         path:mkdir({
             parents = true,
             mode = tonumber('700', 8),
-            exists_ok = false
+            exists_ok = false,
         })
     else
         path:touch({
@@ -75,7 +75,7 @@ local function input_newfile()
     end
 end
 
-lir.setup {
+lir.setup({
     show_hidden_files = true,
     devicons_enable = true,
     natural_sort = true,
@@ -104,11 +104,11 @@ lir.setup {
     on_init = function()
         vim.api.nvim_buf_set_keymap(
             0,
-            "x",
-            "J",
+            'x',
+            'J',
             ':<C-u>lua require"lir.mark.actions".toggle_mark("v")<CR>',
             { noremap = true, silent = true }
         )
     end,
     hide_cursor = true,
-}
+})

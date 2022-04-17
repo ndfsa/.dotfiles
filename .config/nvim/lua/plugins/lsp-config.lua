@@ -1,9 +1,11 @@
 local nvim_lsp = require('lspconfig')
-local on_attach = function(_, bufnr)
-    local opts = { noremap=true, silent=true }
+local on_attach = function(client, bufnr)
+    local opts = { noremap = true, silent = true }
     local function buf_map(mode, lhs, rhs)
         vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
     end
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
 
     buf_map('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>')
     buf_map('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>')
@@ -18,8 +20,8 @@ local on_attach = function(_, bufnr)
     buf_map('n', '<leader>lr', '<cmd>lua vim.lsp.buf.rename()<CR>')
     buf_map('n', '<leader>lc', '<cmd>lua vim.lsp.buf.code_action()<CR>')
     buf_map('n', '<leader>lq', '<cmd>lua vim.diagnostic.setloclist()<CR>')
-    buf_map('n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>')
     buf_map('n', '<leader>le', '<cmd>lua vim.diagnostic.open_float()<CR>')
+    buf_map('n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>')
     buf_map('v', '<leader>lf', '<cmd>lua vim.lsp.buf.range_formatting()<CR>')
     buf_map('v', '<leader>lc', '<cmd>lua vim.lsp.buf.range_code_action()<CR>')
 end
@@ -32,34 +34,34 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
         'documentation',
         'detail',
         'additionalTextEdits',
-    }
+    },
 }
 local servers = {
-    "clangd",
-    "cmake",
-    "hls",
-    "jdtls",
-    "jsonls",
-    "pyright",
-    "rust_analyzer",
-    "tsserver",
-    "zls",
+    'clangd',
+    'cmake',
+    'hls',
+    'jdtls',
+    'jsonls',
+    'pyright',
+    'rust_analyzer',
+    'tsserver',
+    'zls',
 }
 for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup {
+    nvim_lsp[lsp].setup({
         on_attach = on_attach,
         capabilities = capabilities,
         flags = {
             debounce_text_changes = 200,
-        }
-    }
+        },
+    })
 end
 
 local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
+table.insert(runtime_path, 'lua/?.lua')
+table.insert(runtime_path, 'lua/?/init.lua')
 
-nvim_lsp.sumneko_lua.setup {
+nvim_lsp.sumneko_lua.setup({
     on_attach = on_attach,
     capabilities = capabilities,
     flags = {
@@ -72,14 +74,14 @@ nvim_lsp.sumneko_lua.setup {
                 path = runtime_path,
             },
             diagnostics = {
-                globals = {'vim'},
+                globals = { 'vim' },
             },
             workspace = {
-                library = vim.api.nvim_get_runtime_file("", true),
+                library = vim.api.nvim_get_runtime_file('', true),
             },
             telemetry = {
                 enable = false,
             },
         },
     },
-}
+})

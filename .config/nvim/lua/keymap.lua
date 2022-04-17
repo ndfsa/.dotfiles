@@ -22,16 +22,16 @@ map('n', '<A-j>', ':m .+1<CR>==', key_opts)
 map('n', '<A-k>', ':m .-2<CR>==', key_opts)
 map('i', '<A-j>', '<Esc>:m .+1<CR>==gi', key_opts)
 map('i', '<A-k>', '<Esc>:m .-2<CR>==gi', key_opts)
-map('v', '<A-j>', ':m \'>+1<CR>gv=gv', key_opts)
-map('v', '<A-k>', ':m \'<-2<CR>gv=gv', key_opts)
+map('v', '<A-j>', ":m '>+1<CR>gv=gv", key_opts)
+map('v', '<A-k>', ":m '<-2<CR>gv=gv", key_opts)
 
 -- thank you TJ https://github.com/tjdevries
-map({ "i", "s" }, "<C-k>", function()
+map({ 'i', 's' }, '<C-k>', function()
     if luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
     end
 end, { silent = true })
-map({ "i", "s" }, "<C-j>", function()
+map({ 'i', 's' }, '<C-j>', function()
     if luasnip.jumpable(-1) then
         luasnip.jump(-1)
     end
@@ -59,7 +59,9 @@ map('n', '<leader>ft', '<cmd>TodoTelescope<CR>', key_opts)
 
 map('n', '<leader>oe', '<cmd>edit %:p:h<CR>', key_opts)
 map('n', '<leader>of', tl_ext.file_browser.file_browser, key_opts)
-map('n', '<leader>op', function() tl_ext.project.project({}) end, key_opts)
+map('n', '<leader>op', function()
+    tl_ext.project.project({})
+end, key_opts)
 map('n', '<leader>om', tl_ext.media_files.media_files, key_opts)
 map('n', '<leader>oE', tl_ext.env.env, key_opts)
 map('n', '<leader>ot', '<cmd>NvimTreeToggle<CR>', key_opts)

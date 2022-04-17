@@ -1,19 +1,21 @@
 local hexvalue = {
     function()
-        return "0x%02B"
-    end
+        return '0x%02B'
+    end,
 }
 local bufinfo = {
-    function ()
-        return "%n:%t%4m%5r%4w"
+    function()
+        return '%n:%t%4m%5r%4w'
     end,
 }
 local filesize = {
-    function ()
+    function()
         local function format_file_size(file)
             local size = vim.fn.getfsize(file)
-            if size <= 0 then return '' end
-            local sufixes = {'B', 'KiB', 'MiB', 'GiB', 'TiB'}
+            if size <= 0 then
+                return ''
+            end
+            local sufixes = { 'B', 'KiB', 'MiB', 'GiB', 'TiB' }
             local i = 1
             while size > 1024 do
                 size = size / 1024
@@ -22,24 +24,28 @@ local filesize = {
             return string.format('%.2f%s', size, sufixes[i])
         end
         local file = vim.fn.expand('%:p')
-        if string.len(file) == 0 then return '' end
+        if string.len(file) == 0 then
+            return ''
+        end
         return format_file_size(file)
     end,
-    condition = function() return vim.fn.empty(vim.fn.expand('%:t')) ~= 1 end
+    condition = function()
+        return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
+    end,
 }
 local diag = {
     'diagnostics',
-    sources = {'nvim_diagnostic'},
-    symbols = {error = ' ', warn = ' ', info = ' '},
+    sources = { 'nvim_diagnostic' },
+    symbols = { error = ' ', warn = ' ', info = ' ' },
 }
 local encoding = {
     'o:encoding',
-    fmt = string.upper
+    fmt = string.upper,
 }
 local fileformat = {
     'fileformat',
     icons_enabled = false,
-    fmt = string.upper
+    fmt = string.upper,
 }
 
 local lsp_name = {
@@ -47,7 +53,9 @@ local lsp_name = {
         local msg = ''
         local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
         local clients = vim.lsp.get_active_clients()
-        if next(clients) == nil then return msg end
+        if next(clients) == nil then
+            return msg
+        end
         for _, client in ipairs(clients) do
             local filetypes = client.config.filetypes
             if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
@@ -88,7 +96,7 @@ require('lualine').setup({
         },
         lualine_z = {
             encoding,
-        }
+        },
     },
-    extensions = {'quickfix', 'fugitive'}
+    extensions = { 'quickfix', 'fugitive' },
 })

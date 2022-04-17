@@ -1,26 +1,26 @@
 local telescope = require('telescope')
-telescope.setup {
+telescope.setup({
     defaults = {
-        sorting_strategy = "ascending",
+        sorting_strategy = 'ascending',
 
         layout_config = {
-            prompt_position = "top"
+            prompt_position = 'top',
         },
         file_ignore_patterns = { '.git/', 'node_modules/' },
     },
     extensions = {
         fzf = {
-            fuzzy = true
+            fuzzy = true,
         },
         file_browser = {
             hidden = true,
-            cwd = "%:h:p"
+            cwd = '%:h:p',
         },
     },
     pickers = {
         find_files = {
             hidden = true,
-            file_ignore_patterns = { '.git/', 'node_modules/', '%.png'},
+            file_ignore_patterns = { '.git/', 'node_modules/', '%.png' },
         },
         live_grep = {
             vimgrep_arguments = {
@@ -35,9 +35,9 @@ telescope.setup {
                 '--glob',
                 '!.git/',
             },
-        }
-    }
-}
+        },
+    },
+})
 telescope.load_extension('fzf')
 telescope.load_extension('project')
 telescope.load_extension('media_files')

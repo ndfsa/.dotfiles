@@ -5,7 +5,7 @@ cmp.setup({
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body)
-        end
+        end,
     },
     mapping = cmp.mapping.preset.insert({
         ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
@@ -26,26 +26,26 @@ cmp.setup({
         format = lspkind.cmp_format({
             with_text = true,
             maxwidth = 50,
-            menu = ({
+            menu = {
                 buffer = '[BUFF]',
                 path = '[PATH]',
                 luasnip = '[SNIP]',
                 nvim_lsp = '[LSP]',
-            })
-        })
-    }
+            },
+        }),
+    },
 })
 cmp.setup.cmdline('/', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
-        { name = 'buffer' }
-    }
+        { name = 'buffer' },
+    },
 })
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-        { name = 'path' }
+        { name = 'path' },
     }, {
-        { name = 'cmdline' }
-    })
+        { name = 'cmdline' },
+    }),
 })
