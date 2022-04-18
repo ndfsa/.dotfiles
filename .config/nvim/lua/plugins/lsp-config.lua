@@ -1,41 +1,33 @@
-local nvim_lsp = require('lspconfig')
-local on_attach = function(client, bufnr)
-    local opts = { noremap = true, silent = true }
-    local function buf_map(mode, lhs, rhs)
-        vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
-    end
+local map = vim.keymap.set
+local opts = { noremap = true, silent = true }
+
+map('n', '<leader>lq', vim.diagnostic.setloclist, opts)
+map('n', '<leader>le', vim.diagnostic.open_float, opts)
+map('n', '[d', vim.diagnostic.goto_prev, opts)
+map('n', ']d', vim.diagnostic.goto_next, opts)
+
+local on_attach = function(client, buff_num)
+    local buff_opts = { noremap = true, silent = true, buffer = buff_num }
+
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
 
-    buf_map('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>')
-    buf_map('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>')
-    buf_map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
-    buf_map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-    buf_map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
-    buf_map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
-    buf_map('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>')
-    buf_map('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
-
-    buf_map('n', '<leader>lt', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
-    buf_map('n', '<leader>lr', '<cmd>lua vim.lsp.buf.rename()<CR>')
-    buf_map('n', '<leader>lc', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-    buf_map('n', '<leader>lq', '<cmd>lua vim.diagnostic.setloclist()<CR>')
-    buf_map('n', '<leader>le', '<cmd>lua vim.diagnostic.open_float()<CR>')
-    buf_map('n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>')
-    buf_map('v', '<leader>lf', '<cmd>lua vim.lsp.buf.range_formatting()<CR>')
-    buf_map('v', '<leader>lc', '<cmd>lua vim.lsp.buf.range_code_action()<CR>')
+    map('n', 'gD', vim.lsp.buf.declaration, buff_opts)
+    map('n', 'gd', vim.lsp.buf.definition, buff_opts)
+    map('n', 'gi', vim.lsp.buf.implementation, buff_opts)
+    map('n', 'gr', vim.lsp.buf.references, buff_opts)
+    map('n', 'K', vim.lsp.buf.hover, buff_opts)
+    map('v', 'K', vim.lsp.buf.hover, buff_opts)
+    map('n', '<C-k>', vim.lsp.buf.signature_help, buff_opts)
+    map('n', '<leader>lt', vim.lsp.buf.type_definition, buff_opts)
+    map('n', '<leader>lr', vim.lsp.buf.rename, buff_opts)
+    map('n', '<leader>lc', vim.lsp.buf.code_action, buff_opts)
+    map('v', '<leader>lc', vim.lsp.buf.range_code_action, buff_opts)
 end
-local capabilities = require('cmp_nvim_lsp').update_capabilities(
-    vim.lsp.protocol.make_client_capabilities()
-)
-capabilities.textDocument.completion.completionItem.snippetSupport = false
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {
-        'documentation',
-        'detail',
-        'additionalTextEdits',
-    },
-}
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
 local servers = {
     'clangd',
     'cmake',
@@ -47,6 +39,8 @@ local servers = {
     'tsserver',
     'zls',
 }
+
+local nvim_lsp = require('lspconfig')
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup({
         on_attach = on_attach,

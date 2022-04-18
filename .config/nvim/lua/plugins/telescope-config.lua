@@ -20,7 +20,7 @@ telescope.setup({
     pickers = {
         find_files = {
             hidden = true,
-            file_ignore_patterns = { '.git/', 'node_modules/', '%.png' },
+            file_ignore_patterns = { '.git/', 'node_modules/' },
         },
         live_grep = {
             vimgrep_arguments = {

@@ -160,7 +160,7 @@ return require('packer').startup(function(use)
     use({
         'mickael-menu/zk-nvim',
         config = function()
-            require('zk').setup()
+            require('plugins.zk-config')
         end,
     })
     use({
@@ -169,6 +169,12 @@ return require('packer').startup(function(use)
             require('plugins.null-ls-config')
         end,
         requires = { 'nvim-lua/plenary.nvim' },
+    })
+    use({
+        'nmac427/guess-indent.nvim',
+        config = function()
+            require('guess-indent').setup()
+        end,
     })
     if packer_bootstrap then
         require('packer').sync()
