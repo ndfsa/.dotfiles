@@ -176,6 +176,12 @@ return require('packer').startup(function(use)
             require('guess-indent').setup()
         end,
     })
+    use({
+        'NTBBloodbath/rest.nvim',
+        config = function()
+            require('plugins.rest-config')
+        end,
+    })
     if packer_bootstrap then
         require('packer').sync()
     end

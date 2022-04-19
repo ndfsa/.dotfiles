@@ -11,7 +11,7 @@ alias la='ls -a'
 alias lsl='ls -l --group'
 alias lal='la -l --group'
 alias ip='ip --color=auto'
-alias t='trash'
+alias rm='trash'
 alias cdi=__zoxide_zi
 alias cd=__zoxide_z
 alias conf='__scoped_edit $HOME/.dotfiles/'

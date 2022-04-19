@@ -18,8 +18,6 @@ confirm() {
 logout() {
     if [ -n "$(pgrep bspwm)" ]; then
         bspc quit
-    elif [ -n "$(pgrep awesome)" ]; then
-        awesome-client 'awesome.quit()'
     fi
 }
 

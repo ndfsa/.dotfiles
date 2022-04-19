@@ -18,4 +18,4 @@ require('rest-nvim').setup({
 
 local opts = { noremap = false, silent = true }
 
-vim.api.nvim_buf_set_keymap(0, 'n', '<leader>rh', '<Plug>RestNvim', opts)
+vim.keymap.set('h', '<leader>rh', '<Plug>RestNvim', opts)
