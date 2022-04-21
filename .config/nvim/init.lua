@@ -1,44 +1,41 @@
-local opt = vim.opt
-local g = vim.g
-local api = vim.api
-
-opt.title = true
-opt.wrap = false
-opt.tabstop = 4
-opt.shiftwidth = 4
-opt.softtabstop = 4
-opt.expandtab = true
-opt.autoindent = true
-opt.ignorecase = true
-opt.smartcase = true
-opt.incsearch = true
-opt.number = true
-opt.relativenumber = true
-opt.textwidth = 99
-opt.signcolumn = 'yes'
-opt.colorcolumn = '100'
-opt.cursorline = true
-opt.swapfile = false
-opt.undofile = true
-opt.hidden = true
-opt.encoding = 'UTF-8'
-opt.scrolloff = 5
-opt.completeopt = { 'menu', 'menuone', 'noselect' }
-opt.shortmess:append({ c = true })
-opt.updatetime = 500
-opt.guifont = 'JetBrains Mono:h14'
-opt.foldmethod = 'expr'
-opt.foldexpr = 'nvim_treesitter#foldexpr()'
-opt.foldlevel = 99
-opt.fileformats = { 'unix', 'dos', 'mac' }
-opt.showmode = false
-opt.autowrite = true
-opt.mouse = 'a'
-opt.pumheight = 20
-opt.termguicolors = true
-opt.fillchars:append({ fold = ' ', eob = ' ' })
-opt.conceallevel = 2
-opt.listchars = {
+vim.opt.title = true
+vim.opt.wrap = false
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true
+vim.opt.autoindent = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.incsearch = true
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.signcolumn = 'yes'
+vim.opt.colorcolumn = '100'
+vim.opt.cursorline = true
+vim.opt.swapfile = false
+vim.opt.undofile = true
+vim.opt.hidden = true
+vim.opt.encoding = 'UTF-8'
+vim.opt.scrolloff = 5
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+vim.opt.shortmess:append({ c = true })
+vim.opt.updatetime = 500
+vim.opt.guifont = 'JetBrains Mono:h14'
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldlevel = 99
+vim.opt.fileformats = { 'unix', 'dos', 'mac' }
+vim.opt.showmode = false
+vim.opt.autowrite = true
+vim.opt.mouse = 'a'
+vim.opt.pumheight = 30
+vim.opt.termguicolors = true
+vim.opt.fillchars:append({ fold = ' ', eob = ' ' })
+vim.opt.conceallevel = 2
+vim.opt.listchars = {
     tab = '»-',
     extends = '⟩',
     precedes = '⟨',
@@ -46,48 +43,47 @@ opt.listchars = {
     nbsp = '␣',
     eol = '↲',
 }
-opt.background = 'dark'
+vim.opt.background = 'dark'
 
-g.loaded_gzip = 1
-g.loaded_zip = 1
-g.loaded_zipPlugin = 1
-g.loaded_tar = 1
-g.loaded_tarPlugin = 1
-g.loaded_getscript = 1
-g.loaded_getscriptPlugin = 1
-g.loaded_vimball = 1
-g.loaded_vimballPlugin = 1
-g.loaded_2html_plugin = 1
-g.loaded_matchit = 1
-g.loaded_matchparen = 1
-g.loaded_logiPat = 1
-g.loaded_rrhelper = 1
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
-g.loaded_netrwSettings = 1
+vim.g.loaded_gzip = 1
+vim.g.loaded_zip = 1
+vim.g.loaded_zipPlugin = 1
+vim.g.loaded_tar = 1
+vim.g.loaded_tarPlugin = 1
+vim.g.loaded_getscript = 1
+vim.g.loaded_getscriptPlugin = 1
+vim.g.loaded_vimball = 1
+vim.g.loaded_vimballPlugin = 1
+vim.g.loaded_2html_plugin = 1
+vim.g.loaded_matchit = 1
+vim.g.loaded_matchparen = 1
+vim.g.loaded_logiPat = 1
+vim.g.loaded_rrhelper = 1
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrwSettings = 1
+vim.g.do_filetype_lua = 1
+vim.g.did_load_filetypes = 0
 
-g.do_filetype_lua = 1
-g.did_load_filetypes = 0
+vim.g.gruvbox_italic = 1
+vim.g.gruvbox_bold = 1
+vim.g.gruvbox_italic_comments = 1
+vim.g.gruvbox_improved_warnings = 1
 
-g.Hexokinase_highlighters = { 'sign_column' }
-g.Hexokinase_ftEnabled = {}
+vim.g.Hexokinase_highlighters = { 'sign_column' }
+vim.g.Hexokinase_ftEnabled = {}
 
-g.gruvbox_material_enable_bold = 1
-g.gruvbox_material_enable_italic = 1
-g.gruvbox_material_transparent_background = 1
-g.gruvbox_material_statusline_style = 'original'
-g.gruvbox_material_palette = 'original'
-g.gruvbox_material_better_performance = 1
+vim.g.undotree_SplitWidth = 40
 
 require('plugins')
 
-g.mapleader = ' '
+vim.g.mapleader = ' '
 require('keymap')
 
-local AUG = api.nvim_create_augroup('convenient', {
+local AUG = vim.api.nvim_create_augroup('convenient', {
     clear = true,
 })
-api.nvim_create_autocmd('TextYankPost *', {
+vim.api.nvim_create_autocmd('TextYankPost', {
     group = AUG,
     callback = function()
         vim.highlight.on_yank({
@@ -96,14 +92,14 @@ api.nvim_create_autocmd('TextYankPost *', {
         })
     end,
 })
-api.nvim_create_autocmd('FileType *', {
+vim.api.nvim_create_autocmd('BufWritePost', {
     group = AUG,
+    pattern = { '*/plugins/init.lua' },
     callback = function()
-        api.nvim_create_autocmd('BufWritePre <buffer>', {
-            group = AUG,
-            command = [[%s/\s\+$//ge]],
-        })
+        require('packer').compile()
     end,
 })
-
-vim.cmd('colorscheme gruvbox-material')
+vim.cmd('colorscheme gruvbox')
+vim.cmd('hi! Normal ctermbg=none guibg=none')
+vim.cmd('hi! link HighlightedyankRegion Visual')
+vim.cmd('hi! VertSplit ctermbg=none guibg=none')

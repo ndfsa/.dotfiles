@@ -14,7 +14,14 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 return require('packer').startup(function(use)
     use('wbthomason/packer.nvim')
-    use('sainnhe/gruvbox-material')
+    use('ellisonleao/gruvbox.nvim')
+    use('mcauley-penney/tidy.nvim')
+    use({
+        'TimUntersberger/neogit',
+        config = function()
+            require('plugins.neogit-config')
+        end,
+    })
     use('kyazdani42/nvim-web-devicons')
     use({
         'monkoose/matchparen.nvim',
@@ -58,6 +65,12 @@ return require('packer').startup(function(use)
         run = ':TSUpdate',
         config = function()
             require('plugins.treesitter-config')
+        end,
+    })
+    use({
+        'lewis6991/spellsitter.nvim',
+        config = function()
+            require('spellsitter').setup()
         end,
     })
     use({
@@ -131,13 +144,6 @@ return require('packer').startup(function(use)
     })
     use('tweekmonster/startuptime.vim')
     use({
-        'folke/todo-comments.nvim',
-        config = function()
-            require('todo-comments').setup()
-        end,
-        requires = { 'nvim-lua/plenary.nvim' },
-    })
-    use({
         'rcarriga/nvim-dap-ui',
         requires = {
             {
@@ -182,6 +188,8 @@ return require('packer').startup(function(use)
             require('plugins.rest-config')
         end,
     })
+    use('kdheepak/lazygit.nvim')
+    use('mbbill/undotree')
     if packer_bootstrap then
         require('packer').sync()
     end

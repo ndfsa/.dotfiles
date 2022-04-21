@@ -67,7 +67,7 @@ local lsp_name = {
 }
 require('lualine').setup({
     options = {
-        theme = 'gruvbox-material',
+        theme = 'gruvbox',
         section_separators = ' ',
         component_separators = ' ',
         globalstatus = true,

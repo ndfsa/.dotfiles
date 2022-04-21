@@ -72,8 +72,12 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 AUR_DIR=$HOME/AUR
 git clone https://aur.archlinux.org/font-symbola.git $AUR_DIR/font-symbola
 git clone https://aur.archlinux.org/jdtls.git $AUR_DIR/jdtls
-git clone https://aur.archlinux.org/neovim-git.git $AUR_DIR/neovim-git
+git clone https://aur.archlinux.org/neovim-nightly-bin.git $AUR_DIR/neovim-nightly-bin
 git clone https://aur.archlinux.org/polybar.git $AUR_DIR/polybar
 git clone https://github.com/ndfsa/slock-custom.git $AUR_DIR/slock-custom
 git clone https://aur.archlinux.org/prboom-plus.git $AUR_DIR/prboom-plus
 git clone https://aur.archlinux.org/atool-git.git $AUR_DIR/atool-git
+git clone https://aur.archlinux.org/clojure-lsp-bin.git $AUR_DIR/clojure-lsp-bin
+git clone https://aur.archlinux.org/insomnia-bin.git $AUR_DIR/insomnia-bin
+git clone https://aur.archlinux.org/spotify.git $AUR_DIR/spotify
+git clone https://aur.archlinux.org/zls-bin.git $AUR_DIR/zls-bin

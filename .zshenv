@@ -1,4 +1,5 @@
 export EDITOR=nvim
+export VISUAL=nvim
 export BAT_THEME='base16'
 export PAGER='bat'
 export BROWSER='chromium'
