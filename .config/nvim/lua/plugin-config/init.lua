@@ -14,12 +14,20 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 return require('packer').startup(function(use)
     use('wbthomason/packer.nvim')
-    use('ellisonleao/gruvbox.nvim')
-    use('mcauley-penney/tidy.nvim')
+    use({
+        'ellisonleao/gruvbox.nvim',
+        setup = function()
+            require('plugin-config.gruvbox').pre()
+        end,
+        config = function()
+            require('plugin-config.gruvbox').setup()
+        end,
+        opt = false,
+    })
     use({
         'TimUntersberger/neogit',
         config = function()
-            require('plugins.neogit-config')
+            require('plugin-config.neogit')
         end,
     })
     use('kyazdani42/nvim-web-devicons')
@@ -38,25 +46,25 @@ return require('packer').startup(function(use)
     use({
         'lukas-reineke/indent-blankline.nvim',
         config = function()
-            require('plugins.indent-blankline-config')
+            require('plugin-config.indent-blankline')
         end,
     })
     use({
         'tamago324/lir.nvim',
         config = function()
-            require('plugins.lir-config')
+            require('plugin-config.lir')
         end,
     })
     use({
         'nvim-lualine/lualine.nvim',
         config = function()
-            require('plugins.lualine-config')
+            require('plugin-config.lualine')
         end,
     })
     use({
         'neovim/nvim-lspconfig',
         config = function()
-            require('plugins.lsp-config')
+            require('plugin-config.lspconfig')
         end,
     })
     use('nvim-treesitter/playground')
@@ -64,7 +72,7 @@ return require('packer').startup(function(use)
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
         config = function()
-            require('plugins.treesitter-config')
+            require('plugin-config.treesitter')
         end,
     })
     use({
@@ -77,7 +85,7 @@ return require('packer').startup(function(use)
         'L3MON4D3/LuaSnip',
         requires = 'rafamadriz/friendly-snippets',
         config = function()
-            require('plugins.luasnip-config')
+            require('plugin-config.luasnip')
         end,
     })
     use({
@@ -91,7 +99,7 @@ return require('packer').startup(function(use)
             'onsails/lspkind-nvim',
         },
         config = function()
-            require('plugins.cmp-config')
+            require('plugin-config.cmp')
         end,
     })
     use({
@@ -110,7 +118,7 @@ return require('packer').startup(function(use)
             'nvim-telescope/telescope-dap.nvim',
         },
         config = function()
-            require('plugins.telescope-config')
+            require('plugin-config.telescope')
         end,
     })
     use({
@@ -121,7 +129,7 @@ return require('packer').startup(function(use)
         'lewis6991/gitsigns.nvim',
         requires = { 'nvim-lua/plenary.nvim' },
         config = function()
-            require('plugins.gitsigns-config')
+            require('plugin-config.gitsigns')
         end,
     })
     use({
@@ -136,43 +144,52 @@ return require('packer').startup(function(use)
             require('pretty-fold').setup({})
         end,
     })
-    use('tpope/vim-fugitive')
+    use({
+        'tpope/vim-fugitive',
+        setup = function()
+            require('plugin-config.vim-fugitive')
+        end,
+        opt = false,
+    })
     use('machakann/vim-sandwich')
     use({
         'RRethy/vim-hexokinase',
         run = 'make hexokinase',
+        setup = function()
+            require('plugin-config.hexokinase')
+        end,
+        opt = false,
     })
     use('tweekmonster/startuptime.vim')
     use({
         'rcarriga/nvim-dap-ui',
         requires = {
-            {
-                'mfussenegger/nvim-dap',
-                config = function()
-                    require('plugins.nvim-dap-config')
-                end,
-            },
+            'mfussenegger/nvim-dap',
+            config = function()
+                require('plugin-config.nvim-dap')
+            end,
         },
         config = function()
-            require('dapui').setup()
+            require('plugin-config.nvim-dap-ui')
         end,
+        opt = false,
     })
     use({
         'kyazdani42/nvim-tree.lua',
         config = function()
-            require('plugins.nvim-tree-config')
+            require('plugin-config.nvim-tree')
         end,
     })
     use({
         'mickael-menu/zk-nvim',
         config = function()
-            require('plugins.zk-config')
+            require('plugin-config.zk')
         end,
     })
     use({
         'jose-elias-alvarez/null-ls.nvim',
         config = function()
-            require('plugins.null-ls-config')
+            require('plugin-config.null-ls')
         end,
         requires = { 'nvim-lua/plenary.nvim' },
     })
@@ -185,11 +202,17 @@ return require('packer').startup(function(use)
     use({
         'NTBBloodbath/rest.nvim',
         config = function()
-            require('plugins.rest-config')
+            require('plugin-config.rest')
         end,
     })
     use('kdheepak/lazygit.nvim')
-    use('mbbill/undotree')
+    use({
+        'mbbill/undotree',
+        setup = function()
+            require('plugin-config.undotree')
+        end,
+        opt = false,
+    })
     if packer_bootstrap then
         require('packer').sync()
     end
