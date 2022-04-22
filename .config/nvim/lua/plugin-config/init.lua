@@ -196,7 +196,7 @@ return require('packer').startup(function(use)
     use({
         'nmac427/guess-indent.nvim',
         config = function()
-            require('guess-indent').setup()
+            require('guess-indent').setup({ autocmd = false })
         end,
     })
     use({
@@ -212,6 +212,12 @@ return require('packer').startup(function(use)
             require('plugin-config.undotree')
         end,
         opt = false,
+    })
+    use({
+        'gpanders/editorconfig.nvim',
+        cond = function()
+            vim.fn.filereadable('.editorconfig')
+        end,
     })
     if packer_bootstrap then
         require('packer').sync()

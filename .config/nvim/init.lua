@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     callback = function()
         vim.highlight.on_yank({
             higroup = 'HighlightedYankRegion',
-            timeout = 250,
+            timeout = 300,
         })
     end,
 })
@@ -26,4 +26,3 @@ vim.api.nvim_create_autocmd('BufWritePost', {
         require('packer').compile()
     end,
 })
-vim.cmd('hi! link HighlightedyankRegion Visual')
