@@ -29,4 +29,19 @@ while pgrep -u $(id -ru) -x polybar > /dev/null ; do sleep 0.5 ; done
 polybar main --config="$HOME/.config/polybar/config.ini" &
 polybar sec --config="$HOME/.config/polybar/config.ini"&
 
-de_utils.sh
+[ -e $HOME/.fehbg ] && $HOME/.fehbg
+systemctl --user start wm.target
+systemctl --user start wallpaper.timer
+
+killall -q xss-lock
+while pgrep -u $(id -ru) -x xss-lock > /dev/null ; do sleep 0.5 ; done
+xset s 900
+xss-lock slock &
+
+killall -q playerctld
+while pgrep -u $(id -ru) -x playerctld > /dev/null ; do sleep 0.5 ; done
+playerctld &
+
+killall -q picom
+while pgrep -u $(id -ru) -x picom > /dev/null ; do sleep 0.5 ; done
+picom --experimental-backends --config "$HOME/.config/picom/picom.conf" &
