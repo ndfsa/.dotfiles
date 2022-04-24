@@ -35,8 +35,11 @@ systemctl --user start wallpaper.timer
 
 killall -q xss-lock
 while pgrep -u $(id -ru) -x xss-lock > /dev/null ; do sleep 0.5 ; done
-xset s 900
-xss-lock slock &
+xset +dpms s 900 4
+XSECURELOCK_COMPOSITE_OBSCURER=0 \
+    XSECURELOCK_BURNIN_MITIGATION=5 \
+    XSECURELOCK_PASSWORD_PROMPT=time_hex \
+    xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock &
 
 killall -q playerctld
 while pgrep -u $(id -ru) -x playerctld > /dev/null ; do sleep 0.5 ; done
