@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 vim.api.nvim_create_autocmd('BufWritePost', {
     group = AUG,
-    pattern = { '*/plugins/init.lua' },
+    pattern = { '*/plugin-config/init.lua' },
     callback = function()
         vim.cmd('luafile %')
         require('packer').compile()

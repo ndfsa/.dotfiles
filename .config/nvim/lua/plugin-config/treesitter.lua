@@ -18,10 +18,10 @@ require('nvim-treesitter.configs').setup({
         'query',
         'regex',
         'rust',
-        'svelte',
         'toml',
         'tsx',
         'typescript',
+        'vue',
     },
     highlight = {
         enable = true,

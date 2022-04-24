@@ -22,7 +22,6 @@ return require('packer').startup(function(use)
         config = function()
             require('plugin-config.gruvbox').setup()
         end,
-        opt = false,
     })
     use({
         'TimUntersberger/neogit',
@@ -149,7 +148,6 @@ return require('packer').startup(function(use)
         setup = function()
             require('plugin-config.vim-fugitive')
         end,
-        opt = false,
     })
     use('machakann/vim-sandwich')
     use({
@@ -158,7 +156,6 @@ return require('packer').startup(function(use)
         setup = function()
             require('plugin-config.hexokinase')
         end,
-        opt = false,
     })
     use('tweekmonster/startuptime.vim')
     use({
@@ -172,7 +169,6 @@ return require('packer').startup(function(use)
         config = function()
             require('plugin-config.nvim-dap-ui')
         end,
-        opt = false,
     })
     use({
         'kyazdani42/nvim-tree.lua',
@@ -211,7 +207,6 @@ return require('packer').startup(function(use)
         setup = function()
             require('plugin-config.undotree')
         end,
-        opt = false,
     })
     use({
         'gpanders/editorconfig.nvim',

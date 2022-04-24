@@ -1,13 +1,11 @@
 vim.opt.title = true
 vim.opt.wrap = false
-vim.opt.autoindent = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.incsearch = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.wrap = true
-vim.opt.linebreak = true
 vim.opt.signcolumn = 'yes'
 vim.opt.colorcolumn = '100'
 vim.opt.cursorline = true
@@ -103,6 +101,7 @@ vim.keymap.set('n', '<leader>sn', '<cmd>set relativenumber!<CR>', opts)
 vim.keymap.set('n', '<leader>sw', '<cmd>set wrap!<CR>', opts)
 vim.keymap.set('n', '<leader>ss', '<cmd>set spell!<CR>', opts)
 vim.keymap.set('n', '<leader>sh', '<cmd>set list!<CR>', opts)
+vim.keymap.set('n', '<leader>sb', '<cmd>set linebreak!<CR>', opts)
 
 vim.keymap.set('n', '<leader>fs', '<cmd>write<CR>', opts)
 vim.keymap.set('n', '<leader>fp', vim.lsp.buf.formatting, opts)

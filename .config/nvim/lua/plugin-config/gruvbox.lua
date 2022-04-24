@@ -2,9 +2,6 @@ M = {}
 
 function M.pre()
     vim.opt.termguicolors = true
-    vim.g.gruvbox_italic = 1
-    vim.g.gruvbox_bold = 1
-    vim.g.gruvbox_italic_comments = 1
     vim.g.gruvbox_improved_warnings = 1
 end
 
