@@ -29,12 +29,11 @@ require('lir').setup({
         ['Y'] = actions.yank_path,
     },
     on_init = function()
-        vim.api.nvim_buf_set_keymap(
-            0,
+        vim.keymap.set(
             'x',
             'J',
             ':<C-u>lua require"lir.mark.actions".toggle_mark("v")<CR>',
-            { noremap = true, silent = true }
+            { buffer = true, silent = true }
         )
 
         vim.api.nvim_echo({ { vim.fn.expand('%:p'), 'Normal' } }, false, {})

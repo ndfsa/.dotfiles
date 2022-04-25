@@ -12,7 +12,7 @@ null.setup({
     on_attach = function()
         local ft = vim.bo.filetype
         if ft == 'markdown' or ft == 'txt' then
-            vim.keymap.set('n', 'K', vim.lsp.buf.hover, { remap = false, silent = true })
+            vim.keymap.set('n', 'K', vim.lsp.buf.hover, { silent = true })
         end
     end,
 })

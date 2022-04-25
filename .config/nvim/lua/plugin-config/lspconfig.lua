@@ -1,28 +1,27 @@
-local map = vim.keymap.set
-local opts = { noremap = true, silent = true }
+local opts = { silent = true }
 
-map('n', '<leader>lq', vim.diagnostic.setloclist, opts)
-map('n', '<leader>le', vim.diagnostic.open_float, opts)
-map('n', '[d', vim.diagnostic.goto_prev, opts)
-map('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist, opts)
+vim.keymap.set('n', '<leader>le', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 
 local on_attach = function(client, buff_num)
-    local buff_opts = { noremap = true, silent = true, buffer = buff_num }
+    local buff_opts = { silent = true, buffer = buff_num }
 
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
 
-    map('n', 'gD', vim.lsp.buf.declaration, buff_opts)
-    map('n', 'gd', vim.lsp.buf.definition, buff_opts)
-    map('n', 'gi', vim.lsp.buf.implementation, buff_opts)
-    map('n', 'gr', vim.lsp.buf.references, buff_opts)
-    map('n', 'K', vim.lsp.buf.hover, buff_opts)
-    map('v', 'K', vim.lsp.buf.hover, buff_opts)
-    map('n', '<C-k>', vim.lsp.buf.signature_help, buff_opts)
-    map('n', '<leader>lt', vim.lsp.buf.type_definition, buff_opts)
-    map('n', '<leader>lr', vim.lsp.buf.rename, buff_opts)
-    map('n', '<leader>lc', vim.lsp.buf.code_action, buff_opts)
-    map('v', '<leader>lc', vim.lsp.buf.range_code_action, buff_opts)
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, buff_opts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, buff_opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, buff_opts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, buff_opts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, buff_opts)
+    vim.keymap.set('v', 'K', vim.lsp.buf.hover, buff_opts)
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, buff_opts)
+    vim.keymap.set('n', '<leader>lt', vim.lsp.buf.type_definition, buff_opts)
+    vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, buff_opts)
+    vim.keymap.set('n', '<leader>lc', vim.lsp.buf.code_action, buff_opts)
+    vim.keymap.set('v', '<leader>lc', vim.lsp.buf.range_code_action, buff_opts)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

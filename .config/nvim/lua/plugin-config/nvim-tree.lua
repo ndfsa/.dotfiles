@@ -10,4 +10,4 @@ require('nvim-tree').setup({
         width = 40,
     },
 })
-vim.keymap.set('n', '<leader>ot', '<cmd>NvimTreeToggle<CR>', { remap = false, silent = true })
+vim.keymap.set('n', '<leader>ot', '<cmd>NvimTreeToggle<CR>', { silent = true })

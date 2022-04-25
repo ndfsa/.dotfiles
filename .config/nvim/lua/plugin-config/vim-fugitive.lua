@@ -1,4 +1,4 @@
-local opts = { remap = false, silent = true }
+local opts = { silent = true }
 
 vim.keymap.set('n', '<leader>gs', '<cmd>vertical G<CR>', opts)
 vim.keymap.set('n', '<leader>gw', '<cmd>vertical G blame<CR>', opts)

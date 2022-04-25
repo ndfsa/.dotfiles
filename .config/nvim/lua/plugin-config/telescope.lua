@@ -43,10 +43,10 @@ telescope.load_extension('project')
 telescope.load_extension('media_files')
 telescope.load_extension('file_browser')
 telescope.load_extension('env')
-telescope.load_extension('dap')
 
 local tl_ext = telescope.extensions
 local tl_builtin = require('telescope.builtin')
+local opts = { silent = true }
 
 vim.keymap.set('n', '<leader><space>', tl_builtin.buffers, opts)
 vim.keymap.set('n', '<leader>bz', tl_builtin.current_buffer_fuzzy_find, opts)
@@ -59,10 +59,6 @@ vim.keymap.set('n', '<leader>op', function()
 end, opts)
 vim.keymap.set('n', '<leader>om', tl_ext.media_files.media_files, opts)
 vim.keymap.set('n', '<leader>oE', tl_ext.env.env, opts)
-vim.keymap.set('n', '<leader>dfp', tl_ext.dap.commands, opts)
-vim.keymap.set('n', '<leader>dfb', tl_ext.dap.list_breakpoints, opts)
-vim.keymap.set('n', '<leader>dfv', tl_ext.dap.variables, opts)
-vim.keymap.set('n', '<leader>dff', tl_ext.dap.frames, opts)
 
 vim.keymap.set('n', '<leader>gb', tl_builtin.git_branches, opts)
 vim.keymap.set('n', '<leader>gh', tl_builtin.git_bcommits, opts)

@@ -58,7 +58,7 @@ vim.g.did_load_filetypes = 0
 
 vim.g.mapleader = ' '
 
-local opts = { remap = false, silent = true }
+local opts = { silent = true }
 
 vim.keymap.set('n', 'n', 'nzzzv', opts)
 vim.keymap.set('n', 'N', 'Nzzzv', opts)
@@ -67,13 +67,13 @@ vim.keymap.set(
     'n',
     'k',
     [[v:count == 0 ? 'gk' : 'k']],
-    { expr = true, remap = false, silent = true }
+    { expr = true, silent = true }
 )
 vim.keymap.set(
     'n',
     'j',
     [[v:count == 0 ? 'gj' : 'j']],
-    { expr = true, remap = false, silent = true }
+    { expr = true, silent = true }
 )
 
 vim.keymap.set('v', '>', '>gv', opts)

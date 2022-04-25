@@ -31,12 +31,6 @@ return require('packer').startup(function(use)
     })
     use('kyazdani42/nvim-web-devicons')
     use({
-        'monkoose/matchparen.nvim',
-        config = function()
-            require('matchparen').setup()
-        end,
-    })
-    use({
         'numToStr/Comment.nvim',
         config = function()
             require('Comment').setup()
@@ -114,7 +108,6 @@ return require('packer').startup(function(use)
                 'nvim-telescope/telescope-fzf-native.nvim',
                 run = 'make',
             },
-            'nvim-telescope/telescope-dap.nvim',
         },
         config = function()
             require('plugin-config.telescope')
@@ -159,18 +152,6 @@ return require('packer').startup(function(use)
     })
     use('tweekmonster/startuptime.vim')
     use({
-        'rcarriga/nvim-dap-ui',
-        requires = {
-            'mfussenegger/nvim-dap',
-            config = function()
-                require('plugin-config.nvim-dap')
-            end,
-        },
-        config = function()
-            require('plugin-config.nvim-dap-ui')
-        end,
-    })
-    use({
         'kyazdani42/nvim-tree.lua',
         config = function()
             require('plugin-config.nvim-tree')
@@ -213,6 +194,10 @@ return require('packer').startup(function(use)
         cond = function()
             vim.fn.filereadable('.editorconfig')
         end,
+    })
+    use({
+        'mattn/emmet-vim',
+        ft = { 'html', 'css', 'vue' },
     })
     if packer_bootstrap then
         require('packer').sync()
