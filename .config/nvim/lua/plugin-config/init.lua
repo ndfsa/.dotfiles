@@ -158,6 +158,12 @@ return require('packer').startup(function(use)
         end,
     })
     use({
+        'monkoose/matchparen.nvim',
+        config = function()
+            require('matchparen').setup()
+        end,
+    })
+    use({
         'mickael-menu/zk-nvim',
         config = function()
             require('plugin-config.zk')

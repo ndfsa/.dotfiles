@@ -3,3 +3,4 @@ Xft.antialias: true
 Sxiv.background: #000000
 Sxiv.foreground: #ffffff
 Sxiv.font: JetBrains\ Mono-14
+Xcursor.theme: Adwaita
