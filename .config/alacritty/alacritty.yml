@@ -2,6 +2,7 @@ env:
   TERM: xterm-256color
 
 window:
+  opacity: 0.90
   dimensions:
     columns: 120
     lines: 36
@@ -69,8 +70,6 @@ colors:
 scrolling:
   history: 20000
   multiplier: 1
-window:
-  opacity: 0.90
 
 selection:
   save_to_clipboard: true

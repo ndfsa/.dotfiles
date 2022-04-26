@@ -8,6 +8,4 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export PATH=$HOME/.local/bin:$HOME/bin:$HOME/.cargo/bin:$PATH
 export SXHKD_SHELL=dash
 export JDTLS_HOME=/usr/share/java/jdtls
-export QT_QPA_PLATFORMTHEME=qt5ct
-export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export FZF_DEFAULT_OPTS='--color=16'
