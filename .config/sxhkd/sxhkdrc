@@ -1,6 +1,6 @@
 # terminal emulator
 super + Return
-    alacritty
+    wezterm
 
 # program launcher
 super + @space
@@ -121,4 +121,4 @@ super + r
     playermenu.sh
 
 super + v
-    alacritty -e pulsemixer
+    wezterm start pulsemixer
