@@ -8,30 +8,25 @@ cmp.setup({
         end,
     },
     mapping = cmp.mapping.preset.insert({
-        ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
         ['<C-e>'] = cmp.mapping.abort(),
         ['<tab>'] = cmp.config.disable,
     }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
+        { name = 'path' },
         { name = 'luasnip' },
     }, {
-        { name = 'path' },
         { name = 'buffer' },
     }),
     formatting = {
         format = lspkind.cmp_format({
             with_text = true,
             maxwidth = 50,
-            menu = {
-                buffer = '[BUFF]',
-                path = '[PATH]',
-                luasnip = '[SNIP]',
-                nvim_lsp = '[LSP]',
-            },
+            mode = 'symbol_text',
         }),
     },
 })

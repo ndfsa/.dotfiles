@@ -106,5 +106,6 @@ vim.keymap.set('n', '<leader>sb', '<cmd>set linebreak!<CR>', opts)
 vim.keymap.set('n', '<leader>fs', '<cmd>write<CR>', opts)
 vim.keymap.set('n', '<leader>fp', vim.lsp.buf.formatting, opts)
 vim.keymap.set('v', '<leader>fp', vim.lsp.buf.range_formatting, opts)
+vim.keymap.set('n', '<leader>fy', '<cmd>let @+=expand("%:p")<CR>', opts)
 
 vim.keymap.set('n', '<leader>oe', '<cmd>edit %:p:h<CR>', opts)
