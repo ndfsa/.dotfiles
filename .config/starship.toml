@@ -1,6 +1,6 @@
-format = " $directory$git_branch$git_commit$git_status$character"
+format = """([┌────▶ ](bold green)$go$haskell$java$nodejs$python$rust\
+$swift$zig\n[└─](bold green)) $directory$git_branch$character"""
 add_newline = false
 
 [directory]
 style = "purple"
-
