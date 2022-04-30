@@ -35,8 +35,6 @@ require('lir').setup({
             ':<C-u>lua require"lir.mark.actions".toggle_mark("v")<CR>',
             { buffer = true, silent = true }
         )
-
-        vim.api.nvim_echo({ { vim.fn.expand('%:p'), 'Normal' } }, false, {})
     end,
     hide_cursor = true,
 })

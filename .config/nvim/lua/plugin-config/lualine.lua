@@ -8,31 +8,6 @@ local bufinfo = {
         return '%n:%t%4m%5r%4w'
     end,
 }
-local filesize = {
-    function()
-        local function format_file_size(file)
-            local size = vim.fn.getfsize(file)
-            if size <= 0 then
-                return ''
-            end
-            local sufixes = { 'B', 'KiB', 'MiB', 'GiB', 'TiB' }
-            local i = 1
-            while size > 1024 do
-                size = size / 1024
-                i = i + 1
-            end
-            return string.format('%.2f%s', size, sufixes[i])
-        end
-        local file = vim.fn.expand('%:p')
-        if string.len(file) == 0 then
-            return ''
-        end
-        return format_file_size(file)
-    end,
-    condition = function()
-        return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
-    end,
-}
 local diag = {
     'diagnostics',
     sources = { 'nvim_diagnostic' },
@@ -65,9 +40,17 @@ local lsp_name = {
         return msg
     end,
 }
+local lir_ext = {
+    sections = { lualine_a = {
+        function()
+            return vim.fn.expand('%:~')
+        end,
+    } },
+    filetypes = { 'lir' },
+}
 require('lualine').setup({
     options = {
-        theme = 'gruvbox',
+        theme = 'onedark',
         section_separators = ' ',
         component_separators = ' ',
         globalstatus = true,
@@ -77,7 +60,7 @@ require('lualine').setup({
             'mode',
         },
         lualine_b = {
-            filesize,
+            'filesize',
         },
         lualine_c = {
             bufinfo,
@@ -98,5 +81,5 @@ require('lualine').setup({
             encoding,
         },
     },
-    extensions = { 'quickfix', 'fugitive' },
+    extensions = { lir_ext, 'quickfix', 'fugitive', 'nvim-tree' },
 })

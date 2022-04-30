@@ -63,18 +63,8 @@ local opts = { silent = true }
 vim.keymap.set('n', 'n', 'nzzzv', opts)
 vim.keymap.set('n', 'N', 'Nzzzv', opts)
 
-vim.keymap.set(
-    'n',
-    'k',
-    [[v:count == 0 ? 'gk' : 'k']],
-    { expr = true, silent = true }
-)
-vim.keymap.set(
-    'n',
-    'j',
-    [[v:count == 0 ? 'gj' : 'j']],
-    { expr = true, silent = true }
-)
+vim.keymap.set('n', 'k', [[v:count == 0 ? 'gk' : 'k']], { expr = true, silent = true })
+vim.keymap.set('n', 'j', [[v:count == 0 ? 'gj' : 'j']], { expr = true, silent = true })
 
 vim.keymap.set('v', '>', '>gv', opts)
 vim.keymap.set('v', '<', '<gv', opts)
