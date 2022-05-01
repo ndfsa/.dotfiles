@@ -15,9 +15,12 @@ end
 return require('packer').startup(function(use)
     use('wbthomason/packer.nvim')
     use({
-        'navarasu/onedark.nvim',
+        'ellisonleao/gruvbox.nvim',
+        setup = function()
+            require('plugin-config.gruvbox').pre()
+        end,
         config = function()
-            require('plugin-config.onedark')
+            require('plugin-config.gruvbox').setup()
         end,
     })
     use({
@@ -50,7 +53,6 @@ return require('packer').startup(function(use)
         config = function()
             require('plugin-config.lualine')
         end,
-        after = 'onedark.nvim',
     })
     use({
         'neovim/nvim-lspconfig',

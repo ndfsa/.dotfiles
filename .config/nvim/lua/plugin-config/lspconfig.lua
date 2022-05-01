@@ -5,11 +5,8 @@ vim.keymap.set('n', '<leader>le', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 
-local on_attach = function(client, buff_num)
+local on_attach = function(_, buff_num)
     local buff_opts = { silent = true, buffer = buff_num }
-
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
 
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, buff_opts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, buff_opts)
@@ -22,6 +19,12 @@ local on_attach = function(client, buff_num)
     vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, buff_opts)
     vim.keymap.set('n', '<leader>lc', vim.lsp.buf.code_action, buff_opts)
     vim.keymap.set('v', '<leader>lc', vim.lsp.buf.range_code_action, buff_opts)
+
+    vim.keymap.set('n', '<leader>fp', function()
+        vim.lsp.buf.format({
+            name = 'null-ls',
+        })
+    end, buff_opts)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
