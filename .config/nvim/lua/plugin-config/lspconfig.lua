@@ -19,12 +19,6 @@ local on_attach = function(_, buff_num)
     vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, buff_opts)
     vim.keymap.set('n', '<leader>lc', vim.lsp.buf.code_action, buff_opts)
     vim.keymap.set('v', '<leader>lc', vim.lsp.buf.range_code_action, buff_opts)
-
-    vim.keymap.set('n', '<leader>fp', function()
-        vim.lsp.buf.format({
-            name = 'null-ls',
-        })
-    end, buff_opts)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

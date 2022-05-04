@@ -28,44 +28,39 @@ font:
   size: 14.0
 draw_bold_text_with_bright_colors: true
 
+# onedarkpro.nvim - onedark
 colors:
-  cursor:
-    text: '#1e1e1e'
-    cursor: '#ebdbb2'
-
   primary:
-    background: '#1e1e1e'
-    foreground: '#ebdbb2'
+    background: "#1a1b26"
+    foreground: "#abb2bf"
+
   normal:
-    black:   '#282828'
-    red:     '#cc241d'
-    green:   '#98971a'
-    yellow:  '#d79921'
-    blue:    '#458588'
-    magenta: '#b16286'
-    cyan:    '#689d6a'
-    white:   '#a89984'
+    black: "#282c34"
+    red: "#e06c75"
+    green: "#98c379"
+    yellow: "#e5c07b"
+    blue: "#61afef"
+    magenta: "#c678dd"
+    cyan: "#56b6c2"
+    white: "#abb2bf"
+
   bright:
-    black:   '#928374'
-    red:     '#fb4934'
-    green:   '#b8bb26'
-    yellow:  '#fabd2f'
-    blue:    '#83a598'
-    magenta: '#d3869b'
-    cyan:    '#8ec07c'
-    white:   '#ebdbb2'
-  selection:
+    black: "#3f3f3f"
+    red: "#e06c75"
+    green: "#98c379"
+    yellow: "#e5c07b"
+    blue: "#61afef"
+    magenta: "#c678dd"
+    cyan: "#56b6c2"
+    white: "#bfc5ce"
+
+  cursor:
     text: CellBackground
-    background: CellForeground
-  dim:
-    black:   '#32302f'
-    red:     '#9d0006'
-    green:   '#79740e'
-    yellow:  '#b57614'
-    blue:    '#076678'
-    magenta: '#8f3f71'
-    cyan:    '#427b58'
-    white:   '#928374'
+    cursor: CellForeground
+
+  selection:
+    text: CellForeground
+    background: "#3e4452"
 
 scrolling:
   history: 20000

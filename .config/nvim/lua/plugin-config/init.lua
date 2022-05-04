@@ -15,12 +15,9 @@ end
 return require('packer').startup(function(use)
     use('wbthomason/packer.nvim')
     use({
-        'ellisonleao/gruvbox.nvim',
-        setup = function()
-            require('plugin-config.gruvbox').pre()
-        end,
+        'olimorris/onedarkpro.nvim',
         config = function()
-            require('plugin-config.gruvbox').setup()
+            require('plugin-config.onedarkpro')
         end,
     })
     use({
@@ -160,7 +157,7 @@ return require('packer').startup(function(use)
     use({
         'monkoose/matchparen.nvim',
         config = function()
-            require('matchparen').setup()
+            require('matchparen').setup({})
         end,
     })
     use({

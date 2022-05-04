@@ -10,6 +10,11 @@ null.setup({
         null.builtins.hover.dictionary,
     },
     on_attach = function()
+        vim.keymap.set('n', '<leader>fp', function()
+            vim.lsp.buf.format({
+                name = 'null-ls',
+            })
+        end, { silent = true })
         local ft = vim.bo.filetype
         if ft == 'markdown' or ft == 'txt' then
             vim.keymap.set('n', 'K', vim.lsp.buf.hover, { silent = true })

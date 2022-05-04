@@ -2,6 +2,9 @@ local cmp = require('cmp')
 local luasnip = require('luasnip')
 local lspkind = require('lspkind')
 cmp.setup({
+    window = {
+        documentation = cmp.config.window.bordered(),
+    },
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body)
