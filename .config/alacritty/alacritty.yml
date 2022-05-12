@@ -64,7 +64,7 @@ colors:
 
 scrolling:
   history: 20000
-  multiplier: 1
+  multiplier: 3
 
 selection:
   save_to_clipboard: true

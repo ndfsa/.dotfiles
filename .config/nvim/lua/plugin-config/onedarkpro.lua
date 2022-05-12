@@ -2,7 +2,7 @@ local onedarkpro = require('onedarkpro')
 onedarkpro.setup({
     options = {
         bold = true,
-        italic = true,
+        italic = false,
         underline = false,
         undercurl = true,
         cursorline = true,

@@ -1,12 +1,19 @@
 #!/bin/zsh
 
 mkdir normalized
-parallel -j 6 magick mogrify \
-    -define webp:lossless=true \
-    -format webp \
-    -alpha off \
-    -path ./normalized \
-    ::: ${@}
-cd normalized
+mkdir original
+mv *.* original/
+
+cd original
+/bin/ls | \
+    parallel -j 6 magick mogrify \
+        -define webp:lossless=true \
+        -format webp \
+        -distort Resize "2560x1440^" \
+        -alpha off \
+        -path ../normalized
+
+cd ../normalized
+
 img-cmp rename *
 cd ..
