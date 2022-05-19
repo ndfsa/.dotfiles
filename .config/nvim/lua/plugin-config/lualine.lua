@@ -50,7 +50,7 @@ local lir_ext = {
 }
 require('lualine').setup({
     options = {
-        theme = 'onedarkpro',
+        theme = 'kanagawa',
         section_separators = ' ',
         component_separators = ' ',
         globalstatus = true,
