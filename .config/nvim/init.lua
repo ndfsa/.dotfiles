@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     group = AUG,
     callback = function()
         vim.highlight.on_yank({
-            higroup = 'HighlightedYankRegion',
+            higroup = 'Visual',
             timeout = 300,
         })
     end,

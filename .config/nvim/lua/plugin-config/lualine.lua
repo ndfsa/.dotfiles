@@ -50,7 +50,7 @@ local lir_ext = {
 }
 require('lualine').setup({
     options = {
-        theme = 'kanagawa',
+        theme = 'gruvbox',
         section_separators = ' ',
         component_separators = ' ',
         globalstatus = true,

@@ -15,9 +15,9 @@ end
 return require('packer').startup(function(use)
     use('wbthomason/packer.nvim')
     use({
-        'rebelot/kanagawa.nvim',
+        'ellisonleao/gruvbox.nvim',
         config = function()
-            require('plugin-config.kanagawa')
+            vim.cmd('colorscheme gruvbox')
         end,
     })
     use({
