@@ -12,8 +12,12 @@ alias lsl='ls -l --group'
 alias lal='la -l --group'
 alias ip='ip --color=auto'
 alias rm='trash'
-alias cdi=__zoxide_zi
-alias cd=__zoxide_z
+function cdi() {
+    __zoxide_zi "$@"
+}
+function cd(){
+    __zoxide_z "$@"
+}
 alias conf='__scoped_edit $HOME/.dotfiles/'
 alias note='__scoped_edit $HOME/Documents/notes/'
 alias wp-pull='rclone sync gdrive_crypt:Pictures/Wallpapers $HOME/Pictures/Wallpapers -P'

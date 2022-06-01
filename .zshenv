@@ -9,3 +9,4 @@ export PATH=$HOME/.local/bin:$HOME/bin:$HOME/.cargo/bin:$PATH
 export SXHKD_SHELL=dash
 export JDTLS_HOME=/usr/share/java/jdtls
 export FZF_DEFAULT_OPTS='--color=16'
+export DIFFPROG='nvim -d'
