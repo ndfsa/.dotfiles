@@ -1,4 +1,4 @@
-autoload -U compinit && compinit
+autoload -zU compinit && compinit
 
 zstyle ':completion:*' menu select=1
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'

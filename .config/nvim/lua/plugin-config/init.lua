@@ -21,6 +21,12 @@ return require('packer').startup(function(use)
         end,
     })
     use({
+        'mtth/scratch.vim',
+        config = function()
+            vim.keymap.set('n', '<leader>os', '<cmd>Scratch<cr>', { silent = true })
+        end,
+    })
+    use({
         'TimUntersberger/neogit',
         config = function()
             require('plugin-config.neogit')
