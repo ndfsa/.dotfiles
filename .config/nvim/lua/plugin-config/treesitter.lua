@@ -18,6 +18,7 @@ require('nvim-treesitter.configs').setup({
         'query',
         'regex',
         'rust',
+        'scala',
         'toml',
         'tsx',
         'typescript',

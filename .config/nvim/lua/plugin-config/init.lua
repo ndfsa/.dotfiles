@@ -111,6 +111,7 @@ return require('packer').startup(function(use)
                 'nvim-telescope/telescope-fzf-native.nvim',
                 run = 'make',
             },
+            'nvim-telescope/telescope-dap.nvim',
         },
         config = function()
             require('plugin-config.telescope')
@@ -151,6 +152,20 @@ return require('packer').startup(function(use)
         run = 'make hexokinase',
         setup = function()
             require('plugin-config.hexokinase')
+        end,
+    })
+    use({
+        'rcarriga/nvim-dap-ui',
+        requires = {
+            {
+                'mfussenegger/nvim-dap',
+                config = function()
+                    require('plugin-config.nvim-dap')
+                end,
+            },
+        },
+        config = function()
+            require('dapui').setup()
         end,
     })
     use('tweekmonster/startuptime.vim')

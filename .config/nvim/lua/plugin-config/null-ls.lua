@@ -7,6 +7,7 @@ null.setup({
         null.builtins.formatting.rustfmt,
         null.builtins.formatting.prettier,
         null.builtins.formatting.zigfmt,
+        null.builtins.formatting.scalafmt,
         null.builtins.hover.dictionary,
     },
     on_attach = function()

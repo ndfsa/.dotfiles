@@ -30,6 +30,7 @@ local servers = {
     'hls',
     'jdtls',
     'jsonls',
+    'metals',
     'pyright',
     'rust_analyzer',
     'tsserver',
