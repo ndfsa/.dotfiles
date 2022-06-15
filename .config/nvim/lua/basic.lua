@@ -33,6 +33,7 @@ vim.opt.listchars = {
     nbsp = '␣',
     eol = '↲',
 }
+-- vim.opt.cmdheight = 0
 vim.opt.background = 'dark'
 
 vim.g.loaded_gzip = 1
