@@ -5,7 +5,7 @@ else
     echo "WARNING Keybindings may not be set correctly!"
     echo "Execute \`zkbd\` to create bindings."
 fi
-bindkey -v
+bindkey -e
 
 ## History search
 autoload -U up-line-or-beginning-search

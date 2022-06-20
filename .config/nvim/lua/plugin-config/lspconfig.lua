@@ -32,7 +32,6 @@ local servers = {
     'jsonls',
     'metals',
     'pyright',
-    'rust_analyzer',
     'tsserver',
     'volar',
     'zls',
@@ -76,4 +75,16 @@ nvim_lsp.sumneko_lua.setup({
             },
         },
     },
+})
+
+nvim_lsp.rust_analyzer.setup({
+    on_attach = function(_, buff_num)
+        on_attach(_, buff_num)
+        vim.keymap.set('n', '<leader>fp', function()
+            vim.lsp.buf.format({
+                name = 'rust_analyzer',
+            })
+        end, { silent = true, buffer = buff_num })
+    end,
+    capabilities = capabilities,
 })

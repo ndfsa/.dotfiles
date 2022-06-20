@@ -223,6 +223,19 @@ return require('packer').startup(function(use)
         'mattn/emmet-vim',
         ft = { 'html', 'css', 'vue' },
     })
+    use({
+        'ThePrimeagen/harpoon',
+        config = function()
+            require('plugin-config.harpoon')
+        end,
+    })
+    use({
+        'akinsho/toggleterm.nvim',
+        config = function()
+            require('toggleterm').setup()
+            vim.keymap.set('n', '<c-\\>', '<cmd>ToggleTerm<cr>', { silent = true })
+        end,
+    })
     if packer_bootstrap then
         require('packer').sync()
     end

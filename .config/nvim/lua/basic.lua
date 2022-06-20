@@ -84,8 +84,8 @@ vim.keymap.set('i', '<A-k>', '<Esc>:m .-2<CR>==gi', opts)
 vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", opts)
 vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", opts)
 
-vim.keymap.set('n', '<leader>bn', '<cmd>bn<CR>', opts)
-vim.keymap.set('n', '<leader>bp', '<cmd>bp<CR>', opts)
+vim.keymap.set('n', ']b', '<cmd>bn<CR>', opts)
+vim.keymap.set('n', '[b', '<cmd>bp<CR>', opts)
 vim.keymap.set('n', '<leader>bd', '<cmd>bd<CR>', opts)
 
 vim.keymap.set('n', '<leader>sn', '<cmd>set relativenumber!<CR>', opts)

@@ -24,11 +24,6 @@ require('nvim-treesitter.configs').setup({
         'typescript',
         'vue',
     },
-    highlight = {
-        enable = true,
-        disable = { 'org' },
-        additional_vim_regex_highlighting = { 'org' },
-    },
     playground = {
         enable = true,
         disable = {},

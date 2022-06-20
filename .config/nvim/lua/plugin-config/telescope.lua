@@ -42,17 +42,18 @@ telescope.load_extension('project')
 telescope.load_extension('media_files')
 telescope.load_extension('file_browser')
 telescope.load_extension('env')
+telescope.load_extension('harpoon')
 
 local tl_ext = telescope.extensions
 local tl_builtin = require('telescope.builtin')
 local opts = { silent = true }
 
-vim.keymap.set('n', '<leader><space>', tl_builtin.buffers, opts)
+vim.keymap.set('n', '<leader><space>', tl_builtin.find_files, opts)
 vim.keymap.set('n', '<leader>bz', tl_builtin.current_buffer_fuzzy_find, opts)
-vim.keymap.set('n', '<leader>ff', tl_builtin.find_files, opts)
 vim.keymap.set('n', '<leader>fg', tl_builtin.live_grep, opts)
 vim.keymap.set('n', '<leader>fr', tl_builtin.registers, opts)
 vim.keymap.set('n', '<leader>of', tl_ext.file_browser.file_browser, opts)
+vim.keymap.set('n', '<leader>ob', tl_builtin.buffers, opts)
 vim.keymap.set('n', '<leader>op', function()
     tl_ext.project.project({})
 end, opts)

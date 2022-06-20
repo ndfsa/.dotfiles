@@ -26,3 +26,7 @@ require('neogit').setup({
         },
     },
 })
+
+local opts = { silent = true }
+vim.keymap.set('n', '<leader>gs', '<cmd>Neogit<CR>', opts)
+vim.keymap.set('n', '<leader>gl', '<cmd>Neogit log<CR>', opts)
