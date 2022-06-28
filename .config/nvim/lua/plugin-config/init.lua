@@ -21,12 +21,6 @@ return require('packer').startup(function(use)
         end,
     })
     use({
-        'mtth/scratch.vim',
-        config = function()
-            vim.keymap.set('n', '<leader>os', '<cmd>Scratch<cr>', { silent = true })
-        end,
-    })
-    use({
         'TimUntersberger/neogit',
         config = function()
             require('plugin-config.neogit')
@@ -230,10 +224,9 @@ return require('packer').startup(function(use)
         end,
     })
     use({
-        'akinsho/toggleterm.nvim',
+        'https://gitlab.com/yorickpeterse/nvim-pqf.git',
         config = function()
-            require('toggleterm').setup()
-            vim.keymap.set('n', '<c-\\>', '<cmd>ToggleTerm<cr>', { silent = true })
+            require('pqf').setup()
         end,
     })
     if packer_bootstrap then

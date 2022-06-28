@@ -1,12 +1,10 @@
-local opts = { silent = true }
-
-vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist, opts)
-vim.keymap.set('n', '<leader>le', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-
 local on_attach = function(_, buff_num)
     local buff_opts = { silent = true, buffer = buff_num }
+
+    vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist, buff_opts)
+    vim.keymap.set('n', '<leader>le', vim.diagnostic.open_float, buff_opts)
+    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, buff_opts)
+    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, buff_opts)
 
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, buff_opts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, buff_opts)
@@ -25,7 +23,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
-    lineFoldingOnly = true
+    lineFoldingOnly = true,
 }
 
 local servers = {
@@ -36,6 +34,8 @@ local servers = {
     'jsonls',
     'metals',
     'pyright',
+    'svelte',
+    'tailwindcss',
     'tsserver',
     'volar',
     'zls',

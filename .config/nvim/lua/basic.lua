@@ -1,4 +1,3 @@
-vim.opt.title = true
 vim.opt.wrap = false
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -36,6 +35,7 @@ vim.opt.listchars = {
 -- vim.opt.cmdheight = 0
 vim.opt.background = 'dark'
 
+vim.opt.winbar = '%=%n:%t%4m%5r%4w%='
 vim.g.loaded_gzip = 1
 vim.g.loaded_zip = 1
 vim.g.loaded_zipPlugin = 1

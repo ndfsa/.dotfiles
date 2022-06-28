@@ -11,9 +11,6 @@ source ~/.config/zsh/history.zsh
 source ~/.config/zsh/completion.zsh
 fpath=(/usr/share/zsh/site-functions $fpath)
 
-### Window title
-source ~/.config/zsh/title.zsh
-
 ### Alias
 source ~/.config/zsh/alias.zsh
 

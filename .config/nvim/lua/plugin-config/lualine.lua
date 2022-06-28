@@ -3,11 +3,6 @@ local hexvalue = {
         return '0x%02B'
     end,
 }
-local bufinfo = {
-    function()
-        return '%n:%t%4m%5r%4w'
-    end,
-}
 local diag = {
     'diagnostics',
     sources = { 'nvim_diagnostic' },
@@ -63,7 +58,6 @@ require('lualine').setup({
             'filesize',
         },
         lualine_c = {
-            bufinfo,
             'branch',
             'progress',
             diag,
