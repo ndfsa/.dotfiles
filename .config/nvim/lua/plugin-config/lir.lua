@@ -14,7 +14,7 @@ require('lir').setup({
         ['<bs>'] = actions.up,
         ['h'] = actions.up,
         ['A'] = actions.mkdir,
-        ['a'] = actions.newfile,
+        ['a'] = actions.touch,
         ['y'] = clipboard_actions.copy,
         ['d'] = clipboard_actions.cut,
         ['p'] = clipboard_actions.paste,
@@ -23,7 +23,7 @@ require('lir').setup({
         ['.'] = actions.toggle_show_hidden,
         ['x'] = actions.delete,
         ['J'] = function()
-            mark_actions.toggle_mark()
+            mark_actions.toggle_mark(nil)
             vim.cmd('normal! j')
         end,
         ['Y'] = actions.yank_path,

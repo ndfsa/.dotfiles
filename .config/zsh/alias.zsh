@@ -19,7 +19,6 @@ function cd(){
     __zoxide_z "$@"
 }
 alias conf='__scoped_edit $HOME/.dotfiles/'
-alias note='__scoped_edit $HOME/Documents/notes/'
 alias wp-pull='rclone sync gdrive_crypt:Pictures/Wallpapers $HOME/Pictures/Wallpapers -P'
 alias wp-push='rclone sync $HOME/Pictures/Wallpapers gdrive_crypt:Pictures/Wallpapers -P'
 alias book-pull='rclone sync gdrive_crypt:Documents/Books $HOME/Documents/Books -P'

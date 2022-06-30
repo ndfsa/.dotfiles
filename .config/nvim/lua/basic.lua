@@ -1,6 +1,6 @@
-vim.opt.wrap = false
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.smartindent= true
 vim.opt.incsearch = true
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -94,7 +94,7 @@ vim.keymap.set('n', '<leader>ss', '<cmd>set spell!<CR>', opts)
 vim.keymap.set('n', '<leader>sh', '<cmd>set list!<CR>', opts)
 vim.keymap.set('n', '<leader>sb', '<cmd>set linebreak!<CR>', opts)
 
-vim.keymap.set('n', '<leader>fs', '<cmd>write<CR>', opts)
+vim.keymap.set('n', '<leader>fs', '<cmd>update<CR>', opts)
 vim.keymap.set('n', '<leader>fy', '<cmd>let @+=expand("%:p")<CR>', opts)
 
 vim.keymap.set('n', '<leader>oe', '<cmd>edit %:p:h<CR>', opts)

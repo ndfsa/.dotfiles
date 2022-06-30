@@ -1,10 +1,9 @@
+vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist)
+vim.keymap.set('n', '<leader>le', vim.diagnostic.open_float)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 local on_attach = function(_, buff_num)
     local buff_opts = { silent = true, buffer = buff_num }
-
-    vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist, buff_opts)
-    vim.keymap.set('n', '<leader>le', vim.diagnostic.open_float, buff_opts)
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, buff_opts)
-    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, buff_opts)
 
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, buff_opts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, buff_opts)
