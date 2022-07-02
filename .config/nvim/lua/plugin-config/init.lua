@@ -20,12 +20,6 @@ return require('packer').startup(function(use)
             require('plugin-config.kanagawa')
         end,
     })
-    use({
-        'TimUntersberger/neogit',
-        config = function()
-            require('plugin-config.neogit')
-        end,
-    })
     use('kyazdani42/nvim-web-devicons')
     use({
         'numToStr/Comment.nvim',
@@ -112,10 +106,6 @@ return require('packer').startup(function(use)
         end,
     })
     use({
-        'sindrets/diffview.nvim',
-        requires = 'nvim-lua/plenary.nvim',
-    })
-    use({
         'lewis6991/gitsigns.nvim',
         requires = { 'nvim-lua/plenary.nvim' },
         config = function()
@@ -173,12 +163,6 @@ return require('packer').startup(function(use)
         'monkoose/matchparen.nvim',
         config = function()
             require('matchparen').setup({})
-        end,
-    })
-    use({
-        'mickael-menu/zk-nvim',
-        config = function()
-            require('plugin-config.zk')
         end,
     })
     use({

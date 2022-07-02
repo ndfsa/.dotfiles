@@ -6,7 +6,7 @@ mv *.* original/
 
 cd original
 /bin/ls | \
-    parallel -j 6 magick mogrify \
+    parallel -j 8 magick mogrify \
         -define webp:lossless=true \
         -format webp \
         -distort Resize "2560x1440^" \
