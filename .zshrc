@@ -4,9 +4,6 @@
 ### Misc Options
 source ~/.config/zsh/opts.zsh
 
-### Enable history and history cache, move to cache file in home
-source ~/.config/zsh/history.zsh
-
 ### Completion
 source ~/.config/zsh/completion.zsh
 fpath=(/usr/share/zsh/site-functions $fpath)

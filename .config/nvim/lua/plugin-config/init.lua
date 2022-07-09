@@ -60,12 +60,6 @@ return require('packer').startup(function(use)
         end,
     })
     use({
-        'lewis6991/spellsitter.nvim',
-        config = function()
-            require('spellsitter').setup()
-        end,
-    })
-    use({
         'L3MON4D3/LuaSnip',
         requires = 'rafamadriz/friendly-snippets',
         config = function()

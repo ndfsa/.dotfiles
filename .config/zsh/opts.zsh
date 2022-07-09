@@ -1,1 +1,10 @@
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.cache/zsh/history
+HISTCONTROL=ignoreboth
 WORDCHARS='~!#$%^&*(){}[]<>?.+-'
+
+setopt HIST_IGNORE_DUPS
+setopt EXTENDED_GLOB
+setopt HIST_IGNORE_SPACE
+setopt AUTO_MENU
