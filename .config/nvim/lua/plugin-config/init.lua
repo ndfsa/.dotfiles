@@ -124,7 +124,12 @@ return require('packer').startup(function(use)
             require('plugin-config.vim-fugitive')
         end,
     })
-    use('machakann/vim-sandwich')
+    use({
+        'kylechui/nvim-surround',
+        config = function()
+            require('nvim-surround').setup({})
+        end,
+    })
     use({
         'RRethy/vim-hexokinase',
         run = 'make hexokinase',
