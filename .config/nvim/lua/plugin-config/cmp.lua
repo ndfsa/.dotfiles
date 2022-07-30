@@ -1,6 +1,9 @@
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 local lspkind = require('lspkind')
+if not cmp then
+    return
+end
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -10,8 +13,8 @@ cmp.setup({
     mapping = cmp.mapping.preset.insert({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(nil),
-        ['<CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
         ['<C-e>'] = cmp.mapping.abort(),
         ['<tab>'] = cmp.config.disable,
     }),
@@ -24,9 +27,14 @@ cmp.setup({
     }),
     formatting = {
         format = lspkind.cmp_format({
-            with_text = true,
             maxwidth = 50,
             mode = 'symbol_text',
+            menu = {
+                buffer = '[Buffer]',
+                path = '[Path]',
+                nvim_lsp = '[LSP]',
+                luasnip = '[LuaSnip]',
+            },
         }),
     },
 })

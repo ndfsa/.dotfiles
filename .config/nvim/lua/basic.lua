@@ -24,6 +24,7 @@ vim.opt.mouse = 'a'
 vim.opt.pumheight = 30
 vim.opt.fillchars:append({ fold = ' ', eob = ' ' })
 vim.opt.conceallevel = 2
+vim.opt.termguicolors = true
 vim.opt.listchars = {
     tab = '»-',
     extends = '⟩',
@@ -35,7 +36,6 @@ vim.opt.listchars = {
 -- vim.opt.cmdheight = 0
 vim.opt.background = 'dark'
 
-vim.opt.winbar = '%=%n:%t%4m%5r%4w%='
 vim.g.loaded_gzip = 1
 vim.g.loaded_zip = 1
 vim.g.loaded_zipPlugin = 1

@@ -1,5 +1,4 @@
-format = """([┌────▶ ](bold green)$go$haskell$java$nodejs$python$rust\
-$swift$zig\n[└─](bold green)) $directory$git_branch$character"""
+format = " $directory$git_branch($python)$character"
 add_newline = false
 
 [directory]

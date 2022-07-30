@@ -5,6 +5,7 @@ telescope.setup({
         layout_config = {
             prompt_position = 'top',
         },
+        preview = false,
         file_ignore_patterns = { '.git/', 'node_modules/' },
     },
     extensions = {

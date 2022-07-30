@@ -18,8 +18,8 @@ local on_attach = function(_, buff_num)
     vim.keymap.set('v', '<leader>lc', vim.lsp.buf.range_code_action, buff_opts)
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+local capabilities =
+    require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
     lineFoldingOnly = true,
@@ -28,13 +28,13 @@ capabilities.textDocument.foldingRange = {
 local servers = {
     'clangd',
     'cmake',
+    'html',
     'hls',
     'jdtls',
     'jsonls',
     'metals',
     'pyright',
     'svelte',
-    'tailwindcss',
     'tsserver',
     'volar',
     'zls',

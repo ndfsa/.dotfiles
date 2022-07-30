@@ -1,3 +1,9 @@
+local filename = {
+    function()
+        return '%=%n:%t%4m%5r%4w%='
+    end,
+}
+vim.opt.winbar = filename[1]()
 local hexvalue = {
     function()
         return '0x%02B'
@@ -17,30 +23,14 @@ local fileformat = {
     icons_enabled = false,
     fmt = string.upper,
 }
-
-local lsp_name = {
-    function()
-        local msg = ''
-        local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-        local clients = vim.lsp.get_active_clients()
-        if next(clients) == nil then
-            return msg
-        end
-        for _, client in ipairs(clients) do
-            local filetypes = client.config.filetypes
-            if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-                return client.name
-            end
-        end
-        return msg
-    end,
-}
 local lir_ext = {
-    sections = { lualine_a = {
-        function()
-            return vim.fn.expand('%:~')
-        end,
-    } },
+    sections = {
+        lualine_c = {
+            function()
+                return vim.fn.expand('%:~')
+            end,
+        },
+    },
     filetypes = { 'lir' },
 }
 require('lualine').setup({
@@ -65,15 +55,17 @@ require('lualine').setup({
         lualine_x = {
             hexvalue,
             'location',
-            lsp_name,
+            encoding,
         },
         lualine_y = {
             'filetype',
-            fileformat,
         },
         lualine_z = {
-            encoding,
+            fileformat,
         },
     },
+    -- winbar = {
+    --     lualine_b = { filename },
+    -- },
     extensions = { lir_ext, 'quickfix', 'fugitive', 'nvim-tree' },
 })
