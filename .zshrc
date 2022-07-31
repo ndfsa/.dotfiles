@@ -18,7 +18,7 @@ source ~/.config/zsh/functions.zsh
 source ~/.config/zsh/keymap.zsh
 
 ### Programs
-eval "$(zoxide init zsh)"
+eval "$(zoxide init --no-aliases zsh)"
 
 if [ $TERM != "linux" ]; then
     eval "$(starship init zsh)"
