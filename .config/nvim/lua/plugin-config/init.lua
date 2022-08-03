@@ -206,6 +206,12 @@ return require('packer').startup(function(use)
         end,
     })
     use({
+        'ThePrimeagen/git-worktree.nvim',
+        config = function()
+            require('git-worktree').setup({})
+        end,
+    })
+    use({
         'https://gitlab.com/yorickpeterse/nvim-pqf.git',
         config = function()
             require('pqf').setup()

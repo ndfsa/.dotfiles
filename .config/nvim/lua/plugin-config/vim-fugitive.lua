@@ -1,4 +1,4 @@
-vim.keymap.set('n', '<leader>gw', '<cmd>vertical G blame<CR>', { silent = true })
+vim.keymap.set('n', '<leader>gB', '<cmd>vertical G blame<CR>', { silent = true })
 
 local opts = { silent = true }
 vim.keymap.set('n', '<leader>gs', '<cmd>G<CR>', opts)

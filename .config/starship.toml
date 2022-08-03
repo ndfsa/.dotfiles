@@ -1,5 +1,8 @@
-format = " $directory$git_branch($python)$character"
+format = " $directory$git_branch$python$character"
 add_newline = false
 
 [directory]
 style = "purple"
+
+[python]
+format = '[(\($virtualenv\) )]($style)'
