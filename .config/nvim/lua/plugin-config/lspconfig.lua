@@ -36,7 +36,6 @@ local servers = {
     'pyright',
     'svelte',
     'tsserver',
-    'volar',
     'zls',
 }
 
