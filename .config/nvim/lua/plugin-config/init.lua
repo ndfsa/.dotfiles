@@ -130,10 +130,9 @@ return require('packer').startup(function(use)
         end,
     })
     use({
-        'RRethy/vim-hexokinase',
-        run = 'make hexokinase',
-        setup = function()
-            require('plugin-config.hexokinase')
+        'NvChad/nvim-colorizer.lua',
+        config = function()
+            require('plugin-config.nvim-colorizer')
         end,
     })
     use({
@@ -151,12 +150,6 @@ return require('packer').startup(function(use)
         end,
     })
     use('tweekmonster/startuptime.vim')
-    use({
-        'kyazdani42/nvim-tree.lua',
-        config = function()
-            require('plugin-config.nvim-tree')
-        end,
-    })
     use({
         'monkoose/matchparen.nvim',
         config = function()
@@ -197,7 +190,7 @@ return require('packer').startup(function(use)
     })
     use({
         'mattn/emmet-vim',
-        ft = { 'html', 'css', 'vue' },
+        ft = { 'html', 'css', 'typescriptreact', 'javascriptreact' },
     })
     use({
         'ThePrimeagen/harpoon',

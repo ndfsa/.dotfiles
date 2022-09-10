@@ -1,9 +1,8 @@
 local filename = {
     function()
-        return '(%n) %t%4m%5r%4w'
+        return '%t%4m%5r%4w'
     end,
 }
-vim.opt.winbar = filename[1]()
 local hexvalue = {
     function()
         return '0x%02B'
@@ -51,10 +50,10 @@ require('lualine').setup({
             'branch',
             'progress',
             diag,
+            filename,
         },
         lualine_x = {
             hexvalue,
-            'location',
             encoding,
         },
         lualine_y = {

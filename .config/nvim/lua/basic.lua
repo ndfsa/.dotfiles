@@ -1,6 +1,6 @@
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.smartindent= true
+vim.opt.smartindent = true
 vim.opt.incsearch = true
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -16,7 +16,7 @@ vim.opt.scrolloff = 5
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 vim.opt.shortmess:append({ c = true })
 vim.opt.updatetime = 500
-vim.opt.guifont = 'JetBrains Mono:h14'
+vim.opt.guifont = 'JetBrains Mono:h15'
 vim.opt.fileformats = { 'unix', 'dos', 'mac' }
 vim.opt.showmode = false
 vim.opt.autowrite = true
@@ -36,23 +36,50 @@ vim.opt.listchars = {
 -- vim.opt.cmdheight = 0
 vim.opt.background = 'dark'
 
-vim.g.loaded_gzip = 1
-vim.g.loaded_zip = 1
-vim.g.loaded_zipPlugin = 1
-vim.g.loaded_tar = 1
-vim.g.loaded_tarPlugin = 1
-vim.g.loaded_getscript = 1
-vim.g.loaded_getscriptPlugin = 1
-vim.g.loaded_vimball = 1
-vim.g.loaded_vimballPlugin = 1
-vim.g.loaded_2html_plugin = 1
-vim.g.loaded_matchit = 1
-vim.g.loaded_matchparen = 1
-vim.g.loaded_logiPat = 1
-vim.g.loaded_rrhelper = 1
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-vim.g.loaded_netrwSettings = 1
+local default_plugins = {
+    '2html_plugin',
+    'bugreport',
+    'compiler',
+    'ftplugin',
+    'getscript',
+    'getscriptPlugin',
+    'gzip',
+    'logipat',
+    'matchit',
+    'matchparen',
+    'netrw',
+    'netrwFileHandlers',
+    'netrwPlugin',
+    'netrwSettings',
+    'optwin',
+    'rplugin',
+    'rrhelper',
+    'spellfile_plugin',
+    'synmenu',
+    'syntax',
+    'tar',
+    'tarPlugin',
+    'tutor',
+    'vimball',
+    'vimballPlugin',
+    'zip',
+    'zipPlugin',
+}
+
+for _, plugin in pairs(default_plugins) do
+    vim.g['loaded_' .. plugin] = 1
+end
+
+local default_providers = {
+    'node',
+    'perl',
+    'python3',
+    'ruby',
+}
+
+for _, provider in ipairs(default_providers) do
+    vim.g['loaded_' .. provider .. '_provider'] = 0
+end
 
 vim.g.mapleader = ' '
 
