@@ -25,6 +25,7 @@ vim.opt.pumheight = 30
 vim.opt.fillchars:append({ fold = ' ', eob = ' ' })
 vim.opt.conceallevel = 2
 vim.opt.termguicolors = true
+vim.opt.syntax = 'off'
 vim.opt.listchars = {
     tab = '»-',
     extends = '⟩',
@@ -35,6 +36,7 @@ vim.opt.listchars = {
 }
 -- vim.opt.cmdheight = 0
 vim.opt.background = 'dark'
+vim.opt.spelloptions = 'noplainbuffer,camel'
 
 local default_plugins = {
     '2html_plugin',

@@ -87,6 +87,7 @@ return require('packer').startup(function(use)
             'nvim-telescope/telescope-file-browser.nvim',
             'nvim-telescope/telescope-project.nvim',
             'nvim-telescope/telescope-media-files.nvim',
+            'nvim-telescope/telescope-symbols.nvim',
             'LinArcX/telescope-env.nvim',
             {
                 'nvim-telescope/telescope-fzf-native.nvim',
@@ -209,6 +210,10 @@ return require('packer').startup(function(use)
         config = function()
             require('pqf').setup()
         end,
+    })
+    use({
+        'sindrets/diffview.nvim',
+        requires = 'nvim-lua/plenary.nvim'
     })
     if packer_bootstrap then
         require('packer').sync()
