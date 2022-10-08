@@ -10,12 +10,10 @@ local on_attach = function(_, buff_num)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, buff_opts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, buff_opts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, buff_opts)
-    vim.keymap.set('v', 'K', vim.lsp.buf.hover, buff_opts)
     vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, buff_opts)
     vim.keymap.set('n', '<leader>lt', vim.lsp.buf.type_definition, buff_opts)
     vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, buff_opts)
     vim.keymap.set('n', '<leader>lc', vim.lsp.buf.code_action, buff_opts)
-    vim.keymap.set('v', '<leader>lc', vim.lsp.buf.range_code_action, buff_opts)
 end
 
 local capabilities =
