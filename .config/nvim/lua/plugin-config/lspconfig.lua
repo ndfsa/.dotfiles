@@ -16,8 +16,7 @@ local on_attach = function(_, buff_num)
     vim.keymap.set('n', '<leader>lc', vim.lsp.buf.code_action, buff_opts)
 end
 
-local capabilities =
-    require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
     lineFoldingOnly = true,

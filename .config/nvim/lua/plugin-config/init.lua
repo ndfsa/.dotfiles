@@ -176,7 +176,6 @@ return require('packer').startup(function(use)
             require('plugin-config.rest')
         end,
     })
-    use('kdheepak/lazygit.nvim')
     use({
         'mbbill/undotree',
         setup = function()
@@ -213,7 +212,7 @@ return require('packer').startup(function(use)
     })
     use({
         'sindrets/diffview.nvim',
-        requires = 'nvim-lua/plenary.nvim'
+        requires = 'nvim-lua/plenary.nvim',
     })
     if packer_bootstrap then
         require('packer').sync()

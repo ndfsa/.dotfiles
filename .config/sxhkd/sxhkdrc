@@ -1,6 +1,6 @@
 # terminal emulator
 super + Return
-    wezterm
+    gnome-terminal
 
 # program launcher
 super + @space
