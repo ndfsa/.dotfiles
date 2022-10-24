@@ -189,10 +189,6 @@ return require('packer').startup(function(use)
         end,
     })
     use({
-        'mattn/emmet-vim',
-        ft = { 'html', 'css', 'typescriptreact', 'javascriptreact' },
-    })
-    use({
         'ThePrimeagen/harpoon',
         config = function()
             require('plugin-config.harpoon')
