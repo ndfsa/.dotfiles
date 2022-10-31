@@ -14,6 +14,7 @@ setopt HIST_IGNORE_SPACE
 setopt AUTO_MENU
 
 ### Completion
+fpath=(/usr/share/zsh/site-functions $fpath)
 autoload -zU compinit && compinit
 
 zstyle ':completion:*' menu select=1
@@ -26,7 +27,6 @@ zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*' force-list always
 
 setopt menu_complete
-fpath=(/usr/share/zsh/site-functions $fpath)
 
 ### Alias
 function __scoped_edit(){
