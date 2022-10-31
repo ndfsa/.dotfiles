@@ -1,3 +1,9 @@
+# XDG spec
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="$HOME/.cache"
+
 export EDITOR=nvim
 export VISUAL=nvim
 export BAT_THEME='base16'
@@ -10,16 +16,13 @@ export JDTLS_HOME=/usr/share/java/jdtls
 export FZF_DEFAULT_OPTS='--color=16'
 export DIFFPROG='nvim -d'
 
-# XDG spec
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_STATE_HOME="$HOME/.local/state"
-export XDG_CACHE_HOME="$HOME/.cache"
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 export npm_config_prefix="$HOME/.local"
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 
 CUSTOM_PATHS=(
-    $HOME/.local/share/coursier/bin
-    $HOME/.cargo/bin
+    $CARGO_HOME/bin
     $HOME/.local/bin
     $HOME/bin
 )

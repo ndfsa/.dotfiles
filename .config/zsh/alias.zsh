@@ -18,6 +18,10 @@ function ci() {
 function cd(){
     __zoxide_z "$@"
 }
+function mkcd(){
+    __DIR_NAME=$1
+    mkdir $1 && cd $1
+}
 alias conf='__scoped_edit $HOME/.dotfiles/'
 alias wp-pull='rclone sync gdrive_crypt:Pictures/Wallpapers $HOME/Pictures/Wallpapers -P'
 alias wp-push='rclone sync $HOME/Pictures/Wallpapers gdrive_crypt:Pictures/Wallpapers -P'
