@@ -2,10 +2,12 @@ local telescope = require('telescope')
 telescope.setup({
     defaults = {
         sorting_strategy = 'ascending',
+        layout_strategy = 'vertical',
         layout_config = {
             prompt_position = 'top',
+            mirror = true,
         },
-        preview = false,
+        preview = true,
         file_ignore_patterns = { '.git/', 'node_modules/' },
     },
     extensions = {
@@ -44,14 +46,13 @@ telescope.load_extension('media_files')
 telescope.load_extension('file_browser')
 telescope.load_extension('env')
 telescope.load_extension('harpoon')
-telescope.load_extension('git_worktree')
 
 local tl_ext = telescope.extensions
 local tl_builtin = require('telescope.builtin')
 local opts = { silent = true }
 
 vim.keymap.set('n', '<leader><space>', tl_builtin.find_files, opts)
-vim.keymap.set('n', '<leader>oh', require("harpoon.ui").toggle_quick_menu, opts)
+vim.keymap.set('n', '<leader>oh', require('harpoon.ui').toggle_quick_menu, opts)
 
 vim.keymap.set('n', '<leader>bz', tl_builtin.current_buffer_fuzzy_find, opts)
 vim.keymap.set('n', '<leader>fg', tl_builtin.live_grep, opts)
@@ -63,8 +64,6 @@ vim.keymap.set('n', '<leader>op', function()
 end, opts)
 vim.keymap.set('n', '<leader>om', tl_ext.media_files.media_files, opts)
 vim.keymap.set('n', '<leader>oE', tl_ext.env.env, opts)
-vim.keymap.set('n', '<leader>gw', tl_ext.git_worktree.git_worktrees, opts)
-vim.keymap.set('n', '<leader>gW', tl_ext.git_worktree.create_git_worktree, opts)
 
 vim.keymap.set('n', '<leader>gb', tl_builtin.git_branches, opts)
 vim.keymap.set('n', '<leader>gh', tl_builtin.git_bcommits, opts)

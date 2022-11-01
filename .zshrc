@@ -15,7 +15,8 @@ setopt AUTO_MENU
 
 ### Completion
 fpath=(/usr/share/zsh/site-functions $fpath)
-autoload -zU compinit && compinit
+autoload -zU compinit
+compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 
 zstyle ':completion:*' menu select=1
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
