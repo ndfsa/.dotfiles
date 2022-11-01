@@ -15,6 +15,7 @@ export SXHKD_SHELL=dash
 export JDTLS_HOME=/usr/share/java/jdtls
 export FZF_DEFAULT_OPTS='--color=16'
 export DIFFPROG='nvim -d'
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
