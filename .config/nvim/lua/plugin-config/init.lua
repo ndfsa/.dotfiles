@@ -194,10 +194,6 @@ return require('packer').startup(function(use)
             require('pqf').setup()
         end,
     })
-    use({
-        'sindrets/diffview.nvim',
-        requires = 'nvim-lua/plenary.nvim',
-    })
     if packer_bootstrap then
         require('packer').sync()
     end
