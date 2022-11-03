@@ -124,3 +124,10 @@ vim.keymap.set('n', '<leader>fs', '<cmd>update<CR>', opts)
 vim.keymap.set('n', '<leader>fy', '<cmd>let @+=expand("%:p")<CR>', opts)
 
 vim.keymap.set('n', '<leader>oe', '<cmd>edit %:p:h<CR>', opts)
+
+if (vim.opt.diff:get()) then
+    vim.opt.winbar = '%=%f%='
+    vim.keymap.set('n', '<leader>1', '<cmd>diffget LO<CR>', opts)
+    vim.keymap.set('n', '<leader>2', '<cmd>diffget BA<CR>', opts)
+    vim.keymap.set('n', '<leader>3', '<cmd>diffget RE<CR>', opts)
+end
