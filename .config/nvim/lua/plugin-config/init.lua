@@ -119,12 +119,6 @@ return require('packer').startup(function(use)
         end,
     })
     use({
-        'tpope/vim-fugitive',
-        setup = function()
-            require('plugin-config.vim-fugitive')
-        end,
-    })
-    use({
         'kylechui/nvim-surround',
         config = function()
             require('nvim-surround').setup({})
