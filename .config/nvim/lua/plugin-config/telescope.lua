@@ -64,7 +64,3 @@ vim.keymap.set('n', '<leader>op', function()
 end, opts)
 vim.keymap.set('n', '<leader>om', tl_ext.media_files.media_files, opts)
 vim.keymap.set('n', '<leader>oE', tl_ext.env.env, opts)
-
-vim.keymap.set('n', '<leader>gb', tl_builtin.git_branches, opts)
-vim.keymap.set('n', '<leader>gc', tl_builtin.git_bcommits, opts)
-vim.keymap.set('n', '<leader>gC', tl_builtin.git_commits, opts)

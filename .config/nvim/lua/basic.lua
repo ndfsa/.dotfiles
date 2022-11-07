@@ -92,8 +92,9 @@ vim.g.mapleader = ' '
 local opts = function(desc)
     if desc then
         return { silent = true, desc = desc }
+    else
+        return { silent = true }
     end
-    return { silent = true }
 end
 
 vim.keymap.set('n', 'n', 'nzzzv', opts())
@@ -119,8 +120,12 @@ vim.keymap.set('i', '<A-k>', '<Esc>:m .-2<CR>==gi', opts())
 vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", opts())
 vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", opts())
 
-vim.keymap.set('n', ']b', '<cmd>bn<CR>', opts("Buffer next"))
-vim.keymap.set('n', '[b', '<cmd>bp<CR>', opts("Buffer previous"))
+vim.keymap.set('n', ']b', '<cmd>bn<CR>', opts('Buffer next'))
+vim.keymap.set('n', '[b', '<cmd>bp<CR>', opts('Buffer previous'))
+vim.keymap.set('n', ']q', '<cmd>cn<CR>', opts('Quickfix list next item'))
+vim.keymap.set('n', '[q', '<cmd>cp<CR>', opts('Quickfix list previous item'))
+vim.keymap.set('n', ']Q', '<cmd>clast<CR>', opts('Quickfix list last item'))
+vim.keymap.set('n', '[Q', '<cmd>cfirst<CR>', opts('Quickfix list first item'))
 
 vim.keymap.set('i', '<C-h>', '<C-w>', opts())
 vim.keymap.set('n', '<C-m>', 'i<cr><esc>', opts())

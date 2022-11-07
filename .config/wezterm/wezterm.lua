@@ -11,11 +11,13 @@ local function rule(intensity, weight, italic)
                 italic = italic,
                 weight = weight,
             },
+            harfbuzz_features = nil,
             'Symbols Nerd Font',
             'Symbola',
         }),
     }
 end
+--
 wezterm.on('toggle-ligature', function(window, _)
     local overrides = window:get_config_overrides() or {}
     if not overrides.harfbuzz_features then
@@ -34,7 +36,6 @@ return {
         rule('Normal', 'Regular', true),
         rule('Bold', 'ExtraBold', true),
     },
-    harfbuzz_features = nil,
     use_fancy_tab_bar = false,
     initial_rows = 38,
     initial_cols = 120,

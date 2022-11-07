@@ -118,6 +118,12 @@ return require('packer').startup(function(use)
         end,
     })
     use({
+        'tpope/vim-fugitive',
+        setup = function()
+            require('plugin-config.vim-fugitive')
+        end,
+    })
+    use({
         'kylechui/nvim-surround',
         config = function()
             require('nvim-surround').setup({})
@@ -173,12 +179,7 @@ return require('packer').startup(function(use)
             require('plugin-config.harpoon')
         end,
     })
-    use({
-        'https://gitlab.com/yorickpeterse/nvim-pqf.git',
-        config = function()
-            require('pqf').setup()
-        end,
-    })
+    use({ 'kevinhwang91/nvim-bqf', ft = 'qf' })
     if packer_bootstrap then
         require('packer').sync()
     end
