@@ -18,3 +18,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
         })
     end,
 })
+vim.api.nvim_create_autocmd('VimEnter', {
+    group = AUG,
+    callback = function()
+        vim.cmd('clearjumps')
+    end,
+})

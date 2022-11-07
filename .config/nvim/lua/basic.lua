@@ -34,9 +34,13 @@ vim.opt.listchars = {
     nbsp = '␣',
     eol = '↲',
 }
--- vim.opt.cmdheight = 0
+
 vim.opt.background = 'dark'
 vim.opt.spelloptions = 'noplainbuffer,camel'
+
+-- EXPERIMENTAL FEATURES
+-- vim.opt.cmdheight = 0
+-- vim.opt.diffopt = 'linematch:80'
 
 local default_plugins = {
     '2html_plugin',
@@ -85,49 +89,58 @@ end
 
 vim.g.mapleader = ' '
 
-local opts = { silent = true }
+local opts = function(desc)
+    if desc then
+        return { silent = true, desc = desc }
+    end
+    return { silent = true }
+end
 
-vim.keymap.set('n', 'n', 'nzzzv', opts)
-vim.keymap.set('n', 'N', 'Nzzzv', opts)
+vim.keymap.set('n', 'n', 'nzzzv', opts())
+vim.keymap.set('n', 'N', 'Nzzzv', opts())
 
 vim.keymap.set('n', 'k', [[v:count == 0 ? 'gk' : 'k']], { expr = true, silent = true })
 vim.keymap.set('n', 'j', [[v:count == 0 ? 'gj' : 'j']], { expr = true, silent = true })
 
-vim.keymap.set('v', '>', '>gv', opts)
-vim.keymap.set('v', '<', '<gv', opts)
+vim.keymap.set('v', '>', '>gv', opts())
+vim.keymap.set('v', '<', '<gv', opts())
 
-vim.keymap.set('i', ',', ',<C-g>u', opts)
-vim.keymap.set('i', '.', '.<C-g>u', opts)
-vim.keymap.set('i', '!', '!<C-g>u', opts)
-vim.keymap.set('i', '?', '?<C-g>u', opts)
-vim.keymap.set('i', '-', '-<C-g>u', opts)
-vim.keymap.set('i', '_', '_<C-g>u', opts)
+vim.keymap.set('i', ',', ',<C-g>u', opts())
+vim.keymap.set('i', '.', '.<C-g>u', opts())
+vim.keymap.set('i', '!', '!<C-g>u', opts())
+vim.keymap.set('i', '?', '?<C-g>u', opts())
+vim.keymap.set('i', '-', '-<C-g>u', opts())
+vim.keymap.set('i', '_', '_<C-g>u', opts())
 
-vim.keymap.set('n', '<A-j>', ':m .+1<CR>==', opts)
-vim.keymap.set('n', '<A-k>', ':m .-2<CR>==', opts)
-vim.keymap.set('i', '<A-j>', '<Esc>:m .+1<CR>==gi', opts)
-vim.keymap.set('i', '<A-k>', '<Esc>:m .-2<CR>==gi', opts)
-vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", opts)
-vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", opts)
+vim.keymap.set('n', '<A-j>', ':m .+1<CR>', opts())
+vim.keymap.set('n', '<A-k>', ':m .-2<CR>', opts())
+vim.keymap.set('i', '<A-j>', '<Esc>:m .+1<CR>==gi', opts())
+vim.keymap.set('i', '<A-k>', '<Esc>:m .-2<CR>==gi', opts())
+vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", opts())
+vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", opts())
 
-vim.keymap.set('n', ']b', '<cmd>bn<CR>', opts)
-vim.keymap.set('n', '[b', '<cmd>bp<CR>', opts)
-vim.keymap.set('n', '<leader>bd', '<cmd>bd<CR>', opts)
+vim.keymap.set('n', ']b', '<cmd>bn<CR>', opts("Buffer next"))
+vim.keymap.set('n', '[b', '<cmd>bp<CR>', opts("Buffer previous"))
 
-vim.keymap.set('n', '<leader>sn', '<cmd>set relativenumber!<CR>', opts)
-vim.keymap.set('n', '<leader>sw', '<cmd>set wrap!<CR>', opts)
-vim.keymap.set('n', '<leader>ss', '<cmd>set spell!<CR>', opts)
-vim.keymap.set('n', '<leader>sh', '<cmd>set list!<CR>', opts)
-vim.keymap.set('n', '<leader>sb', '<cmd>set linebreak!<CR>', opts)
+vim.keymap.set('i', '<C-h>', '<C-w>', opts())
+vim.keymap.set('n', '<C-m>', 'i<cr><esc>', opts())
 
-vim.keymap.set('n', '<leader>fs', '<cmd>update<CR>', opts)
-vim.keymap.set('n', '<leader>fy', '<cmd>let @+=expand("%:p")<CR>', opts)
+vim.keymap.set('n', '<leader>bd', '<cmd>bd<CR>', opts())
 
-vim.keymap.set('n', '<leader>oe', '<cmd>edit %:p:h<CR>', opts)
+vim.keymap.set('n', '<leader>sn', '<cmd>set relativenumber!<CR>', opts())
+vim.keymap.set('n', '<leader>sw', '<cmd>set wrap!<CR>', opts())
+vim.keymap.set('n', '<leader>ss', '<cmd>set spell!<CR>', opts())
+vim.keymap.set('n', '<leader>sh', '<cmd>set list!<CR>', opts())
+vim.keymap.set('n', '<leader>sb', '<cmd>set linebreak!<CR>', opts())
 
-if (vim.opt.diff:get()) then
+vim.keymap.set('n', '<leader>fs', '<cmd>update<CR>', opts())
+vim.keymap.set('n', '<leader>fy', '<cmd>let @+=expand("%:p")<CR>', opts())
+
+vim.keymap.set('n', '<leader>oe', '<cmd>edit %:p:h<CR>', opts())
+
+if vim.opt.diff:get() then
     vim.opt.winbar = '%=%f%='
-    vim.keymap.set('n', '<leader>1', '<cmd>diffget LO<CR>', opts)
-    vim.keymap.set('n', '<leader>2', '<cmd>diffget BA<CR>', opts)
-    vim.keymap.set('n', '<leader>3', '<cmd>diffget RE<CR>', opts)
+    vim.keymap.set('n', '<leader>1', '<cmd>diffget LO<CR>', opts())
+    vim.keymap.set('n', '<leader>2', '<cmd>diffget BA<CR>', opts())
+    vim.keymap.set('n', '<leader>3', '<cmd>diffget RE<CR>', opts())
 end

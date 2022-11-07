@@ -25,15 +25,12 @@ capabilities.textDocument.foldingRange = {
 local servers = {
     'clangd',
     'cmake',
-    'clojure_lsp',
+    'hls',
     'html',
-    'jdtls',
     'jsonls',
-    'metals',
     'pyright',
     'svelte',
     'tsserver',
-    'zls',
 }
 
 local nvim_lsp = require('lspconfig')
