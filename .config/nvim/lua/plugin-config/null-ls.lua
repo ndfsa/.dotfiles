@@ -4,9 +4,9 @@ null.setup({
         null.builtins.formatting.stylua,
         null.builtins.formatting.black,
         null.builtins.formatting.clang_format,
+        null.builtins.formatting.cljstyle,
         null.builtins.formatting.prettier,
         null.builtins.formatting.zigfmt,
-        null.builtins.formatting.scalafmt,
         null.builtins.hover.dictionary,
     },
     on_attach = function(_, buff_num)
