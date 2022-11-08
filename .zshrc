@@ -41,9 +41,9 @@ export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export LEIN_HOME="$XDG_DATA_HOME"/lein
 export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
-[ -z $(pgrep gpg-agent) ] && gpgconf --launch gpg-agent
+unset SSH_AGENT_PID
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 ### Options
 HISTSIZE=10000
