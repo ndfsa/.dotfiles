@@ -6,6 +6,7 @@ null.setup({
         null.builtins.formatting.clang_format,
         null.builtins.formatting.cljstyle,
         null.builtins.formatting.prettier,
+        null.builtins.formatting.stylish_haskell,
         null.builtins.formatting.zigfmt,
         null.builtins.hover.dictionary,
     },
