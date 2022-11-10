@@ -13,7 +13,7 @@ null.setup({
     on_attach = function(_, buff_num)
         local opts = require('utils').opts
 
-        vim.keymap.set('n', '<leader>fp', function()
+        vim.keymap.set('n', '<leader>lf', function()
             vim.lsp.buf.format({
                 name = 'null-ls',
             })

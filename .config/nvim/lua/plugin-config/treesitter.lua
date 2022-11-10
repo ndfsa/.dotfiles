@@ -46,5 +46,5 @@ vim.keymap.set(
     'n',
     '<leader>oT',
     '<cmd>TSPlaygroundToggle<cr>',
-    opts('Open Treesitter playground')
+    opts('Toggle Treesitter playground')
 )

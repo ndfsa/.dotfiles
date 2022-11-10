@@ -1,9 +1,10 @@
-vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist)
-vim.keymap.set('n', '<leader>le', vim.diagnostic.open_float)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 local opts = require('utils').opts
+
 local on_attach = function(_, buff_num)
+    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+    vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+    vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist, opts('LSP diagnostics loclist'))
+    vim.keymap.set('n', '<leader>le', vim.diagnostic.open_float, opts('LSP diagnostics float'))
     vim.keymap.set(
         'n',
         'gD',
