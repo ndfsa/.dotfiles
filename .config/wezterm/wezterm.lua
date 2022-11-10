@@ -116,4 +116,15 @@ return {
             action = act.SpawnTab('CurrentPaneDomain'),
         },
     },
+    mouse_bindings = {
+        {
+            event = { Up = { streak = 1, button = 'Left' } },
+            mods = 'CTRL',
+            action = act.OpenLinkAtMouseCursor,
+        },
+        {
+            event = { Up = { streak = 1, button = 'Right' } },
+            action = act.Copy,
+        },
+    },
 }

@@ -89,19 +89,13 @@ end
 
 vim.g.mapleader = ' '
 
-local opts = function(desc)
-    if desc then
-        return { silent = true, desc = desc }
-    else
-        return { silent = true }
-    end
-end
+local opts = require('utils').opts
 
 vim.keymap.set('n', 'n', 'nzzzv', opts())
 vim.keymap.set('n', 'N', 'Nzzzv', opts())
 
-vim.keymap.set('n', 'k', [[v:count == 0 ? 'gk' : 'k']], { expr = true, silent = true })
-vim.keymap.set('n', 'j', [[v:count == 0 ? 'gj' : 'j']], { expr = true, silent = true })
+vim.keymap.set('n', 'k', [[v:count == 0 ? 'gk' : 'k']], opts(nil, { expr = true }))
+vim.keymap.set('n', 'j', [[v:count == 0 ? 'gj' : 'j']], opts(nil, { expr = true }))
 
 vim.keymap.set('v', '>', '>gv', opts())
 vim.keymap.set('v', '<', '<gv', opts())
@@ -126,22 +120,22 @@ vim.keymap.set('n', '[b', '<cmd>bp<CR>', opts('Buffer previous'))
 vim.keymap.set('i', '<C-h>', '<C-w>', opts())
 vim.keymap.set('n', '<C-m>', 'i<cr><esc>', opts())
 
-vim.keymap.set('n', '<leader>bd', '<cmd>bd<CR>', opts())
+vim.keymap.set('n', '<leader>bd', '<cmd>bd<CR>', opts('Buffer delete'))
 
-vim.keymap.set('n', '<leader>sn', '<cmd>set relativenumber!<CR>', opts())
-vim.keymap.set('n', '<leader>sw', '<cmd>set wrap!<CR>', opts())
-vim.keymap.set('n', '<leader>ss', '<cmd>set spell!<CR>', opts())
-vim.keymap.set('n', '<leader>sh', '<cmd>set list!<CR>', opts())
-vim.keymap.set('n', '<leader>sb', '<cmd>set linebreak!<CR>', opts())
+vim.keymap.set('n', '<leader>sn', '<cmd>set relativenumber!<CR>', opts('Set relative numbers'))
+vim.keymap.set('n', '<leader>sw', '<cmd>set wrap!<CR>', opts('Set wrap'))
+vim.keymap.set('n', '<leader>ss', '<cmd>set spell!<CR>', opts('Set spell'))
+vim.keymap.set('n', '<leader>sh', '<cmd>set list!<CR>', opts('Set listchars'))
+vim.keymap.set('n', '<leader>sb', '<cmd>set linebreak!<CR>', opts('Set line break'))
 
-vim.keymap.set('n', '<leader>fs', '<cmd>update<CR>', opts())
-vim.keymap.set('n', '<leader>fy', '<cmd>let @+=expand("%:p")<CR>', opts())
+vim.keymap.set('n', '<leader>fs', '<cmd>update<CR>', opts('File save'))
+vim.keymap.set('n', '<leader>fy', '<cmd>let @+=expand("%:p")<CR>', opts('File copy path'))
 
-vim.keymap.set('n', '<leader>oe', '<cmd>edit %:p:h<CR>', opts())
+vim.keymap.set('n', '<leader>oe', '<cmd>edit %:p:h<CR>', opts('Open File Explorer'))
 
 if vim.opt.diff:get() then
     vim.opt.winbar = '%=%f%='
-    vim.keymap.set('n', '<leader>1', '<cmd>diffget LO<CR>', opts())
-    vim.keymap.set('n', '<leader>2', '<cmd>diffget BA<CR>', opts())
-    vim.keymap.set('n', '<leader>3', '<cmd>diffget RE<CR>', opts())
+    vim.keymap.set('n', '<leader>1', '<cmd>diffget LO<CR>', opts('Diff get local'))
+    vim.keymap.set('n', '<leader>2', '<cmd>diffget BA<CR>', opts('Diff get base'))
+    vim.keymap.set('n', '<leader>3', '<cmd>diffget RE<CR>', opts('Diff get remote'))
 end

@@ -16,6 +16,6 @@ require('rest-nvim').setup({
     yank_dry_run = true,
 })
 
-local opts = { silent = true }
+local opts = require('utils').opts
 
-vim.keymap.set('n', '<leader>rh', '<Plug>RestNvim', opts)
+vim.keymap.set('n', '<leader>rh', '<Plug>RestNvim', opts('Run HTTP request'))

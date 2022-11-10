@@ -16,4 +16,6 @@ require('colorizer').setup({
     buftypes = {},
 })
 
-vim.keymap.set('n', '<leader>sc', '<cmd>ColorizerToggle<cr>', { silent = true })
+local opts = require('utils').opts
+
+vim.keymap.set('n', '<leader>sc', '<cmd>ColorizerToggle<cr>', opts('Set colorizer'))

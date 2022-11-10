@@ -2,18 +2,52 @@ vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist)
 vim.keymap.set('n', '<leader>le', vim.diagnostic.open_float)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+local opts = require('utils').opts
 local on_attach = function(_, buff_num)
-    local buff_opts = { silent = true, buffer = buff_num }
-
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, buff_opts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, buff_opts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, buff_opts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, buff_opts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, buff_opts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, buff_opts)
-    vim.keymap.set('n', '<leader>lt', vim.lsp.buf.type_definition, buff_opts)
-    vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, buff_opts)
-    vim.keymap.set('n', '<leader>lc', vim.lsp.buf.code_action, buff_opts)
+    vim.keymap.set(
+        'n',
+        'gD',
+        vim.lsp.buf.declaration,
+        opts('Go to declaration', { buffer = buff_num })
+    )
+    vim.keymap.set(
+        'n',
+        'gd',
+        vim.lsp.buf.definition,
+        opts('Go to definition', { buffer = buff_num })
+    )
+    vim.keymap.set(
+        'n',
+        'gi',
+        vim.lsp.buf.implementation,
+        opts('Go to implementation', { buffer = buff_num })
+    )
+    vim.keymap.set(
+        'n',
+        'gr',
+        vim.lsp.buf.references,
+        opts('Go to references', { buffer = buff_num })
+    )
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts(nil, { buffer = buff_num }))
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts(nil, { buffer = buff_num }))
+    vim.keymap.set(
+        'n',
+        '<leader>lt',
+        vim.lsp.buf.type_definition,
+        opts('LSP type definition', { buffer = buff_num })
+    )
+    vim.keymap.set(
+        'n',
+        '<leader>lr',
+        vim.lsp.buf.rename,
+        opts('LSP rename', { buffer = buff_num })
+    )
+    vim.keymap.set(
+        'n',
+        '<leader>lc',
+        vim.lsp.buf.code_action,
+        opts('LSP code actions', { buffer = buff_num })
+    )
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -66,6 +100,7 @@ nvim_lsp.sumneko_lua.setup({
             },
             workspace = {
                 library = vim.api.nvim_get_runtime_file('', true),
+                checkThirdParty = false,
             },
             telemetry = {
                 enable = false,
@@ -81,7 +116,7 @@ nvim_lsp.rust_analyzer.setup({
             vim.lsp.buf.format({
                 name = 'rust_analyzer',
             })
-        end, { silent = true, buffer = buff_num })
+        end, opts('Format buffer', { buffer = buff_num }))
     end,
     capabilities = capabilities,
 })

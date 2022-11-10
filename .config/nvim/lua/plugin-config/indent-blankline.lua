@@ -4,4 +4,6 @@ require('indent_blankline').setup({
     buftype_exclude = { 'terminal' },
 })
 
-vim.keymap.set('n', '<leader>sl', '<cmd>IndentBlanklineToggle<CR>', { silent = true })
+local opts = require('utils').opts
+
+vim.keymap.set('n', '<leader>sl', '<cmd>IndentBlanklineToggle<CR>', opts('Set indent blank line'))

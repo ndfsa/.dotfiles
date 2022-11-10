@@ -160,6 +160,7 @@ return require('packer').startup(function(use)
         config = function()
             require('plugin-config.rest')
         end,
+        ft = { 'http' },
     })
     use({
         'mbbill/undotree',
@@ -180,6 +181,12 @@ return require('packer').startup(function(use)
         end,
     })
     use({ 'kevinhwang91/nvim-bqf', ft = 'qf' })
+    use({
+        'folke/which-key.nvim',
+        config = function()
+            require('which-key').setup({})
+        end,
+    })
     if packer_bootstrap then
         require('packer').sync()
     end
