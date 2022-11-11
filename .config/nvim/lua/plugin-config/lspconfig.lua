@@ -61,7 +61,6 @@ local servers = {
     'clangd',
     'clojure_lsp',
     'cmake',
-    'hls',
     'html',
     'jsonls',
     'pyright',
@@ -79,6 +78,21 @@ for _, lsp in ipairs(servers) do
         },
     })
 end
+
+nvim_lsp.hls.setup({
+    on_attach = function(_, buff_num)
+        on_attach(_, buff_num)
+        vim.keymap.set('n', '<leader>lf', function()
+            vim.lsp.buf.format({
+                name = 'hls',
+            })
+        end, opts('LSP format buffer', { buffer = buff_num }))
+    end,
+    capabilities = capabilities,
+    flags = {
+        debounce_text_changes = 200,
+    },
+})
 
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
@@ -113,13 +127,17 @@ nvim_lsp.sumneko_lua.setup({
 nvim_lsp.rust_analyzer.setup({
     on_attach = function(_, buff_num)
         on_attach(_, buff_num)
-        vim.keymap.set('n', '<leader>fp', function()
-            vim.lsp.buf.format({
-                name = 'rust_analyzer',
-            })
-        end, opts('Format buffer', { buffer = buff_num }))
+        vim.keymap.set(
+            'n',
+            '<leader>lf',
+            vim.lsp.buf.format,
+            opts('LSP format buffer', { buffer = buff_num })
+        )
     end,
     capabilities = capabilities,
+    flags = {
+        debounce_text_changes = 200,
+    },
 })
 
 nvim_lsp.emmet_ls.setup({

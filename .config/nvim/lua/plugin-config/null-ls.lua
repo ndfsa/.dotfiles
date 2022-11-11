@@ -6,7 +6,6 @@ null.setup({
         null.builtins.formatting.clang_format,
         null.builtins.formatting.cljstyle,
         null.builtins.formatting.prettier,
-        null.builtins.formatting.stylish_haskell,
         null.builtins.formatting.zigfmt,
         null.builtins.hover.dictionary,
     },
@@ -17,7 +16,7 @@ null.setup({
             vim.lsp.buf.format({
                 name = 'null-ls',
             })
-        end, opts('Format buffer', { buffer = buff_num }))
+        end, opts('LSP format buffer', { buffer = buff_num }))
         local ft = vim.bo.filetype
         if ft == 'markdown' or ft == 'txt' then
             vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts(nil, { buffer = buff_num }))
