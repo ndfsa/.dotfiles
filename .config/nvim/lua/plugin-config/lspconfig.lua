@@ -79,21 +79,6 @@ for _, lsp in ipairs(servers) do
     })
 end
 
-nvim_lsp.hls.setup({
-    on_attach = function(_, buff_num)
-        on_attach(_, buff_num)
-        vim.keymap.set('n', '<leader>lf', function()
-            vim.lsp.buf.format({
-                name = 'hls',
-            })
-        end, opts('LSP format buffer', { buffer = buff_num }))
-    end,
-    capabilities = capabilities,
-    flags = {
-        debounce_text_changes = 200,
-    },
-})
-
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
