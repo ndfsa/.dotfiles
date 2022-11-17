@@ -143,13 +143,6 @@ return require('packer').startup(function(use)
         end,
     })
     use({
-        'jose-elias-alvarez/null-ls.nvim',
-        config = function()
-            require('plugin-config.null-ls')
-        end,
-        requires = { 'nvim-lua/plenary.nvim' },
-    })
-    use({
         'nmac427/guess-indent.nvim',
         config = function()
             require('guess-indent').setup({ autocmd = false })

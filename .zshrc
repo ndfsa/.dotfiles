@@ -83,12 +83,15 @@ function __scoped_edit(){
     unset M_LAST_CWD
 }
 
+function rm(){
+    trash $@
+}
+
 alias ls='exa --icons --sort=type'
 alias la='ls -a'
 alias lsl='ls -l --group'
 alias lal='la -l --group'
 alias ip='ip --color=auto'
-alias rm='trash'
 function mkcd(){
     __DIR_NAME=$1
     mkdir $1 && cd $1
