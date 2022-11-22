@@ -35,11 +35,11 @@ capabilities.textDocument.foldingRange = {
 
 local servers = {
     'clangd',
-    'clojure_lsp',
     'emmet_ls',
     'gopls',
     'html',
     'jsonls',
+    'kotlin_language_server',
     'pyright',
     'rust_analyzer',
     'svelte',

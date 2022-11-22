@@ -121,7 +121,7 @@ vim.keymap.set('n', ']b', '<cmd>bn<CR>', opts('Buffer next'))
 vim.keymap.set('n', '[b', '<cmd>bp<CR>', opts('Buffer previous'))
 
 vim.keymap.set('i', '<C-h>', '<C-w>', opts())
-vim.keymap.set('n', '<C-m>', 'i<cr><esc>', opts())
+vim.keymap.set('n', '<C-CR>', 'i<cr><esc>', opts())
 
 vim.keymap.set('n', '<leader>bd', '<cmd>bd<CR>', opts('Buffer delete'))
 
