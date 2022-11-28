@@ -29,7 +29,6 @@ telescope.load_extension('project')
 telescope.load_extension('media_files')
 telescope.load_extension('file_browser')
 telescope.load_extension('env')
-telescope.load_extension('harpoon')
 
 local tl_ext = telescope.extensions
 local tl_builtin = require('telescope.builtin')

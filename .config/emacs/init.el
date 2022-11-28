@@ -32,9 +32,9 @@
 (straight-use-package 'use-package)
 
 (setq straight-use-package-by-default t)
-(use-package gruvbox-theme
+(use-package atom-one-dark-theme
   :config
-  (load-theme 'gruvbox t))
+  (load-theme 'atom-one-dark t))
 (use-package mood-line
   :config
   (mood-line-mode 1))

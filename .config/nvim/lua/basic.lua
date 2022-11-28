@@ -25,7 +25,6 @@ vim.opt.pumheight = 30
 vim.opt.fillchars:append({ fold = ' ', eob = ' ' })
 vim.opt.conceallevel = 2
 vim.opt.termguicolors = true
-vim.opt.syntax = 'off'
 vim.opt.listchars = {
     tab = '»-',
     extends = '⟩',

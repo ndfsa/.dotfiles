@@ -102,7 +102,7 @@ return require('packer').startup(function(use)
         'lewis6991/gitsigns.nvim',
         requires = { 'nvim-lua/plenary.nvim' },
         config = function()
-            require('plugin-config.gitsigns')
+            require('gitsigns').setup()
         end,
     })
     use({
@@ -135,7 +135,6 @@ return require('packer').startup(function(use)
             require('plugin-config.nvim-colorizer')
         end,
     })
-    use('tweekmonster/startuptime.vim')
     use({
         'monkoose/matchparen.nvim',
         config = function()
@@ -165,12 +164,6 @@ return require('packer').startup(function(use)
         'gpanders/editorconfig.nvim',
         cond = function()
             vim.fn.filereadable('.editorconfig')
-        end,
-    })
-    use({
-        'ThePrimeagen/harpoon',
-        config = function()
-            require('plugin-config.harpoon')
         end,
     })
     use({ 'kevinhwang91/nvim-bqf', ft = 'qf' })
