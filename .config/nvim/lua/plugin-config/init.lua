@@ -51,6 +51,8 @@ return require('packer').startup(function(use)
             require('plugin-config.lspconfig')
         end,
     })
+    use('williamboman/mason.nvim')
+    use('williamboman/mason-lspconfig.nvim')
     use('nvim-treesitter/playground')
     use({
         'nvim-treesitter/nvim-treesitter',
@@ -142,6 +144,13 @@ return require('packer').startup(function(use)
         end,
     })
     use({
+        'jose-elias-alvarez/null-ls.nvim',
+        config = function()
+            require('plugin-config.null-ls')
+        end,
+        requires = { 'nvim-lua/plenary.nvim' },
+    })
+    use({
         'nmac427/guess-indent.nvim',
         config = function()
             require('guess-indent').setup({ autocmd = false })
@@ -171,6 +180,12 @@ return require('packer').startup(function(use)
         'folke/which-key.nvim',
         config = function()
             require('which-key').setup({})
+        end,
+    })
+    use({
+        'folke/twilight.nvim',
+        config = function()
+            require('plugin-config.twilight')
         end,
     })
     if packer_bootstrap then

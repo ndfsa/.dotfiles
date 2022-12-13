@@ -1,5 +1,5 @@
 require('colorizer').setup({
-    filetypes = { },
+    filetypes = {},
     user_default_options = {
         RGB = true,
         RRGGBB = true,

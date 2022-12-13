@@ -53,6 +53,7 @@ require('lualine').setup({
             filename,
         },
         lualine_x = {
+            'location',
             hexvalue,
             encoding,
         },
