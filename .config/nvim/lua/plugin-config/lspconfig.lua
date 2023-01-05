@@ -63,13 +63,11 @@ local on_attach = function(client, buff_num)
         })
         opts('LSP format buffer', { buffer = buff_num })
     end)
+
+    client.server_capabilities.semanticTokensProvider = nil
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true,
-}
 
 local servers = {
     'clangd',

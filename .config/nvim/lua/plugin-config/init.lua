@@ -169,12 +169,6 @@ return require('packer').startup(function(use)
             require('plugin-config.undotree')
         end,
     })
-    use({
-        'gpanders/editorconfig.nvim',
-        cond = function()
-            vim.fn.filereadable('.editorconfig')
-        end,
-    })
     use({ 'kevinhwang91/nvim-bqf', ft = 'qf' })
     use({
         'folke/which-key.nvim',
