@@ -51,8 +51,6 @@ return require('packer').startup(function(use)
             require('plugin-config.lspconfig')
         end,
     })
-    use('williamboman/mason.nvim')
-    use('williamboman/mason-lspconfig.nvim')
     use('nvim-treesitter/playground')
     use({
         'nvim-treesitter/nvim-treesitter',

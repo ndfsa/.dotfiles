@@ -1,6 +1,3 @@
-require('mason').setup()
-require('mason-lspconfig').setup()
-
 local opts = require('utils').opts
 
 local on_attach = function(client, buff_num)
