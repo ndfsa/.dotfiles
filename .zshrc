@@ -57,7 +57,7 @@ function rm(){
     trash $@
 }
 
-alias ls='exa --icons --sort=type'
+alias ls='exa --icons --sort=type --classify'
 alias la='ls -a'
 alias lsl='ls -l --group'
 alias lal='la -l --group'
