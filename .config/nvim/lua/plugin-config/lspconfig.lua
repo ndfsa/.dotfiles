@@ -72,7 +72,6 @@ local servers = {
     'gopls',
     'html',
     'jsonls',
-    'kotlin_language_server',
     'pyright',
     'rust_analyzer',
     'svelte',
@@ -94,7 +93,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-nvim_lsp.sumneko_lua.setup({
+nvim_lsp.lua_ls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
     flags = {

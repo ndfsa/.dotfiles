@@ -1,17 +1,15 @@
+#!/bin/zsh
+
 cd ~/AUR
-for i in $(/bin/ls)
-do
-    case $i in
-        $@)
-            printf "skipping $i\n"
-            ;;
-        *)
-            printf "=== updating $i ===\n"
-            cd "./$i"
-            git pull
-            makepkg -sri
-            git clean -xffd
-            cd ../
-            ;;
-    esac
+for i in $@ ; do
+    printf "================ updating $i ================\n"
+    cd "./$i"
+    git pull
+
+    printf "================ making pkg $i ================\n"
+    makepkg -sri
+
+    printf "================ cleaning ================\n"
+    git clean -xffd
+    cd ../
 done
