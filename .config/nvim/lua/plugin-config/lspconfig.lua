@@ -58,8 +58,7 @@ local on_attach = function(client, buff_num)
                 return client.name
             end,
         })
-        opts('LSP format buffer', { buffer = buff_num })
-    end)
+    end, opts('LSP format buffer', { buffer = buff_num }))
 
     client.server_capabilities.semanticTokensProvider = nil
 end
