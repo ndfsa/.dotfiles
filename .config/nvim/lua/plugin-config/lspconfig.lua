@@ -52,7 +52,7 @@ local on_attach = function(client, buff_num)
     vim.keymap.set({ 'n', 'v' }, '<leader>lf', function()
         vim.lsp.buf.format({
             filter = function()
-                if client.name == 'sumneko_lua' or client.name == 'pyright' then
+                if client.name == 'lua_ls' or client.name == 'pyright' then
                     return 'null-ls'
                 end
                 return client.name
