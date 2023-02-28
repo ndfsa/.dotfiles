@@ -1,4 +1,3 @@
--- basic config
 require('basic')
 
 -- load plugins

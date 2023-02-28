@@ -1,7 +1,6 @@
 local null = require('null-ls')
 null.setup({
     sources = {
-        null.builtins.formatting.stylua,
         null.builtins.formatting.black,
         null.builtins.hover.dictionary,
     },

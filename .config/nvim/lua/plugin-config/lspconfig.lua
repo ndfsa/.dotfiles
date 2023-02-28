@@ -1,8 +1,8 @@
 local opts = require('utils').opts
 
 local on_attach = function(client, buff_num)
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-    vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts('Next diagnostic'))
+    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts('Next diagnostic'))
     vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist, opts('LSP diagnostics loclist'))
     vim.keymap.set('n', '<leader>le', vim.diagnostic.open_float, opts('LSP diagnostics float'))
     vim.keymap.set(
@@ -49,19 +49,16 @@ local on_attach = function(client, buff_num)
         vim.lsp.buf.code_action,
         opts('LSP code actions', { buffer = buff_num })
     )
-    vim.keymap.set({ 'n', 'v' }, '<leader>lf', function()
-        vim.lsp.buf.format({
-            filter = function()
-                if client.name == 'lua_ls' or client.name == 'pyright' then
-                    return 'null-ls'
-                end
-                return client.name
-            end,
-        })
-    end, opts('LSP format buffer', { buffer = buff_num }))
+    vim.keymap.set(
+        { 'n', 'v' },
+        '<leader>lf',
+        vim.lsp.buf.format,
+        opts('LSP format buffer', { buffer = buff_num })
+    )
 
     client.server_capabilities.semanticTokensProvider = nil
 end
+print('test')
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
