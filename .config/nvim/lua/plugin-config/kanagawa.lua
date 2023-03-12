@@ -12,6 +12,8 @@ require('kanagawa').setup({
     dimInactive = true,
     globalStatus = true,
     colors = {},
-    overrides = {},
+    overrides = function(_)
+        return {}
+    end,
 })
 vim.cmd('colorscheme kanagawa')
