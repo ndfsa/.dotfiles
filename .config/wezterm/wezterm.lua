@@ -43,17 +43,13 @@ return {
     colors = {
         foreground = '#dcd7ba',
         background = '#1f1f28',
-
         cursor_bg = '#c8c093',
         cursor_fg = '#c8c093',
         cursor_border = '#c8c093',
-
         selection_fg = '#c8c093',
         selection_bg = '#2d4f67',
-
         scrollbar_thumb = '#16161d',
         split = '#16161d',
-
         ansi = {
             '#090618',
             '#c34043',
@@ -74,7 +70,7 @@ return {
             '#7aa89f',
             '#dcd7ba',
         },
-        indexed = { [16] = '#ffa066', [17] = '#ff5d62' },
+        indexed = { [16] = '#ffa066',[17] = '#ff5d62' },
         tab_bar = {
             background = '#181820',
             active_tab = {
@@ -124,7 +120,7 @@ return {
         },
         {
             event = { Up = { streak = 1, button = 'Right' } },
-            action = act.Copy,
+            action = wezterm.action.CopyTo 'ClipboardAndPrimarySelection',
         },
     },
 }
