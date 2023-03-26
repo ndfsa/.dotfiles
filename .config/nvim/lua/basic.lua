@@ -37,6 +37,9 @@ vim.opt.listchars = {
 vim.opt.background = 'dark'
 vim.opt.spelloptions = 'noplainbuffer,camel'
 
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+
 -- EXPERIMENTAL FEATURES
 -- vim.opt.cmdheight = 0
 -- vim.opt.diffopt = 'linematch:80'
