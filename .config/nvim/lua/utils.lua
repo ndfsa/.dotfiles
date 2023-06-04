@@ -6,7 +6,7 @@ function M.opts(desc, extra)
         res.desc = desc
     end
     if extra then
-        res = vim.tbl_extend('force', res, extra)
+        res = vim.tbl_extend("force", res, extra)
     end
     return res
 end

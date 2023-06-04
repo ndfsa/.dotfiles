@@ -1,4 +1,4 @@
-require('colorizer').setup({
+require("colorizer").setup({
     filetypes = {},
     user_default_options = {
         RGB = true,
@@ -10,12 +10,12 @@ require('colorizer').setup({
         hsl_fn = false,
         css = false,
         css_fn = false,
-        mode = 'background',
-        virtualtext = '■',
+        mode = "background",
+        virtualtext = "■",
     },
     buftypes = {},
 })
 
-local opts = require('utils').opts
+local opts = require("utils").opts
 
-vim.keymap.set('n', '<leader>sc', '<cmd>ColorizerToggle<cr>', opts('Set colorizer'))
+vim.keymap.set("n", "<leader>sc", "<cmd>ColorizerToggle<cr>", opts("Set colorizer"))

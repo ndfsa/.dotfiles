@@ -1,167 +1,179 @@
-local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
-        'git',
-        'clone',
-        '--filter=blob:none',
-        'https://github.com/folke/lazy.nvim.git',
-        '--branch=stable',
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable",
         lazypath,
     })
 end
 vim.opt.rtp:prepend(lazypath)
 
-return require('lazy').setup({
+return require("lazy").setup({
     {
-        'rebelot/kanagawa.nvim',
+        "rebelot/kanagawa.nvim",
         config = function()
-            require('plugin-config.kanagawa')
+            require("plugin-config.kanagawa")
         end,
     },
-    { 'kyazdani42/nvim-web-devicons' },
     {
-        'numToStr/Comment.nvim',
+        "numToStr/Comment.nvim",
         config = true,
     },
     {
-        'lukas-reineke/indent-blankline.nvim',
+        "lukas-reineke/indent-blankline.nvim",
         config = function()
-            require('plugin-config.indent-blankline')
+            require("plugin-config.indent-blankline")
         end,
     },
     {
-        'tamago324/lir.nvim',
+        "stevearc/oil.nvim",
         config = function()
-            require('plugin-config.lir')
+            require("plugin-config.oil")
+        end,
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
+    -- {
+    --     'tamago324/lir.nvim',
+    --     config = function()
+    --         require('plugin-config.lir')
+    --     end,
+    --     dependencies = { "nvim-tree/nvim-web-devicons" },
+    -- },
+    {
+        "nvim-lualine/lualine.nvim",
+        config = function()
+            require("plugin-config.lualine")
         end,
     },
     {
-        'nvim-lualine/lualine.nvim',
+        "neovim/nvim-lspconfig",
         config = function()
-            require('plugin-config.lualine')
+            require("plugin-config.lspconfig")
         end,
     },
     {
-        'neovim/nvim-lspconfig',
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
         config = function()
-            require('plugin-config.lspconfig')
-        end,
-    },
-    { 'nvim-treesitter/playground' },
-    {
-        'nvim-treesitter/nvim-treesitter',
-        build = ':TSUpdate',
-        config = function()
-            require('plugin-config.treesitter')
+            require("plugin-config.treesitter")
         end,
     },
     {
-        'L3MON4D3/LuaSnip',
+        "L3MON4D3/LuaSnip",
         config = function()
-            require('plugin-config.luasnip')
+            require("plugin-config.luasnip")
         end,
     },
     {
-        'hrsh7th/nvim-cmp',
+        "hrsh7th/nvim-cmp",
         dependencies = {
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-path',
-            'hrsh7th/cmp-cmdline',
-            'saadparwaiz1/cmp_luasnip',
-            'onsails/lspkind-nvim',
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-cmdline",
+            "saadparwaiz1/cmp_luasnip",
+            "onsails/lspkind-nvim",
         },
         config = function()
-            require('plugin-config.cmp')
+            require("plugin-config.cmp")
         end,
     },
     {
-        'nvim-telescope/telescope.nvim',
+        "nvim-telescope/telescope.nvim",
         dependencies = {
-            'nvim-lua/plenary.nvim',
-            'nvim-lua/popup.nvim',
-            'nvim-telescope/telescope-file-browser.nvim',
-            'nvim-telescope/telescope-project.nvim',
-            'nvim-telescope/telescope-media-files.nvim',
-            'nvim-telescope/telescope-symbols.nvim',
-            'LinArcX/telescope-env.nvim',
+            "nvim-lua/plenary.nvim",
+            "nvim-lua/popup.nvim",
+            "nvim-telescope/telescope-file-browser.nvim",
+            "nvim-telescope/telescope-project.nvim",
+            "nvim-telescope/telescope-media-files.nvim",
+            "nvim-telescope/telescope-symbols.nvim",
+            "LinArcX/telescope-env.nvim",
             {
-                'nvim-telescope/telescope-fzf-native.nvim',
-                build = 'make',
+                "nvim-telescope/telescope-fzf-native.nvim",
+                build = "make",
             },
         },
         config = function()
-            require('plugin-config.telescope')
+            require("plugin-config.telescope")
         end,
     },
     {
-        'lewis6991/gitsigns.nvim',
-        dependencies = { 'nvim-lua/plenary.nvim' },
+        "lewis6991/gitsigns.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
         config = true,
     },
     {
-        'sQVe/sort.nvim',
+        "sQVe/sort.nvim",
         config = true,
     },
     {
-        'anuvyklack/pretty-fold.nvim',
+        "anuvyklack/pretty-fold.nvim",
         config = true,
     },
     {
-        'tpope/vim-fugitive',
+        "tpope/vim-fugitive",
         init = function()
-            require('plugin-config.vim-fugitive')
+            require("plugin-config.vim-fugitive")
         end,
     },
     {
-        'kylechui/nvim-surround',
+        "kylechui/nvim-surround",
         config = true,
     },
     {
-        'NvChad/nvim-colorizer.lua',
+        "NvChad/nvim-colorizer.lua",
         config = function()
-            require('plugin-config.nvim-colorizer')
+            require("plugin-config.nvim-colorizer")
         end,
     },
     {
-        'monkoose/matchparen.nvim',
+        "monkoose/matchparen.nvim",
         config = true,
     },
     {
-        'jose-elias-alvarez/null-ls.nvim',
+        "jose-elias-alvarez/null-ls.nvim",
         config = function()
-            require('plugin-config.null-ls')
+            require("plugin-config.null-ls")
         end,
-        dependencies = { 'nvim-lua/plenary.nvim' },
+        dependencies = { "nvim-lua/plenary.nvim" },
     },
     {
-        'nmac427/guess-indent.nvim',
+        "nmac427/guess-indent.nvim",
         config = function()
-            require('guess-indent').setup({ autocmd = false })
+            require("guess-indent").setup({ autocmd = false })
         end,
     },
     {
-        'NTBBloodbath/rest.nvim',
+        "NTBBloodbath/rest.nvim",
         config = function()
-            require('plugin-config.rest')
+            require("plugin-config.rest")
         end,
-        ft = { 'http' },
+        ft = { "http" },
     },
     {
-        'mbbill/undotree',
+        "mbbill/undotree",
         init = function()
-            require('plugin-config.undotree')
+            require("plugin-config.undotree")
         end,
     },
-    { 'kevinhwang91/nvim-bqf', ft = 'qf' },
+    { "kevinhwang91/nvim-bqf", ft = "qf" },
     {
-        'folke/which-key.nvim',
+        "folke/which-key.nvim",
         config = true,
     },
     {
-        'folke/twilight.nvim',
+        "folke/twilight.nvim",
         config = function()
-            require('plugin-config.twilight')
+            require("plugin-config.twilight")
+        end,
+    },
+    {
+        "mickael-menu/zk-nvim",
+        config = function()
+            require("zk").setup()
         end,
     },
 })

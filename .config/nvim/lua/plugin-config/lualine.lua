@@ -1,24 +1,24 @@
 local filename = {
     function()
-        return '%t%4m%5r%4w'
+        return "%t%4m%5r%4w"
     end,
 }
 local hexvalue = {
     function()
-        return '0x%02B'
+        return "0x%02B"
     end,
 }
 local diag = {
-    'diagnostics',
-    sources = { 'nvim_diagnostic' },
-    symbols = { error = ' ', warn = ' ', info = ' ' },
+    "diagnostics",
+    sources = { "nvim_diagnostic" },
+    symbols = { error = " ", warn = " ", info = " " },
 }
 local encoding = {
-    'o:encoding',
+    "o:encoding",
     fmt = string.upper,
 }
 local fileformat = {
-    'fileformat',
+    "fileformat",
     icons_enabled = false,
     fmt = string.upper,
 }
@@ -26,43 +26,43 @@ local lir_ext = {
     sections = {
         lualine_c = {
             function()
-                return vim.fn.expand('%:~')
+                return vim.fn.expand("%:~")
             end,
         },
     },
-    filetypes = { 'lir' },
+    filetypes = { "lir" },
 }
-require('lualine').setup({
+require("lualine").setup({
     options = {
-        theme = 'kanagawa',
-        section_separators = ' ',
-        component_separators = ' ',
+        theme = "kanagawa",
+        section_separators = " ",
+        component_separators = " ",
         globalstatus = true,
     },
     sections = {
         lualine_a = {
-            'mode',
+            "mode",
         },
         lualine_b = {
-            'filesize',
+            "filesize",
         },
         lualine_c = {
-            'branch',
-            'progress',
+            "branch",
+            "progress",
             diag,
             filename,
         },
         lualine_x = {
-            'location',
+            "location",
             hexvalue,
             encoding,
         },
         lualine_y = {
-            'filetype',
+            "filetype",
         },
         lualine_z = {
             fileformat,
         },
     },
-    extensions = { lir_ext, 'quickfix', 'fugitive', 'nvim-tree' },
+    extensions = { lir_ext, "quickfix", "fugitive", "nvim-tree" },
 })

@@ -1,4 +1,4 @@
-require('kanagawa').setup({
+require("kanagawa").setup({
     undercurl = true,
     commentStyle = { italic = true },
     functionStyle = { bold = true },
@@ -16,4 +16,4 @@ require('kanagawa').setup({
         return {}
     end,
 })
-vim.cmd('colorscheme kanagawa')
+vim.cmd("colorscheme kanagawa")

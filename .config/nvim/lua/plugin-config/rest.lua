@@ -1,4 +1,4 @@
-require('rest-nvim').setup({
+require("rest-nvim").setup({
     result_split_horizontal = false,
     skip_ssl_verification = false,
     highlight = {
@@ -11,11 +11,11 @@ require('rest-nvim').setup({
         show_headers = true,
     },
     jump_to_request = false,
-    env_file = '.env',
+    env_file = ".env",
     custom_dynamic_variables = {},
     yank_dry_run = true,
 })
 
-local opts = require('utils').opts
+local opts = require("utils").opts
 
-vim.keymap.set('n', '<leader>rh', '<Plug>RestNvim', opts('Run HTTP request'))
+vim.keymap.set("n", "<leader>rh", "<Plug>RestNvim", opts("Run HTTP request"))

@@ -24,7 +24,6 @@ HISTCONTROL=ignoreboth
 WORDCHARS='~!#$%^&*(){}[]<>?.+-'
 
 setopt HIST_IGNORE_DUPS
-setopt EXTENDED_GLOB
 setopt HIST_IGNORE_SPACE
 setopt AUTO_MENU
 
@@ -62,6 +61,7 @@ alias la='ls -a'
 alias lsl='ls -l --group'
 alias lal='la -l --group'
 alias ip='ip --color=auto'
+alias xsc='xclip -selection c'
 function mkcd(){
     __DIR_NAME=$1
     mkdir $1 && cd $1
