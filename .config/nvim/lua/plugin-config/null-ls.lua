@@ -1,8 +1,8 @@
 local null = require("null-ls")
 null.setup({
     sources = {
-        null.builtins.formatting.black,
         null.builtins.hover.dictionary,
+        null.builtins.formatting.black,
         null.builtins.formatting.stylua,
     },
     on_attach = function(_, buff_num)

@@ -81,9 +81,6 @@ for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup({
         on_attach = on_attach,
         capabilities = capabilities,
-        flags = {
-            debounce_text_changes = 200,
-        },
     })
 end
 
@@ -94,9 +91,6 @@ table.insert(runtime_path, "lua/?/init.lua")
 nvim_lsp.lua_ls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
-    flags = {
-        debounce_text_changes = 200,
-    },
     settings = {
         Lua = {
             runtime = {
@@ -112,6 +106,17 @@ nvim_lsp.lua_ls.setup({
             },
             telemetry = {
                 enable = false,
+            },
+        },
+    },
+})
+nvim_lsp.rust_analyzer.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        ["rust-analyzer"] = {
+            checkOnSave = {
+                command = "clippy",
             },
         },
     },
