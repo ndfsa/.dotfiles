@@ -166,5 +166,6 @@ fi
 ### Syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+source /etc/profile.d/wezterm.sh
 # profiling end
 #zprof
