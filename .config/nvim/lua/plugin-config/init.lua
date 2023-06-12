@@ -1,5 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
     vim.fn.system({
         "git",
         "clone",
@@ -90,6 +90,7 @@ return require("lazy").setup({
             "nvim-telescope/telescope-project.nvim",
             "nvim-telescope/telescope-media-files.nvim",
             "nvim-telescope/telescope-symbols.nvim",
+            "nvim-telescope/telescope-ui-select.nvim",
             "LinArcX/telescope-env.nvim",
             {
                 "nvim-telescope/telescope-fzf-native.nvim",
@@ -159,7 +160,6 @@ return require("lazy").setup({
             require("plugin-config.undotree")
         end,
     },
-    { "kevinhwang91/nvim-bqf", ft = "qf" },
     {
         "folke/which-key.nvim",
         config = true,

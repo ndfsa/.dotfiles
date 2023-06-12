@@ -7,6 +7,7 @@ CUSTOM_PATHS=(
     $GOPATH/bin
     $HOME/.local/bin
     $HOME/bin
+    $HOME/.local/share/npm/bin
 )
 for i in $CUSTOM_PATHS[@]
 do

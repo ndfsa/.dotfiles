@@ -40,6 +40,7 @@ telescope.load_extension("media_files")
 telescope.load_extension("file_browser")
 telescope.load_extension("env")
 telescope.load_extension("zk")
+telescope.load_extension("ui-select")
 
 local tl_ext = telescope.extensions
 local tl_builtin = require("telescope.builtin")

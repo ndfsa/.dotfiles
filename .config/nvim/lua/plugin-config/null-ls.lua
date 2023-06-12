@@ -4,18 +4,13 @@ null.setup({
         null.builtins.hover.dictionary,
         null.builtins.formatting.black,
         null.builtins.formatting.stylua,
+        null.builtins.formatting.prettier.with({
+            extra_filetypes = { "svelte" },
+        }),
     },
     on_attach = function(_, buff_num)
         local opts = require("utils").opts
         local ft = vim.bo.filetype
-        if ft == "python" or ft == "lua" then
-            vim.keymap.set(
-                { "n", "v" },
-                "<leader>lf",
-                vim.lsp.buf.format,
-                opts("LSP format buffer", { buffer = buff_num })
-            )
-        end
         if ft == "markdown" or ft == "txt" then
             vim.keymap.set(
                 "n",

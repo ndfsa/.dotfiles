@@ -49,15 +49,16 @@ local on_attach = function(client, buff_num)
         vim.lsp.buf.code_action,
         opts("LSP code actions", { buffer = buff_num })
     )
-    local format_exclude = { "lua_ls", "pyright" }
-    if not vim.list_contains(format_exclude, client.name) then
-        vim.keymap.set(
-            { "n", "v" },
-            "<leader>lf",
-            vim.lsp.buf.format,
-            opts("LSP format buffer", { buffer = buff_num })
-        )
-    end
+    local format_exclude = { "lua_ls", "pyright", "svelte", "tsserver", "emmet_ls" }
+    vim.keymap.set({ "n", "v" }, "<leader>lf", function()
+        vim.lsp.buf.format({
+            filter = function(current_client)
+                return not vim.list_contains(format_exclude, client.name)
+                        and current_client.name == client.name
+                    or current_client.name == "null-ls"
+            end,
+        })
+    end, opts("LSP format buffer", { buffer = buff_num }))
 
     client.server_capabilities.semanticTokensProvider = nil
 end
@@ -66,6 +67,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local servers = {
     "clangd",
+    "dartls",
     "emmet_ls",
     "gopls",
     "html",
