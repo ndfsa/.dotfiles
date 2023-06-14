@@ -4,9 +4,7 @@ null.setup({
         null.builtins.hover.dictionary,
         null.builtins.formatting.black,
         null.builtins.formatting.stylua,
-        null.builtins.formatting.prettier.with({
-            extra_filetypes = { "svelte" },
-        }),
+        null.builtins.formatting.prettier,
     },
     on_attach = function(_, buff_num)
         local opts = require("utils").opts

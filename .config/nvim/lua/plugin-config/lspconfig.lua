@@ -30,7 +30,12 @@ local on_attach = function(client, buff_num)
         opts("Go to references", { buffer = buff_num })
     )
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts(nil, { buffer = buff_num }))
-    vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts(nil, { buffer = buff_num }))
+    vim.keymap.set(
+        { "n", "i" },
+        "<C-k>",
+        vim.lsp.buf.signature_help,
+        opts(nil, { buffer = buff_num })
+    )
     vim.keymap.set(
         "n",
         "<leader>lt",
@@ -44,20 +49,47 @@ local on_attach = function(client, buff_num)
         opts("LSP rename", { buffer = buff_num })
     )
     vim.keymap.set(
-        "n",
+        { "n", "v" },
         "<leader>lc",
         vim.lsp.buf.code_action,
         opts("LSP code actions", { buffer = buff_num })
     )
-    local format_exclude = { "lua_ls", "pyright", "svelte", "tsserver", "emmet_ls" }
+    local format_exclude = { "lua_ls", "pyright", "tsserver", "emmet_ls" }
     vim.keymap.set({ "n", "v" }, "<leader>lf", function()
-        vim.lsp.buf.format({
-            filter = function(current_client)
-                return not vim.list_contains(format_exclude, client.name)
-                        and current_client.name == client.name
-                    or current_client.name == "null-ls"
+        local attached_clients = vim.lsp.buf_get_clients()
+
+        if #attached_clients <= 1 then
+            vim.lsp.buf.format()
+            return
+        end
+
+        local entries = {}
+        local iter = 1
+        for _, cl in ipairs(attached_clients) do
+            if not vim.list_contains(format_exclude, cl.name) then
+                entries[iter] = { label = cl.name, id = cl.id }
+                iter = iter + 1
+            end
+        end
+
+        if #entries == 0 then
+            vim.print("[LSP] All clients are excluded for formatting")
+            return
+        end
+
+        if #entries == 1 then
+            vim.lsp.buf.format({ id = entries[1].id })
+            return
+        end
+
+        vim.ui.select(entries, {
+            prompt = "Select LSP formatter",
+            format_item = function(item)
+                return item.label
             end,
-        })
+        }, function(item, _)
+            vim.lsp.buf.format({ id = item.id })
+        end)
     end, opts("LSP format buffer", { buffer = buff_num }))
 
     client.server_capabilities.semanticTokensProvider = nil

@@ -1,5 +1,5 @@
 local telescope = require("telescope")
-local ignore_patterns = { ".git/" }
+local ignore_patterns = { "%.git/" }
 
 telescope.setup({
     defaults = {
