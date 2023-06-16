@@ -1,5 +1,9 @@
 # profiling for performance
 #zmodload zsh/zprof
+if [[ $(uname -s) == "Darwin" ]]
+then
+    source $HOME/.profile
+fi
 
 ### Custom paths
 CUSTOM_PATHS=(
@@ -167,6 +171,5 @@ fi
 ### Syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-source /etc/profile.d/wezterm.sh
 # profiling end
 #zprof

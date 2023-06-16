@@ -35,13 +35,6 @@ return require("lazy").setup({
         end,
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
-    -- {
-    --     'tamago324/lir.nvim',
-    --     config = function()
-    --         require('plugin-config.lir')
-    --     end,
-    --     dependencies = { "nvim-tree/nvim-web-devicons" },
-    -- },
     {
         "nvim-lualine/lualine.nvim",
         config = function()
