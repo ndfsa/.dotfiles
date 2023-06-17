@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 return require("lazy").setup({
     {
         "rebelot/kanagawa.nvim",
+        build = ":KanagawaCompile",
         config = function()
             require("plugin-config.kanagawa")
         end,
@@ -59,6 +60,8 @@ return require("lazy").setup({
         config = function()
             require("plugin-config.luasnip")
         end,
+        build = "make install_jsregexp",
+        dependencies = { "honza/vim-snippets" },
     },
     {
         "hrsh7th/nvim-cmp",
@@ -79,9 +82,7 @@ return require("lazy").setup({
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-lua/popup.nvim",
-            "nvim-telescope/telescope-file-browser.nvim",
             "nvim-telescope/telescope-project.nvim",
-            "nvim-telescope/telescope-media-files.nvim",
             "nvim-telescope/telescope-symbols.nvim",
             "nvim-telescope/telescope-ui-select.nvim",
             "LinArcX/telescope-env.nvim",

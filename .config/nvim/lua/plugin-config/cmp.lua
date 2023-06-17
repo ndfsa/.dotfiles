@@ -1,13 +1,22 @@
 local cmp = require("cmp")
-local luasnip = require("luasnip")
 local lspkind = require("lspkind")
-if not cmp then
-    return
-end
+
 cmp.setup({
+    enabled = function()
+        local disabled = false
+        disabled = disabled or (vim.api.nvim_buf_get_option(0, "buftype") == "prompt")
+        disabled = disabled or (vim.fn.reg_recording() ~= "")
+        disabled = disabled or (vim.fn.reg_executing() ~= "")
+
+        local context = require("cmp.config.context")
+        local cmd_mode = vim.api.nvim_get_mode().mode == "c"
+        disabled = disabled or (not cmd_mode and context.in_treesitter_capture("comment"))
+        disabled = disabled or (not cmd_mode and context.in_syntax_group("Comment"))
+        return not disabled
+    end,
     snippet = {
         expand = function(args)
-            luasnip.lsp_expand(args.body)
+            require("luasnip").lsp_expand(args.body)
         end,
     },
     mapping = cmp.mapping.preset.insert({
@@ -38,7 +47,7 @@ cmp.setup({
         }),
     },
 })
-cmp.setup.cmdline("/", {
+cmp.setup.cmdline({ "/", "?" }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
         { name = "buffer" },

@@ -1,19 +1,25 @@
 require("kanagawa").setup({
+    compile = true,
     undercurl = true,
     commentStyle = { italic = true },
     functionStyle = { bold = true },
     keywordStyle = { bold = true },
     statementStyle = { bold = true },
     typeStyle = {},
-    variablebuiltinStyle = { bold = true },
-    specialReturn = true,
-    specialException = true,
     transparent = false,
     dimInactive = true,
     globalStatus = true,
-    colors = {},
+    colors = {
+        palette = {},
+        theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
+    },
     overrides = function(_)
         return {}
     end,
+    theme = "wave",
+    background = {
+        dark = "wave",
+        light = "lotus",
+    },
 })
 vim.cmd("colorscheme kanagawa")

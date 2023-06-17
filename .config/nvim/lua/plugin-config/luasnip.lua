@@ -1,3 +1,4 @@
+require("luasnip.loaders.from_snipmate").lazy_load()
 local luasnip = require("luasnip")
 
 -- thank you TJ https://github.com/tjdevries
