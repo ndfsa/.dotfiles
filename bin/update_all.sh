@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-cd ~/AUR
+cd ~/.local/share/AUR
 for i in $@ ; do
     printf "================ updating $i ================\n"
     cd "./$i"

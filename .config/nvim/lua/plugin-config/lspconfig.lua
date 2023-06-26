@@ -104,6 +104,7 @@ local servers = {
     "gopls",
     "html",
     "jsonls",
+    "ocamllsp",
     "pyright",
     "rust_analyzer",
     "svelte",

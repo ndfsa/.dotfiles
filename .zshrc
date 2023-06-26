@@ -5,22 +5,6 @@ then
     source $HOME/.profile
 fi
 
-### Custom paths
-CUSTOM_PATHS=(
-    $CARGO_HOME/bin
-    $GOPATH/bin
-    $HOME/.local/bin
-    $HOME/bin
-    $HOME/.local/share/npm/bin
-)
-for i in $CUSTOM_PATHS[@]
-do
-    case ":$PATH:" in
-        *":$i:"*) ;;
-        *) PATH="$i:$PATH";;
-    esac
-done
-
 ### Options
 HISTSIZE=10000
 SAVEHIST=10000
