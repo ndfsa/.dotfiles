@@ -1,9 +1,5 @@
 # profiling for performance
 #zmodload zsh/zprof
-if [[ $(uname -s) == "Darwin" ]]
-then
-    source $HOME/.profile
-fi
 
 ### Options
 HISTSIZE=10000
