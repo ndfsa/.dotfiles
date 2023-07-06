@@ -25,6 +25,7 @@ return {
         rule("Normal", "Regular", true),
         rule("Bold", "ExtraBold", true),
     },
+    audible_bell = "Disabled",
     harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
     use_fancy_tab_bar = false,
     initial_rows = 38,

@@ -106,7 +106,9 @@ return require("lazy").setup({
     },
     {
         "anuvyklack/pretty-fold.nvim",
-        config = true,
+        config = function()
+            require("plugin-config.pretty-fold")
+        end,
     },
     {
         "tpope/vim-fugitive",
