@@ -38,7 +38,21 @@ local tl_ext = telescope.extensions
 local tl_builtin = require("telescope.builtin")
 local opts = require("utils").opts
 
-vim.keymap.set("n", "<leader><space>", tl_builtin.find_files, opts("Find file"))
+vim.keymap.set("n", "<leader><space>", function()
+    local notes = vim.fs.find(".zk", { type = "directory" })
+    if #notes > 0 then
+        tl_ext.zk.notes()
+        return
+    end
+
+    local git = vim.fs.find(".git", { type = "directory" })
+    if #git > 0 then
+        tl_builtin.git_files()
+        return
+    end
+
+    tl_builtin.find_files()
+end, opts("Find file"))
 
 vim.keymap.set("n", "<leader>bz", tl_builtin.current_buffer_fuzzy_find, opts("Buffer fuzzy find"))
 vim.keymap.set("n", "<leader>fg", tl_builtin.live_grep, opts("Find grep"))

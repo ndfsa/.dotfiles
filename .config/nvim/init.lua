@@ -23,3 +23,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
         vim.cmd("clearjumps")
     end,
 })
+vim.api.nvim_create_autocmd("BufWinEnter", {
+    group = AUG,
+    command = "normal zx zR",
+})
