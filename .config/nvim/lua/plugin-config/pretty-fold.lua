@@ -6,3 +6,4 @@ require("pretty-fold").setup({
     },
     fill_char = " ",
 })
+vim.opt.foldlevelstart = 99

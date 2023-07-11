@@ -25,5 +25,5 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 vim.api.nvim_create_autocmd("BufWinEnter", {
     group = AUG,
-    command = "normal zx zR",
+    command = "normal zx",
 })

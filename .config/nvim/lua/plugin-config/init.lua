@@ -50,7 +50,9 @@ return require("lazy").setup({
     },
     {
         "nvim-treesitter/nvim-treesitter",
-        build = ":TSUpdate",
+        build = function()
+            require("nvim-treesitter.install").update({ with_sync = true })
+        end,
         config = function()
             require("plugin-config.treesitter")
         end,
