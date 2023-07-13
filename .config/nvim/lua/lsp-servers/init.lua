@@ -7,13 +7,13 @@ M.emmet_ls = {}
 M.gopls = {}
 M.html = {}
 M.jsonls = {}
+M.lua_ls = require(module_loc .. "lua")
 M.ocamllsp = {}
 M.pyright = {}
+M.rust_analyzer = require(module_loc .. "rust")
 M.rust_analyzer = {}
 M.svelte = {}
 M.tsserver = {}
-M.lua_ls = require(module_loc .. "lua")
-M.rust_analyzer = require(module_loc .. "rust")
 
 local on_attach = function(client, _)
     client.server_capabilities.semanticTokensProvider = nil
