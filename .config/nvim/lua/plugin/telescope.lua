@@ -45,12 +45,6 @@ vim.keymap.set("n", "<leader><space>", function()
         return
     end
 
-    local git = vim.fs.find(".git", { type = "directory" })
-    if #git > 0 then
-        tl_builtin.git_files()
-        return
-    end
-
     tl_builtin.find_files()
 end, opts("Find file"))
 

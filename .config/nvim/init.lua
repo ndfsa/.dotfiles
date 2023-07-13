@@ -1,4 +1,4 @@
-require("basic")
+require("core")
 
 -- load plugins
 if not pcall(require, "plugin-config") then

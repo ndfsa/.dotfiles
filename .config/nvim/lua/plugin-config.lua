@@ -16,7 +16,7 @@ return require("lazy").setup({
         "rebelot/kanagawa.nvim",
         build = ":KanagawaCompile",
         config = function()
-            require("plugin-config.kanagawa")
+            require("plugin.kanagawa")
         end,
     },
     {
@@ -26,26 +26,26 @@ return require("lazy").setup({
     {
         "lukas-reineke/indent-blankline.nvim",
         config = function()
-            require("plugin-config.indent-blankline")
+            require("plugin.indent-blankline")
         end,
     },
     {
         "stevearc/oil.nvim",
         config = function()
-            require("plugin-config.oil")
+            require("plugin.oil")
         end,
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
     {
         "nvim-lualine/lualine.nvim",
         config = function()
-            require("plugin-config.lualine")
+            require("plugin.lualine")
         end,
     },
     {
         "neovim/nvim-lspconfig",
         config = function()
-            require("plugin-config.lspconfig")
+            require("plugin.lspconfig")
         end,
     },
     {
@@ -54,13 +54,13 @@ return require("lazy").setup({
             require("nvim-treesitter.install").update({ with_sync = true })
         end,
         config = function()
-            require("plugin-config.treesitter")
+            require("plugin.treesitter")
         end,
     },
     {
         "L3MON4D3/LuaSnip",
         config = function()
-            require("plugin-config.luasnip")
+            require("plugin.luasnip")
         end,
         build = "make install_jsregexp",
         dependencies = { "honza/vim-snippets" },
@@ -76,7 +76,7 @@ return require("lazy").setup({
             "onsails/lspkind-nvim",
         },
         config = function()
-            require("plugin-config.cmp")
+            require("plugin.cmp")
         end,
     },
     {
@@ -94,7 +94,7 @@ return require("lazy").setup({
             },
         },
         config = function()
-            require("plugin-config.telescope")
+            require("plugin.telescope")
         end,
     },
     {
@@ -109,13 +109,13 @@ return require("lazy").setup({
     {
         "anuvyklack/pretty-fold.nvim",
         config = function()
-            require("plugin-config.pretty-fold")
+            require("plugin.pretty-fold")
         end,
     },
     {
         "tpope/vim-fugitive",
         init = function()
-            require("plugin-config.vim-fugitive")
+            require("plugin.vim-fugitive")
         end,
     },
     {
@@ -125,7 +125,7 @@ return require("lazy").setup({
     {
         "NvChad/nvim-colorizer.lua",
         config = function()
-            require("plugin-config.nvim-colorizer")
+            require("plugin.nvim-colorizer")
         end,
     },
     {
@@ -135,7 +135,7 @@ return require("lazy").setup({
     {
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
-            require("plugin-config.null-ls")
+            require("plugin.null-ls")
         end,
         dependencies = { "nvim-lua/plenary.nvim" },
     },
@@ -148,14 +148,14 @@ return require("lazy").setup({
     {
         "NTBBloodbath/rest.nvim",
         config = function()
-            require("plugin-config.rest")
+            require("plugin.rest")
         end,
         ft = { "http" },
     },
     {
         "mbbill/undotree",
         init = function()
-            require("plugin-config.undotree")
+            require("plugin.undotree")
         end,
     },
     {
@@ -165,7 +165,7 @@ return require("lazy").setup({
     {
         "folke/twilight.nvim",
         config = function()
-            require("plugin-config.twilight")
+            require("plugin.twilight")
         end,
     },
     {
