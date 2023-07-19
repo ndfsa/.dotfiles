@@ -58,10 +58,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
             opts("LSP code actions", { buffer = args.buf })
         )
         local format_exclude = { "lua_ls", "pyright", "tsserver", "emmet_ls" }
-        vim.keymap.set({ "n", "v" }, "<leader>lf", function()
+        vim.keymap.set({ "n", "x" }, "<leader>lf", function()
             local attached_clients = vim.lsp.buf_get_clients()
 
-            if #attached_clients <= 1 then
+            if #attached_clients < 2 then
                 vim.lsp.buf.format()
                 return
             end
@@ -75,7 +75,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 end
             end
 
-            if #entries == 0 then
+            if #entries < 1 then
                 vim.print("[LSP] All clients are excluded for formatting")
                 return
             end

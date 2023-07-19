@@ -5,6 +5,9 @@ null.setup({
         null.builtins.formatting.black,
         null.builtins.formatting.stylua,
         null.builtins.formatting.prettier,
+        null.builtins.formatting.sqlfluff.with({
+            extra_args = { "--dialect", "postgres" },
+        }),
     },
     on_attach = function(_, buff_num)
         local opts = require("utils").opts

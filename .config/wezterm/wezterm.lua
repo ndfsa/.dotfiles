@@ -16,7 +16,7 @@ local function rule(intensity, weight, italic)
         }),
     }
 end
-return {
+local config = {
     font_rules = {
         rule("Half", "ExtraLight", false),
         rule("Normal", "Regular", false),
@@ -97,23 +97,6 @@ return {
             },
         },
     },
-    keys = {
-        { key = "1", mods = "ALT", action = act.ActivateTab(0) },
-        { key = "2", mods = "ALT", action = act.ActivateTab(1) },
-        { key = "3", mods = "ALT", action = act.ActivateTab(2) },
-        { key = "4", mods = "ALT", action = act.ActivateTab(3) },
-        { key = "5", mods = "ALT", action = act.ActivateTab(4) },
-        { key = "6", mods = "ALT", action = act.ActivateTab(5) },
-        { key = "7", mods = "ALT", action = act.ActivateTab(6) },
-        { key = "8", mods = "ALT", action = act.ActivateTab(7) },
-        { key = "9", mods = "ALT", action = act.ActivateTab(8) },
-        { key = "0", mods = "ALT", action = act.ActivateTab(9) },
-        {
-            key = "t",
-            mods = "ALT",
-            action = act.SpawnTab("CurrentPaneDomain"),
-        },
-    },
     mouse_bindings = {
         {
             event = { Up = { streak = 1, button = "Left" } },
@@ -126,3 +109,22 @@ return {
         },
     },
 }
+config.keys = {
+    {
+        key = "t",
+        mods = "ALT",
+        action = act.SpawnTab("CurrentPaneDomain"),
+    },
+    { key = "{", mods = "SHIFT|ALT", action = act.MoveTabRelative(-1) },
+    { key = "}", mods = "SHIFT|ALT", action = act.MoveTabRelative(1) },
+    { key = "[", mods = "ALT", action = act.ActivateTabRelative(-1) },
+    { key = "]", mods = "ALT", action = act.ActivateTabRelative(1) },
+}
+for i = 1, 9 do
+    table.insert(config.keys, {
+        key = tostring(i),
+        mods = "ALT",
+        action = act.ActivateTab(i - 1),
+    })
+end
+return config
