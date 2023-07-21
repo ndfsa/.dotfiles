@@ -2,8 +2,8 @@
 #zmodload zsh/zprof
 
 ### Options
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=6000
+SAVEHIST=6000
 HISTFILE=~/.cache/zsh/history
 HISTCONTROL=ignoreboth
 WORDCHARS='~!#$%^&*(){}[]<>?.+-'
@@ -58,6 +58,24 @@ alias wp-push='rclone sync $HOME/Pictures/Wallpapers gdrive_crypt:Pictures/Wallp
 alias book-pull='rclone sync gdrive_crypt:Documents/Books $HOME/Documents/Books -P'
 alias book-push='rclone sync $HOME/Documents/Books gdrive_crypt:Documents/Books -P'
 alias :q='exit' # I'm done with this
+
+function purge_history() {
+    hist="$XDG_CACHE_HOME/zsh/history"
+    tac $hist \
+        | cat -n \
+        | sort -ruk2 \
+        | sort -n \
+        | cut -f2- \
+        | tac > $hist
+    unset hist
+}
+
+TRAPEXIT() {
+    if (($(wc -l "$XDG_CACHE_HOME/zsh/history" | cut -d ' ' -f 1) > 5000))
+    then
+        purge_history
+    fi
+}
 
 ### Functions
 sudo-command() {

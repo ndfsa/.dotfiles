@@ -133,13 +133,6 @@ return require("lazy").setup({
         config = true,
     },
     {
-        "jose-elias-alvarez/null-ls.nvim",
-        config = function()
-            require("plugin.null-ls")
-        end,
-        dependencies = { "nvim-lua/plenary.nvim" },
-    },
-    {
         "nmac427/guess-indent.nvim",
         config = function()
             require("guess-indent").setup({ autocmd = false })
@@ -161,6 +154,12 @@ return require("lazy").setup({
     {
         "folke/which-key.nvim",
         config = true,
+    },
+    {
+        "nvimdev/guard.nvim",
+        config = function()
+            require("plugin.guard")
+        end,
     },
     {
         "folke/twilight.nvim",

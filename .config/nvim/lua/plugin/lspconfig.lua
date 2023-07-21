@@ -57,43 +57,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.lsp.buf.code_action,
             opts("LSP code actions", { buffer = args.buf })
         )
-        local format_exclude = { "lua_ls", "pyright", "tsserver", "emmet_ls" }
-        vim.keymap.set({ "n", "x" }, "<leader>lf", function()
-            local attached_clients = vim.lsp.buf_get_clients()
-
-            if #attached_clients < 2 then
-                vim.lsp.buf.format()
-                return
-            end
-
-            local entries = {}
-            local iter = 1
-            for _, cl in ipairs(attached_clients) do
-                if not vim.list_contains(format_exclude, cl.name) then
-                    entries[iter] = { label = cl.name, id = cl.id }
-                    iter = iter + 1
-                end
-            end
-
-            if #entries < 1 then
-                vim.print("[LSP] All clients are excluded for formatting")
-                return
-            end
-
-            if #entries == 1 then
-                vim.lsp.buf.format({ id = entries[1].id })
-                return
-            end
-
-            vim.ui.select(entries, {
-                prompt = "Select LSP formatter",
-                format_item = function(item)
-                    return item.label
-                end,
-            }, function(item, _)
-                vim.lsp.buf.format({ id = item.id })
-            end)
-        end, opts("LSP format buffer", { buffer = args.buf }))
     end,
 })
 
