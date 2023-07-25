@@ -1,21 +1,20 @@
 # profiling for performance
-#zmodload zsh/zprof
+# zmodload zsh/zprof
 
 ### Options
-HISTSIZE=6000
-SAVEHIST=6000
-HISTFILE=~/.cache/zsh/history
-HISTCONTROL=ignoreboth
-WORDCHARS='~!#$%^&*(){}[]<>?.+-'
+ZCACHES=$XDG_CACHE_HOME/zsh
+HISTSIZE=5000
+SAVEHIST=5000
+HISTFILE=$ZCACHES/history
 
-setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
-setopt AUTO_MENU
+setopt HIST_EXPIRE_DUPS_FIRST
 
 ### Completion
 fpath=(/usr/share/zsh/site-functions $fpath)
-autoload -zU compinit
-compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
+autoload -Uz compinit
+compinit -d $ZCACHES/zcompdump
 
 zstyle ':completion:*' menu select=1
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -59,24 +58,6 @@ alias book-pull='rclone sync gdrive_crypt:Documents/Books $HOME/Documents/Books 
 alias book-push='rclone sync $HOME/Documents/Books gdrive_crypt:Documents/Books -P'
 alias :q='exit' # I'm done with this
 
-function purge_history() {
-    hist="$XDG_CACHE_HOME/zsh/history"
-    tac $hist \
-        | cat -n \
-        | sort -ruk2 \
-        | sort -n \
-        | cut -f2- \
-        | tac > $hist
-    unset hist
-}
-
-TRAPEXIT() {
-    if (($(wc -l "$XDG_CACHE_HOME/zsh/history" | cut -d ' ' -f 1) > 5000))
-    then
-        purge_history
-    fi
-}
-
 ### Functions
 sudo-command() {
     [[ -z $BUFFER ]] && zle up-history
@@ -112,45 +93,62 @@ swap-command() {
 zle -N sudo-command
 zle -N swap-command
 
-### Keymap
-if [[ -f ~/.zkbd/$TERM-${DISPLAY:-$VENDOR-$OSTYPE} ]]; then
-    source ~/.zkbd/$TERM-${DISPLAY:-$VENDOR-$OSTYPE}
-else
-    autoload -Uz zkbd
-    echo "WARNING Keybindings may not be set correctly!"
-    echo "Execute \`zkbd\` to create bindings."
-fi
-bindkey -e
-
 ## History search
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-zle -C alias-expension complete-word _generic
+
+### Keymap
+typeset -g -A key
+key[Home]="${terminfo[khome]}"
+key[End]="${terminfo[kend]}"
+key[Insert]="${terminfo[kich1]}"
+key[Backspace]="${terminfo[kbs]}"
+key[Delete]="${terminfo[kdch1]}"
+key[Up]="${terminfo[kcuu1]}"
+key[Down]="${terminfo[kcud1]}"
+key[Left]="${terminfo[kcub1]}"
+key[Right]="${terminfo[kcuf1]}"
+key[PageUp]="${terminfo[kpp]}"
+key[PageDown]="${terminfo[knp]}"
+key[Shift-Tab]="${terminfo[kcbt]}"
+key[Control-Left]="${terminfo[kLFT5]}"
+key[Control-Right]="${terminfo[kRIT5]}"
+
+bindkey -e
 
 # setup key accordingly
-[[ -n "${key[Home]}"        ]] && bindkey -- "${key[Home]}"           beginning-of-line
-[[ -n "${key[End]}"         ]] && bindkey -- "${key[End]}"            end-of-line
-[[ -n "${key[Insert]}"      ]] && bindkey -- "${key[Insert]}"         overwrite-mode
-[[ -n "${key[Backspace]}"   ]] && bindkey -- "${key[Backspace]}"      backward-delete-char
-[[ -n "${key[Delete]}"      ]] && bindkey -- "${key[Delete]}"         delete-char
-[[ -n "${key[Up]}"          ]] && bindkey -- "${key[Up]}"             up-line-or-beginning-search
-[[ -n "${key[Down]}"        ]] && bindkey -- "${key[Down]}"           down-line-or-beginning-search
-[[ -n "${key[Left]}"        ]] && bindkey -- "${key[Left]}"           backward-char
-[[ -n "${key[Right]}"       ]] && bindkey -- "${key[Right]}"          forward-char
-[[ -n "${key[PageUp]}"      ]] && bindkey -- "${key[PageUp]}"         beginning-of-buffer-or-history
-[[ -n "${key[PageDown]}"    ]] && bindkey -- "${key[PageDown]}"       end-of-buffer-or-history
+[[ -n "${key[Home]}" ]] && bindkey -- "${key[Home]}" beginning-of-line
+[[ -n "${key[End]}" ]] && bindkey -- "${key[End]}" end-of-line
+[[ -n "${key[Insert]}" ]] && bindkey -- "${key[Insert]}" overwrite-mode
+[[ -n "${key[Backspace]}" ]] && bindkey -- "${key[Backspace]}" backward-delete-char
+[[ -n "${key[Delete]}" ]] && bindkey -- "${key[Delete]}" delete-char
+[[ -n "${key[Up]}" ]] && bindkey -- "${key[Up]}" up-line-or-beginning-search
+[[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
+[[ -n "${key[Left]}" ]] && bindkey -- "${key[Left]}" backward-char
+[[ -n "${key[Right]}" ]] && bindkey -- "${key[Right]}" forward-char
+[[ -n "${key[PageUp]}" ]] && bindkey -- "${key[PageUp]}" beginning-of-buffer-or-history
+[[ -n "${key[PageDown]}" ]] && bindkey -- "${key[PageDown]}" end-of-buffer-or-history
+[[ -n "${key[Control-Left]}" ]] && bindkey -- "${key[Control-Left]}" backward-word
+[[ -n "${key[Control-Right]}" ]] && bindkey -- "${key[Control-Right]}" forward-word
+
 bindkey "^[s" sudo-command
 bindkey "^[c" swap-command
 bindkey "^N" menu-complete
 bindkey "^P" reverse-menu-complete
-bindkey '^a' alias-expension
 zmodload zsh/complist
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
+
+if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
+	autoload -Uz add-zle-hook-widget
+	function zle_application_mode_start { echoti smkx }
+	function zle_application_mode_stop { echoti rmkx }
+	add-zle-hook-widget -Uz zle-line-init zle_application_mode_start
+	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
+fi
 
 ### Programs
 eval "$(zoxide init --cmd cd zsh)"
@@ -171,4 +169,4 @@ fi
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # profiling end
-#zprof
+# zprof
