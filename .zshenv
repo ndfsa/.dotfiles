@@ -39,7 +39,6 @@ CUSTOM_PATHS=(
     $CARGO_HOME/bin
     $GOPATH/bin
     $HOME/.local/bin
-    $HOME/bin
     $HOME/.local/share/npm/bin
 )
 for i in $CUSTOM_PATHS[@]
