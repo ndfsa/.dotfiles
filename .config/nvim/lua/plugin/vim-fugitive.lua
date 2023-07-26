@@ -9,6 +9,6 @@ vim.keymap.set(
     opts("Git commits")
 )
 vim.keymap.set("n", "<leader>gL", "<cmd>tab G log --graph<CR>", opts("Git full log"))
-vim.keymap.set("n", "<leader>gh", "<cmd>0Gclog<CR>", opts("Git file history"))
+vim.keymap.set("n", "<leader>gh", "<cmd>tab split | 0Gclog<CR>", opts("Git file history"))
 vim.keymap.set("n", "<leader>gc", "<cmd>G difftool<CR>", opts("Git project diff tool"))
 vim.keymap.set("n", "<leader>gR", "<cmd>G restore %<CR>", opts("Git restore current file"))

@@ -167,4 +167,8 @@ return require("lazy").setup({
             require("plugin.twilight")
         end,
     },
+    {
+        "ashfinal/qfview.nvim",
+        config = true,
+    },
 })
