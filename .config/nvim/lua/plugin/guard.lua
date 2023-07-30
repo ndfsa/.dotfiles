@@ -17,7 +17,5 @@ require("guard").setup({
     fmt_on_save = false,
 })
 
-vim.print("works")
-
 -- vim.keymap.set({ "n", "v" }, "<leader>lf", require("guard.format").do_fmt, opts("Format buffer"))
 vim.keymap.set("n", "<leader>lf", require("guard.format").do_fmt, opts("Format buffer"))

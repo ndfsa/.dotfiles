@@ -42,8 +42,8 @@ function rm(){
 
 alias ls='exa --icons --sort=type --classify'
 alias la='ls -a'
-alias lsl='ls -l --group'
-alias lal='la -l --group'
+alias lsl='ls -l'
+alias lal='lsl -a'
 alias ip='ip --color=auto'
 alias xsc='xclip -selection c'
 function mkcd(){

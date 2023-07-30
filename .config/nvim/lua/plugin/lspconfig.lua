@@ -32,12 +32,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.lsp.buf.references,
             opts("Go to references", { buffer = args.buf })
         )
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts(nil, { buffer = args.buf }))
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts("Show hover info", { buffer = args.buf }))
         vim.keymap.set(
             { "n", "i" },
             "<C-k>",
             vim.lsp.buf.signature_help,
-            opts(nil, { buffer = args.buf })
+            opts("Show signature help", { buffer = args.buf })
         )
         vim.keymap.set(
             "n",
