@@ -7,6 +7,8 @@
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (set-face-attribute 'default nil :font "JetBrainsMono-14:Medium")
 
+(when window-system (set-frame-size (selected-frame) 120 36))
+
 (setq frame-resize-pixelwise t)
 
 (setq scroll-margin 5)
