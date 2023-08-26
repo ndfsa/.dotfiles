@@ -34,9 +34,9 @@
 (straight-use-package 'use-package)
 
 (setq straight-use-package-by-default t)
-(use-package atom-one-dark-theme
+(use-package dracula-theme
   :config
-  (load-theme 'atom-one-dark t))
+  (load-theme 'dracula t))
 (use-package mood-line
   :config
   (mood-line-mode 1))
@@ -86,3 +86,4 @@
 (use-package org :straight nil)
 (use-package magit)
 (use-package ediff)
+(use-package elisp-format)
