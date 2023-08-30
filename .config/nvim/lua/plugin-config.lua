@@ -171,4 +171,10 @@ return require("lazy").setup({
         "ashfinal/qfview.nvim",
         config = true,
     },
+    {
+        "nvim-tree/nvim-tree.lua",
+        config = function()
+            require("plugin.nvim-tree")
+        end
+    }
 })
