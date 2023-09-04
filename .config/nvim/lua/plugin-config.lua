@@ -84,6 +84,7 @@ return require("lazy").setup({
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-lua/popup.nvim",
+            "nvim-neorg/neorg-telescope",
             "nvim-telescope/telescope-project.nvim",
             "nvim-telescope/telescope-symbols.nvim",
             "nvim-telescope/telescope-ui-select.nvim",
@@ -175,6 +176,14 @@ return require("lazy").setup({
         "nvim-tree/nvim-tree.lua",
         config = function()
             require("plugin.nvim-tree")
-        end
-    }
+        end,
+    },
+    {
+        "nvim-neorg/neorg",
+        build = ":Neorg sync-parsers",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require("plugin.neorg")
+        end,
+    },
 })
