@@ -179,11 +179,12 @@ return require("lazy").setup({
         end,
     },
     {
-        "nvim-neorg/neorg",
-        build = ":Neorg sync-parsers",
-        dependencies = { "nvim-lua/plenary.nvim" },
+        "mickael-menu/zk-nvim",
         config = function()
-            require("plugin.neorg")
+            require("plugin.zk")
         end,
+    },
+    {
+        "tpope/vim-markdown",
     },
 })
