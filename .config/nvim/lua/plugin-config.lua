@@ -184,7 +184,4 @@ return require("lazy").setup({
             require("plugin.zk")
         end,
     },
-    {
-        "tpope/vim-markdown",
-    },
 })
