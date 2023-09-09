@@ -90,7 +90,7 @@ function rm(){
     trash $@
 }
 
-alias ls='exa --icons --sort=type --classify'
+alias ls='eza --icons --sort=type --classify'
 alias la='ls -a'
 alias lsl='ls -l'
 alias lal='lsl -a'
