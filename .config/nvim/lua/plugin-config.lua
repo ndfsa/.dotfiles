@@ -25,9 +25,8 @@ return require("lazy").setup({
     },
     {
         "lukas-reineke/indent-blankline.nvim",
-        config = function()
-            require("plugin.indent-blankline")
-        end,
+        main = "ibl",
+        opts = require("plugin.indent-blankline"),
     },
     {
         "stevearc/oil.nvim",
