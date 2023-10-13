@@ -7,7 +7,7 @@ local function rule(intensity, weight, italic)
         intensity = intensity,
         font = wezterm.font_with_fallback({
             {
-                family = "Fira Code",
+                family = "JetBrains Mono",
                 italic = italic,
                 weight = weight,
             },
@@ -18,14 +18,13 @@ local function rule(intensity, weight, italic)
 end
 local config = {
     font_rules = {
-        rule("Half", "Light", false),
+        rule("Half", "ExtraLight", false),
         rule("Normal", "Regular", false),
-        rule("Bold", "Bold", false),
-        rule("Half", "Light", true),
+        rule("Bold", "ExtraBold", false),
+        rule("Half", "ExtraLight", true),
         rule("Normal", "Regular", true),
-        rule("Bold", "Bold", true),
+        rule("Bold", "ExtraBold", true),
     },
-    warn_about_missing_glyphs = false,
     hide_tab_bar_if_only_one_tab = true,
     audible_bell = "Disabled",
     harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
