@@ -182,5 +182,8 @@ return require("lazy").setup({
         config = function()
             require("plugin.zk")
         end,
+        cond = function()
+            return #vim.fs.find(".zk", {}) > 0
+        end,
     },
 })

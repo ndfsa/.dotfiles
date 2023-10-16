@@ -32,7 +32,6 @@ telescope.load_extension("fzf")
 telescope.load_extension("project")
 telescope.load_extension("env")
 telescope.load_extension("ui-select")
-telescope.load_extension("zk")
 
 local tl_ext = telescope.extensions
 local tl_builtin = require("telescope.builtin")
