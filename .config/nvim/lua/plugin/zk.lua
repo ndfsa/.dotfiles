@@ -10,9 +10,9 @@ vim.keymap.set("n", "<leader>Jd", function()
 end, opts("Journal daily"))
 
 vim.keymap.set("n", "<leader>fj", function()
-    zkcmd.get("ZkNotes")({ select = { "title" }, tags = { "daily" } })
+    zkcmd.get("ZkNotes")({ select = { "absPath", "title" }, tags = { "daily" } })
 end, opts("Find daily journal"))
 
-vim.keymap.set("n", "<leader>fj", function()
-    zkcmd.get("ZkNotes")({ select = { "title" }, tags = { "topic" } })
+vim.keymap.set("n", "<leader>fn", function()
+    zkcmd.get("ZkNotes")({ select = { "absPath", "title" }, tags = { "topic" } })
 end, opts("Find topic notes"))
