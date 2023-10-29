@@ -153,7 +153,9 @@ return require("lazy").setup({
     },
     {
         "folke/which-key.nvim",
-        config = true,
+        config = function ()
+            require("plugin.which-key")
+        end,
     },
     {
         "stevearc/conform.nvim",
