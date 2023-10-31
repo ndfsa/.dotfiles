@@ -40,6 +40,7 @@ local config = {
     enable_tab_bar = true,
     bold_brightens_ansi_colors = true,
     adjust_window_size_when_changing_font_size = false,
+    show_new_tab_button_in_tab_bar = false,
     force_reverse_video_cursor = true,
     tab_bar_at_bottom = true,
     colors = {
@@ -74,25 +75,18 @@ local config = {
         },
         indexed = { [16] = "#ffa066", [17] = "#ff5d62" },
         tab_bar = {
-            background = "#181820",
+            background = "#98bb6c",
             active_tab = {
-                bg_color = "#7e9cd8",
+                bg_color = "#98bb6c",
                 fg_color = "#1f1f28",
+                intensity = "Bold",
             },
             inactive_tab = {
-                bg_color = "#252535",
-                fg_color = "#7e9cd8",
+                bg_color = "#98bb6c",
+                fg_color = "#727169",
             },
             inactive_tab_hover = {
-                bg_color = "#957fb8",
-                fg_color = "#1f1f28",
-            },
-            new_tab = {
-                bg_color = "#1f1f28",
-                fg_color = "#363646",
-            },
-            new_tab_hover = {
-                bg_color = "#957fb8",
+                bg_color = "#7e9cd8",
                 fg_color = "#1f1f28",
             },
         },
