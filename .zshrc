@@ -24,21 +24,19 @@ export CARGO_HOME=$XDG_DATA_HOME/cargo
 export OPAMROOT=$XDG_DATA_HOME/opam
 export PARALLEL_HOME=$XDG_CONFIG_HOME/parallel
 export RUSTUP_HOME=$XDG_DATA_HOME/rustup
-export LEIN_HOME=$XDG_DATA_HOME/lein
 export LESSHISTFILE=$XDG_CACHE_HOME/less/history
 
-if [[ -n $(command -v opam) ]]
-then
-    eval $(opam env)
-fi
+[[ -n $(command -v opam) ]] && eval $(opam env)
 
 ### Custom paths
 CUSTOM_PATHS=(
     $CARGO_HOME/bin
-    $GOPATH/bin
     $HOME/.local/bin
     $HOME/.local/share/npm/bin
 )
+
+[[ -n $(command -v go) ]] && CUSTOM_PATHS+="$(go env GOPATH)/bin"
+
 for i in $CUSTOM_PATHS[@]
 do
     case ":$PATH:" in
