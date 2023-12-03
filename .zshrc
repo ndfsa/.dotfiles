@@ -25,17 +25,16 @@ export OPAMROOT=$XDG_DATA_HOME/opam
 export PARALLEL_HOME=$XDG_CONFIG_HOME/parallel
 export RUSTUP_HOME=$XDG_DATA_HOME/rustup
 export LESSHISTFILE=$XDG_CACHE_HOME/less/history
+export GHCUP_USE_XDG_DIRS=1
 
 [[ -n $(command -v opam) ]] && eval $(opam env)
 
 ### Custom paths
-CUSTOM_PATHS=(
-    $CARGO_HOME/bin
-    $HOME/.local/bin
-    $HOME/.local/share/npm/bin
-)
+CUSTOM_PATHS=( $HOME/.local/bin )
 
 [[ -n $(command -v go) ]] && CUSTOM_PATHS+="$(go env GOPATH)/bin"
+[[ -n $(command -v cargo) ]] && CUSTOM_PATHS+="$CARGO_HOME/bin"
+[[ -n $(command -v npm) ]] && CUSTOM_PATHS+="$XDG_DATA_HOME/npm/bin"
 
 for i in $CUSTOM_PATHS[@]
 do
