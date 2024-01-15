@@ -1,19 +1,15 @@
 local M = {}
 
-local module_loc = "lsp-servers."
-M.astro = {}
-M.ccls = {}
+local mod_dir = "lsp-servers."
 M.dartls = {}
 M.emmet_language_server = {}
 M.gopls = {}
 M.html = {}
 M.jsonls = {}
-M.lua_ls = require(module_loc .. "lua")
+M.lua_ls = require(mod_dir .. "lua")
 M.ocamllsp = {}
 M.pyright = {}
-M.rust_analyzer = require(module_loc .. "rust")
-M.rust_analyzer = {}
-M.svelte = {}
+M.rust_analyzer = require(mod_dir .. "rust")
 M.tsserver = {}
 
 local on_attach = function(client, _)
