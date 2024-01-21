@@ -18,7 +18,6 @@ configs=(
     .zshenv
     .zshrc
     .config/nvim
-    .config/foot
     .config/sxhkd
     .config/wezterm
     .local/bin/*

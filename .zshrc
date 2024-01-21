@@ -21,13 +21,10 @@ export ZK_NOTEBOOK_DIR=$HOME/Documents/notes
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 
 export CARGO_HOME=$XDG_DATA_HOME/cargo
-export OPAMROOT=$XDG_DATA_HOME/opam
 export PARALLEL_HOME=$XDG_CONFIG_HOME/parallel
 export RUSTUP_HOME=$XDG_DATA_HOME/rustup
 export LESSHISTFILE=$XDG_CACHE_HOME/less/history
 export GHCUP_USE_XDG_DIRS=1
-
-[[ -n $(command -v opam) ]] && eval $(opam env)
 
 ### Custom paths
 CUSTOM_PATHS=( $HOME/.local/bin )

@@ -153,7 +153,7 @@ return require("lazy").setup({
     },
     {
         "folke/which-key.nvim",
-        config = function ()
+        config = function()
             require("plugin.which-key")
         end,
     },
@@ -178,6 +178,7 @@ return require("lazy").setup({
         config = function()
             require("plugin.nvim-tree")
         end,
+        cmd = "EnableNvimTree",
     },
     {
         "mickael-menu/zk-nvim",
