@@ -11,21 +11,6 @@ telescope.setup({
         },
         preview = true,
         file_ignore_patterns = ignore_patterns,
-        vimgrep_arguments = {
-            "rg",
-            "--hidden",
-            "--color=never",
-            "--no-heading",
-            "--with-filename",
-            "--line-number",
-            "--column",
-            "--smart-case",
-        },
-    },
-    pickers = {
-        find_files = {
-            hidden = true,
-        },
     },
 })
 telescope.load_extension("fzf")
