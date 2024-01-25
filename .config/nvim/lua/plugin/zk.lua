@@ -12,7 +12,3 @@ end, opts("Journal daily"))
 vim.keymap.set("n", "<leader>fj", function()
     zkcmd.get("ZkNotes")({ select = { "absPath", "title" }, tags = { "daily" } })
 end, opts("Find daily journal"))
-
-vim.keymap.set("n", "<leader>fn", function()
-    zkcmd.get("ZkNotes")({ select = { "absPath", "title" }, tags = { "topic" } })
-end, opts("Find topic notes"))
