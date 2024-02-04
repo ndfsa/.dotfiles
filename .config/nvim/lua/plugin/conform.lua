@@ -18,6 +18,10 @@ conform.setup({
         python = { "black" },
         javascript = { "prettier" },
         javascriptreact = { "prettier" },
+        json = { "prettier" },
+        jsonc = { "prettier" },
+        typescript = { "prettier" },
+        typescriptreact = { "prettier" },
     },
 })
 
