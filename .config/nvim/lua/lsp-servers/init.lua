@@ -1,6 +1,7 @@
 local M = {}
 
 local mod_dir = "lsp-servers."
+M.csharp_ls = {}
 M.dartls = {}
 M.emmet_language_server = {}
 M.gopls = {}

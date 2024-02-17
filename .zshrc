@@ -32,6 +32,7 @@ CUSTOM_PATHS=( $HOME/.local/bin )
 [[ -n $(command -v go) ]] && CUSTOM_PATHS+="$(go env GOPATH)/bin"
 [[ -n $(command -v cargo) ]] && CUSTOM_PATHS+="$CARGO_HOME/bin"
 [[ -n $(command -v npm) ]] && CUSTOM_PATHS+="$XDG_DATA_HOME/npm/bin"
+[[ -n $(command -v dotnet) ]] && CUSTOM_PATHS+="$HOME/.dotnet/tools"
 
 for i in $CUSTOM_PATHS[@]
 do
