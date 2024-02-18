@@ -84,7 +84,6 @@ alias la='ls -a'
 alias lsl='ls -l'
 alias lal='lsl -a'
 alias ip='ip --color=auto'
-alias xsc='xclip -selection c'
 function mkcd(){
     __DIR_NAME=$1
     mkdir $1 && cd $1
@@ -111,26 +110,7 @@ sudo-command() {
     fi
 }
 
-swap-command() {
-    if [[ $BUFFER == ls\ * ]]; then
-        LBUFFER="bat ${LBUFFER#ls }"
-    elif [[ $BUFFER == bat\ * ]]; then
-        LBUFFER="nvim ${LBUFFER#bat }"
-    elif [[ $BUFFER == nvim\ * ]]; then
-        LBUFFER="cp ${LBUFFER#nvim }"
-    elif [[ $BUFFER == cp\ * ]]; then
-        LBUFFER="mv ${LBUFFER#cp }"
-    elif [[ $BUFFER == mv\ * ]]; then
-        LBUFFER="touch ${LBUFFER#mv }"
-    elif [[ $BUFFER == touch\ * ]]; then
-        LBUFFER="mkdir ${LBUFFER#touch }"
-    elif [[ $BUFFER == mkdir\ * ]]; then
-        LBUFFER="ls ${LBUFFER#mkdir }"
-    fi
-}
-
 zle -N sudo-command
-zle -N swap-command
 
 ## History search
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
@@ -175,7 +155,6 @@ bindkey -e
 [[ -n "${key[Control-Right]}" ]] && bindkey -- "${key[Control-Right]}" forward-word
 
 bindkey "^[s" sudo-command
-bindkey "^[c" swap-command
 bindkey "^N" menu-complete
 bindkey "^P" reverse-menu-complete
 zmodload zsh/complist
