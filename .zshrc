@@ -17,7 +17,6 @@ export SXHKD_SHELL=dash
 export JDTLS_HOME=/usr/share/java/jdtls
 export FZF_DEFAULT_OPTS=--color=16
 export DIFFPROG='nvim -d'
-export ZK_NOTEBOOK_DIR=$HOME/Documents/notes
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 
 export CARGO_HOME=$XDG_DATA_HOME/cargo
@@ -89,7 +88,6 @@ function mkcd(){
     mkdir $1 && cd $1
 }
 alias conf='__scoped_edit $HOME/.dotfiles/'
-alias note='__scoped_edit $HOME/Documents/notes/'
 alias wp-pull='rclone sync gdrive_crypt:Pictures/Wallpapers $HOME/Pictures/Wallpapers -P'
 alias wp-push='rclone sync $HOME/Pictures/Wallpapers gdrive_crypt:Pictures/Wallpapers -P'
 alias book-pull='rclone sync gdrive_crypt:Documents/Books $HOME/Documents/Books -P'

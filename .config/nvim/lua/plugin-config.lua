@@ -180,13 +180,4 @@ return require("lazy").setup({
         end,
         cmd = "EnableNvimTree",
     },
-    {
-        "mickael-menu/zk-nvim",
-        config = function()
-            require("plugin.zk")
-        end,
-        cond = function()
-            return #vim.fs.find(".zk", {}) > 0
-        end,
-    },
 })
