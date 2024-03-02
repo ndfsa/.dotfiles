@@ -1,3 +1,6 @@
+-- disable zig autoformat
+vim.g.zig_fmt_autosave = 0
+
 local M = {}
 
 local mod_dir = "lsp-servers."
@@ -12,6 +15,7 @@ M.lua_ls = require(mod_dir .. "lua")
 M.pyright = {}
 M.rust_analyzer = require(mod_dir .. "rust")
 M.tsserver = {}
+M.zls = {}
 
 local on_attach = function(client, _)
     client.server_capabilities.semanticTokensProvider = nil
