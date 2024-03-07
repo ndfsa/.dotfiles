@@ -2,8 +2,7 @@
 
 dotfiles_dir="$HOME/.dotfiles"
 
-curr_dir=$(pwd)
-cd $dotfiles_dir
+pushd $dotfiles_dir
 
 configs=(
     .local/bin/*
@@ -25,10 +24,10 @@ function handle_entry() {
 
 for i in $configs
 do
-    if [[ -e "$HOME/.dotfiles/$i" ]]
+    if [[ -e "$dotfiles_dir/$i" ]]
     then
         handle_entry $i $dotfiles_dir
     fi
 done
 
-cd $curr_dir
+popd
