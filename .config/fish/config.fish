@@ -26,7 +26,7 @@ set -x GHCUP_USE_XDG_DIRS 1
 
 set -a PATH "$HOME/.local/bin"
 
-if test -n $(command -v go) 
+if test -n $(command -v go)
 	set -a PATH "$(go env GOPATH)/bin"
 end
 if test -n $(command -v cargo)
@@ -38,6 +38,8 @@ end
 if test -n $(command -v dotnet)
 	set -a PATH "$HOME/.dotnet/tools"
 end
+
+set -g fish_greeting
 
 if not status is-interactive
 	return
