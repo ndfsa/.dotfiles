@@ -24,7 +24,7 @@ set -x RUSTUP_HOME $XDG_DATA_HOME/rustup
 set -x LESSHISTFILE $XDG_CACHE_HOME/less/history
 set -x GHCUP_USE_XDG_DIRS 1
 
-set -a PATH "$HOME/.local/bin"
+set -a PATH "$HOME/.dotfiles/bin"
 
 if test -n $(command -v go)
 	set -a PATH "$(go env GOPATH)/bin"
