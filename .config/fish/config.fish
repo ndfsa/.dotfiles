@@ -7,6 +7,7 @@ set -x XDG_BIN_HOME "$HOME/.local/bin"
 set -x EDITOR nvim
 set -x VISUAL nvim
 set -x BAT_THEME base16
+set -x AUR_PAGER lf
 set -x PAGER bat
 set -x BROWSER chromium
 set -x LS_COLORS 'di=1;34:ln=36:so=1;31:pi=33:ex=1;32:bd=1;33:cd=1;33:su=30;41:sg=30;46:tw=30;42:ow=30;43'
