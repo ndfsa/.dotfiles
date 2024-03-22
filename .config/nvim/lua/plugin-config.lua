@@ -18,6 +18,7 @@ return require("lazy").setup({
         config = function()
             require("plugin.kanagawa")
         end,
+        priority = 0,
     },
     {
         "numToStr/Comment.nvim",
@@ -179,16 +180,5 @@ return require("lazy").setup({
             require("plugin.nvim-tree")
         end,
         cmd = "EnableNvimTree",
-    },
-    {
-        "NeogitOrg/neogit",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "sindrets/diffview.nvim",
-            "nvim-telescope/telescope.nvim",
-        },
-        config = function()
-            require("plugin.neogit")
-        end,
     },
 })
