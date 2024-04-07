@@ -21,10 +21,6 @@ return require("lazy").setup({
         priority = 0,
     },
     {
-        "numToStr/Comment.nvim",
-        config = true,
-    },
-    {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
         opts = require("plugin.indent-blankline"),
@@ -120,10 +116,6 @@ return require("lazy").setup({
         end,
     },
     {
-        "kylechui/nvim-surround",
-        config = true,
-    },
-    {
         "NvChad/nvim-colorizer.lua",
         config = function()
             require("plugin.nvim-colorizer")
@@ -181,4 +173,6 @@ return require("lazy").setup({
         end,
         cmd = "EnableNvimTree",
     },
+    { "echasnovski/mini.ai", config = true },
+    { "echasnovski/mini.surround", config = true },
 })
