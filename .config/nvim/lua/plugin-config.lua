@@ -132,13 +132,6 @@ return require("lazy").setup({
         end,
     },
     {
-        "NTBBloodbath/rest.nvim",
-        config = function()
-            require("plugin.rest")
-        end,
-        ft = { "http" },
-    },
-    {
         "mbbill/undotree",
         init = function()
             require("plugin.undotree")
