@@ -32,7 +32,6 @@ telescope.setup({
     },
 })
 telescope.load_extension("fzf")
-telescope.load_extension("project")
 telescope.load_extension("env")
 telescope.load_extension("ui-select")
 
@@ -50,7 +49,5 @@ vim.keymap.set("n", "<leader>bz", tl_builtin.current_buffer_fuzzy_find, opts("Bu
 vim.keymap.set("n", "<leader>fg", tl_builtin.live_grep, opts("Find grep"))
 vim.keymap.set("n", "<leader>fr", tl_builtin.registers, opts("Find registers"))
 vim.keymap.set("n", "<leader>fb", tl_builtin.buffers, opts("Find buffers"))
-vim.keymap.set("n", "<leader>fp", function()
-    tl_ext.project.project({})
-end, opts("Find projects"))
+vim.keymap.set("n", "<leader>fh", tl_builtin.help_tags, opts("Find help"))
 vim.keymap.set("n", "<leader>fE", tl_ext.env.env, opts("Find environment variables"))

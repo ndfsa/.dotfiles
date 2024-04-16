@@ -21,11 +21,6 @@ return require("lazy").setup({
         priority = 0,
     },
     {
-        "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
-        opts = require("plugin.indent-blankline"),
-    },
-    {
         "stevearc/oil.nvim",
         config = function()
             require("plugin.oil")
@@ -81,7 +76,6 @@ return require("lazy").setup({
             "nvim-lua/plenary.nvim",
             "nvim-lua/popup.nvim",
             "nvim-neorg/neorg-telescope",
-            "nvim-telescope/telescope-project.nvim",
             "nvim-telescope/telescope-symbols.nvim",
             "nvim-telescope/telescope-ui-select.nvim",
             "LinArcX/telescope-env.nvim",
