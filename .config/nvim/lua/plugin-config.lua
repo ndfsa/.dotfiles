@@ -162,4 +162,10 @@ return require("lazy").setup({
     },
     { "echasnovski/mini.ai", config = true },
     { "echasnovski/mini.surround", config = true },
+    {
+        "ThePrimeagen/git-worktree.nvim",
+        config = function()
+            require("plugin.git-worktree")
+        end,
+    },
 })
