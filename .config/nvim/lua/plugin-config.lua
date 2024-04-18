@@ -78,6 +78,7 @@ return require("lazy").setup({
             "nvim-neorg/neorg-telescope",
             "nvim-telescope/telescope-symbols.nvim",
             "nvim-telescope/telescope-ui-select.nvim",
+            "debugloop/telescope-undo.nvim",
             "LinArcX/telescope-env.nvim",
             {
                 "nvim-telescope/telescope-fzf-native.nvim",
@@ -123,12 +124,6 @@ return require("lazy").setup({
         "nmac427/guess-indent.nvim",
         config = function()
             require("guess-indent").setup({ autocmd = false })
-        end,
-    },
-    {
-        "mbbill/undotree",
-        init = function()
-            require("plugin.undotree")
         end,
     },
     {
