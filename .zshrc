@@ -197,8 +197,10 @@ then
 fi
 
 # fzf integration
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
+if command -v fzf &> /dev/null
+then
+    eval "$(fzf --zsh)"
+fi
 
 # syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
