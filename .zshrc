@@ -71,6 +71,9 @@ setopt HIST_EXPIRE_DUPS_FIRST
 setopt SHARE_HISTORY
 setopt HIST_VERIFY
 
+# resume job if it is only one word and with no redirections
+setopt AUTO_RESUME
+
 # exit if not an interactive shell
 [[ $- != *i* ]] && return
 
