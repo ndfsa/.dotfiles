@@ -15,7 +15,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export SXHKD_SHELL=dash
 export JDTLS_HOME=/usr/share/java/jdtls
 export AUR_PAGER=lf
-# export FZF_DEFAULT_OPTS=--color=16
+export FZF_DEFAULT_OPTS=--color=16
 export DIFFPROG='nvim -d'
 export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/docker.sock"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
