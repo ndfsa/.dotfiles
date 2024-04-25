@@ -191,6 +191,13 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
+# use zoxide
+if command -v zoxide &> /dev/null
+then
+    # turn off completions for now
+    eval "$(zoxide init zsh --cmd cd | sed -n '/# Completion.*/q;p')"
+fi
+
 # use starship prompt
 if command -v starship &> /dev/null
 then
