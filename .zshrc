@@ -124,7 +124,9 @@ function __scoped_edit(){
 }
 
 # setup aliases
-alias rm=trash
+function rm() {
+    trash $@
+}
 alias ls='eza --icons --sort=type --classify=always --group'
 alias la='ls -a'
 alias lsl='ls -l'
