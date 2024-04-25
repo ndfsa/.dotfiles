@@ -46,7 +46,7 @@ then
     CUSTOM_PATHS+=( "$HOME/.dotnet/tools" )
 fi
 
-# merge PATH and CUSTOM_PATH
+# merge PATH and CUSTOM_PATHS
 for i in ${CUSTOM_PATHS[@]}
 do
     case ":$PATH:" in
@@ -54,6 +54,7 @@ do
         *) PATH="$i:$PATH";;
     esac
 done
+unset CUSTOM_PATHS
 
 # cache directory
 ZCACHES=$XDG_CACHE_HOME/zsh
@@ -71,9 +72,6 @@ setopt HIST_EXPIRE_DUPS_FIRST
 setopt SHARE_HISTORY
 setopt HIST_VERIFY
 
-# resume job if it is only one word and with no redirections
-setopt AUTO_RESUME
-
 # exit if not an interactive shell
 [[ $- != *i* ]] && return
 
@@ -88,7 +86,7 @@ autoload -Uz compinit
 compinit -d $ZCACHES/zcompdump
 
 # set completion menu to select mode
-zstyle ':completion:*' menu select=1
+zstyle ':completion:*' menu select
 
 # use verbose completions always
 zstyle ':completion:*' verbose yes
@@ -175,8 +173,6 @@ key[Control-Right]="${terminfo[kRIT5]}"
 [[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
 [[ -n "${key[Left]}" ]] && bindkey -- "${key[Left]}" backward-char
 [[ -n "${key[Right]}" ]] && bindkey -- "${key[Right]}" forward-char
-[[ -n "${key[PageUp]}" ]] && bindkey -- "${key[PageUp]}" beginning-of-buffer-or-history
-[[ -n "${key[PageDown]}" ]] && bindkey -- "${key[PageDown]}" end-of-buffer-or-history
 [[ -n "${key[Control-Left]}" ]] && bindkey -- "${key[Control-Left]}" backward-word
 [[ -n "${key[Control-Right]}" ]] && bindkey -- "${key[Control-Right]}" forward-word
 bindkey "^N" menu-complete
@@ -201,14 +197,23 @@ then
     eval "$(starship init zsh)"
 fi
 
-# fzf integration
-if command -v fzf &> /dev/null
-then
-    eval "$(fzf --zsh)"
-fi
-
 # syntax highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+PLUGIN=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -e $PLUGIN ]] && source $PLUGIN
 
 # auto-suggestions
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+PLUGIN=/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ -e $PLUGIN ]] && source $PLUGIN
+
+# history substring search
+PLUGIN=/usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+if [[ -e $PLUGIN ]]
+then
+    source $PLUGIN
+    [[ -n "${key[PageUp]}" ]] && bindkey -- "${key[PageUp]}" history-substring-search-up
+    [[ -n "${key[PageDown]}" ]] && bindkey -- "${key[PageDown]}" history-substring-search-down
+else
+    [[ -n "${key[PageUp]}" ]] && bindkey -- "${key[PageUp]}" beginning-of-buffer-or-history
+    [[ -n "${key[PageDown]}" ]] && bindkey -- "${key[PageDown]}" end-of-buffer-or-history
+fi
+unset PLUGIN
