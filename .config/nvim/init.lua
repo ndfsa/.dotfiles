@@ -1,8 +1,8 @@
 require("core")
 
--- load plugins
-if not pcall(require, "plugin-config") then
-    print("error loading plugins")
+local status, err = pcall(require, "plugin-config")
+if not status then
+    print(err)
 end
 
 local AUG = vim.api.nvim_create_augroup("convenient", {
