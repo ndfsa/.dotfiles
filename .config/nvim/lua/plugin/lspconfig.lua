@@ -1,8 +1,6 @@
 return function()
     local opts = require("utils").opts
 
-    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts("Next diagnostic"))
-    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts("Next diagnostic"))
     vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, opts("LSP diagnostics loclist"))
     vim.keymap.set("n", "<leader>le", vim.diagnostic.open_float, opts("LSP diagnostics float"))
 
@@ -17,7 +15,6 @@ return function()
             vim.keymap.set("n", "gD", vim.lsp.buf.declaration, buf_opts("Go to declaration"))
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, buf_opts("Go to definition"))
             vim.keymap.set("n", "gi", vim.lsp.buf.implementation, buf_opts("Go to implementation"))
-            vim.keymap.set("n", "gr", vim.lsp.buf.references, buf_opts("Go to references"))
             vim.keymap.set("n", "K", vim.lsp.buf.hover, buf_opts("Show hover info"))
             vim.keymap.set(
                 { "n", "i" },
