@@ -42,7 +42,7 @@ vim.opt.shiftwidth = 4
 
 -- EXPERIMENTAL FEATURES
 -- vim.opt.cmdheight = 0
--- vim.opt.diffopt = 'linematch:60'
+vim.opt.diffopt = {'internal', 'filler', 'linematch:60'}
 
 local default_plugins = {
     "2html_plugin",
@@ -138,10 +138,3 @@ vim.keymap.set("n", "<leader>fs", "<cmd>update<CR>", opts("File save"))
 vim.keymap.set("n", "<leader>fy", '<cmd>let @+=expand("%:p")<CR>', opts("File copy path"))
 
 vim.keymap.set("n", "<leader>oe", "<cmd>Oil %:p:h<CR>", opts("Open File Explorer"))
-
-if vim.opt.diff:get() then
-    vim.opt.winbar = "%=%f%="
-    vim.keymap.set("n", "<leader>1", "<cmd>diffget LO<CR>", opts("Diff get local"))
-    vim.keymap.set("n", "<leader>2", "<cmd>diffget BA<CR>", opts("Diff get base"))
-    vim.keymap.set("n", "<leader>3", "<cmd>diffget RE<CR>", opts("Diff get remote"))
-end
