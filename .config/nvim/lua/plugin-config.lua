@@ -69,7 +69,6 @@ return require("lazy").setup({
         },
         config = require("plugin.telescope"),
     },
-    { "lewis6991/gitsigns.nvim", dependencies = { "nvim-lua/plenary.nvim" }, config = true },
     { "sQVe/sort.nvim", config = true },
     { "anuvyklack/pretty-fold.nvim", config = require("plugin.pretty-fold") },
     { "tpope/vim-fugitive", init = require("plugin.vim-fugitive") },
@@ -83,6 +82,7 @@ return require("lazy").setup({
     { "nvim-tree/nvim-tree.lua", config = require("plugin.nvim-tree"), lazy = true },
     { "echasnovski/mini.ai", config = true },
     { "echasnovski/mini.surround", config = true },
+    { "echasnovski/mini.diff", config = true },
     { "ThePrimeagen/git-worktree.nvim", config = require("plugin.git-worktree") },
     { "Vigemus/iron.nvim", config = require("plugin.iron"), lazy = true },
 })

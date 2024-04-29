@@ -5,7 +5,7 @@ vim.opt.incsearch = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.wrap = true
-vim.opt.signcolumn = "yes"
+-- vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "100"
 vim.opt.cursorline = true
 vim.opt.swapfile = false
@@ -42,7 +42,7 @@ vim.opt.shiftwidth = 4
 
 -- EXPERIMENTAL FEATURES
 -- vim.opt.cmdheight = 0
-vim.opt.diffopt = {'internal', 'filler', 'linematch:60'}
+vim.opt.diffopt = { "internal", "filler", "foldcolumn:0" }
 
 local default_plugins = {
     "2html_plugin",
