@@ -11,17 +11,12 @@ return function()
             lualine_b = { "filesize" },
             lualine_c = {
                 { "diagnostics", sources = { "nvim_diagnostic" } },
-                function()
-                    return "%t%4m%5r%4w"
-                end,
+                "filename",
                 "branch",
             },
             lualine_x = {
                 "progress",
                 "location",
-                function()
-                    return "0x%02B"
-                end,
             },
             lualine_y = { "filetype" },
             lualine_z = {
