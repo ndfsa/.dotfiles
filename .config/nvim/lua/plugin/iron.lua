@@ -9,7 +9,7 @@ return function()
                     command = { "bash" },
                 },
             },
-            repl_open_cmd = require("iron.view").right(40),
+            repl_open_cmd = require("iron.view").split.botright("30%"),
         },
         keymaps = {
             visual_send = "<F5>",
