@@ -166,6 +166,7 @@ bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
+bindkey -r '^['
 
 # make sure zle is in application mode, only then is terminfo valid
 if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then

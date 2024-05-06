@@ -8,14 +8,12 @@ return function()
         group = vim.api.nvim_create_augroup("UserLspConfig", {}),
         callback = function(ev)
             vim.bo[ev.buf].omnifunc = nil
-            vim.keymap.del("n", "K", { buffer = ev.buf })
             local buf_opts = function(desc)
                 return opts(desc, { buffer = ev.buf })
             end
             vim.keymap.set("n", "gD", vim.lsp.buf.declaration, buf_opts("Go to declaration"))
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, buf_opts("Go to definition"))
             vim.keymap.set("n", "gi", vim.lsp.buf.implementation, buf_opts("Go to implementation"))
-            vim.keymap.set("n", "K", vim.lsp.buf.hover, buf_opts("Show hover info"))
             vim.keymap.set(
                 { "n", "i" },
                 "<C-k>",
