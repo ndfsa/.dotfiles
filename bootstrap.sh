@@ -16,6 +16,7 @@ configs=(
     .config/starship-ascii.toml
     .zshrc
     .config/nvim
+    .config/ghostty
     .config/wezterm
 )
 
