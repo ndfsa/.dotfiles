@@ -58,6 +58,8 @@ if [[ -n $BASH_REPL ]]; then
     return
 fi
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # history options
 export HISTFILE=${XDG_CACHE_HOME}/bash/history
 export HISTFILESIZE=10000

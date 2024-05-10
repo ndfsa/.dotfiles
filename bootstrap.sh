@@ -17,6 +17,7 @@ configs=(
     .zshrc
     .bashrc
     .config/nvim
+    .config/ghostty
     .config/wezterm
     .config/ghostty
 )
