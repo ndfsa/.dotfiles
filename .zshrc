@@ -161,7 +161,6 @@ bindkey "${terminfo[kLFT5]}" backward-word # control-left
 bindkey "${terminfo[kRIT5]}" forward-word # control-right
 bindkey '^N' menu-complete
 bindkey '^P' reverse-menu-complete
-bindkey '^R' history-incremental-search-backward
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'j' vi-down-line-or-history
@@ -188,6 +187,17 @@ fi
 if command -v starship &> /dev/null
 then
     eval "$(starship init zsh)"
+fi
+
+# integrate fzf
+if command -v fzf &> /dev/null
+then
+    # turn off keybinds
+    FZF_ALT_C_COMMAND=
+    FZF_CTRL_T_COMMAND=
+    eval "$(fzf --zsh)"
+else
+    bindkey '^R' history-incremental-search-backward
 fi
 
 # syntax highlighting
