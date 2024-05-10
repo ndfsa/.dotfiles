@@ -56,6 +56,8 @@ do
 done
 unset CUSTOM_PATHS
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # cache directory
 ZCACHES=$XDG_CACHE_HOME/zsh
 
@@ -76,7 +78,7 @@ setopt HIST_VERIFY
 [[ $- != *i* ]] && return
 
 # add the completions directory
-fpath=(/usr/share/zsh/site-functions $fpath)
+fpath=($(brew --prefix)/share/zsh-completions $(brew --prefix)/share/zsh/site-functions $fpath)
 
 # menu-select widget
 zmodload zsh/complist
@@ -178,8 +180,8 @@ bindkey "${terminfo[kcub1]}" backward-char # left
 bindkey "${terminfo[kcuf1]}" forward-char # right
 bindkey "${terminfo[kpp]}" beginning-of-buffer-or-history # page up
 bindkey "${terminfo[knp]}" end-of-buffer-or-history # page down
-bindkey "${terminfo[kLFT5]}" backward-word # control-left
-bindkey "${terminfo[kRIT5]}" forward-word # control-right
+bindkey "^[[1;9D" backward-word # control-left
+bindkey "^[[1;9C" forward-word # control-right
 bindkey '^N' menu-complete
 bindkey '^P' reverse-menu-complete
 bindkey -M menuselect 'h' vi-backward-char
@@ -220,11 +222,11 @@ else
 fi
 
 # syntax highlighting
-PLUGIN=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+PLUGIN=$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [[ -e $PLUGIN ]] && source $PLUGIN
 
 # auto-suggestions
-PLUGIN=/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+PLUGIN=$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 [[ -e $PLUGIN ]] && source $PLUGIN
 
 unset PLUGIN
