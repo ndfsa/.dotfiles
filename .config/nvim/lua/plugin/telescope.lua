@@ -58,4 +58,6 @@ return function()
     vim.keymap.set("n", "<leader>fh", tl_builtin.help_tags, opts("Find help"))
     vim.keymap.set("n", "<leader>fu", tl_ext.undo.undo, opts("Find undo"))
     vim.keymap.set("n", "<leader>fE", tl_ext.env.env, opts("Find environment variables"))
+
+    vim.keymap.set("n", "<leader>gb", tl_builtin.git_branches, opts("Git branches"))
 end

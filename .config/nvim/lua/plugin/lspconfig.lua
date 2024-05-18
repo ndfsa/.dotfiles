@@ -14,6 +14,7 @@ return function()
             vim.keymap.set("n", "gD", vim.lsp.buf.declaration, buf_opts("Go to declaration"))
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, buf_opts("Go to definition"))
             vim.keymap.set("n", "gi", vim.lsp.buf.implementation, buf_opts("Go to implementation"))
+            vim.keymap.set("n", "gr", vim.lsp.buf.references, buf_opts("Go to references"))
             vim.keymap.set(
                 { "n", "i" },
                 "<C-k>",

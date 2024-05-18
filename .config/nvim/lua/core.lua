@@ -42,7 +42,7 @@ vim.opt.shiftwidth = 4
 
 -- EXPERIMENTAL FEATURES
 -- vim.opt.cmdheight = 0
-vim.opt.diffopt = { "internal", "filler", "foldcolumn:0" }
+vim.opt.diffopt = { "internal", "filler", "foldcolumn:0", "linematch:80" }
 
 local default_plugins = {
     "2html_plugin",
