@@ -154,9 +154,9 @@ config.keys = {
     { key = "[", mods = "ALT", action = wezterm.action.ActivateTabRelative(-1) },
     { key = "]", mods = "ALT", action = wezterm.action.ActivateTabRelative(1) },
 }
-for i = 1, 9 do
+for i = 1, 10 do
     table.insert(config.keys, {
-        key = tostring(i),
+        key = tostring(i % 10),
         mods = "ALT",
         action = wezterm.action_callback(function(win, pane)
             local mux = win:mux_window()
