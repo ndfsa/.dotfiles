@@ -25,8 +25,14 @@ return require("lazy").setup({
         config = require("plugin.oil"),
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
-    { "nvim-lualine/lualine.nvim", config = require("plugin.lualine") },
-    { "neovim/nvim-lspconfig", config = require("plugin.lspconfig") },
+    {
+        "nvim-lualine/lualine.nvim",
+        config = require("plugin.lualine"),
+    },
+    {
+        "neovim/nvim-lspconfig",
+        config = require("plugin.lspconfig"),
+    },
     {
         "nvim-treesitter/nvim-treesitter",
         build = function()
@@ -69,20 +75,72 @@ return require("lazy").setup({
         },
         config = require("plugin.telescope"),
     },
-    { "sQVe/sort.nvim", config = true },
-    { "anuvyklack/pretty-fold.nvim", config = require("plugin.pretty-fold") },
-    { "tpope/vim-fugitive", init = require("plugin.vim-fugitive") },
-    { "NvChad/nvim-colorizer.lua", config = require("plugin.nvim-colorizer") },
-    { "monkoose/matchparen.nvim", config = true },
-    { "nmac427/guess-indent.nvim", opts = { autocmd = false }, config = true },
-    { "folke/which-key.nvim", config = require("plugin.which-key") },
-    { "stevearc/conform.nvim", config = require("plugin.conform") },
-    { "folke/twilight.nvim", opts = { context = -1, treesitter = true }, config = true },
-    { "ashfinal/qfview.nvim", config = true },
-    { "nvim-tree/nvim-tree.lua", config = require("plugin.nvim-tree"), lazy = true },
-    { "echasnovski/mini.ai", config = true },
-    { "echasnovski/mini.surround", config = true },
-    { "echasnovski/mini.diff", config = true },
-    { "ThePrimeagen/git-worktree.nvim", config = require("plugin.git-worktree") },
-    { "Vigemus/iron.nvim", config = require("plugin.iron"), lazy = true },
+    {
+        "sQVe/sort.nvim",
+        config = true,
+    },
+    {
+        "anuvyklack/pretty-fold.nvim",
+        config = require("plugin.pretty-fold"),
+    },
+    {
+        "tpope/vim-fugitive",
+        init = require("plugin.vim-fugitive"),
+    },
+    {
+        "NvChad/nvim-colorizer.lua",
+        config = require("plugin.nvim-colorizer"),
+    },
+    {
+        "monkoose/matchparen.nvim",
+        config = true,
+    },
+    {
+        "nmac427/guess-indent.nvim",
+        opts = { autocmd = false },
+        config = true,
+    },
+    {
+        "folke/which-key.nvim",
+        config = require("plugin.which-key"),
+    },
+    {
+        "stevearc/conform.nvim",
+        config = require("plugin.conform"),
+    },
+    {
+        "folke/twilight.nvim",
+        opts = { context = -1, treesitter = true },
+        config = true,
+    },
+    {
+        "ashfinal/qfview.nvim",
+        config = true,
+    },
+    {
+        "nvim-tree/nvim-tree.lua",
+        config = require("plugin.nvim-tree"),
+        lazy = true,
+    },
+    {
+        "echasnovski/mini.ai",
+        config = true,
+    },
+    {
+        "echasnovski/mini.surround",
+        config = true,
+    },
+    {
+        "echasnovski/mini.diff",
+        config = true,
+    },
+    {
+        "ThePrimeagen/git-worktree.nvim",
+        config = require("plugin.git-worktree"),
+    },
+    {
+        "Vigemus/iron.nvim",
+        config = require("plugin.iron"),
+        lazy = true,
+    },
 })

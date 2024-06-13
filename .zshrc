@@ -180,7 +180,7 @@ fi
 if command -v zoxide &> /dev/null
 then
     # turn off completions for now
-    eval "$(zoxide init zsh --cmd cd | sed -n '/# Completion.*/q;p')"
+    eval "$(zoxide init zsh --cmd cd | sed 's/_files/_cd/g')"
 fi
 
 # use starship prompt
