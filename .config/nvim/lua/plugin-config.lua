@@ -13,10 +13,13 @@ vim.opt.rtp:prepend(lazypath)
 
 return require("lazy").setup({
     {
-        "rebelot/kanagawa.nvim",
-        priority = 1000,
+        "folke/tokyonight.nvim",
         lazy = false,
-        config = require("plugin.kanagawa"),
+        priority = 1000,
+        opts = {},
+        config = function()
+            vim.cmd("colorscheme tokyonight")
+        end,
     },
     {
         "stevearc/oil.nvim",

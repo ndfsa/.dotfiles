@@ -1,7 +1,7 @@
 return function()
     require("lualine").setup({
         options = {
-            theme = "kanagawa",
+            theme = "tokyonight",
             section_separators = " ",
             component_separators = " ",
             globalstatus = true,
