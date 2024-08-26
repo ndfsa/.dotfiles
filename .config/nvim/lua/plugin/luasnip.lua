@@ -4,11 +4,6 @@ return function()
 
     local opts = require("utils").opts
 
-    vim.keymap.set({ "i", "s" }, "<C-E>", function()
-        if luasnip.choice_active() then
-            luasnip.change_choice(1)
-        end
-    end, opts("Snippet change active choice"))
     vim.keymap.set({ "i", "s" }, "<C-L>", function()
         luasnip.jump(1)
     end, opts("Snippet jump forward"))

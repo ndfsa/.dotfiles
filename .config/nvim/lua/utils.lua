@@ -14,23 +14,12 @@ function M.opts(desc, extra)
     return res
 end
 
-local is_inside_work_tree = {}
-
 --- find files function with fallbacks, shows git_files in a git repository, fallback to
 --- find_files.
 M.project_files = function(tl_builtin)
     return function()
-        local cwd = vim.fn.getcwd()
-        if is_inside_work_tree[cwd] == nil then
-            vim.fn.system("git rev-parse --is-inside-work-tree")
-            if vim.v.shell_error == 0 then
-                is_inside_work_tree[cwd] = "git"
-            end
-        end
-
-        if is_inside_work_tree[cwd] == "git" then
-            tl_builtin.git_files({ show_untracked = true })
-        else
+        local success = pcall(tl_builtin.git_files, { show_untracked = true })
+        if not success then
             tl_builtin.find_files({})
         end
     end

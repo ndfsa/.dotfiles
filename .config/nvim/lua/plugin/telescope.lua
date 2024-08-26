@@ -23,7 +23,7 @@ return function()
         defaults = require("telescope.themes").get_ivy({
             layout_config = {
                 prompt_position = "top",
-                height = 100,
+                height = 0.6,
             },
             vimgrep_arguments = vimgrep_arguments,
             preview = true,
