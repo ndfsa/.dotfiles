@@ -128,6 +128,9 @@ return require("lazy").setup({
     {
         "echasnovski/mini.ai",
         config = true,
+        opts = {
+            search_method = "cover",
+        },
     },
     {
         "echasnovski/mini.surround",
