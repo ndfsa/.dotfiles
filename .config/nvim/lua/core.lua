@@ -26,12 +26,12 @@ vim.opt.fillchars:append({ fold = " ", eob = " " })
 vim.opt.conceallevel = 2
 vim.opt.termguicolors = true
 vim.opt.listchars = {
-    tab = "»-",
-    extends = "⟩",
-    precedes = "⟨",
-    space = "·",
-    nbsp = "␣",
-    eol = "↲",
+  tab = "»-",
+  extends = "⟩",
+  precedes = "⟨",
+  space = "·",
+  nbsp = "␣",
+  eol = "↲",
 }
 
 vim.opt.background = "dark"
@@ -45,48 +45,48 @@ vim.opt.shiftwidth = 4
 vim.opt.diffopt = { "internal", "filler", "foldcolumn:0", "linematch:80" }
 
 local default_plugins = {
-    "2html_plugin",
-    "bugreport",
-    "compiler",
-    "ftplugin",
-    "getscript",
-    "getscriptPlugin",
-    "gzip",
-    "logipat",
-    "matchit",
-    "matchparen",
-    "netrw",
-    "netrwFileHandlers",
-    "netrwPlugin",
-    "netrwSettings",
-    "optwin",
-    "rplugin",
-    "rrhelper",
-    "spellfile_plugin",
-    "synmenu",
-    "syntax",
-    "tar",
-    "tarPlugin",
-    "tutor",
-    "vimball",
-    "vimballPlugin",
-    "zip",
-    "zipPlugin",
+  "2html_plugin",
+  "bugreport",
+  "compiler",
+  "ftplugin",
+  "getscript",
+  "getscriptPlugin",
+  "gzip",
+  "logipat",
+  "matchit",
+  "matchparen",
+  "netrw",
+  "netrwFileHandlers",
+  "netrwPlugin",
+  "netrwSettings",
+  "optwin",
+  "rplugin",
+  "rrhelper",
+  "spellfile_plugin",
+  "synmenu",
+  "syntax",
+  "tar",
+  "tarPlugin",
+  "tutor",
+  "vimball",
+  "vimballPlugin",
+  "zip",
+  "zipPlugin",
 }
 
 for _, plugin in pairs(default_plugins) do
-    vim.g["loaded_" .. plugin] = 1
+  vim.g["loaded_" .. plugin] = 1
 end
 
 local default_providers = {
-    "node",
-    "perl",
-    "python3",
-    "ruby",
+  "node",
+  "perl",
+  "python3",
+  "ruby",
 }
 
 for _, provider in ipairs(default_providers) do
-    vim.g["loaded_" .. provider .. "_provider"] = 0
+  vim.g["loaded_" .. provider .. "_provider"] = 0
 end
 
 vim.g.sql_type_default = "postgresql"

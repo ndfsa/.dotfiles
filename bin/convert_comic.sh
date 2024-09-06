@@ -17,6 +17,9 @@ then
 
     # remove directory
     rm -rd "$directory"
+
+    # unset variable
+    unset directory
 else
     # extract file name
     file=$(basename "$1")
@@ -36,4 +39,8 @@ else
 
     # remove directory
     rm -rd "$name"
+
+    # unset variables
+    unset file
+    unset name
 fi
