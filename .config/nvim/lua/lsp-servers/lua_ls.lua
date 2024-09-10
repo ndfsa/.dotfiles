@@ -13,7 +13,8 @@ local M = {
       workspace = {
         checkThirdParty = false,
         library = {
-          vim.env.VIMRUNTIME .. "/lua",
+          vim.env.VIMRUNTIME,
+          "${3rd}/luv/library",
         },
       },
     })

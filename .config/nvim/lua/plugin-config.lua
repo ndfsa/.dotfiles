@@ -19,11 +19,17 @@ return require("lazy").setup({
     config = require("plugin.kanagawa"),
   },
   {
+    "echasnovski/mini.icons",
+    config = function()
+      local m = require("mini.icons")
+      m.mock_nvim_web_devicons()
+    end,
+  },
+  {
     "stevearc/oil.nvim",
     priority = 1000,
     lazy = false,
     config = require("plugin.oil"),
-    dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   {
     "nvim-lualine/lualine.nvim",
@@ -62,9 +68,6 @@ return require("lazy").setup({
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-lua/popup.nvim",
-      "nvim-neorg/neorg-telescope",
-      "nvim-telescope/telescope-symbols.nvim",
       "nvim-telescope/telescope-ui-select.nvim",
       "debugloop/telescope-undo.nvim",
       "LinArcX/telescope-env.nvim",
