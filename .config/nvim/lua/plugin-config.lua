@@ -19,11 +19,8 @@ return require("lazy").setup({
     config = require("plugin.kanagawa"),
   },
   {
-    "echasnovski/mini.icons",
-    config = function()
-      local m = require("mini.icons")
-      m.mock_nvim_web_devicons()
-    end,
+    "nvim-tree/nvim-web-devicons",
+    config = true,
   },
   {
     "stevearc/oil.nvim",
