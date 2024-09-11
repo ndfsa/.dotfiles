@@ -19,7 +19,7 @@ vim.opt.updatetime = 500
 vim.opt.guifont = "JetBrains Mono:h15"
 vim.opt.fileformats = { "unix", "dos", "mac" }
 vim.opt.showmode = false
-vim.opt.autowrite = true
+vim.opt.autoread = true
 vim.opt.mouse = "a"
 vim.opt.pumheight = 30
 vim.opt.fillchars:append({ fold = " ", eob = " " })
