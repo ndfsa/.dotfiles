@@ -16,12 +16,10 @@ end
 
 --- find files function with fallbacks, shows git_files in a git repository, fallback to
 --- find_files.
-M.project_files = function(tl_builtin)
-  return function()
-    local success = pcall(tl_builtin.git_files, { show_untracked = true })
-    if not success then
-      tl_builtin.find_files({})
-    end
+M.project_files = function()
+  local success = pcall(require("telescope.builtin").git_files, { show_untracked = true })
+  if not success then
+    require("telescope.builtin").find_files({})
   end
 end
 
