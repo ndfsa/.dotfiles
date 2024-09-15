@@ -60,4 +60,12 @@ return function()
   vim.keymap.set("n", "<leader>fE", tl_ext.env.env, opts("Find environment variables"))
 
   vim.keymap.set("n", "<leader>gb", tl_builtin.git_branches, opts("Git branches"))
+
+  vim.keymap.set("n", "<leader>gw", tl_ext.git_worktree.git_worktrees, opts("Git show worktrees"))
+  vim.keymap.set(
+    "n",
+    "<leader>ga",
+    tl_ext.git_worktree.create_git_worktree,
+    opts("Git create worktree")
+  )
 end

@@ -15,22 +15,58 @@ return require("lazy").setup({
   {
     "rebelot/kanagawa.nvim",
     priority = 1000,
-    lazy = false,
-    config = require("plugin.kanagawa"),
+    opts = {
+      functionStyle = { bold = true },
+      keywordStyle = { bold = true },
+      statementStyle = { bold = true },
+    },
+    config = function(_, opts)
+      require("kanagawa").setup(opts)
+      vim.cmd("colorscheme kanagawa")
+    end,
   },
   {
     "nvim-tree/nvim-web-devicons",
-    config = true,
+    lazy = true,
   },
   {
     "stevearc/oil.nvim",
-    priority = 1000,
-    lazy = false,
-    config = require("plugin.oil"),
+    opts = {
+      columns = { "permissions", "mtime", "size", "icon" },
+      delete_to_trash = true,
+      view_options = {
+        show_hidden = true,
+      },
+    },
   },
   {
     "nvim-lualine/lualine.nvim",
-    config = require("plugin.lualine"),
+    opts = {
+      options = {
+        theme = "kanagawa",
+        section_separators = " ",
+        component_separators = " ",
+        globalstatus = true,
+      },
+      sections = {
+        lualine_a = { "mode" },
+        lualine_b = { "filesize" },
+        lualine_c = {
+          { "diagnostics", sources = { "nvim_diagnostic" } },
+          "filename",
+          "branch",
+        },
+        lualine_x = {
+          "progress",
+          "location",
+        },
+        lualine_y = { "filetype" },
+        lualine_z = {
+          { "fileformat", icons_enabled = false, fmt = string.upper },
+        },
+      },
+      extensions = { "quickfix", "fugitive", "lazy", "man", "oil" },
+    },
   },
   {
     "neovim/nvim-lspconfig",
@@ -47,62 +83,87 @@ return require("lazy").setup({
     "L3MON4D3/LuaSnip",
     build = "make install_jsregexp",
     dependencies = { "honza/vim-snippets" },
-    config = require("plugin.luasnip"),
+    config = function()
+      require("luasnip.loaders.from_snipmate").lazy_load()
+    end,
+    keys = {
+      {
+        "<C-L>",
+        function()
+          require("luasnip").jump(1)
+        end,
+        desc = "Snippet jump forward",
+        mode = { "i", "s" },
+      },
+      {
+        "<C-j>",
+        function()
+          require("luasnip").jump(-1)
+        end,
+        desc = "Snippet jump backward",
+        mode = { "i", "s" },
+      },
+    },
   },
+  { "hrsh7th/cmp-buffer" },
+  { "hrsh7th/cmp-nvim-lsp" },
+  { "hrsh7th/cmp-path" },
+  { "hrsh7th/cmp-cmdline" },
+  { "saadparwaiz1/cmp_luasnip" },
+  { "onsails/lspkind-nvim" },
   {
     "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
-      "saadparwaiz1/cmp_luasnip",
-      "onsails/lspkind-nvim",
-    },
     config = require("plugin.cmp"),
+  },
+  { "nvim-lua/plenary.nvim" },
+  { "nvim-telescope/telescope-ui-select.nvim" },
+  { "debugloop/telescope-undo.nvim" },
+  { "LinArcX/telescope-env.nvim" },
+  {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    build = "make",
   },
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope-ui-select.nvim",
-      "debugloop/telescope-undo.nvim",
-      "LinArcX/telescope-env.nvim",
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-      },
-    },
     config = require("plugin.telescope"),
   },
   {
     "sQVe/sort.nvim",
-    config = true,
+    lazy = true,
   },
   {
     "anuvyklack/pretty-fold.nvim",
-    config = require("plugin.pretty-fold"),
+    opts = {
+      sections = { left = { "content" } },
+      fill_char = " ",
+    },
   },
   {
     "tpope/vim-fugitive",
-    init = require("plugin.vim-fugitive"),
+    keys = {
+      { "<leader>gB", "<cmd>vertical G blame<CR>", desc = "Git blame" },
+      { "<leader>gs", "<cmd>tab G<CR>", "Git status" },
+      { "<leader>gl", "<cmd>tab G log --oneline --graph --all<CR>", desc = "Git commits" },
+      { "<leader>gL", "<cmd>tab G log --graph<CR>", desc = "Git full log" },
+      { "<leader>gh", "<cmd>tab split | 0Gclog<CR>", desc = "Git file history" },
+      { "<leader>gc", "<cmd>G difftool<CR>", desc = "Git project diff tool" },
+      { "<leader>gR", "<cmd>G restore %<CR>", desc = "Git restore current file" },
+    },
   },
   {
     "NvChad/nvim-colorizer.lua",
-    config = require("plugin.nvim-colorizer"),
+    opts = { filetypes = {} },
+    keys = {
+      { "<leader>sc", "<cmd>ColorizerToggle<cr>", desc = "Set colorizer" },
+    },
   },
-  {
-    "monkoose/matchparen.nvim",
-    config = true,
-  },
+  { "monkoose/matchparen.nvim" },
   {
     "nmac427/guess-indent.nvim",
     opts = { autocmd = false },
-    config = true,
   },
   {
     "folke/which-key.nvim",
-    config = true,
   },
   {
     "stevearc/conform.nvim",
@@ -110,37 +171,27 @@ return require("lazy").setup({
   },
   {
     "folke/twilight.nvim",
-    opts = { context = -1, treesitter = true },
-    config = true,
+    opts = {
+      context = -1,
+      treesitter = true,
+    },
   },
   {
     "ashfinal/qfview.nvim",
-    config = true,
-  },
-  {
-    "nvim-tree/nvim-tree.lua",
-    config = require("plugin.nvim-tree"),
-    lazy = true,
   },
   {
     "echasnovski/mini.ai",
-    config = true,
     opts = {
       search_method = "cover",
     },
   },
   {
     "echasnovski/mini.surround",
-    config = true,
   },
   {
     "echasnovski/mini.diff",
-    config = true,
   },
-  {
-    "ThePrimeagen/git-worktree.nvim",
-    config = require("plugin.git-worktree"),
-  },
+  { "ThePrimeagen/git-worktree.nvim" },
   {
     "Vigemus/iron.nvim",
     config = require("plugin.iron"),
