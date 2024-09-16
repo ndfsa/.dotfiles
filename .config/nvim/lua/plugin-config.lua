@@ -62,10 +62,9 @@ return require("lazy").setup({
   },
   {
     "FabijanZulj/blame.nvim",
-    lazy = false,
     opts = {},
     keys = {
-      { "<leader>gB", "<cmd>BlameToggle window<cr>", desc = "Open git blame" },
+      { "<leader>gB", "<cmd>BlameToggle virtual<cr>", desc = "Open git blame" },
     },
   },
   {
