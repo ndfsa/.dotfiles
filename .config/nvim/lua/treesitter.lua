@@ -1,5 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  lazy = false,
   build = function()
     require("nvim-treesitter.install").update({ with_sync = true })
   end,
@@ -8,6 +9,7 @@ return {
     vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
     vim.opt.foldenable = false
     vim.opt.foldlevelstart = 99
+    vim.opt.foldlevel = 99
   end,
   opts = {
     ensure_installed = "all",
@@ -26,7 +28,8 @@ return {
       enable = true,
     },
   },
+  main = "nvim-treesitter.configs",
   keys = {
-    { "<leader>oT", "<cmd>InspectTree<cr>", deps = "Toggle treesitter tree" },
+    { "<leader>oT", "<cmd>InspectTree<cr>", desc = "Toggle treesitter tree" },
   },
 }

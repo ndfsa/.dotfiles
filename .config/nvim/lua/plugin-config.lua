@@ -44,19 +44,29 @@ return require("lazy").setup({
   },
   {
     "sQVe/sort.nvim",
-    lazy = true,
     cmd = "Sort",
   },
   {
-    "anuvyklack/pretty-fold.nvim",
-    opts = {
-      sections = { left = { "content" } },
-      fill_char = " ",
+    "NeogitOrg/neogit",
+    opts = {},
+    keys = {
+      { "<leader>gs", "<cmd>Neogit<cr>", desc = "Open Neogit" },
     },
   },
   {
-    "NeogitOrg/neogit",
-    config = true,
+    "fredeeb/tardis.nvim",
+    opts = {},
+    keys = {
+      { "<leader>gH", "<cmd>Tardis git<cr>", desc = "Open time capsule" },
+    },
+  },
+  {
+    "FabijanZulj/blame.nvim",
+    lazy = false,
+    opts = {},
+    keys = {
+      { "<leader>gB", "<cmd>BlameToggle window<cr>", desc = "Open git blame" },
+    },
   },
   {
     "NvChad/nvim-colorizer.lua",
@@ -70,7 +80,19 @@ return require("lazy").setup({
     "nmac427/guess-indent.nvim",
     opts = { autocmd = false },
   },
-  { "folke/which-key.nvim" },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Buffer Local Keymaps (which-key)",
+      },
+    },
+  },
   {
     "folke/twilight.nvim",
     opts = {
@@ -85,7 +107,6 @@ return require("lazy").setup({
     opts = {
       search_method = "cover",
     },
-    version = false,
   },
   { "echasnovski/mini.surround", opts = {} },
   { "echasnovski/mini.diff", opts = {} },

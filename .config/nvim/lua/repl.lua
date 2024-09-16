@@ -21,5 +21,6 @@ return {
     opts.highlight = {}
     opts.ignore_blank_lines = true
   end,
+  main = "iron.core",
   lazy = true,
 }

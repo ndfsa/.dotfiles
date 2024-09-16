@@ -18,7 +18,7 @@ local font_family = "Monaspace Radon"
 -- local font_family = "Monaspace Krypton"
 -- local font_family = "JetBrains Mono"
 local config = {}
-config.xcursor_theme = "breeze_cursors"
+config.xcursor_theme = "Adwaita"
 config.font = font_rule(font_family, "Regular", false)
 config.font_rules = {
     {
