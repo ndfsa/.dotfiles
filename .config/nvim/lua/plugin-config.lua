@@ -64,7 +64,7 @@ return require("lazy").setup({
     "FabijanZulj/blame.nvim",
     opts = {},
     keys = {
-      { "<leader>gB", "<cmd>BlameToggle virtual<cr>", desc = "Open git blame" },
+      { "<leader>gB", "<cmd>BlameToggle window<cr>", desc = "Open git blame" },
     },
   },
   {
@@ -109,7 +109,7 @@ return require("lazy").setup({
   },
   { "echasnovski/mini.surround", opts = {} },
   { "echasnovski/mini.diff", opts = {} },
-  require("bar"),
+  require("statusbar"),
   require("lsp-servers"),
   require("treesitter"),
   require("snippets"),
