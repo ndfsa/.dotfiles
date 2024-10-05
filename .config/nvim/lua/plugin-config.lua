@@ -109,6 +109,7 @@ return require("lazy").setup({
   },
   { "echasnovski/mini.surround", opts = {} },
   { "echasnovski/mini.diff", opts = {} },
+  { "LunarVim/bigfile.nvim", opts = {} },
   require("statusbar"),
   require("lsp-servers"),
   require("treesitter"),

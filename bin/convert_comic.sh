@@ -13,7 +13,7 @@ then
     echo "processing directory $directory"
 
     # convert directory into a comic book file
-    zip -rjm "$directory.cbz" "./$directory"
+    zip -rjm "$directory.cbz" "./$directory" || exit 1
 
     # remove directory
     rm -rd "$directory"
@@ -29,7 +29,7 @@ else
     name="${file%.*}"
 
     # extract zip file
-    unzip "$file" -d "$name"
+    unzip "$file" -d "$name" || exit 1
 
     # remove original
     rm "$file"
