@@ -6,6 +6,9 @@
 # check if the file/directory exists
 [[ ! -e "./$1" ]] && exit 2
 
+# check if current directory is not home
+[[ `pwd` -ef "$HOME" ]] && exit 3
+
 if [[ -d "./$1" ]]
 then
     # extract directory name
