@@ -1,5 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
+  dependencies = { "saghen/blink.cmp" },
   config = function()
     -- disable zig autoformat
     vim.g.zig_fmt_autosave = 0
@@ -23,7 +24,7 @@ return {
       client.server_capabilities.semanticTokensProvider = nil
     end
 
-    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    local capabilities = require("blink.cmp").get_lsp_capabilities()
 
     for _, serv in pairs(servers) do
       serv.on_attach = on_attach

@@ -1,0 +1,8 @@
+font-family = "JetBrains Mono"
+font-size = 14
+theme = "Kanagawa Wave"
+bold-is-bright = true
+window-width = 120
+window-height = 40
+font-feature = "-calt"
+font-feature = "zero"
