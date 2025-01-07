@@ -1,3 +1,4 @@
 return {
-  "echasnovski/mini.nvim",
+  "echasnovski/mini.snippets",
+  opts = {},
 }

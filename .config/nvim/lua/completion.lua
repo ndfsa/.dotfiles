@@ -4,7 +4,11 @@ return {
   dependencies = "rafamadriz/friendly-snippets",
   version = "v0.*",
   opts = {
-    keymap = { preset = "enter" },
+    keymap = {
+      preset = "enter",
+      ["<Up>"] = {},
+      ["<Down>"] = {},
+    },
     appearance = {
       use_nvim_cmp_as_default = true,
       nerd_font_variant = "mono",
@@ -14,7 +18,7 @@ return {
     },
     completion = {
       list = {
-        selection = "manual",
+        selection = "auto_insert",
       },
     },
     signature = { enabled = true },

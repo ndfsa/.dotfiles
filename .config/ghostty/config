@@ -6,3 +6,4 @@ window-width = 120
 window-height = 40
 font-feature = "-calt"
 font-feature = "zero"
+window-padding-balance = true

@@ -24,10 +24,7 @@ return require("lazy").setup({
       vim.cmd("colorscheme kanagawa")
     end,
   },
-  {
-    "nvim-tree/nvim-web-devicons",
-    lazy = true,
-  },
+  { "echasnovski/mini.icons", opts = {} },
   {
     "stevearc/oil.nvim",
     opts = {
@@ -68,7 +65,7 @@ return require("lazy").setup({
     },
   },
   {
-    "NvChad/nvim-colorizer.lua",
+    "catgoose/nvim-colorizer.lua",
     opts = { filetypes = {} },
     keys = {
       { "<leader>sc", "<cmd>ColorizerToggle<cr>", desc = "Set colorizer" },
@@ -110,12 +107,12 @@ return require("lazy").setup({
   { "echasnovski/mini.surround", opts = {} },
   { "echasnovski/mini.diff", opts = {} },
   { "LunarVim/bigfile.nvim", opts = { filesize = 0.5 } },
-  require("statusbar"),
+  require("status-line"),
   require("lsp-servers"),
   require("treesitter"),
   require("snippets"),
   require("completion"),
-  require("fuzzy-finder"),
-  require("formatting"),
+  require("formatter"),
   require("repl"),
+  require("fuzzy-finder"),
 })
