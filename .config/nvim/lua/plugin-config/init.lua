@@ -107,6 +107,23 @@ return require("lazy").setup({
   { "echasnovski/mini.surround", opts = {} },
   { "echasnovski/mini.diff", opts = {} },
   { "LunarVim/bigfile.nvim", opts = { filesize = 0.5 } },
+  {
+    "jiaoshijie/undotree",
+    dependencies = "nvim-lua/plenary.nvim",
+    opts = {
+      window = {
+        winblend = 0,
+      },
+    },
+    keys = {
+      { "<leader>ou", "<cmd>lua require('undotree').toggle()<cr>" },
+    },
+  },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" },
+    opts = {},
+  },
   require("status-line"),
   require("lsp-servers"),
   require("treesitter"),

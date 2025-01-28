@@ -1,6 +1,12 @@
 local M = {
   "ibhagwan/fzf-lua",
   lazy = false,
+  config = function(_, opts)
+    local fzf = require('fzf-lua')
+    fzf.setup(opts)
+    fzf.register_ui_select();
+
+  end,
   opts = {
     git = {
       cmd = "git ls-files -co --exclude-standard",
