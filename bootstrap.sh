@@ -1,8 +1,9 @@
 #!/bin/zsh
 
-which go && go env -w GOPATH="$HOME/.local/share/go"
-which npm && npm config set prefix="$HOME/.local/share/npm"
-which npm && npm config set cache="$XDG_CACHE_HOME/npm"
+which go &>/dev/null && go env -w GOPATH="$HOME/.local/share/go"
+which npm &>/dev/null \
+    && npm config set prefix="$HOME/.local/share/npm" \
+    && npm config set cache="$XDG_CACHE_HOME/npm"
 
 dotfiles_dir="$HOME/.dotfiles"
 
@@ -12,6 +13,7 @@ pushd $dotfiles_dir
 configs=(
     .config/emacs/init.el
     .config/starship.toml
+    .config/starship-ascii.toml
     .zshrc
     .config/nvim
     .config/wezterm

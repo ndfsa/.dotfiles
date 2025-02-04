@@ -1,40 +1,53 @@
-local M = {}
+local M = {
+  is_git_repo = false,
+}
 
---- helper function to build silent keymaps with descriptions
+--- Helper function to build silent keymaps with descriptions
 -- @param desc string description of the keymap
 -- @param extra table with extra options for keymap
 function M.opts(desc, extra)
-  local res = { silent = true }
+  if extra == nil then
+    extra = {}
+  end
+
+  extra.silent = true
   if desc then
-    res.desc = desc
+    extra.desc = desc
   end
-  if extra then
-    res = vim.tbl_extend("force", res, extra)
-  end
-  return res
+  return extra
 end
 
-local cwd = ""
-local is_git_repo = false
-
-local function check_git_repo()
-  local new_cwd = vim.fn.getcwd()
-  if new_cwd ~= cwd then
-    cwd = new_cwd
-    vim.fn.system("git rev-parse --is-inside-work-tree")
-    is_git_repo = vim.v.shell_error == 0
-  end
-  return is_git_repo
+function M.key(mode, lhs, rhs, ...)
+  vim.keymap.set(mode, lhs, rhs, ...)
 end
 
---- find files function with fallbacks, shows git_files in a git repository, fallback to
---- find_files.
-M.project_files = function()
-  if check_git_repo() then
-    require("fzf-lua").git_files()
+function M:check_git_repo()
+  vim.fn.system("git rev-parse --is-inside-work-tree")
+  self.is_git_repo = vim.v.shell_error == 0
+  return self.is_git_repo
+end
+
+function M:find_files()
+  if self.is_git_repo then
+    require("telescope.builtin").git_files()
   else
-    require("fzf-lua").files()
+    require("telescope.builtin").find_files()
   end
 end
+
+vim.api.nvim_create_user_command("FindFiles", function()
+  require("utils"):find_files()
+end, {})
+
+vim.api.nvim_create_autocmd("DirChanged", {
+  group = vim.api.nvim_create_augroup("utils", {
+    clear = true,
+  }),
+  callback = function()
+    M:check_git_repo()
+  end,
+})
+
+M:check_git_repo()
 
 return M

@@ -1,10 +1,5 @@
 require("core")
 
-local status, err = pcall(require, "plugin-config")
-if not status then
-  print(err)
-end
-
 local AUG = vim.api.nvim_create_augroup("convenient", {
   clear = true,
 })
@@ -35,3 +30,8 @@ vim.api.nvim_create_user_command("Redir", function(ctx)
   vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
   vim.opt_local.modified = false
 end, { nargs = "+", complete = "command" })
+
+local status, err = pcall(require, "plugin-config")
+if not status then
+  print(err)
+end

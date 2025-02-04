@@ -50,7 +50,7 @@ fi
 for i in ${CUSTOM_PATHS[@]}
 do
     case ":$PATH:" in
-        *":$i:"*) ;;
+        *:$i:*) ;;
         *) PATH="$i:$PATH";;
     esac
 done
@@ -125,7 +125,12 @@ function __scoped_edit(){
 function rm() {
     trash $@
 }
-alias ls='eza --icons --sort=type --classify=always --group'
+
+set icons
+[[ $TERM != "linux" ]] && icons="--icons=always"
+alias ls="eza $icons --sort=type --classify=always --group"
+unset icons
+
 alias la='ls -a'
 alias lsl='ls -l'
 alias lal='lsl -a'
@@ -186,16 +191,42 @@ fi
 # use starship prompt
 if command -v starship &> /dev/null
 then
+    [[ $TERM = "linux" ]] && export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship-ascii.toml
     eval "$(starship init zsh)"
 fi
 
 # integrate fzf
-if command -v fzf &> /dev/null
+if command -v fzy &> /dev/null
 then
-    # turn off keybinds
-    FZF_ALT_C_COMMAND=
-    FZF_CTRL_T_COMMAND=
-    eval "$(fzf --zsh)"
+    function history-fzy() {
+        local tac
+
+        if which tac > /dev/null; then
+        tac="tac"
+        else
+        tac="tail -r"
+        fi
+
+        BUFFER=$(history -n 1 | eval $tac | fzy --query "$LBUFFER")
+        CURSOR=$#BUFFER
+
+        zle reset-prompt
+    }
+
+    zle -N history-fzy
+    bindkey '^R' history-fzy
+
+    function insert-fzy-path-in-command-line() {
+        local selected_path
+        # echo
+        selected_path=$(rg . --files --hidden | fzy) || return
+        LBUFFER="$LBUFFER${(q)selected_path} "
+        zle reset-prompt
+    }
+    zle -N insert-fzy-path-in-command-line
+
+    unsetopt flowcontrol
+    bindkey "^S" "insert-fzy-path-in-command-line"
 else
     bindkey '^R' history-incremental-search-backward
 fi

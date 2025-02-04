@@ -5,7 +5,6 @@ vim.opt.incsearch = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.wrap = true
--- vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "100"
 vim.opt.cursorline = true
 vim.opt.swapfile = false
@@ -95,42 +94,43 @@ vim.g.sql_type_default = "postgresql"
 vim.g.mapleader = " "
 
 local opts = require("utils").opts
+local key = require("utils").key
 
-vim.keymap.set("n", "n", "nzz", opts())
-vim.keymap.set("n", "N", "Nzz", opts())
+key("n", "n", "nzz", opts())
+key("n", "N", "Nzz", opts())
 
-vim.keymap.set({ "n", "v" }, "k", [[v:count == 0 ? 'gk' : 'k']], opts(nil, { expr = true }))
-vim.keymap.set({ "n", "v" }, "j", [[v:count == 0 ? 'gj' : 'j']], opts(nil, { expr = true }))
+key({ "n", "v" }, "k", [[v:count == 0 ? 'gk' : 'k']], opts(nil, { expr = true }))
+key({ "n", "v" }, "j", [[v:count == 0 ? 'gj' : 'j']], opts(nil, { expr = true }))
 
-vim.keymap.set("v", ">", ">gv", opts())
-vim.keymap.set("v", "<", "<gv", opts())
+key("v", ">", ">gv", opts())
+key("v", "<", "<gv", opts())
 
-vim.keymap.set("i", ",", ",<C-g>u", opts())
-vim.keymap.set("i", ".", ".<C-g>u", opts())
-vim.keymap.set("i", "!", "!<C-g>u", opts())
-vim.keymap.set("i", "?", "?<C-g>u", opts())
-vim.keymap.set("i", "-", "-<C-g>u", opts())
-vim.keymap.set("i", "_", "_<C-g>u", opts())
+key("i", ",", ",<C-g>u", opts())
+key("i", ".", ".<C-g>u", opts())
+key("i", "!", "!<C-g>u", opts())
+key("i", "?", "?<C-g>u", opts())
+key("i", "-", "-<C-g>u", opts())
+key("i", "_", "_<C-g>u", opts())
 
-vim.keymap.set("n", "<A-j>", ":m .+1<CR>", opts())
-vim.keymap.set("n", "<A-k>", ":m .-2<CR>", opts())
-vim.keymap.set("i", "<A-j>", "<Esc>:m .+1<CR>==gi", opts())
-vim.keymap.set("i", "<A-k>", "<Esc>:m .-2<CR>==gi", opts())
-vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", opts())
-vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", opts())
+key("n", "<A-j>", ":m .+1<CR>", opts())
+key("n", "<A-k>", ":m .-2<CR>", opts())
+key("i", "<A-j>", "<Esc>:m .+1<CR>==gi", opts())
+key("i", "<A-k>", "<Esc>:m .-2<CR>==gi", opts())
+key("v", "<A-j>", ":m '>+1<CR>gv=gv", opts())
+key("v", "<A-k>", ":m '<-2<CR>gv=gv", opts())
 
-vim.keymap.set("i", "<C-h>", "<C-w>", opts())
-vim.keymap.set("n", "<C-CR>", "i<cr><esc>", opts())
+key("i", "<C-h>", "<C-w>", opts())
+key("n", "<C-CR>", "i<cr><esc>", opts())
 
-vim.keymap.set("n", "<leader>bd", "<cmd>bd<CR>", opts("Buffer delete"))
+key("n", "<leader>bd", "<cmd>bd<CR>", opts("Buffer delete"))
 
-vim.keymap.set("n", "<leader>sn", "<cmd>set relativenumber!<CR>", opts("Set relative numbers"))
-vim.keymap.set("n", "<leader>sw", "<cmd>set wrap!<CR>", opts("Set wrap"))
-vim.keymap.set("n", "<leader>ss", "<cmd>set spell!<CR>", opts("Set spell"))
-vim.keymap.set("n", "<leader>sh", "<cmd>set list!<CR>", opts("Set listchars"))
-vim.keymap.set("n", "<leader>sb", "<cmd>set linebreak!<CR>", opts("Set line break"))
+key("n", "<leader>sn", "<cmd>set relativenumber!<CR>", opts("Set relative numbers"))
+key("n", "<leader>sw", "<cmd>set wrap!<CR>", opts("Set wrap"))
+key("n", "<leader>ss", "<cmd>set spell!<CR>", opts("Set spell"))
+key("n", "<leader>sh", "<cmd>set list!<CR>", opts("Set listchars"))
+key("n", "<leader>sb", "<cmd>set linebreak!<CR>", opts("Set line break"))
 
-vim.keymap.set("n", "<leader>fs", "<cmd>update<CR>", opts("File save"))
-vim.keymap.set("n", "<leader>fy", '<cmd>let @+=expand("%:p")<CR>', opts("File copy path"))
+key("n", "<leader>fs", "<cmd>update<CR>", opts("File save"))
+key("n", "<leader>fy", '<cmd>let @+=expand("%:p")<CR>', opts("File copy path"))
 
-vim.keymap.set("n", "<leader>oe", "<cmd>Oil %:p:h<CR>", opts("Open File Explorer"))
+key("n", "<leader>oe", "<cmd>Oil %:p:h<CR>", opts("Open File Explorer"))

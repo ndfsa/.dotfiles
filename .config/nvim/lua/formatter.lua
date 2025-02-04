@@ -3,6 +3,7 @@ return {
   opts = {
     formatters_by_ft = {
       c = { "clang_format" },
+      zsh = { "shfmt" },
       lua = { "stylua" },
       python = { "black" },
       javascript = { "prettier" },
@@ -21,9 +22,18 @@ return {
           lsp_fallback = true,
         })
       end,
+      desc = "Format buffer",
+      mode = "n",
     },
-    desc = "Format buffer",
-    mode = { "n", "v" },
+    {
+      "<leader>lf",
+      function()
+        require("conform").format({
+          lsp_fallback = true,
+        })
+      end,
+      desc = "Format region",
+      mode = "v",
+    },
   },
-  lazy = true,
 }

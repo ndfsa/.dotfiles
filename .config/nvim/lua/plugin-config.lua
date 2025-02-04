@@ -12,8 +12,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 return require("lazy").setup({
+  defaults = { lazy = true },
   {
     "rebelot/kanagawa.nvim",
+    lazy = false,
     priority = 1000,
     opts = {
       functionStyle = { bold = true },
@@ -24,9 +26,18 @@ return require("lazy").setup({
       vim.cmd("colorscheme kanagawa")
     end,
   },
-  { "echasnovski/mini.icons", opts = {} },
+  {
+    "echasnovski/mini.icons",
+    lazy = false,
+    config = function()
+      local icons = require("mini.icons")
+      icons.mock_nvim_web_devicons()
+      icons.tweak_lsp_kind()
+    end,
+  },
   {
     "stevearc/oil.nvim",
+    lazy = false,
     opts = {
       columns = { "permissions", "mtime", "size", "icon" },
       delete_to_trash = true,
@@ -35,12 +46,10 @@ return require("lazy").setup({
       },
     },
   },
-  {
-    "nvim-lua/plenary.nvim",
-    lazy = true,
-  },
+  { "nvim-lua/plenary.nvim" },
   {
     "sQVe/sort.nvim",
+    lazy = false,
     cmd = "Sort",
   },
   {
@@ -71,10 +80,15 @@ return require("lazy").setup({
       { "<leader>sc", "<cmd>ColorizerToggle<cr>", desc = "Set colorizer" },
     },
   },
-  { "monkoose/matchparen.nvim", opts = {} },
+  {
+    "monkoose/matchparen.nvim",
+    lazy = false,
+    opts = {},
+  },
   {
     "nmac427/guess-indent.nvim",
     opts = { autocmd = false },
+    cmd = "GuessIndent",
   },
   {
     "folke/which-key.nvim",
@@ -88,14 +102,6 @@ return require("lazy").setup({
         desc = "Buffer Local Keymaps (which-key)",
       },
     },
-  },
-  {
-    "folke/twilight.nvim",
-    opts = {
-      context = -1,
-      treesitter = true,
-    },
-    lazy = true,
   },
   { "ashfinal/qfview.nvim" },
   {
@@ -116,12 +122,21 @@ return require("lazy").setup({
       },
     },
     keys = {
-      { "<leader>ou", "<cmd>lua require('undotree').toggle()<cr>" },
+      { "<leader>ou", "<cmd>lua require('undotree').toggle()<cr>", desc = "Open undo tree" },
     },
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "echasnovski/mini.icons",
+    },
+    ft = { "markdown" },
+    opts = {},
+  },
+  {
+    "stevearc/dressing.nvim",
+    lazy = false,
     opts = {},
   },
   require("status-line"),
@@ -131,5 +146,6 @@ return require("lazy").setup({
   require("completion"),
   require("formatter"),
   require("repl"),
-  require("fuzzy-finder"),
+  require("code-highlight"),
+  unpack(require("fuzzy-finder")),
 })
