@@ -195,7 +195,7 @@ then
     eval "$(starship init zsh)"
 fi
 
-# integrate fzf
+# integrate fzy
 if command -v fzy &> /dev/null
 then
     function history-fzy() {
@@ -219,7 +219,7 @@ then
     function insert-fzy-path-in-command-line() {
         local selected_path
         # echo
-        selected_path=$(rg . --files --hidden | fzy) || return
+        selected_path=$(rg . --files --hidden 2>/dev/null | fzy) || return
         LBUFFER="$LBUFFER${(q)selected_path} "
         zle reset-prompt
     }
