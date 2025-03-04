@@ -3,7 +3,7 @@ return {
   opts = {
     formatters_by_ft = {
       c = { "clang_format" },
-      zsh = { "shfmt" },
+      sh = { "shfmt" },
       lua = { "stylua" },
       python = { "black" },
       javascript = { "prettier" },
