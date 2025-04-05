@@ -139,6 +139,7 @@ function mkcd(){
     mkdir $1 && cd $1
 }
 alias conf='__scoped_edit $HOME/.dotfiles/'
+alias notes='__scoped_edit $HOME/Documents/notes'
 alias :q='exit' # I'm done with this
 
 # history search

@@ -93,6 +93,8 @@ vim.g.sql_type_default = "postgresql"
 
 vim.g.mapleader = " "
 
+vim.g.markdown_syntax_conceal = 0
+
 local opts = require("utils").opts
 local key = require("utils").key
 
