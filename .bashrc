@@ -8,7 +8,7 @@ export EDITOR=nvim
 export VISUAL=nvim
 export BAT_THEME=base16
 export PAGER=bat
-export BROWSER=chromium
+export BROWSER=firefox
 export LS_COLORS='di=1;34:ln=36:so=1;31:pi=33:ex=1;32:bd=1;33:cd=1;33:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 export MANROFFOPT='-c'
 export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
