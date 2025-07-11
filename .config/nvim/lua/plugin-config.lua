@@ -125,21 +125,21 @@ return require("lazy").setup({
       { "<leader>ou", "<cmd>lua require('undotree').toggle()<cr>", desc = "Open undo tree" },
     },
   },
-  {
-    "MeanderingProgrammer/render-markdown.nvim",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "echasnovski/mini.icons",
-    },
-    ft = { "markdown" },
-    opts = {},
-  },
+  -- {
+  --   "MeanderingProgrammer/render-markdown.nvim",
+  --   dependencies = {
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "echasnovski/mini.icons",
+  --   },
+  --   ft = { "markdown" },
+  --   opts = {},
+  -- },
   {
     "stevearc/dressing.nvim",
     lazy = false,
     opts = {},
   },
-  require("status-line"),
+  { "echasnovski/mini.statusline", opts = {} },
   require("lsp-servers"),
   require("treesitter"),
   require("snippets"),
@@ -147,5 +147,6 @@ return require("lazy").setup({
   require("formatter"),
   require("repl"),
   require("code-highlight"),
-  unpack(require("fuzzy-finder")),
+  -- require("folding"),
+  require("fuzzy-finder"),
 })

@@ -126,6 +126,18 @@ function rm() {
     trash $@
 }
 
+function ffdiff_v() {
+    nvim -d \
+        =(ffprobe -hide_banner -select_streams v:0 -show_streams "$1" 2>&1) \
+        =(ffprobe -hide_banner -select_streams v:0 -show_streams "$2" 2>&1)
+}
+
+function ffdiff_a() {
+    nvim -d \
+        =(ffprobe -hide_banner -select_streams a:0 -show_streams "$1" 2>&1) \
+        =(ffprobe -hide_banner -select_streams a:0 -show_streams "$2" 2>&1)
+}
+
 set icons
 [[ $TERM != "linux" ]] && icons="--icons=always"
 alias ls="eza $icons --sort=type --classify=always --group"
@@ -140,6 +152,9 @@ function mkcd(){
 }
 alias conf='__scoped_edit $HOME/.dotfiles/'
 alias notes='__scoped_edit $HOME/Documents/notes'
+alias ffmpeg='ffmpeg -hide_banner'
+alias ffdesc_v='ffprobe -hide_banner -select_streams v:0 -show_streams'
+alias ffdesc_a='ffprobe -hide_banner -select_streams a:0 -show_streams'
 alias :q='exit' # I'm done with this
 
 # history search
@@ -197,37 +212,9 @@ then
 fi
 
 # integrate fzy
-if command -v fzy &> /dev/null
+if command -v fzf &> /dev/null
 then
-    function history-fzy() {
-        local tac
-
-        if which tac > /dev/null; then
-        tac="tac"
-        else
-        tac="tail -r"
-        fi
-
-        BUFFER=$(history -n 1 | eval $tac | fzy --query "$LBUFFER")
-        CURSOR=$#BUFFER
-
-        zle reset-prompt
-    }
-
-    zle -N history-fzy
-    bindkey '^R' history-fzy
-
-    function insert-fzy-path-in-command-line() {
-        local selected_path
-        # echo
-        selected_path=$(rg . --files --hidden 2>/dev/null | fzy) || return
-        LBUFFER="$LBUFFER${(q)selected_path} "
-        zle reset-prompt
-    }
-    zle -N insert-fzy-path-in-command-line
-
-    unsetopt flowcontrol
-    bindkey "^S" "insert-fzy-path-in-command-line"
+    source <(fzf --zsh)
 else
     bindkey '^R' history-incremental-search-backward
 fi

@@ -6,7 +6,7 @@ return {
       repl_definition = {
         python = require("iron.fts.python").ipython,
         sh = {
-          command = { "bash" },
+          command = { "env", "BASH_REPL=true", "bash" },
         },
       },
       repl_open_cmd = require("iron.view").split.botright("30%"),

@@ -1,4 +1,4 @@
-return {
+return unpack({
   {
     "nvim-telescope/telescope.nvim",
     opts = function(_, opts)
@@ -64,4 +64,4 @@ return {
   require("fuzzy-finder.ext-environment"),
   require("fuzzy-finder.ext-changes"),
   require("fuzzy-finder.ext-picker-list"),
-}
+})
