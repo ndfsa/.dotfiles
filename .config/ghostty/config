@@ -1,3 +1,4 @@
+confirm-close-surface = false
 font-family = "JetBrains Mono"
 font-size = 14
 theme = "Kanagawa Wave"
